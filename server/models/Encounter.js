@@ -18,7 +18,10 @@ const encounterSchema = new Schema({
         required: true,
         max_length: 250,
     },
-
+    userId: {
+        type: Schema.Types.ObjectId,
+        ref: 'User'
+    }  
 });
 
 const Encounter = model('Encounter', encounterSchema);

@@ -6,6 +6,7 @@ const typeDefs = gql`
         username: String!
         email: String!
         password: String!
+        encounters: String!
     }
 
     type Encounter {
@@ -15,9 +16,8 @@ const typeDefs = gql`
     }
     
     type Query {
-        users: [User]
-        encounters(_id: String): [Encounter]
-      }
+        me(_id: String!): User
+    }
     
 `;
 
