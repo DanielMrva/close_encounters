@@ -1,14 +1,17 @@
 import React from 'react';
-import ReactDOM from 'react-dom/client';
+import App from './App';
+import ReactDOM from 'react-dom';
+import 'leaflet/dist/leaflet.css';
 import './index.css';
+import MapWrapper from './pages/basic-map';
 
 import reportWebVitals from './reportWebVitals';
-import MapWrapper from './components/basic-map';
+
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
   <React.StrictMode>
-    <MapWrapper className = "mapHeight"/>
+    <MapWrapper />
   </React.StrictMode>
 );
 
