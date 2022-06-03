@@ -20,7 +20,9 @@ const userSchema = new Schema({
         required: true,
         minlength: 5,
     },
-    encounters: [encounterSchema],
+    encounters: [{ 
+        type: Schema.Types.ObjectId, 
+        ref: 'Encounter' }],
 });
 
 userSchema.pre('save', async function(next) {
