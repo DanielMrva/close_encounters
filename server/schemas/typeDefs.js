@@ -8,4 +8,8 @@ const typeDefs = gql`
         password: String
         //more
     }
+
+    type Encounter {
+        
+    }
 `
