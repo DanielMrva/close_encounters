@@ -6,18 +6,28 @@ const typeDefs = gql`
         username: String!
         email: String!
         password: String!
-        encounters: String!
+        encounters: [Encounter]
     }
 
     type Encounter {
         _id: ID!
+        encounterId: String!
         category: String!
+        location: String!
         description: String!
     }
     
     type Query {
         me(_id: String!): User
     }
+
+    input saveEncounterInput {
+        encounterId: String!
+        category: String!
+        location: String!
+        description: String!
+    }
+
     
 `;
 
