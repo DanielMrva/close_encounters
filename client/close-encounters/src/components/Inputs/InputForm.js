@@ -57,7 +57,7 @@ export default function InputForm(props) {
             type: eventType,
             latitude: lat,
             longitude: lng,
-            description: desc
+            description: desc,  
         }
 
         console.log(data);

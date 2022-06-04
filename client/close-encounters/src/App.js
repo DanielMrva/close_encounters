@@ -1,8 +1,8 @@
 import logo from './logo.svg';
 import './App.css';
 
-import MapWrapper from './components/pages/basic-map';
-import InputPage from './components/pages/InputPage'
+import MapWrapper from './pages/basic-map';
+import InputPage from './components/Inputs/InputPage'
 
 function App() {
   return (
