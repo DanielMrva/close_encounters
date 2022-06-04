@@ -1,7 +1,7 @@
 
 import React from 'react';
 import { MapContainer, TileLayer } from 'react-leaflet';
-import tileLayer from '../utils/tileLayer';
+import tileLayer from '../../utils/tileLayer';
 
 
 
