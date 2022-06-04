@@ -1,7 +1,7 @@
 
 import React from 'react';
 import {useEffect, useState } from 'react';
-import { MapContainer, TileLayer, Marker, Popup } from 'react-leaflet';
+import { MapContainer, Rectangle, TileLayer, Marker, Popup } from 'react-leaflet';
 import L from 'leaflet';
 import tileLayer from '../utils/tileLayer';
 // import { UFO, CZ, PN, DF } from '../mapassets';
@@ -52,27 +52,77 @@ const Legend = ({ map }) => {
     useEffect(() => {
       if (!map) return;
   
-      const legend = L.control({ position: "bottomright" });
-  
-      const rows = [];
-      legend.onAdd = () => {
-        const div = L.DomUtil.create("div", "legend");
-        colors.map((color, index) => {
-          return rows.push(`
-              <div class="row">
-                <i style="background: #${color}"></i>${labels[index]}
-              </div>
-            `);
+    const legend = L.control({ position: "bottomright" });
+
+    const rows = [];
+    legend.onAdd = () => {
+    const div = L.DomUtil.create("div", "legend");
+    colors.map((color, index) => {
+        return rows.push(`
+            <div class="row">
+            <i style="background: #${color}"></i>${labels[index]}
+            </div>
+        `);
+    });
+    div.innerHTML = rows.join("");
+    return div;
+    };
+
+    legend.addTo(map);
+}, [map]);
+
+return null;
+};
+
+const SetRentacle = ({ bounds }) => {
+        return bounds.map((bound, index) => (
+        <Rectangle 
+            key={index}
+            bounds={bound}
+            color="#000000"
+            weight={50}
+            fillOpacity={0.3} />
+    ))
+}
+
+function contentText(getBounds) {
+const { _northEast, _southWest } = getBounds;
+return `SouthWest: ${_southWest}, NorthEast: ${_northEast}`;
+}
+
+const Location = ({ map }) => {
+    const [bounds, setBounds] =
+    useState([])
+
+    useEffect(() => {
+        if (!map) return;
+
+        const info = L.DomUtil.create('div', 'legend');
+
+        const position = L.Control.extend({
+            options: {
+                position: 'bottomleft'
+            },
+
+            onAdd: function () {
+                info.innerHTML = contentText(map.getBounds());
+                return info;
+            }
+        })
+
+        map.addControl(new position());
+
+        map.on('moveend zoomend', () => {
+            const bounds = map.getBounds();
+            info.textContent = 
+            contentText(bounds);
+            setBounds(b => [...b, bounds])
         });
-        div.innerHTML = rows.join("");
-        return div;
-      };
-  
-      legend.addTo(map);
-    }, [map]);
-  
-    return null;
-  };
+    }, [map])
+
+    return bounds?.length <= 0 ? <SetRentacle bounds={bounds} />
+    : null;
+}
 
 const markerIcon = (type) => {
 
@@ -139,6 +189,8 @@ const MapWrapper = () => {
             <MapMarkers data={mockData} />
 
             <Legend map={map}/>
+
+            <Location map={map} />
 
         </MapContainer>
         
