@@ -1,14 +1,15 @@
 import logo from './logo.svg';
 import './App.css';
 
-import MapWrapper from './pages/basic-map';
+import MapWrapper from './components/pages/basic-map';
+import InputPage from './components/pages/InputPage'
 
 function App() {
   return (
     <div className="App">
 
-      <MapWrapper />
-
+      {/* <MapWrapper /> */}
+      <InputPage />
     </div>
   );
 }
