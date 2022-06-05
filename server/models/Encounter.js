@@ -12,8 +12,12 @@ const encounterSchema = new Schema({
         type: String,
         required: true,
     },
-    location: {
-        type: String,
+    lat: {
+        type: Number,
+        required: true,
+    },
+    lng: {
+        type: Number, 
         required: true,
     },
     description: {

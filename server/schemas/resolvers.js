@@ -48,14 +48,15 @@ const resolvers = {
 
             return { token, user}
         },
-        saveEncounter: async (parent, { user, encounterId, date, category, location, description, }) => {
+        saveEncounter: async (parent, { user, encounterId, date, category, lat, lng, description, }) => {
          const encounter = await Encounter.create(
             {_id: user._id },
             { $addToSet: {encounters: {
                 encounterId: encounterId,
                 date: date,
                 category: category,
-                location: location,
+                lat: lat,
+                lng: lng,
                 description: description,
             }}},
             {new: true, runValidators: true }

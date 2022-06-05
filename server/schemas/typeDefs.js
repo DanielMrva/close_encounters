@@ -29,11 +29,10 @@ const typeDefs = gql`
         encounter(encounterId: ID!): Encounter
     }
 
-
     type Mutation {
         addUser(username: String!, email: String!, password: String!): Auth
         login(email: String!, password: String!): Auth
-        saveEncounter(encounterId: String!, category: String!, location: String!, description: String!): User
+        saveEncounter(encounterId: String!, category: String!, lat: Float!, lng: Float!, description: Float!): User
         removeEncounter(encounterId: String!): Encounter
     }
 `;
