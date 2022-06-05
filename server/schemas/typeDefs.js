@@ -24,6 +24,9 @@ const typeDefs = gql`
 
     type Query {
         me(_id: String!): User
+        users: [User]
+        encounters(username: String): [Encounter]
+        encounter(encounterId: ID!): Encounter
     }
 
 
@@ -31,7 +34,7 @@ const typeDefs = gql`
         addUser(username: String!, email: String!, password: String!): Auth
         login(email: String!, password: String!): Auth
         saveEncounter(encounterId: String!, category: String!, location: String!, description: String!): User
-        removeEncounter(encounterId: String!): User
+        removeEncounter(encounterId: String!): Encounter
     }
 `;
 

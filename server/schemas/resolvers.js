@@ -8,7 +8,18 @@ const resolvers = {
         me: async (parent, {_id}) => {
             const params = _id ? { _id } : {};
             return User.find(params);
-        }
+        },
+        users: async () => {
+            return User.find().populate('encounters');
+        },     
+        encounters: async (parent, { username }) => {
+            const params = username ? { username } : {};
+            return Encounter.find(params).sort({ createdAt: -1 });
+            },
+        encounter: async (parent, { encounterId }) => {
+            return Encounter.findOne({ _id: encounterId });
+            },
+       
     },
     Mutation: {
         addUser: async (parent, { username, email, password }) => {
@@ -37,25 +48,29 @@ const resolvers = {
 
             return { token, user}
         },
-        saveEncounter: async (parent, { user, encounterId, category, location, description  }) => { const updatedUser = await User.findOneAndUpdate(
+        saveEncounter: async (parent, { user, encounterId, date, category, location, description, }) => {
+         const encounter = await Encounter.create(
             {_id: user._id },
             { $addToSet: {encounters: {
                 encounterId: encounterId,
+                date: date,
                 category: category,
                 location: location,
                 description: description,
             }}},
             {new: true, runValidators: true }
             );
+
+            await User.findOneAndUpdate(
+                { user: user },
+                { $addToSet: {encounters: encounter._id}}
+            )
         },
-        removeEncounter: async (parent, { user, encounterId }) => {
-            const updatedUser = await User.findOneAndUpdate(
-                { _id: user.id },
-                { $pull: { saveEncounter: { encounterId: encounterId }}},
-                { new: true }
-            );
-        }
-    }
-}
+        removeEncounter: async (parent, { encounterId }) => {
+            return Encounter.findOneAndDelete({ _id: encounterId });
+        },
+      
+    },
+};
 
 module.exports = resolvers;

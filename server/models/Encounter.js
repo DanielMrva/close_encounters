@@ -1,8 +1,11 @@
 const { Schema, model } = require('mongoose');
+const dateFormat = require('../utils/dateFormat');
 
 const encounterSchema = new Schema({
     date: {
         type: Date,
+        default: Date.now,
+        get: (timestamp) => dateFormat(timestamp),    
         required: true,
     },
     category: {
@@ -17,7 +20,12 @@ const encounterSchema = new Schema({
         type: String,
         required: true,
         max_length: 250,
-    },
+    },  
+    createdAt: {
+        type: Date,
+        default: Date.now,
+        get: (timestamp) => dateFormat(timestamp),
+      },
     userId: {
         type: Schema.Types.ObjectId,
         ref: 'User'
