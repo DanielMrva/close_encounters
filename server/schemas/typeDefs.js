@@ -13,7 +13,10 @@ const typeDefs = gql`
         _id: ID!
         encounterId: String!
         category: String!
-        location: String!
+        type: String!
+        lat: Number!
+        lng: Number!
+        title: String!
         description: String!
     }
     
@@ -25,6 +28,7 @@ const typeDefs = gql`
     type Query {
         me(_id: String!): User
         users: [User]
+        allencounters: [Encounter]
         encounters(username: String): [Encounter]
         encounter(encounterId: ID!): Encounter
     }

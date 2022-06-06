@@ -11,7 +11,10 @@ const resolvers = {
         },
         users: async () => {
             return User.find().populate('encounters');
-        },     
+        }, 
+        allencounters: async () => {
+            return Encounter.find();
+        },         
         encounters: async (parent, { username }) => {
             const params = username ? { username } : {};
             return Encounter.find(params).sort({ createdAt: -1 });
