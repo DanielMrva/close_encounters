@@ -1,0 +1,47 @@
+[    
+    {
+        "date": "10-21-2020",
+        "category": "Extraterrestrial",
+        "type": "UFO Sighting",
+        "lat": 40.7190,
+        "lng": -103.1010,
+        "title": "Cigar UFO Encounter",
+        "description": "Alien UFO sighting that occurred in October 2021. This was an extraterrestrial event."
+    },
+    {
+        "date": "6-19-1999",
+        "category": "Paranormal",
+        "type": "Sighting",
+        "lat": 39.0078,
+        "lng": -102.4587,
+        "title": "Vision of my great grandfather",
+        "description": "I saw the ghost of my great grandfather walking down the hallway of my late grandmother's family home. He was wearing his uniform from WWII."
+    },
+    {
+        "date": "12-24-2012",
+        "category": "Zoological",
+        "type": "CZ",
+        "lat": 40.2213,
+        "lng": -105.5732,
+        "title": "Unicorn Sighting",
+        "description": "When on a hike with my family, we saw a flash of white out of the corner of our vision. Later on, we saw a shadowy form shaped like a unicorn in the distance."
+    },
+    {
+        "date": "7-4-1958",
+        "category": "Extraterrestrial",
+        "type": "UFO Sighting",
+        "lat": 40.5109,
+        "lng": -104.1570,
+        "title": "Silver Disk UFO signting",
+        "description": "This was a UFO sighting in July of 1958 reported by multiple witnesses."
+    },
+    {
+        "date": "2-14-2001",
+        "category": "Extraterrestrial",
+        "type": "Sighting",
+        "lat": 40.2268,
+        "lng": -101.9901,
+        "title": "Little green men spotted in field",
+        "description": "Aliens were seen in the field by owner of the property. He described the sight as unnerving."
+    }
+]

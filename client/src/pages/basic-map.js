@@ -1,6 +1,7 @@
-import React from "react";
-import { MapContainer, TileLayer } from "react-leaflet";
-import tileLayer from "../utils/tileLayer";
+
+import React from 'react';
+import { MapContainer, TileLayer } from 'react-leaflet';
+import tileLayer from '../utils/tileLayer';
 
 const MapWrapper = () => {
   const mapPositions = [39.7392, -104.9903];
