@@ -1,0 +1,33 @@
+[
+    {
+        "username":"allison.fischer",
+        "email":"aFischer@gmail.com",
+        "password":"fishfriend94"
+    },
+    {
+        "username":"brandon.ursus",
+        "email":"bUrsus@gmail.com",
+        "password":"whinneyTheP00"
+    },
+    {
+        "username":"arthur.tree",
+        "email":"aTree@usgs.gov",
+        "password":"notAFlyingCircusReferance01"
+    },
+    {
+        "username":"richard.druphus",
+        "email":"rDruphus@gmail.com",
+        "password":"IWannaMesa77"
+    },
+    {
+        "username":"wendy.starlink",
+        "email":"wStarlink@gmail.com",
+        "password":"weStar1337"
+    },
+    {
+        "username":"joe.junior",
+        "email":"joe.junior@gmail.com",
+        "password":"mrthompson"
+    }
+]
+
