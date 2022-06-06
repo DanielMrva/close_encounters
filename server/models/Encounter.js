@@ -12,6 +12,10 @@ const encounterSchema = new Schema({
         type: String,
         required: true,
     },
+    type: {
+        type: String,
+        required: true,
+    },
     lat: {
         type: Number,
         required: true,
@@ -19,6 +23,11 @@ const encounterSchema = new Schema({
     lng: {
         type: Number, 
         required: true,
+    },
+    title: {
+        type: String,
+        required: false,
+        max_length: 75,
     },
     description: {
         type: String,
