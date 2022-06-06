@@ -8,8 +8,8 @@ function App() {
   return (
     <div className="App">
 
-      {/* <MapWrapper /> */}
-      <InputPage />
+      <MapWrapper />
+      {/* <InputPage /> */}
     </div>
   );
 }
