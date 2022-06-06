@@ -1,11 +1,17 @@
 import React from 'react';
 import {useEffect, useState } from 'react';
-import { MapContainer, Rectangle, TileLayer, Marker, Popup, useMapEvents } from 'react-leaflet';
+import { MapContainer, Rectangle, TileLayer, Marker, Popup, useMapEvents, useMap } from 'react-leaflet';
 import L from 'leaflet';
 import tileLayer from '../utils/tileLayer';
 // import { UFO, CZ, PN, DF } from '../mapassets';
 
 const mapPositions = [39.7392, -104.9903];
+
+function Locator() {
+    const map = useMap()
+    map.locate({setView: true, maxZoom: 12});
+}
+
 
 const mockData = [
     {
@@ -120,7 +126,7 @@ const MapWrapper = () => {
     return (
     <MapContainer 
         className='map'
-        whenCreated={setMap} 
+        // whenCreated={Locator} 
         center={mapPositions} 
         zoom={10}>
             <MapEvents/>
@@ -128,7 +134,8 @@ const MapWrapper = () => {
 
 
             <MapMarkers data={mockData} />
-
+            <Locator/>
+            {/* <LocationMarker /> */}
             {/* <Legend map={map}/> */}
             {/* <Location map={map} /> */}
 
@@ -142,6 +149,26 @@ const MapWrapper = () => {
 export default MapWrapper;
 
 //scraps below:
+
+// function LocationMarker() {
+//     const [position, setPosition] = useState(null)
+//     const map = useMapEvents({
+//         click() {
+//         map.locate()
+//         },
+//         locationfound(e) {
+//         setPosition(e.latlng)
+//         console.log(e.latlng)
+//         map.flyTo(e.latlng, map.getZoom())
+//         },
+//     })
+
+//     return position === null ? null : (
+//         <Marker position={position}>
+//         <Popup>You are here</Popup>
+//         </Marker>
+//     )
+// }
 
 
 // const colors = ["fe4848", "fe6c58", "fe9068", "feb478", "fed686"];
