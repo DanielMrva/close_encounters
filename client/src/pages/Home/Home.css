@@ -1,0 +1,40 @@
+:root {
+  --blue: rgb(19, 33, 106);
+  --red: rgb(255, 0, 0);
+  --light-grey: rgb(217, 217, 217);
+  --blue-grey: rgb(146, 151, 167);
+  --white: #ffffff;
+}
+
+/* cell phone size */
+@media screen and (max-width: 428px) {
+  .heading-container {
+    position: absolute;
+    width: 348px;
+    height: 166px;
+    left: 40px;
+    top: 119px;
+  }
+
+  /* undeniable text */
+  h2 {
+    font-family: "Red Rose";
+    font-style: normal;
+    font-weight: 400;
+    font-size: 24px;
+    line-height: 30px;
+    text-align: center;
+    color: var(--blue);
+    text-transform: uppercase;
+  }
+
+  /* number of encounters text */
+  h6 {
+    font-family: "Roboto Mono";
+    font-style: normal;
+    font-weight: 400;
+    font-size: 20px;
+    line-height: 26px;
+    color: var(--red);
+  }
+}

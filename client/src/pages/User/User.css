@@ -1,0 +1,25 @@
+:root {
+  --blue: rgb(19, 33, 106);
+  --red: rgb(255, 0, 0);
+  --light-grey: rgb(217, 217, 217);
+  --blue-grey: rgb(146, 151, 167);
+  --white: #ffffff;
+}
+
+/* cell phone size */
+@media screen and (max-width: 428px) {
+  .user-grid {
+  }
+
+  h2 {
+    font-family: "Red Rose";
+    font-style: normal;
+    font-weight: 400;
+    font-size: 24px;
+    line-height: 30px;
+    display: flex;
+    align-items: center;
+    text-align: center;
+    text-transform: uppercase;
+  }
+}
