@@ -11,13 +11,13 @@ const typeDefs = gql`
 
     type Encounter {
         _id: ID!
-        encounterId: String!
         category: String!
         type: String!
-        lat: Number!
-        lng: Number!
+        lat: Float!
+        lng: Float!
         title: String!
         description: String!
+        userId: String 
     }
     
     type Auth {

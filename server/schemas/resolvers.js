@@ -22,7 +22,6 @@ const resolvers = {
         encounter: async (parent, { encounterId }) => {
             return Encounter.findOne({ _id: encounterId });
             },
-       
     },
     Mutation: {
         addUser: async (parent, { username, email, password }) => {
