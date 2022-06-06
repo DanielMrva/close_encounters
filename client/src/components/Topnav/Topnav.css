@@ -1,43 +1,40 @@
-:root {
-  --blue: rgb(19, 33, 106);
-  --red: rgb(255, 0, 0);
-  --light-grey: rgb(217, 217, 217);
-  --blue-grey: rgb(146, 151, 167);
-  --white: #ffffff;
+/* cell phone size */
+
+.topnav-flex-container {
+  display: flex;
+  width: 100vw;
+  height: 70px;
+  background-color: white;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0 10px;
+  margin: 0 0 20px 0;
+  border-bottom: 2px solid var(--blue);
 }
 
-/* cell phone size */
+.close {
+  font-family: "Roboto Mono";
+  font-style: normal;
+  font-weight: 400;
+  font-size: 20px;
+  line-height: 26px;
+  color: var(--blue);
+  width: fit-content;
+  /* justify-self: start; */
+}
+
+.icon-container {
+  /* justify-self: end; */
+  width: fit-content;
+}
+
+.fa-earth-americas {
+  padding: 0 5px;
+}
+
+.fa-person-falling {
+  padding: 0 5px;
+}
+
 @media screen and (max-width: 428px) {
-  .topnav-flex-container {
-    display: flex;
-    width: 100vw;
-    height: 70px;
-    background-color: white;
-    justify-self: space-between;
-    align-items: center;
-  }
-
-  h4 {
-    font-family: "Roboto Mono";
-    font-style: normal;
-    font-weight: 400;
-    font-size: 20px;
-    line-height: 26px;
-    color: var(--blue);
-    /* justify-self: start; */
-  }
-
-  /* .icon-container {
-    justify-self: end;
-  } */
-
-  .fa-earth-americas {
-    height: 40px;
-    width: auto;
-  }
-
-  .fa-person-falling {
-    height: 40px;
-    width: auto;
-  }
 }
