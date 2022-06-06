@@ -1,3 +1,9 @@
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
 :root {
   --blue: rgb(19, 33, 106);
   --red: rgb(255, 0, 0);
