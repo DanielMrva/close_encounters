@@ -10,6 +10,9 @@ const mapPositions = [39.7392, -104.9903];
 function Locator() {
     const map = useMap()
     map.locate({setView: true, maxZoom: 12});
+    let bounds = map.getBounds();
+    let zoom = map.getZoom();
+    makeACall(bounds, zoom);
 }
 
 
