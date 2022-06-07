@@ -39,61 +39,60 @@ export default function InputForm(props) {
         setFormData({});
     };
 
-    return (
-        <div>
-            <h1>Input your Encounter:</h1>
-            <form onSubmit={submitHandler}>
-                <input
-                    type="text"
-                    placeholder="Date"
-                    value={formData.eventDate}
-                    name="eventDate"
-                    onChange={handleInputChange}
-                ></input>
-                <input
-                    type="text"
-                    placeholder="Time"
-                    value={formData.eventTime}
-                    name="eventTime"
-                    onChange={handleInputChange}
-                ></input>
-                <input
-                    type="text"
-                    placeholder="Category"
-                    value={formData.category}
-                    name="category"
-                    onChange={handleInputChange}
-                ></input>
-                <input
-                    type="text"
-                    placeholder="Type"
-                    value={formData.eventType}
-                    name="eventType"
-                    onChange={handleInputChange}
-                ></input>
-                <input
-                    type="text"
-                    placeholder="Latitude"
-                    value={formData.lat}
-                    name="lat"
-                    onChange={handleInputChange}
-                ></input>
-                <input
-                    type="text"
-                    placeholder="Longitude"
-                    value={formData.lng}
-                    name="lng"
-                    onChange={handleInputChange}
-                ></input>
-                <input
-                    type="text"
-                    placeholder="Description"
-                    value={formData.desc}
-                    name="desc"
-                    onChange={handleInputChange}
-                ></input>
-                <button>Add your event!</button>
-            </form>
-        </div>
-    )
+  return (
+    <div>
+      <form onSubmit={submitHandler}>
+        <input
+          type="text"
+          placeholder="Date"
+          value={eventDate}
+          name="date"
+          onChange={handleDateChange}
+        ></input>
+        <input
+          type="text"
+          placeholder="Time"
+          value={eventTime}
+          name="time"
+          onChange={handleTimeChange}
+        ></input>
+        <input
+          type="text"
+          placeholder="Category"
+          value={category}
+          name="category"
+          onChange={handleCategoryChange}
+        ></input>
+        <input
+          type="text"
+          placeholder="Type"
+          value={eventType}
+          name="type"
+          onChange={handleTypeChange}
+        ></input>
+        <input
+          type="text"
+          placeholder="Latitude"
+          value={lat}
+          name="lat"
+          onChange={handleLatChange}
+        ></input>
+        <input
+          type="text"
+          placeholder="Longitude"
+          value={lng}
+          name="lng"
+          onChange={handlelngChange}
+        ></input>
+        <input
+          type="text"
+          placeholder="Description"
+          value={desc}
+          name="desc"
+          onChange={handleDescChange}
+        ></input>
+        <button>Add your event!</button>
+      </form>
+    </div>
+  );
 };
