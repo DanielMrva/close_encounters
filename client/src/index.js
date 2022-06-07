@@ -1,9 +1,10 @@
-import React from "react";
-import App from "./App";
-import ReactDOM from "react-dom/client";
-import "leaflet/dist/leaflet.css";
-import "./index.css";
-// import MapWrapper from './pages/basic-map';
+import React from 'react';
+import App from './App';
+import ReactDOM from 'react-dom/client';
+import 'leaflet/dist/leaflet.css';
+import './index.css';
+import MapWrapper from './pages/basic-map';
+
 
 import reportWebVitals from "./reportWebVitals";
 
