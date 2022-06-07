@@ -1,17 +1,46 @@
 /* cell phone size */
-@media screen and (max-width: 428px) {
-  .user-grid {
-  }
 
-  h2 {
-    font-family: "Red Rose";
-    font-style: normal;
-    font-weight: 400;
-    font-size: 24px;
-    line-height: 30px;
-    display: flex;
-    align-items: center;
-    text-align: center;
-    text-transform: uppercase;
-  }
+.user-grid {
+}
+
+.user-container {
+  height: 100vh;
+}
+
+.flex-center {
+  display: flex;
+  justify-content: center;
+  align-content: center;
+}
+
+.user-container h4 {
+  width: 348px;
+  height: 169px;
+  font-family: "Red Rose";
+  font-style: normal;
+  font-weight: 400;
+  font-size: 24px;
+  line-height: 30px;
+  display: flex;
+  align-items: center;
+  text-align: center;
+  text-transform: uppercase;
+  color: var(--blue);
+}
+
+.user-container h3 {
+  width: 348px;
+  height: 111px;
+  font-family: "Red Rose";
+  font-style: normal;
+  font-weight: 400;
+  font-size: 22px;
+  line-height: 27px;
+  display: flex;
+  align-items: center;
+  text-align: center;
+  color: var(--red);
+}
+
+@media screen and (max-width: 428px) {
 }

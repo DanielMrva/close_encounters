@@ -54,6 +54,7 @@ export default function Createpost() {
                   placeholder="Category"
                   value={category}
                   id="paranormal"
+                  className="checkbox-element"
                   name="paranormal"
                   onChange={handleCategoryChange}
                 ></input>

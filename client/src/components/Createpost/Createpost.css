@@ -58,6 +58,32 @@ h2 {
   padding: 30px 10px;
 }
 
+#checkbox {
+  display: inline-block;
+  padding: 15px 18px;
+  border-radius: 2px;
+  position: relative;
+  cursor: pointer;
+}
+
+.checkbox-element {
+  display: block;
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: 100%;
+  z-index: 999999;
+  opacity: 0;
+}
+
+#checkbox>input[type='checkbox']+i{
+  color: blue
+}
+
+#checkbox>input[type='checkbox']:checked+i{
+  color: red;
+}
+
 /* input[type="checkbox"] {
   clip: rect(0 0 0 0);
   clip-path: inset(50%);
