@@ -36,7 +36,15 @@ const typeDefs = gql`
     type Mutation {
         addUser(username: String!, email: String!, password: String!): Auth
         login(email: String!, password: String!): Auth
-        saveEncounter(encounterId: String!, date: String!, category: String!, type: String!, lat: Float!, lng: Float!, title: String!, description: String!): User
+        saveEncounter(
+            date: String!, 
+            category: String!, 
+            type: String!, 
+            lat: Float!, 
+            lng: Float!, 
+            title: String!, 
+            description: String!)
+            : User
         removeEncounter(encounterId: String!): Encounter
     }
 `;

@@ -140,37 +140,37 @@ export default function InputForm(props) {
     //     })
     // }
 
-    return (
-        <div>
-            <form onSubmit={handleSubmit((data) => {
-                    console.log(data)
-                    props.onSubmit({
-                        date: data.eventDate,
-                        time: data.eventTime,
-                        category: data.category,
-                        type: data.eventType,
-                        lat: data.lat,
-                        long: data.long,
-                        desc: data.desc,
-                    })
-            })}
-            >
-                <label>Date</label>
-                <input {...register("eventDate", { required: true })} />
-                <label>Time</label>
-                <input {...register("eventTime")} />
-                <label>Category</label>
-                <input {...register("category", { required: true })} />
-                <label>Type</label>
-                <input {...register("eventType", { required: true })} />
-                <label>Latitude</label>
-                <input {...register("lat", { required: true })} />
-                <label>Longitude</label>
-                <input {...register("long", { required: true })} />
-                <label>Description</label>
-                <input {...register("desc")} placeholder="description" />
-                <input type="submit" />
-            </form>
-        </div>
-    )
+//     return (
+//         <div>
+//             <form onSubmit={handleSubmit((data) => {
+//                     console.log(data)
+//                     props.onSubmit({
+//                         date: data.eventDate,
+//                         time: data.eventTime,
+//                         category: data.category,
+//                         type: data.eventType,
+//                         lat: data.lat,
+//                         long: data.long,
+//                         desc: data.desc,
+//                     })
+//             })}
+//             >
+//                 <label>Date</label>
+//                 <input {...register("eventDate", { required: true })} />
+//                 <label>Time</label>
+//                 <input {...register("eventTime")} />
+//                 <label>Category</label>
+//                 <input {...register("category", { required: true })} />
+//                 <label>Type</label>
+//                 <input {...register("eventType", { required: true })} />
+//                 <label>Latitude</label>
+//                 <input {...register("lat", { required: true })} />
+//                 <label>Longitude</label>
+//                 <input {...register("long", { required: true })} />
+//                 <label>Description</label>
+//                 <input {...register("desc")} placeholder="description" />
+//                 <input type="submit" />
+//             </form>
+//         </div>
+//     )
 };
