@@ -6,7 +6,6 @@
   justify-content: space-between;
   align-items: center;
   padding: 0 10px;
-  margin: 0 0 20px 0;
   border-bottom: 2px solid var(--blue);
 }
 
@@ -30,4 +29,20 @@
 i {
   padding: 0 5px;
   color: var(--blue);
+}
+
+.active i {
+  color: var(--red);
+}
+
+a {
+  text-decoration: none;
+}
+
+.a:active {
+  color: var(--red);
+}
+
+.close:active {
+  color: var(--red);
 }
