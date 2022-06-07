@@ -50,24 +50,25 @@ const resolvers = {
 
             return { token, user}
         },
-        saveEncounter: async (parent, { userId, date, category, type, lat, lng, title, description, }) => {
+        saveEncounter: async (parent, { encounterUser, date, category, type, lat, lng, title, description }) => {
          const encounter = await Encounter.create(
-            { $addToSet: {
-                date: date,
-                category: category,
-                type: type,
-                lat: lat,
-                lng: lng,
-                title: title,
-                description: description,
-            }},
-            {new: true, runValidators: true }
+            {
+                encounterUser,
+                date,
+                category,
+                type,
+                lat,
+                lng,
+                title,
+                description,
+            },
             );
 
             await User.findOneAndUpdate(
-                { _id: userId },
+                { username: encounterUser },
                 { $addToSet: {encounters: encounter._id}}
             )
+            return encounter;
         },
         // removeEncounter: async (parent, { encounterId }) => {
         //     return Encounter.findOneAndDelete({ _id: encounter._id });

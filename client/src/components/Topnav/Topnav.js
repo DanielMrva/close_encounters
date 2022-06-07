@@ -2,11 +2,11 @@ import "./Topnav.css";
 
 export default function Topnav() {
   return (
-    <div className="topnav-flex">
-      <h4>close encounters</h4>
+    <div className="topnav-flex-container">
+      <div className="close">close encounters</div>
       <div className="icon-container">
-        <i class="fa-solid fa-earth-americas"></i>
-        <i class="fa-solid fa-person-falling"></i>
+        <i className="fa-solid fa-earth-americas fa-2xl"></i>
+        <i className="fa-solid fa-person-falling fa-2xl"></i>
       </div>
     </div>
   );

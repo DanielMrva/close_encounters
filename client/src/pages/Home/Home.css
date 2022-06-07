@@ -1,19 +1,10 @@
-:root {
-  --blue: rgb(19, 33, 106);
-  --red: rgb(255, 0, 0);
-  --light-grey: rgb(217, 217, 217);
-  --blue-grey: rgb(146, 151, 167);
-  --white: #ffffff;
-}
-
-/* cell phone size */
-@media screen and (max-width: 428px) {
+@media screen and (min-width: 800px) {
   .heading-container {
-    position: absolute;
-    width: 348px;
-    height: 166px;
-    left: 40px;
-    top: 119px;
+    width: 100vw;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 85vh;
   }
 
   /* undeniable text */
@@ -21,11 +12,27 @@
     font-family: "Red Rose";
     font-style: normal;
     font-weight: 400;
-    font-size: 24px;
-    line-height: 30px;
+    /* font-size: calc(2em + 1vw); */
+    font-size: 6rem;
+    line-height: 70px;
     text-align: center;
     color: var(--blue);
     text-transform: uppercase;
+    width: 100%;
+    /* width: 360px; */
+    height: fit-content;
+    padding: 80px 20px;
+  }
+
+  .image-container {
+    width: 100vw;
+    display: flex;
+  }
+
+  img {
+    flex: 1 0;
+    height: 90vh;
+    padding: 20px 60px;
   }
 
   /* number of encounters text */
@@ -36,5 +43,56 @@
     font-size: 20px;
     line-height: 26px;
     color: var(--red);
+    margin: 50px 0px;
+    text-transform: uppercase;
+  }
+}
+
+/* cell phone size */
+@media screen and (max-width: 800px) {
+  .heading-container {
+    width: 100vw;
+    height: 166px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+
+  /* undeniable text */
+  h2 {
+    font-family: "Red Rose";
+    font-style: normal;
+    font-weight: 400;
+    /* font-size: calc(2em + 1vw); */
+    font-size: 24px;
+    line-height: 30px;
+    text-align: center;
+    color: var(--blue);
+    text-transform: uppercase;
+    /* width: 70%; */
+    width: 348px;
+    height: fit-content;
+  }
+
+  .image-container {
+    width: 100vw;
+    display: flex;
+  }
+
+  img {
+    flex: 1 0;
+    padding: 30px;
+  }
+
+  /* number of encounters text */
+  h6 {
+    font-family: "Roboto Mono";
+    font-style: normal;
+    font-weight: 400;
+    font-size: 20px;
+    line-height: 26px;
+    color: var(--red);
+    margin-bottom: 20px;
+    text-transform: uppercase;
   }
 }

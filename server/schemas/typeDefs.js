@@ -37,6 +37,7 @@ const typeDefs = gql`
         addUser(username: String!, email: String!, password: String!): Auth
         login(email: String!, password: String!): Auth
         saveEncounter(
+            encounterUser: String!,
             date: String!, 
             category: String!, 
             type: String!, 
@@ -44,7 +45,7 @@ const typeDefs = gql`
             lng: Float!, 
             title: String!, 
             description: String!)
-            : User
+            : Encounter
         removeEncounter(encounterId: String!): Encounter
     }
 `;
