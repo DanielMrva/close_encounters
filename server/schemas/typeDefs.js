@@ -31,6 +31,15 @@ const typeDefs = gql`
         allencounters: [Encounter]
         encounters(username: String): [Encounter]
         encounter(encounterId: ID!): Encounter
+        # visencounters(query: {AND: [{lat_gte: lowlat}, {lat_lte: hilat}, {lng_gte: lowlng}, {lng_lte: hilng}] }): [Encounter]
+        # visencounters() {
+
+        # }, qurey: AND: [lat_gte: lowlat, lat_lte: hilat, lng_gte: lowlng, lng_lte: hilng]): [Encounter]
+        # visencounters (lowlat: Float!, hilat: Float!, lowlng: Float!, hilng: Float!):
+        #     encounter(query: {AND: [{lat_gte: lowlat}, {lat_lte: hilat}, {lng_gte: lowlng}, {lng_lte: hilng}] }): [Encounter]
+        
+        # (query: {AND: [{lat_gte: lowlat}, {lat_lte: hilat}, {lng_gte: lowlng}, {lng_lte: hilng}] } ): [Encounter]
+       
     }
 
     type Mutation {
