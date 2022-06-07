@@ -43,6 +43,8 @@
     font-size: 20px;
     line-height: 26px;
     color: var(--red);
+    margin: 50px 0px;
+    text-transform: uppercase;
   }
 }
 
@@ -90,5 +92,7 @@
     font-size: 20px;
     line-height: 26px;
     color: var(--red);
+    margin-bottom: 20px;
+    text-transform: uppercase;
   }
 }

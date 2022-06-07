@@ -1,17 +1,16 @@
-import React from 'react';
-import App from './App';
-import ReactDOM from 'react-dom';
-import 'leaflet/dist/leaflet.css';
-import './index.css';
-import MapWrapper from './pages/basic-map';
+import React from "react";
+import App from "./App";
+import ReactDOM from "react-dom/client";
+import "leaflet/dist/leaflet.css";
+import "./index.css";
+import MapWrapper from "./pages/basic-map";
 
-import reportWebVitals from './reportWebVitals';
+import reportWebVitals from "./reportWebVitals";
 
-
-const root = ReactDOM.createRoot(document.getElementById('root'));
+const root = ReactDOM.createRoot(document.getElementById("root"));
 root.render(
   <React.StrictMode>
-    <MapWrapper />
+    {/* <MapWrapper /> */}
     <App />
   </React.StrictMode>
 );

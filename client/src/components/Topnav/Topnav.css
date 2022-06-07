@@ -1,5 +1,3 @@
-/* cell phone size */
-
 .topnav-flex-container {
   display: flex;
   width: 100vw;
@@ -28,13 +26,8 @@
   width: fit-content;
 }
 
-.fa-earth-americas {
+/* all icon styling */
+i {
   padding: 0 5px;
-}
-
-.fa-person-falling {
-  padding: 0 5px;
-}
-
-@media screen and (max-width: 428px) {
+  color: var(--blue);
 }

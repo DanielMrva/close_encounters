@@ -1,0 +1,9 @@
+.login-container {
+  height: 100vh;
+}
+
+.text-box {
+  width: 356px;
+  height: 40px;
+  border: 1px solid rgba(19, 33, 106, 0.2);
+}
