@@ -2,6 +2,11 @@ const { Schema, model } = require('mongoose');
 const dateFormat = require('../utils/dateFormat');
 
 const encounterSchema = new Schema({
+    encounterUser: {
+        type: String,
+        required: true,
+        trim: true,
+    },    
     date: {
         type: Date,
         default: Date.now,
