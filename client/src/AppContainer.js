@@ -26,10 +26,17 @@ export default function PortfolioContainer() {
       return <Createpost />;
     }
     if (currentPage === "Login") {
-      return <Login />;
+      return (
+        <Login currentPage={currentPage} handlePageChange={handlePageChange} />
+      );
     }
     if (currentPage === "Loginnew") {
-      return <Loginnew />;
+      return (
+        <Loginnew
+          currentPage={currentPage}
+          handlePageChange={handlePageChange}
+        />
+      );
     }
     return;
   };

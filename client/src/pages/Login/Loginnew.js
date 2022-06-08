@@ -1,7 +1,7 @@
 import "./Login.css";
 import React, { useState } from "react";
 
-export default function Loginnew() {
+export default function Loginnew({ currentPage, handlePageChange }) {
   const [username, setUsername] = useState(" ");
   const [email, setEmail] = useState(" ");
   const [password, setPassword] = useState(" ");
@@ -56,7 +56,9 @@ export default function Loginnew() {
 
         <div className="center-flex-container">
           <div className="sub-text" style={{ fontWeight: "700" }}>
-            existing user? click here
+            <a href="#Login" onClick={() => handlePageChange("Login")}>
+              existing user? click here
+            </a>
           </div>
         </div>
         <h2>{username}</h2>
