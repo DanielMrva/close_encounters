@@ -28,9 +28,11 @@ const typeDefs = gql`
     type Query {
         me(_id: String!): User
         users: [User]
+        user(userId: ID!): User
         allencounters: [Encounter]
         encounters(username: String): [Encounter]
         encounter(encounterId: ID!): Encounter
+        visencounters(lowlat: Float!, hilat: Float!, lowlng: Float!, hilng: Float!): [Encounter]
     }
 
     type Mutation {
@@ -46,7 +48,7 @@ const typeDefs = gql`
             title: String!, 
             description: String!)
             : Encounter
-        removeEncounter(encounterId: String!): Encounter
+        removeEncounter(encounterId: ID!): Encounter
     }
 `;
 

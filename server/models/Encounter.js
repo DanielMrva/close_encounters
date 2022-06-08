@@ -4,7 +4,7 @@ const dateFormat = require("../utils/dateFormat");
 const encounterSchema = new Schema({
   encounterUser: {
     type: String,
-    required: true,
+    required: false,
     trim: true,
   },
   date: {

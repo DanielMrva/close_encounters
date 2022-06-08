@@ -70,11 +70,19 @@ const resolvers = {
         { $addToSet: { encounters: encounter._id } }
       );
       return encounter;
+      await User.findOneAndUpdate(
+        { username: encounterUser },
+        { $addToSet: { encounters: encounter._id } }
+      );
+      return encounter;
     },
-    // removeEncounter: async (parent, { encounterId }) => {
-    //     return Encounter.findOneAndDelete({ _id: encounter._id });
-    // },
+    removeEncounter: async (parent, { encounterId }) => {
+      return Encounter.findOneAndDelete({ _id: encounterId });
+    },
   },
+  // removeEncounter: async (parent, { encounterId }) => {
+  //     return Encounter.findOneAndDelete({ _id: encounter._id });
+  // },
 };
 
 module.exports = resolvers;
