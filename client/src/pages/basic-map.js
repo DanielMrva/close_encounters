@@ -4,7 +4,7 @@ import { MapContainer, Rectangle, TileLayer, Marker, Popup, useMapEvents, useMap
 import L from 'leaflet';
 import tileLayer from '../utils/tileLayer';
 import { useQuery } from '@apollo/client'
-import VIS_ENCOUNTERS from '../utils/queries';
+import { VIS_ENCOUNTERS } from '../utils/queries';
 
 const mapPositions = [39.7392, -104.9903];
 

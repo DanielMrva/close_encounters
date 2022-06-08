@@ -1,38 +1,41 @@
-import { gql } from "@apollo/client";
+import { gql } from '@apollo/client';
 
-export const QUERY_USER = gql`
-  query users {
-    users {
-      username
-      email
-      password
+export const ALL_EVENTS = gql`
+    query allEvents {
+        event {
+            _id
+            eventDate
+            eventTime
+            category
+            eventType
+            lat
+            lng
+            desc
+            user {
+                username
+            }
+        }
     }
-  }
 `;
 
-export const VIS_ENCOUNTERS = gql`
-  query encounter(
-    $lowlat: Float!
-    $hilat: Float!
-    $lowlng: Float!
-    $hilng: Float!
-  ) {
-    encounter(
-      query: {
-        lat_gte: $lowlat
-        lat_lte: $hilat
-        lng_gte: $lowlng
-        lng_lte: $hilng
-      }
-    ) {
-      _id
-      category
-      type
-      lat
-      lng
-      title
-      description
-      userId
+export const SINGLE_EVENT = gql`
+    query singleEvent($id: STRING!) {
+        event {
+            _id
+            eventDate
+            eventTime
+            category
+            eventType
+            lat
+            lng
+            desc
+            user {
+                username
+            }
+        }
     }
-  }
 `;
+
+export const USER_EVENT = gql``
+
+export const VIS_ENCOUNTERS = gql``
