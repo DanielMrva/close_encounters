@@ -1,9 +1,26 @@
 import "./Login.css";
 import React, { useState } from "react";
+import Loginnew from "./Loginnew";
 
 export default function Login() {
+  const [currentPage, setCurrentPage] = useState("Login");
   const [username, setUsername] = useState(" ");
   const [password, setPassword] = useState(" ");
+
+  const renderPage = () => {
+    if (currentPage === "Login") {
+      return <Login />;
+    }
+    if (currentPage === "Loginnew") {
+      return <Loginnew />;
+    }
+    return;
+  };
+
+  const handlePageChange = (page) => {
+    setCurrentPage(page);
+    renderPage(page);
+  };
 
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -48,7 +65,9 @@ export default function Login() {
 
         <div className="center-flex-container">
           <div className="sub-text" style={{ fontWeight: "700" }}>
-            new user? click here
+            <a href="#Loginnew" onClick={() => handlePageChange("Loginnew")}>
+              new user? click here
+            </a>
           </div>
         </div>
 

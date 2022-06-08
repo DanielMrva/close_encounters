@@ -6,11 +6,9 @@ export default function Topnav({ currentPage, handlePageChange }) {
       <a
         href="#Home"
         onClick={() => handlePageChange("Home")}
-        className={
-          currentPage === "Home" ? "nav-link close active" : "nav-link"
-        }
+        className={currentPage === "Home" ? "close active" : "close"}
       >
-        <div className="close">close encounters</div>
+        close encounters
       </a>
       <div className="icon-container">
         <a
