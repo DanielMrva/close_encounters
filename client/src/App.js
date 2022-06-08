@@ -1,6 +1,6 @@
 import "./App.css";
 
-// import MapWrapper from "./pages/basic-map";
+import MapWrapper from "./pages/basic-map";
 // import InputPage from "./components/Inputs/InputPage";
 // import Home from "./pages/Home/Home";
 // import Createpost from "./components/Createpost/Createpost";
@@ -12,12 +12,12 @@ import AppContainer from "./AppContainer";
 function App() {
   return (
     <div className="App">
-      <AppContainer />
+      {/* <AppContainer /> */}
       {/* <Topnav /> */}
       {/* <Login /> */}
       {/* <Createpost /> */}
       {/* <Home /> */}
-      {/* <MapWrapper /> */}
+      <MapWrapper />
       {/* <InputPage /> */}
       {/* <Bottomnav /> */}
     </div>

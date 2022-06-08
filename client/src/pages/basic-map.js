@@ -1,10 +1,11 @@
 import React from 'react';
-import {useEffect, useState } from 'react';
-import { MapContainer, Rectangle, TileLayer, Marker, Popup, useMapEvents, useMap } from 'react-leaflet';
+import { useState } from 'react';
+import { useQuery } from '@apollo/client';
+import { MapContainer, TileLayer, Marker, Popup, useMapEvents, useMap } from 'react-leaflet';
 import L from 'leaflet';
 import tileLayer from '../utils/tileLayer';
-import { useQuery } from '@apollo/client'
-import VIS_ENCOUNTERS from '../utils/queries';
+
+import { VIS_ENCOUNTERS } from '../utils/queries';
 
 const mapPositions = [39.7392, -104.9903];
 
@@ -70,6 +71,15 @@ const MapEvents = () => {
     return null;
 }
 
+const VisibleBox = () => {
+    const map = useMap();
+    const lowLat = map.getSouth();
+    const hilat =map.getNorth();
+    const lowlng = map.getEast();
+    const hilng = map.getWest();
+    return {lowLat, hilat, lowlng, hilng}
+}
+
 //begins our markers from mockData
 const markerIcon = (type) => {
 
@@ -125,26 +135,28 @@ const MapMarkers = ({ data }) => {
 }
 
 const MapWrapper = () => {
-    const [map, setMap] = useState(null);
-    const { loading, data } = useQuery(VIS_ENCOUNTERS, {
-        variables: { }
-    });
+    // const [map, setMap] = useState(null);
+    // const { loading, data } = useQuery(VIS_ENCOUNTERS, {
+    //     variables: { lowLat: VisibleBox.lowLat, hilat: VisibleBox.hilat, lowlng: VisibleBox.lowlng, hilng: VisibleBox.hilng }
+    // });
+    const encounters = mockData;
 
     return (
-    <MapContainer 
-        className='map'
-        // whenCreated={Locator} 
-        center={mapPositions} 
-        zoom={10}>
-            <MapEvents/>
-            <TileLayer {...tileLayer}/>
+    
+        <MapContainer 
+            className='map'
+            // whenCreated={Locator} 
+            center={mapPositions} 
+            zoom={10}>
+                <MapEvents/>
+                <TileLayer {...tileLayer}/>
 
 
-            <MapMarkers data={mockData} />
-            <Locator/>
-            {/* <LocationMarker /> */}
-            {/* <Legend map={map}/> */}
-            {/* <Location map={map} /> */}
+                <MapMarkers data={encounters} />
+                <Locator/>
+                {/* <LocationMarker /> */}
+                {/* <Legend map={map}/> */}
+                {/* <Location map={map} /> */}
 
 
 
