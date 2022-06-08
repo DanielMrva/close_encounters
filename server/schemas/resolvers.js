@@ -12,6 +12,9 @@ const resolvers = {
         users: async () => {
             return User.find().populate('encounters');
         }, 
+        user: async (parent, { userId }) => {
+            return User.findOne({ _id: userId });
+            },
         allencounters: async () => {
             return Encounter.find();
         },         
@@ -70,9 +73,9 @@ const resolvers = {
             )
             return encounter;
         },
-        // removeEncounter: async (parent, { encounterId }) => {
-        //     return Encounter.findOneAndDelete({ _id: encounter._id });
-        // },
+        removeEncounter: async (parent, { encounterId }) => {
+            return Encounter.findOneAndDelete({ _id: encounterId });
+        },
       
     },
 };
