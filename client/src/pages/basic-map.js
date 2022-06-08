@@ -3,7 +3,8 @@ import {useEffect, useState } from 'react';
 import { MapContainer, Rectangle, TileLayer, Marker, Popup, useMapEvents, useMap } from 'react-leaflet';
 import L from 'leaflet';
 import tileLayer from '../utils/tileLayer';
-// import { UFO, CZ, PN, DF } from '../mapassets';
+import { useQuery } from '@apollo/client'
+import VIS_ENCOUNTERS from '../utils/queries';
 
 const mapPositions = [39.7392, -104.9903];
 
@@ -125,6 +126,9 @@ const MapMarkers = ({ data }) => {
 
 const MapWrapper = () => {
     const [map, setMap] = useState(null);
+    const { loading, data } = useQuery(VIS_ENCOUNTERS, {
+        variables: { }
+    });
 
     return (
     <MapContainer 
