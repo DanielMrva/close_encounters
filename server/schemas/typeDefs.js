@@ -32,6 +32,7 @@ const typeDefs = gql`
         allencounters: [Encounter]
         encounters(username: String): [Encounter]
         encounter(encounterId: ID!): Encounter
+        visencounters(lowlat: Float!, hilat: Float!, lowlng: Float!, hilng: Float!): [Encounter]
     }
 
     type Mutation {
