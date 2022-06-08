@@ -2,25 +2,9 @@ import "./Login.css";
 import React, { useState } from "react";
 import Loginnew from "./Loginnew";
 
-export default function Login() {
-  const [currentPage, setCurrentPage] = useState("Login");
+export default function Login({ currentPage, handlePageChange }) {
   const [username, setUsername] = useState(" ");
   const [password, setPassword] = useState(" ");
-
-  const renderPage = () => {
-    if (currentPage === "Login") {
-      return <Login />;
-    }
-    if (currentPage === "Loginnew") {
-      return <Loginnew />;
-    }
-    return;
-  };
-
-  const handlePageChange = (page) => {
-    setCurrentPage(page);
-    renderPage(page);
-  };
 
   const handleSubmit = (e) => {
     e.preventDefault();
