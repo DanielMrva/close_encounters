@@ -5,7 +5,8 @@ import MapWrapper from "./pages/basic-map";
 import Home from "./pages/Home/Home";
 import User from "./pages/User/User";
 import Createpost from "./components/Createpost/Createpost";
-// import Login from "./pages/Login/Login";
+import Login from "./pages/Login/Login";
+import Loginnew from "./pages/Loginnew/Loginnew";
 import Bottomnav from "./components/Bottomnav/Bottomnav";
 
 export default function PortfolioContainer() {
@@ -23,6 +24,12 @@ export default function PortfolioContainer() {
     }
     if (currentPage === "Createpost") {
       return <Createpost />;
+    }
+    if (currentPage === "Login") {
+      return <Login />;
+    }
+    if (currentPage === "Loginnew") {
+      return <Loginnew />;
     }
     return;
   };
