@@ -12,32 +12,48 @@ export default function Login() {
   };
 
   return (
-    <div className="login-container">
-      <div className="heading-container-login">
-        <h6>welcome back</h6>
-        <h2>SIGN-IN TO YOUR ACCOUNT</h2>
+    <div className="login-page">
+      <div className="login-flex-container">
+        <div className="center-flex-container heading-container-login">
+          <div className="sub-text">welcome back</div>
+          <h2 className="main-text">SIGN-IN TO YOUR ACCOUNT</h2>
+        </div>
+
+        <div className="form-flex-container">
+          <form onSubmit={handleSubmit}>
+            <label className="sub-text">username</label>
+            <div className="input-area">
+              <input
+                type="text"
+                required
+                defaultValue={username}
+                onChange={(e) => setUsername(e.target.value)}
+              />
+            </div>
+
+            <label className="sub-text">password</label>
+            <div className="input-area">
+              <input
+                type="text"
+                required
+                defaultValue={password}
+                onChange={(e) => setPassword(e.target.value)}
+              />
+            </div>
+            <div style={{ display: "flex", justifyContent: "center" }}>
+              <button className="button1 sub-text">login</button>
+            </div>
+          </form>
+        </div>
+
+        <div className="center-flex-container">
+          <div className="sub-text" style={{ fontWeight: "700" }}>
+            new user? click here
+          </div>
+        </div>
+
+        <h2>{username}</h2>
       </div>
-      <form onSubmit={handleSubmit}>
-        <label>username:</label>
-        <input
-          type="text"
-          required
-          defaultValue={username}
-          onChange={(e) => setUsername(e.target.value)}
-        />
-
-        <label>password:</label>
-        <input
-          type="text"
-          required
-          defaultValue={password}
-          onChange={(e) => setPassword(e.target.value)}
-        />
-
-        <button>login</button>
-      </form>
-      <h6>new user? click here</h6>
-      <h2>{username}</h2>
     </div>
   );
 }

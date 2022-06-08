@@ -12,8 +12,22 @@ export default function Bottomnav({ currentPage, handlePageChange }) {
       >
         <i className="fa-solid fa-folder-open fa-2xl"></i>
       </a>
-      <i className="fa-solid fa-people-group fa-2xl"></i>
-      <i className="fa-solid fa-box-archive fa-2xl"></i>
+
+      <a
+        href="#Login"
+        onClick={() => handlePageChange("Login")}
+        className={currentPage === "Login" ? "nav-link active" : "nav-link"}
+      >
+        <i className="fa-solid fa-people-group fa-2xl"></i>
+      </a>
+
+      <a
+        href="#Loginnew"
+        onClick={() => handlePageChange("Loginnew")}
+        className={currentPage === "Loginnew" ? "nav-link active" : "nav-link"}
+      >
+        <i className="fa-solid fa-box-archive fa-2xl"></i>
+      </a>
     </div>
   );
 }
