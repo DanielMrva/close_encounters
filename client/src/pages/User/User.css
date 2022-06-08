@@ -1,6 +1,23 @@
 /* cell phone size */
 
 .user-grid {
+  display: grid;
+  grid-template-columns: repeat(10, 1fr);
+  grid-template-rows: repeat(13, 1fr);
+  grid-template-areas:
+    ". . intro intro intro intro intro intro . ."
+    ". . . . . . . . . ."
+    ". . . . . . . . . ."
+    ". . time time time time time time . ."
+    ". . question question question question question question . ."
+    ". . . . . . . . . ."
+    ". . . . option1 option1 . . . ."
+    ". . . . option1 option1 . . . ."
+    ". . . . . . . . . ."
+    ". . . . . option2 option2 . . ."
+    ". . . . . option2 option2 . . ."
+    ". . . . . . . . . ."
+    ". . . . . . . . . .";
 }
 
 .user-container {
@@ -11,6 +28,10 @@
   display: flex;
   justify-content: center;
   align-content: center;
+}
+
+.scenario-into {
+  grid-area: intro;
 }
 
 .user-container h4 {
@@ -39,7 +60,56 @@
   display: flex;
   align-items: center;
   text-align: center;
+  text-transform: uppercase;
   color: var(--red);
+}
+
+.time {
+  grid-area: time;
+}
+
+.question-title {
+  height: 52px;
+  font-family: "Red Rose";
+  font-style: normal;
+  font-weight: 400;
+  font-size: 22px;
+  line-height: 27px;
+  display: flex;
+  align-items: center;
+  text-align: center;
+  color: var(--blue);
+  grid-area: question;
+}
+
+.user-option-one {
+  width: 171px;
+  height: 104px;
+  font-family: "Roboto Mono";
+  font-style: normal;
+  font-weight: 400;
+  font-size: 16px;
+  line-height: 21px;
+  display: flex;
+  align-items: center;
+  text-align: center;
+  color: var(--blue);
+  grid-area: option1;
+}
+
+.user-option-two {
+  width: 171px;
+  height: 104px;
+  font-family: "Roboto Mono";
+  font-style: normal;
+  font-weight: 400;
+  font-size: 16px;
+  line-height: 21px;
+  display: flex;
+  align-items: center;
+  text-align: center;
+  color: var(--blue);
+  grid-area: option2;
 }
 
 @media screen and (max-width: 428px) {

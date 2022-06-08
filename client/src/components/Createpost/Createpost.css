@@ -3,7 +3,7 @@
 }
 
 /* You are currently in text */
-h6 {
+.create-post h6 {
   font-family: "Roboto Mono";
   font-style: normal;
   font-weight: 400;
@@ -11,10 +11,12 @@ h6 {
   line-height: 26px;
   color: var(--red);
   text-transform: lowercase;
+  padding: 0;
+  margin: 0;
 }
 
 /*vcity person is inv*/
-h2 {
+.create-post h2 {
   font-family: "Red Rose";
   font-style: normal;
   font-weight: 400;
@@ -66,7 +68,7 @@ h2 {
   cursor: pointer;
 }
 
-.checkbox-element {
+/* .checkbox-element {
   display: block;
   position: absolute;
   left: 0;
@@ -82,7 +84,7 @@ h2 {
 
 #checkbox>input[type='checkbox']:checked+i{
   color: red;
-}
+} */
 
 /* input[type="checkbox"] {
   clip: rect(0 0 0 0);
