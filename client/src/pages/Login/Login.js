@@ -80,7 +80,12 @@ export default function Login({ currentPage, handlePageChange }) {
               />
             </div>
             <div style={{ display: "flex", justifyContent: "center" }}>
-              <button className="button1 sub-text">login</button>
+              <button href="#Loginnew" onClick={() => handlePageChange("Loginnew")}
+              className="button1 sub-text"
+              type="submit"
+              >
+                login   
+              </button>
             </div>
           </form>
         </div>
