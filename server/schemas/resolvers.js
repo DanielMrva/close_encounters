@@ -9,6 +9,9 @@ const resolvers = {
       const params = _id ? { _id } : {};
       return User.find(params);
     },
+    user: async(parent, {userId }) => {
+      return User.findOne({_id:userId});
+    },
     users: async () => {
       return User.find().populate("encounters");
     },
