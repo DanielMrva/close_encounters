@@ -10,7 +10,7 @@ import { VIS_ENCOUNTERS } from '../utils/queries';
 const mapPositions = [39.7392, -104.9903];
 
 function Locator() {
-    const map = useMap()
+    const map = useMap();
     map.locate({setView: true, maxZoom: 12});
     let bounds = map.getBounds();
     let zoom = map.getZoom();
@@ -18,43 +18,43 @@ function Locator() {
 }
 
 
-const mockData = [
-    {
-        lat: 40.7190,
-        lng: -103.1010,
-        type: "UFO",
-        title: "Cigar UFO Encounter",
-        date: "10-21-2020"
-    },
-    {
-        lat: 39.0078,
-        lng: -102.4587,
-        type: "PN",
-        title: "Vision of my great grandfather",
-        date: "6-19-1999"
-    },
-    {
-        lat: 40.2213,
-        lng: -105.5732,
-        type: "CZ",
-        title: "Unicorn Sighting",
-        date: "12-24-2012"
-    },
-    {
-        lat: 40.5109,
-        lng: -104.1570,
-        type: "UFO",
-        title: "Silver Disk UFO signting",
-        date: "7-4-1958"
-    },
-    {
-        lat: 40.2268,
-        lng: -101.9901,
-        type: "UFO",
-        title: "Little green men spotted in field",
-        date: "2-14-2001"
-    },
-];
+// const mockData = [
+//     {
+//         lat: 40.7190,
+//         lng: -103.1010,
+//         type: "UFO",
+//         title: "Cigar UFO Encounter",
+//         date: "10-21-2020"
+//     },
+//     {
+//         lat: 39.0078,
+//         lng: -102.4587,
+//         type: "PN",
+//         title: "Vision of my great grandfather",
+//         date: "6-19-1999"
+//     },
+//     {
+//         lat: 40.2213,
+//         lng: -105.5732,
+//         type: "CZ",
+//         title: "Unicorn Sighting",
+//         date: "12-24-2012"
+//     },
+//     {
+//         lat: 40.5109,
+//         lng: -104.1570,
+//         type: "UFO",
+//         title: "Silver Disk UFO signting",
+//         date: "7-4-1958"
+//     },
+//     {
+//         lat: 40.2268,
+//         lng: -101.9901,
+//         type: "UFO",
+//         title: "Little green men spotted in field",
+//         date: "2-14-2001"
+//     },
+// ];
 
 function makeACall(bounds, zoom, zoomThreshold = 8) {
     console.log(`current map zoom is ${zoom}`)
@@ -77,7 +77,8 @@ const VisibleBox = () => {
     const hilat =map.getNorth();
     const lowlng = map.getEast();
     const hilng = map.getWest();
-    return {lowlat, hilat, lowlng, hilng}
+    const variables ={lowlat: lowlat, hilat: hilat, lowlng: lowlng, hilng: hilng}
+    return variables
 }
 
 //begins our markers from mockData
@@ -129,18 +130,24 @@ const MapMarkers = ({ data }) => {
         icon={markerIcon(item.type)}
         position={{ lat: item.lat, lng: item.lng }}
         >
-          <Popup>{item.type}</Popup>  
+          <Popup>{item.type}</Popup>
+
         </Marker>
     ))
 }
 
 const MapWrapper = () => {
-    // const [map, setMap] = useState(null);
+
+
+
+    const variables = VisibleBox();
+
     const { loading, data } = useQuery(VIS_ENCOUNTERS, {
-        variables: {lowlat: 39.0078, hilat: 40.7190, lowlng: -105.5732, hilng: -101.9901},
+        variables: {variables},
+        // variables: {lowlat: 39.0078, hilat: 40.7190, lowlng: -105.5732, hilng: -101.9901},
     });
-    const encounters = data?.visencounters;
-    // console.log(encounters);
+    const encounters = data?.visencounters || [];
+
     if(loading) {
         return <h2>loading...</h2>;
     }
@@ -151,15 +158,14 @@ const MapWrapper = () => {
             // whenCreated={Locator} 
             center={mapPositions} 
             zoom={10}>
+                <VisibleBox/>
                 <MapEvents/>
                 <TileLayer {...tileLayer}/>
 
 
                 <MapMarkers data={encounters} />
                 <Locator/>
-                {/* <LocationMarker /> */}
-                {/* <Legend map={map}/> */}
-                {/* <Location map={map} /> */}
+
 
 
 
