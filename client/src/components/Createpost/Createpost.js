@@ -171,7 +171,8 @@ export default function Createpost() {
                   value={formData.category}
                   id="paranormal"
                   className="checkbox-element"
-                  name="paranormal"
+                  // name="paranormal"
+                  name="category"
                   onChange={handleCategoryChange}
                 ></input>
                 <label for="paranormal">
@@ -183,7 +184,8 @@ export default function Createpost() {
                   // type="checkbox"
                   value={formData.category}
                   id="crypto-zoological"
-                  name="crypto-zoological"
+                  // name="crypto-zoological"
+                  name="category"
                   onChange={handleCategoryChange}
                 ></input>
                 <label for="crypto-zoological">
@@ -195,7 +197,8 @@ export default function Createpost() {
                   // type="checkbox"
                   value={formData.category}
                   id="extraterrestrial"
-                  name="extraterrestrial"
+                  // name="extraterrestrial"
+                  name="category"
                   onChange={handleCategoryChange}
                 ></input>
                 <label for="extraterrestrial">
