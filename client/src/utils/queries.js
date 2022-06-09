@@ -11,7 +11,7 @@ export const QUERY_USER = gql`
 `;
 
 export const VIS_ENCOUNTERS = gql`
-  query encounter(
+  query visencounters(
     $lowlat: Float!
     $hilat: Float!
     $lowlng: Float!
