@@ -1,13 +1,21 @@
-import { gql } from "@apollo/client";
+import { gql } from '@apollo/client';
 
-export const QUERY_USER = gql`
-  query users {
-    users {
-      username
-      email
-      password
+export const ALL_EVENTS = gql`
+    query allEvents {
+        event {
+            _id
+            eventDate
+            eventTime
+            category
+            eventType
+            lat
+            lng
+            desc
+            user {
+                username
+            }
+        }
     }
-  }
 `;
 
 export const VIS_ENCOUNTERS = gql`
@@ -36,3 +44,5 @@ export const VIS_ENCOUNTERS = gql`
     }
   }
 `;
+
+// export const USER_EVENT = gql``
