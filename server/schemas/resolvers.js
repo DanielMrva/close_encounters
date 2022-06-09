@@ -9,6 +9,9 @@ const resolvers = {
       const params = _id ? { _id } : {};
       return User.find(params);
     },
+    user: async(parent, {userId }) => {
+      return User.findOne({_id:userId});
+    },
     users: async () => {
       return User.find().populate("encounters");
     },
@@ -22,6 +25,9 @@ const resolvers = {
     encounter: async (parent, { encounterId }) => {
       return Encounter.findOne({ _id: encounterId });
     },
+    visencounters: async (partent, {lowlat, hilat, lowlng, hilng}) => {
+      return Encounter.find({$and: [{ lat : { $gte :  lowlat, $lte : hilat}}, {lng: {$gte: lowlng, $lte: hilng}}]});
+    }
   },
   Mutation: {
     addUser: async (parent, { username, email, password }) => {

@@ -47,49 +47,49 @@ export default function InputForm(props) {
           placeholder="Date"
           value={eventDate}
           name="date"
-          onChange={handleDateChange}
+          onChange={handleInputChange}
         ></input>
         <input
           type="text"
           placeholder="Time"
           value={eventTime}
           name="time"
-          onChange={handleTimeChange}
+          onChange={handleInputChange}
         ></input>
         <input
           type="text"
           placeholder="Category"
           value={category}
           name="category"
-          onChange={handleCategoryChange}
+          onChange={handleInputChange}
         ></input>
         <input
           type="text"
           placeholder="Type"
           value={eventType}
           name="type"
-          onChange={handleTypeChange}
+          onChange={handleInputChange}
         ></input>
         <input
           type="text"
           placeholder="Latitude"
           value={lat}
           name="lat"
-          onChange={handleLatChange}
+          onChange={handleInputChange}
         ></input>
         <input
           type="text"
           placeholder="Longitude"
           value={lng}
           name="lng"
-          onChange={handlelngChange}
+          onChange={handleInputChange}
         ></input>
         <input
           type="text"
           placeholder="Description"
           value={desc}
           name="desc"
-          onChange={handleDescChange}
+          onChange={handleInputChange}
         ></input>
         <button>Add your event!</button>
       </form>

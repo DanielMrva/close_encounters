@@ -1,18 +1,10 @@
-import React from "react";
-import { useEffect, useState } from "react";
-import {
-  MapContainer,
-  Rectangle,
-  TileLayer,
-  Marker,
-  Popup,
-  useMapEvents,
-  useMap,
-} from "react-leaflet";
-import L from "leaflet";
-import tileLayer from "../utils/tileLayer";
-import { useQuery } from "@apollo/client";
-import VIS_ENCOUNTERS from "../utils/queries";
+import React from 'react';
+import { useState } from 'react';
+import { useQuery } from '@apollo/client';
+import { MapContainer, TileLayer, Marker, Popup, useMapEvents, useMap } from 'react-leaflet';
+import L from 'leaflet';
+import tileLayer from '../utils/tileLayer';
+import { VIS_ENCOUNTERS } from '../utils/queries';
 
 const mapPositions = [39.7392, -104.9903];
 
@@ -77,6 +69,15 @@ const MapEvents = () => {
   return null;
 };
 
+const VisibleBox = () => {
+    const map = useMap();
+    const lowLat = map.getSouth();
+    const hilat =map.getNorth();
+    const lowlng = map.getEast();
+    const hilng = map.getWest();
+    return {lowLat, hilat, lowlng, hilng}
+}
+
 //begins our markers from mockData
 const markerIcon = (type) => {
   // let myIconURL = "";
@@ -131,6 +132,7 @@ const MapMarkers = ({ data }) => {
 };
 
 const MapWrapper = () => {
+<<<<<<< HEAD
   const [map, setMap] = useState(null);
   const { loading, data } = useQuery(VIS_ENCOUNTERS, {
     variables: {},
@@ -315,3 +317,37 @@ export default MapWrapper;
 //         ? <SetRentacle bounds={bounds} />
 //         : null;
 //     }
+=======
+    // const [map, setMap] = useState(null);
+    const { loading, data } = useQuery(VIS_ENCOUNTERS, {
+        variables: {lowlat: VisibleBox.lowlat, hilat: VisibleBox.hilat, lowlng: VisibleBox.lowlng, hilng: VisibleBox.hilng}
+    });
+    const encounters = data.encounters;
+    console.log(encounters);
+
+    return (
+    
+        <MapContainer 
+            className='map'
+            // whenCreated={Locator} 
+            center={mapPositions} 
+            zoom={10}>
+                <MapEvents/>
+                <TileLayer {...tileLayer}/>
+
+
+                {/* <MapMarkers data={encounters} /> */}
+                <Locator/>
+                {/* <LocationMarker /> */}
+                {/* <Legend map={map}/> */}
+                {/* <Location map={map} /> */}
+
+
+
+        </MapContainer>
+        
+    )
+};
+
+export default MapWrapper;
+>>>>>>> 8621dc15b743c9827a30db40b5377ed1ed638c9e
