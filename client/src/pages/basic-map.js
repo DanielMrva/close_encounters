@@ -1,10 +1,11 @@
 import React from 'react';
-import {useEffect, useState } from 'react';
-import { MapContainer, Rectangle, TileLayer, Marker, Popup, useMapEvents, useMap } from 'react-leaflet';
+import { useState } from 'react';
+import { useQuery } from '@apollo/client';
+import { MapContainer, TileLayer, Marker, Popup, useMapEvents, useMap } from 'react-leaflet';
 import L from 'leaflet';
 import tileLayer from '../utils/tileLayer';
-import { useQuery } from '@apollo/client'
-import VIS_ENCOUNTERS from '../utils/queries';
+
+import { VIS_ENCOUNTERS } from '../utils/queries';
 
 const mapPositions = [39.7392, -104.9903];
 
@@ -70,6 +71,15 @@ const MapEvents = () => {
     return null;
 }
 
+const VisibleBox = () => {
+    const map = useMap();
+    const lowLat = map.getSouth();
+    const hilat =map.getNorth();
+    const lowlng = map.getEast();
+    const hilng = map.getWest();
+    return {lowLat, hilat, lowlng, hilng}
+}
+
 //begins our markers from mockData
 const markerIcon = (type) => {
 
@@ -125,26 +135,29 @@ const MapMarkers = ({ data }) => {
 }
 
 const MapWrapper = () => {
-    const [map, setMap] = useState(null);
+    // const [map, setMap] = useState(null);
     const { loading, data } = useQuery(VIS_ENCOUNTERS, {
-        variables: { }
+        variables: {lowlat: VisibleBox.lowlat, hilat: VisibleBox.hilat, lowlng: VisibleBox.lowlng, hilng: VisibleBox.hilng}
     });
+    const encounters = data.encounters;
+    console.log(encounters);
 
     return (
-    <MapContainer 
-        className='map'
-        // whenCreated={Locator} 
-        center={mapPositions} 
-        zoom={10}>
-            <MapEvents/>
-            <TileLayer {...tileLayer}/>
+    
+        <MapContainer 
+            className='map'
+            // whenCreated={Locator} 
+            center={mapPositions} 
+            zoom={10}>
+                <MapEvents/>
+                <TileLayer {...tileLayer}/>
 
 
-            <MapMarkers data={mockData} />
-            <Locator/>
-            {/* <LocationMarker /> */}
-            {/* <Legend map={map}/> */}
-            {/* <Location map={map} /> */}
+                {/* <MapMarkers data={encounters} /> */}
+                <Locator/>
+                {/* <LocationMarker /> */}
+                {/* <Legend map={map}/> */}
+                {/* <Location map={map} /> */}
 
 
 
@@ -154,166 +167,3 @@ const MapWrapper = () => {
 };
 
 export default MapWrapper;
-
-//scraps below:
-
-// function LocationMarker() {
-//     const [position, setPosition] = useState(null)
-//     const map = useMapEvents({
-//         click() {
-//         map.locate()
-//         },
-//         locationfound(e) {
-//         setPosition(e.latlng)
-//         console.log(e.latlng)
-//         map.flyTo(e.latlng, map.getZoom())
-//         },
-//     })
-
-//     return position === null ? null : (
-//         <Marker position={position}>
-//         <Popup>You are here</Popup>
-//         </Marker>
-//     )
-// }
-
-
-// const colors = ["fe4848", "fe6c58", "fe9068", "feb478", "fed686"];
-// const labels = ["2-12.5", "12.6-16.8", "16.9-20.9", "21-25.9", "26-plus"];
-
-// const Legend = ({ map }) => {
-//     useEffect(() => {
-//       if (!map) return;
-  
-//     const legend = L.control({ position: "bottomright" });
-
-//     const rows = [];
-//     legend.onAdd = () => {
-//     const div = L.DomUtil.create("div", "legend");
-//     colors.map((color, index) => {
-//         return rows.push(`
-//             <div class="row">
-//             <i style="background: #${color}"></i>${labels[index]}
-//             </div>
-//         `);
-//     });
-//     div.innerHTML = rows.join("");
-//     return div;
-//     };
-
-//     legend.addTo(map);
-// }, [map]);
-
-// return null;
-// };
-
-// function getRandomColor() {
-//     return `#${Math.floor(Math.random() * 16777215).toString(16)}`.toString();
-// }
-
-// const SetRentacle = ({ bounds }) => {
-//         return bounds.map((bound, index) => (
-//         <Rectangle 
-//             key={index}
-//             bounds={bound}
-//             color={getRandomColor()}
-//             weight={10}
-//             fillOpacity={0.1} />
-//     ));
-// }
-
-// function contentText(getBounds) {
-// const { _northEast, _southWest } = getBounds;
-// return `SouthWest: ${_southWest}, NorthEast: ${_northEast}`;
-// }
-
-// const Location = ({ map }) => {
-//     const [bounds, setBounds] =
-//     useState([])
-
-//     useEffect(() => {
-//         if (!map) return;
-
-//         const info = L.DomUtil.create('div', 'legend');
-
-//         const position = L.Control.extend({
-//             options: {
-//                 position: 'bottomleft'
-//             },
-
-//             onAdd: function () {
-//                 info.innerHTML = contentText(map.getBounds());
-//                 return info;
-//             }
-//         })
-
-//         map.addControl(new position());
-
-//         map.on('moveend zoomend', () => {
-//             const bounds = map.getBounds();
-//             info.textContent = 
-//             contentText(bounds);
-//             setBounds(b => [...b, bounds])
-//         });
-//     }, [map])
-
-//     return bounds?.length <= 0 ? <SetRentacle bounds={bounds} />
-//     : null;
-// }
-
-
-
-// function getRandomColor() {
-//     return `#${Math.floor(Math.random() * 16777215).toString(16)}`.toString();
-//     }
-    
-//     const SetRentacle = ({ bounds }) => {
-//     return bounds.map((bound, index) => (
-//         <Rectangle
-//         key={index}
-//         bounds={bound}
-//         color={getRandomColor()}
-//         weight={10}
-//         fillOpacity={0.1} />
-//     ));
-//     }
-    
-//     function contentText(getBounds) {
-//     const { _northEast, _southWest } = getBounds;
-//     return `SouthWest: ${_southWest}, NorthEast: ${_northEast}`;
-//     }
-    
-//     const Location = ({ map }) => {
-//     const [bounds, setBounds] = useState([])
-    
-//     useEffect(() => {
-//         if (!map) return;
-    
-//         const info = L.DomUtil.create('div', 'legend');
-    
-//         const position = L.Control.extend({
-//         options: {
-//             position: 'bottomleft'
-//         },
-    
-//         onAdd: function () {
-//             info.innerHTML = contentText(map.getBounds());
-//             return info;
-//         }
-//         })
-    
-//         map.addControl(new position());
-    
-//         map.on('moveend zoomend', () => {
-//         const bounds = map.getBounds();
-//         info.textContent = contentText(bounds);
-//         setBounds(b => [...b, bounds])
-//         });
-    
-//     }, [map])
-    
-//     return bounds?.length <= 0
-//         ? <SetRentacle bounds={bounds} />
-//         : null;
-//     }
-    
