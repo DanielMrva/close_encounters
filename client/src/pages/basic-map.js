@@ -73,11 +73,11 @@ const MapEvents = () => {
 
 const VisibleBox = () => {
     const map = useMap();
-    const lowLat = map.getSouth();
+    const lowlat = map.getSouth();
     const hilat =map.getNorth();
     const lowlng = map.getEast();
     const hilng = map.getWest();
-    return {lowLat, hilat, lowlng, hilng}
+    return {lowlat, hilat, lowlng, hilng}
 }
 
 //begins our markers from mockData
@@ -137,11 +137,13 @@ const MapMarkers = ({ data }) => {
 const MapWrapper = () => {
     // const [map, setMap] = useState(null);
     const { loading, data } = useQuery(VIS_ENCOUNTERS, {
-        variables: {lowlat: VisibleBox.lowlat, hilat: VisibleBox.hilat, lowlng: VisibleBox.lowlng, hilng: VisibleBox.hilng}
+        variables: {lowlat: 39.0078, hilat: 40.7190, lowlng: -105.5732, hilng: -101.9901},
     });
-    const encounters = data.encounters;
-    console.log(encounters);
-
+    const encounters = data?.visencounters;
+    // console.log(encounters);
+    if(loading) {
+        return <h2>loading...</h2>;
+    }
     return (
     
         <MapContainer 
@@ -153,7 +155,7 @@ const MapWrapper = () => {
                 <TileLayer {...tileLayer}/>
 
 
-                {/* <MapMarkers data={encounters} /> */}
+                <MapMarkers data={encounters} />
                 <Locator/>
                 {/* <LocationMarker /> */}
                 {/* <Legend map={map}/> */}
