@@ -3,34 +3,23 @@ import { gql } from "@apollo/client";
 export const QUERY_USER = gql`
   query users {
     users {
-      username
-      email
-      password
-    }
-  }
-`;
-
-export const ALL_EVENTS = gql`
-  query allEvents {
-    event {
-      _id
-      eventDate
-      eventTime
-      category
-      eventType
-      lat
-      lng
-      desc
-      user {
-        username
+      encounters {
+        _id
+        type
+        category
+        lat
+        lng
+        title
+        description
+        userId
       }
     }
   }
 `;
 
-export const VIS_ENCOUNTERS = gql`
-    query Visencounters($lowlat: Float!, $hilat: Float!, $lowlng: Float!, $hilng: Float!) {
-    visencounters(lowlat: $lowlat, hilat: $hilat, lowlng: $lowlng, hilng: $hilng) {
+export const ALL_EVENTS = gql`
+  query Allencounters {
+    encounters {
       _id
       category
       type
@@ -41,7 +30,29 @@ export const VIS_ENCOUNTERS = gql`
       userId
     }
   }
-
 `;
 
-// export const USER_EVENT = gql``
+export const VIS_ENCOUNTERS = gql`
+  query Visencounters(
+    $lowlat: Float!
+    $hilat: Float!
+    $lowlng: Float!
+    $hilng: Float!
+  ) {
+    visencounters(
+      lowlat: $lowlat
+      hilat: $hilat
+      lowlng: $lowlng
+      hilng: $hilng
+    ) {
+      _id
+      category
+      type
+      lat
+      lng
+      title
+      description
+      userId
+    }
+  }
+`;

@@ -8,6 +8,35 @@ import { ADD_EVENT } from "../../utils/mutations";
 let catArr = [];
 
 export default function Createpost() {
+  // commented out
+  // const [category, setCategory] = useState("");
+  // const [desc, setDesc] = useState("");
+
+  // const handleDescChange = (e) => {
+  //   setDesc(e.target.value);
+  // };
+
+  // const handleCategoryChange = (e) => {
+  //   setCategory(e.target.value);
+  // };
+
+  // const submitHandler = (e) => {
+  //   e.preventDefault();
+
+  //   let data = {
+  //     //   date: eventDate,
+  //     //   time: eventTime,
+  //     category: category,
+  //     //   type: eventType,
+  //     //   latitude: lat,
+  //     //   longitude: lng,
+  //     description: desc,
+  //   };
+
+  //   console.log(data);
+
+  //   return data;
+
   // AG Code
   // uses one state variable for all the form data
   const [formData, setFormData] = useState({});
@@ -82,6 +111,15 @@ export default function Createpost() {
       <div className="input-flex-container">
         <div className="main-box">
           <form onSubmit={submitHandler}>
+            {/* <input
+              className="text-box"
+              type="textarea"
+              placeholder="Have a recent encounter?"
+              value={desc}
+              name="desc"
+              onChange={handleDescChange}
+            ></input> */}
+
             <label>Date:</label>
             <input
               type="text"
@@ -115,15 +153,17 @@ export default function Createpost() {
             ></input>
 
             {/* category checkboxes - changed to radio buttons */}
-            <div className="category-box">
+            <div className="button-box">
               <span id="radio-buttons">
                 {/* <span id="checkbox"> */}
                 <input
                   type="radio"
+                  // type="checkbox"
                   placeholder="Category"
                   value={formData.category}
                   id="paranormal"
-                  className="radio-element"
+                  className="checkbox-element"
+                  // name="paranormal"
                   name="category"
                   onChange={handleTypeChange}
                 ></input>
@@ -133,9 +173,10 @@ export default function Createpost() {
 
                 <input
                   type="radio"
+                  // type="checkbox"
                   value={formData.category}
                   id="crypto-zoological"
-                  className="radio-element"
+                  // name="crypto-zoological"
                   name="category"
                   onChange={handleTypeChange}
                 ></input>
@@ -145,9 +186,10 @@ export default function Createpost() {
 
                 <input
                   type="radio"
+                  // type="checkbox"
                   value={formData.category}
                   id="extraterrestrial"
-                  className="radio-element"
+                  // name="extraterrestrial"
                   name="category"
                   onChange={handleTypeChange}
                 ></input>

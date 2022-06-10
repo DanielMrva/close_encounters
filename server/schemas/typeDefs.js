@@ -45,7 +45,7 @@ const typeDefs = gql`
             type: String!, 
             lat: Float!, 
             lng: Float!, 
-            title: String!, 
+            # title: String!, 
             description: String!)
             : Encounter
         removeEncounter(encounterId: ID!): Encounter
