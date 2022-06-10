@@ -46,12 +46,15 @@ export const VIS_ENCOUNTERS = gql`
       hilng: $hilng
     ) {
       _id
+      encounterUser
+      date
       category
       type
       lat
       lng
       title
       description
+      createdAt
       userId
     }
   }
