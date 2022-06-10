@@ -13,7 +13,7 @@ import {
 import L from "leaflet";
 import tileLayer from "../utils/tileLayer";
 import { VIS_ENCOUNTERS } from "../utils/queries";
-import { isConstValueNode } from "graphql";
+
 
 
 
@@ -45,7 +45,7 @@ const markerIcon = (category) => {
 
   return new L.DivIcon({
     className: "test",
-    html: `<i class="fa-solid fa-${iconType} fa-xl" style="backgroundcolor:${iconColor};!important"></i>`,
+    html: `<i class="fa-solid fa-${iconType} fa-xl" style="backgroundcolor:${iconColor};"></i>`,
     iconSize: [30, 30],
     iconAnchor: [15, 31],
     popupAnchor: [0, -32],
@@ -87,14 +87,11 @@ const MapMarkers = ({ data }) => {
   ));
 };
 
-
 const MapWrapper = () => {
   const [map, setMap] = useState(null);
   const [position, setPosition] = useState([39.7392, -104.9903]);
   const [variables, setVariables] = useState({});
-
-
-
+  
   const NewMapEvents = () => {
     const map = useMap();
     const bounds = map.getBounds();
@@ -116,7 +113,6 @@ const MapWrapper = () => {
   };
 
   const Locator = ({ map }) => {
-      // const [bounds, setBounds] = useState({})
 
       useEffect(() => {
               if (!map) return;
@@ -135,7 +131,6 @@ const MapWrapper = () => {
               }
               console.log(bonundsList)
               setVariables(bonundsList)
-              // setBounds(bonundsList)
           })
 
       }, [map]);
@@ -157,9 +152,9 @@ const MapWrapper = () => {
       <NewMapEvents map={map} />
       <Locator map={map}/>
 
+      <MapMarkers data={encounters} />
       <TileLayer {...tileLayer} />
 
-      <MapMarkers data={encounters} />
     </MapContainer>
   );
 };
@@ -205,3 +200,72 @@ export default MapWrapper;
 //   setVariables(bonundsList);
 
 // }
+
+
+// const ShowMarkers = ({ mapContainer, markers }) => {
+//   return markers.map((marker, index) => {
+//     return <Marker
+//       key={index}
+//       uniceid={index}
+//       position={marker}
+//       draggable={true}
+//       eventHandlers={{
+//         moveend(e) {
+//           const { lat, lng } = e.target.getLatLng();
+//         }
+//       }}
+//     >
+//       <Popup>
+//         <button onClick={() => console.log(`click`)}>click me</button>
+//       </Popup>
+//     </Marker>
+//   })
+// }
+
+// const DroppedMarker = ({ map }) =>  {
+//   const [marker, setMarker] = useState([])
+
+//   useMapEvents({
+//     click: () => {
+      
+//     }
+//   }) 
+
+//   if(marker.length) {
+//     return (
+//       <ShowMarkers
+//         mapContainer={map}
+//         markers={marker} />
+//     )
+//   }
+// }
+
+// const [clickedPos, setClickedPos] = useState([])
+
+  // useEffect(() => {
+  //   navigator.geolocation.getCurrentPosition(position => {
+  //     const { lat, lng } = position.coords;
+  //     setPosition([lat, lng]);
+  //   });
+  // }, []);
+
+  // const DroppedMarker = () => {
+  //   const map = useMapEvents({
+  //     click(e) {
+  //       setClickedPos([
+  //         e.latlng.lat,
+  //         e.latlng.lng
+  //       ]);
+  //     },
+  //   })
+
+  //   return (
+  //     clickedPos ? 
+  //     <Marker 
+  //     key={clickedPos[0]}
+  //     position={clickedPos}
+      
+  //     />
+  //     :null
+  //   )
+  // }
