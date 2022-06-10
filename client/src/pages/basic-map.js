@@ -1,20 +1,15 @@
 import React from 'react';
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { useQuery } from '@apollo/client';
 import { MapContainer, TileLayer, Marker, Popup, useMapEvents, useMap } from 'react-leaflet';
 import L from 'leaflet';
 import tileLayer from '../utils/tileLayer';
 import { VIS_ENCOUNTERS } from '../utils/queries';
+import { isConstValueNode } from 'graphql';
 
 const mapPositions = [39.7392, -104.9903];
 
-function Locator() {
-  const map = useMap();
-  map.locate({ setView: true, maxZoom: 12 });
-  let bounds = map.getBounds();
-  let zoom = map.getZoom();
-  makeACall(bounds, zoom);
-}
+
 
 const mockData = [
   {
@@ -57,27 +52,10 @@ const mockData = [
 function makeACall(bounds, zoom, zoomThreshold = 8) {
   console.log(`current map zoom is ${zoom}`);
   if (zoom > zoomThreshold) {
-    console.log(`make a call to the server with the bounds`, bounds);
+    // console.log(`make a call to the server with the bounds`, bounds);
+    console.log(bounds.getNorth());
   }
-}
-
-const MapEvents = () => {
-  const map = useMapEvents({
-    moveend: () => makeACall(map.getBounds(), map.getZoom()),
-    zoomend: () => makeACall(map.getBounds(), map.getZoom()),
-  });
-  return null;
 };
-
-const VisibleBox = () => {
-    const map = useMap();
-    const lowlat = map.getSouth();
-    const hilat =map.getNorth();
-    const lowlng = map.getEast();
-    const hilng = map.getWest();
-    const variables ={lowlat: lowlat, hilat: hilat, lowlng: lowlng, hilng: hilng}
-    return variables
-}
 
 const markerIcon = (type) => {
     // let myIconURL = "";
@@ -113,9 +91,9 @@ const markerIcon = (type) => {
     return new L.DivIcon({
       className: "test",
       html: svgTemplate,
-      iconSize: [40, 40],
-      iconAnchor: [20, 20],
-      popupAnchor: [-5, -50],
+      iconSize: [25, 41],
+      iconAnchor: [10, 41],
+      popupAnchor: [2, -40],
     });
 };
 
@@ -132,35 +110,86 @@ const MapMarkers = ({ data }) => {
     ));
 };
 
+// lowlat: 39.0078, hilat: 40.7190, lowlng: -105.5732, hilng: -101.9901
 
 const MapWrapper = () => {
-    const variables = VisibleBox();
+    const [map, setMap] = useState(null)
+    const [position, setPosition] = useState(null);
+    const [variables, setVariables] = useState({lowlat: 39.0078, hilat: 40.7190, lowlng: -105.5732, hilng: -101.99017});
+
+
+
+  const NewMapEvents = () => {
+    const map = useMap();
+    const bounds = map.getBounds();
+    
+    const bonundsList = {
+          lowlat: bounds.getSouth(),
+          hilat: bounds.getNorth(),
+          lowlng: bounds.getWest(),
+          hilng: bounds.getEast(),
+        }
+    useMapEvents({
+        moveend: () => {
+          setVariables(bonundsList)
+          console.log(bonundsList)
+          },
+        zoomend: () => {
+          setVariables(bonundsList)
+          console.log(bonundsList)
+          }
+      });
+    };
+
+
+    // const Locator = ({ map }) => {
+    //     // const [bounds, setBounds] = useState({})
+
+    //     useEffect(() => {
+    //             if (!map) return;
+
+    //             map.locate().on("locationfound", function (e) {
+    //             setPosition(e.latlng);
+    //             map.flyTo(e.latlng, map.getZoom());
+    //             const bounds = map.getBounds();
+    //             console.log(bounds);
+    //             const bonundsList = {
+    //                 lowlat: bounds.getSouth(),
+    //                 hilat: bounds.getNorth(),
+    //                 lowlng: bounds.getWest(),
+    //                 hilng: bounds.getEast(),
+    //             }
+    //             console.log(bonundsList)
+    //             setVariables(bonundsList)
+    //             // setBounds(bonundsList)
+    //         })
+
+
+    //     }, [map]);
+        
+    // }
+    
     const { loading, data } = useQuery(VIS_ENCOUNTERS, {
-        variables: {variables},
-        // variables: {lowlat: 39.0078, hilat: 40.7190, lowlng: -105.5732, hilng: -101.9901},
+        variables: variables,
+        // variables: {lowlat: 39.0078, hilat: 40.7190, lowlng: -105.5732, hilng: -101.9901}
     });
     const encounters = data?.visencounters || [];
-
-    if(loading) {
-        return <h2>loading...</h2>;
-    }
+    // console.log(encounters);
     return (
     
         <MapContainer 
             className='map'
-            // whenCreated={Locator} 
+            whenCreated={setMap}
+            // whenReady={Locator} 
             center={mapPositions} 
             zoom={10}>
-                <VisibleBox/>
-                <MapEvents/>
+                {/* <VisibleBox/> */}
+                <NewMapEvents map={map}/>
+                {/* <Locator map={map}/> */}
+
                 <TileLayer {...tileLayer}/>
 
-
                 <MapMarkers data={encounters} />
-                <Locator/>
-
-
-
 
         </MapContainer>
         
@@ -168,3 +197,31 @@ const MapWrapper = () => {
 };
 
 export default MapWrapper;
+
+
+    // const VisibleBox = (map) => {
+    
+    //     const bounds = map.getBounds();
+    //     console.log(bounds);
+    //     // const west = bounds.getWest();
+    //     // console.log(west)
+    //     const variables = {
+    //         lowlat: bounds.getSouth(),
+    //         hilat: bounds.getNorth(),
+    //         lowlng: bounds.getWest(),
+    //         hilng: bounds.getEast(),
+    //     }
+    //     console.log(variables)
+    // }
+ 
+    // const MapEvents = (map) => {
+    //     map.useMapEvents({
+    //       moveend: () => {
+    //           VisibleBox(map)
+    //         },
+    //       zoomend: () => {
+    //         VisibleBox(map)
+    //       },
+    //     });
+    //     return null;
+    // };
