@@ -5,10 +5,13 @@ import React, { useState } from "react";
 import { useMutation } from "@apollo/client";
 import { ADD_EVENT } from "../../utils/mutations";
 
+let catArr = [];
+
 export default function Createpost() {
   // AG Code
   // uses one state variable for all the form data
   const [formData, setFormData] = useState({});
+
   const categoryArr = [
     "Visual Sighting",
     "Audible Sighting",
@@ -23,8 +26,18 @@ export default function Createpost() {
   };
 
   const handleCategoryChange = (e) => {
-    // setCategory(e.target.value);
-    console.log(e);
+    if (e.target.checked) {
+      catArr.push(e.target.name);
+    }
+
+    if (!e.target.checked) {
+      let index = catArr.indexOf(e.target.name);
+      console.log(index);
+      catArr.splice(index, 1);
+    }
+
+    console.log(catArr);
+    setFormData({ ...formData, category: catArr });
   };
 
   const [addEvent, { error }] = useMutation(ADD_EVENT);
@@ -36,6 +49,8 @@ export default function Createpost() {
   // handles the form submit and runs the create mutation
   const submitHandler = async (e) => {
     e.preventDefault();
+
+    console.log(formData);
 
     try {
       const { data } = await addEvent({
@@ -52,7 +67,11 @@ export default function Createpost() {
     }
 
     // resets formData to empty
-    setFormData({});
+    // setFormData({});
+  };
+
+  const handleTypeChange = (e) => {
+    setFormData({ ...formData, eventType: e.target.id });
   };
 
   return (
@@ -71,16 +90,6 @@ export default function Createpost() {
               name="eventDate"
               onChange={handleInputChange}
             ></input>
-
-            {/* makle this a mapped checkbox */}
-            <input
-              type="text"
-              placeholder="Category"
-              value={formData.category}
-              name="category"
-              onChange={handleCategoryChange}
-            ></input>
-
             <input
               type="text"
               placeholder="Latitude"
@@ -96,15 +105,14 @@ export default function Createpost() {
               onChange={handleInputChange}
             ></input>
             <label>Describe your encounter:</label>
-            {/* changed input to text area */}
-            <textarea
+            <input
               className="text-box-encounter"
               type="textarea"
               placeholder="Description"
               value={formData.desc}
               name="desc"
               onChange={handleInputChange}
-            ></textarea>
+            ></input>
 
             {/* category checkboxes - changed to radio buttons */}
             <div className="category-box">
@@ -117,7 +125,7 @@ export default function Createpost() {
                   id="paranormal"
                   className="radio-element"
                   name="category"
-                  onChange={handleCategoryChange}
+                  onChange={handleTypeChange}
                 ></input>
                 <label for="paranormal">
                   <i className="fa-solid fa-ghost fa-xl"></i>
@@ -129,7 +137,7 @@ export default function Createpost() {
                   id="crypto-zoological"
                   className="radio-element"
                   name="category"
-                  onChange={handleCategoryChange}
+                  onChange={handleTypeChange}
                 ></input>
                 <label for="crypto-zoological">
                   <i className="fa-solid fa-dragon fa-xl"></i>
@@ -141,7 +149,7 @@ export default function Createpost() {
                   id="extraterrestrial"
                   className="radio-element"
                   name="category"
-                  onChange={handleCategoryChange}
+                  onChange={handleTypeChange}
                 ></input>
                 <label for="extraterrestrial">
                   <i className="fa-solid fa-rocket fa-xl"></i>
@@ -155,12 +163,11 @@ export default function Createpost() {
                   return (
                     <div>
                       <input
-                        className="category-input"
                         type="checkbox"
                         value={item}
-                        id={index}
+                        key={index}
                         name={item}
-                        // onChange={}
+                        onChange={handleCategoryChange}
                       ></input>
                       <label>{item}</label>
                     </div>
@@ -168,6 +175,8 @@ export default function Createpost() {
                 })}
               </span>
             </div>
+
+            <input type="submit" value="Submit!" />
           </form>
         </div>
       </div>
