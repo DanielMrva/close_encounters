@@ -20,7 +20,7 @@ export default function Topnav() {
 
       <div className="icon-container">
 
-        <Link to="/mapwrapper">
+        <Link to="/map">
           <i className="fa-solid fa-earth-americas fa-2xl"></i>
         </Link>
 
