@@ -1,6 +1,5 @@
 import "./Login.css";
 import React, { useState } from 'react';
-import { Link } from 'react-router-dom';
 import { useMutation } from '@apollo/client';
 import { LOGIN_USER } from '../../utils/mutations';
 import Auth from '../../utils/auth';
@@ -80,7 +79,7 @@ export default function Login({ currentPage, handlePageChange }) {
               />
             </div>
             <div style={{ display: "flex", justifyContent: "center" }}>
-              <button href="#Loginnew" onClick={() => handlePageChange("Loginnew")}
+              <button href="#User" onClick={() => handlePageChange("User")}
               className="button1 sub-text"
               type="submit"
               >
