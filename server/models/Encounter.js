@@ -32,6 +32,7 @@ const encounterSchema = new Schema({
   title: {
     type: String,
     required: false,
+    default: 'Test Title',
     max_length: 75,
   },
   description: {
