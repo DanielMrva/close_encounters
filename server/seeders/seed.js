@@ -12,7 +12,7 @@ db.once('open', async () => {
 
     //creates users and encounters
 
-    let moreEncounters = getEncounters(100, 10);
+    let moreEncounters = getEncounters(100, 4);
 
     await User.create(userSeeds);
     await Encounter.create(encounterSeeds);

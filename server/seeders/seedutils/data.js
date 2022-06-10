@@ -67,7 +67,7 @@ const moreWords = [
     "Catherine of Genoa",
     "flash",
     "bang",
-    "umprella",
+    "umbrella",
     "ultra terrestrials",
     "Zeta Reticuli",
     "slow",
@@ -100,11 +100,11 @@ const moreWords = [
 
 const lorem = new LoremIpsum({
     sentencesPerParagraph: {
-      max: 16,
-      min: 8
+      max: 5,
+      min: 3
     },
     wordsPerSentence: {
-      max: 16,
+      max: 8,
       min: 2
     },
     words: [...moreWords]
@@ -190,6 +190,6 @@ const numTest = (int) => {
 
 // numTest(400);
 
-getEncounters(10, 10);
+// getEncounters(10, 10);
 
-// module.exports = {getEncounters, getRandomArrItem, category, type, getRandomFloat, rndInt, randomText}
+module.exports = {getEncounters, getRandomArrItem, category, type, getRandomFloat, rndInt, randomText}
