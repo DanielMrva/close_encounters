@@ -29,20 +29,8 @@ export const ALL_EVENTS = gql`
 `;
 
 export const VIS_ENCOUNTERS = gql`
-  query visencounters(
-    $lowlat: Float!
-    $hilat: Float!
-    $lowlng: Float!
-    $hilng: Float!
-  ) {
-    encounter(
-      query: {
-        lat_gte: $lowlat
-        lat_lte: $hilat
-        lng_gte: $lowlng
-        lng_lte: $hilng
-      }
-    ) {
+    query Visencounters($lowlat: Float!, $hilat: Float!, $lowlng: Float!, $hilng: Float!) {
+    visencounters(lowlat: $lowlat, hilat: $hilat, lowlng: $lowlng, hilng: $hilng) {
       _id
       category
       type
@@ -53,6 +41,7 @@ export const VIS_ENCOUNTERS = gql`
       userId
     }
   }
+
 `;
 
 // export const USER_EVENT = gql``
