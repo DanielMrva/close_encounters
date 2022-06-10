@@ -90,7 +90,7 @@ const moreWords = [
     "gryphon",
     "beholder",
     "Demi-Gorgon",
-    "upsideown",
+    "upsidedown",
     "chem trails",
     "implanted chip",
     "woke up",
