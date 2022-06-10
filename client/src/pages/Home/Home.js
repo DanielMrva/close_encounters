@@ -1,5 +1,6 @@
 import "./Home.css";
 import homeImage from "../../images/curve-shelf-mobile.png";
+import Encountercard from "../../components/Encountercard/Encountercard";
 
 export default function Home() {
   return (
@@ -9,6 +10,7 @@ export default function Home() {
           TOGETHER WE CAN MAKE THE UNEXPLAINED AND THE UNIMAGINABLE...
           UNDENIABLE
         </h2>
+        <Encountercard />
       </div>
       <div className="image-container">
         <img src={homeImage} alt="Curvy Shelf" />

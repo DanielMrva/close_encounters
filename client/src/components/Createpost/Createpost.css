@@ -1,5 +1,5 @@
 .create-post {
-  height: 100vh;
+  height: 2000px;
 }
 
 /* You are currently in text */
@@ -42,10 +42,19 @@
   flex-direction: column;
 }
 
-.text-box {
-  width: 356px;
-  height: 210px;
+.text-box-encounter {
+  width: 100%;
+  height: 100px;
   border: 1px solid rgba(19, 33, 106, 0.2);
+  overflow: auto;
+}
+
+.category-box {
+  width: 356px;
+  height: fit-content;
+  display: flex;
+  border: 1px solid rgba(19, 33, 106, 0.2);
+  align-items: center;
 }
 
 .button-box {
@@ -56,17 +65,61 @@
   align-items: center;
 }
 
-.button-box i {
-  padding: 30px 10px;
+.radio-element {
+  width: 30px;
+  height: 30px;
+  padding: 10px;
 }
 
-#checkbox {
+.category-input {
+  width: 30px;
+  height: 30px;
+  padding: 10px;
+}
+
+/* input[type="radio"] {
+  display: none;
+}
+
+input[type="radio"] ~ label::before {
+  color: #33a9ff;
+  content: "\f096";
+  display: inline-block;
+  font-family: "FontAwesome";
+  margin-right: 8px;
+}
+
+input[type="radio"]:checked ~ label::before {
+  content: "\f046";
+} */
+
+/* input[type="checkbox"] {
+  display: none;
+}
+
+input[type="checkbox"] ~ label::before {
+  color: #33a9ff;
+  content: "\f096";
+  display: inline-block;
+  font-family: "FontAwesome";
+  margin-right: 8px;
+}
+
+input[type="checkbox"]:checked ~ label::before {
+  content: "\f046";
+} */
+
+/* .button-box i {
+  padding: 30px 10px;
+} */
+
+/* #checkbox {
   display: inline-block;
   padding: 15px 18px;
   border-radius: 2px;
   position: relative;
   cursor: pointer;
-}
+} */
 
 /* .checkbox-element {
   display: block;
