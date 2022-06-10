@@ -1,7 +1,7 @@
 import "./App.css";
 import React from 'react';
 import { Link } from "react-router-dom";
-import AppContainer from "./AppContainer";
+// import AppContainer from "./AppContainer";
 // import Test from "./pages/Test";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import ReactDOM from "react-dom/client";

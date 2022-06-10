@@ -31,12 +31,11 @@ root.render(
       <Topnav />
         <Routes>
           <Route path="/" element={<Home />} />
-          {/* <Route path="/home" element={<Home />} /> */}
           <Route path="/map" element={<Map />} />
           <Route path="/user" element={<User />} />
           <Route path="/login" element={<Login />} />
           <Route path="/createpost" element={<Createpost />} />
-          {/* <Route path="/loginnew" element={<Loginnew />} /> */}
+          <Route path="/loginnew" element={<Loginnew />} />
         </Routes>
       <Bottomnav />
     </Router>

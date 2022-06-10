@@ -93,7 +93,7 @@ export default function Login({ currentPage, handlePageChange }) {
 
         <div className="center-flex-container">
           <div className="sub-text" style={{ fontWeight: "700" }}>
-            <Link to="loginnew">
+            <Link to="/loginnew">
               new user? click here
             </Link>
           </div>
