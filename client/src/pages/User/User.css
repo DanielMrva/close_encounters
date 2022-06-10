@@ -1,6 +1,6 @@
 /* cell phone size */
 
-.user-grid {
+/* .user-grid {
   display: grid;
   grid-template-columns: repeat(10, 1fr);
   grid-template-rows: repeat(13, 1fr);
@@ -18,10 +18,10 @@
     ". . . . . option2 option2 . . ."
     ". . . . . . . . . ."
     ". . . . . . . . . .";
-}
+} */
 
 .user-container {
-  height: 100vh;
+  height: fit-content;
 }
 
 .flex-center {
@@ -30,8 +30,11 @@
   align-content: center;
 }
 
-.scenario-into {
-  grid-area: intro;
+.clock-style {
+  flex: 1 0;
+  border-radius: 20%;
+  max-width: 900px;
+  height: auto;
 }
 
 .user-container h4 {
@@ -64,10 +67,6 @@
   color: var(--red);
 }
 
-.time {
-  grid-area: time;
-}
-
 .question-title {
   height: 52px;
   font-family: "Red Rose";
@@ -79,11 +78,18 @@
   align-items: center;
   text-align: center;
   color: var(--blue);
-  grid-area: question;
+}
+
+.flex-options {
+  display: flex;
+  width: 60%;
+  justify-content: space-around;
+  align-items: center;
+  margin: 50px 0px;
 }
 
 .user-option-one {
-  width: 171px;
+  width: 180px;
   height: 104px;
   font-family: "Roboto Mono";
   font-style: normal;
@@ -94,11 +100,10 @@
   align-items: center;
   text-align: center;
   color: var(--blue);
-  grid-area: option1;
 }
 
 .user-option-two {
-  width: 171px;
+  width: 180px;
   height: 104px;
   font-family: "Roboto Mono";
   font-style: normal;
@@ -109,8 +114,29 @@
   align-items: center;
   text-align: center;
   color: var(--blue);
-  grid-area: option2;
 }
 
 @media screen and (max-width: 428px) {
+  .flex-options {
+    display: flex;
+    width: fit-content;
+    justify-content: space-between;
+    align-items: center;
+    margin: 50px 0px;
+  }
+
+  .clock-style {
+    flex: 1 0;
+    border-radius: 5pc;
+    width: 200px;
+    height: auto;
+  }
+
+  .user-option-one {
+    padding: 0px 5px;
+  }
+
+  .user-option-two {
+    padding: 0px 10px;
+  }
 }

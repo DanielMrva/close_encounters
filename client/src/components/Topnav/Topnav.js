@@ -15,6 +15,13 @@ export default function Topnav({ currentPage, handlePageChange }) {
       >
         close encounters
       </a>
+      <a
+        href="#Encountercard"
+        onClick={() => handlePageChange("Encountercard")}
+        className={currentPage === "Encountercard" ? "close active" : "close"}
+      >
+        encountercardtest
+      </a>
       <div className="icon-container">
         <a
           href="#MapWrapper"
