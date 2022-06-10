@@ -15,6 +15,9 @@ const resolvers = {
     users: async () => {
       return User.find().populate("encounters");
     },
+    user: async (parent, { userId }) => {
+      return User.findOne({ _id: userId });
+      },
     allencounters: async () => {
       return Encounter.find();
     },
@@ -25,7 +28,7 @@ const resolvers = {
     encounter: async (parent, { encounterId }) => {
       return Encounter.findOne({ _id: encounterId });
     },
-    visencounters: async (partent, {lowlat, hilat, lowlng, hilng}) => {
+    visencounters: async (parent, {lowlat, hilat, lowlng, hilng}) => {
       return Encounter.find({$and: [{ lat : { $gte :  lowlat, $lte : hilat}}, {lng: {$gte: lowlng, $lte: hilng}}]});
     }
   },
@@ -76,19 +79,11 @@ const resolvers = {
         { $addToSet: { encounters: encounter._id } }
       );
       return encounter;
-      await User.findOneAndUpdate(
-        { username: encounterUser },
-        { $addToSet: { encounters: encounter._id } }
-      );
-      return encounter;
     },
     removeEncounter: async (parent, { encounterId }) => {
       return Encounter.findOneAndDelete({ _id: encounterId });
     },
   },
-  // removeEncounter: async (parent, { encounterId }) => {
-  //     return Encounter.findOneAndDelete({ _id: encounter._id });
-  // },
 };
 
 module.exports = resolvers;
