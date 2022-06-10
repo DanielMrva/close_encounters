@@ -8,6 +8,7 @@ import Createpost from "./components/Createpost/Createpost";
 import Login from "./pages/Login/Login";
 import Loginnew from "./pages/Login/Loginnew";
 import Bottomnav from "./components/Bottomnav/Bottomnav";
+import Encountercard from "./components/Encountercard/Encountercard";
 
 export default function PortfolioContainer() {
   const [currentPage, setCurrentPage] = useState("Home");
@@ -24,6 +25,9 @@ export default function PortfolioContainer() {
     }
     if (currentPage === "Createpost") {
       return <Createpost />;
+    }
+    if (currentPage === "Encountercard") {
+      return <Encountercard />;
     }
     if (currentPage === "Login") {
       return (

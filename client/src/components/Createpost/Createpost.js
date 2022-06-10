@@ -2,46 +2,20 @@ import "./Createpost.css";
 import React, { useState } from "react";
 
 // added
-import { useMutation } from '@apollo/client';
-import { ADD_EVENT } from '../../utils/mutations';
+import { useMutation } from "@apollo/client";
+import { ADD_EVENT } from "../../utils/mutations";
 
 export default function Createpost() {
-
-  // commented out
-  // const [category, setCategory] = useState("");
-  // const [desc, setDesc] = useState("");
-
-  // const handleDescChange = (e) => {
-  //   setDesc(e.target.value);
-  // };
-
-  // const handleCategoryChange = (e) => {
-  //   setCategory(e.target.value);
-  // };
-
-  // const submitHandler = (e) => {
-  //   e.preventDefault();
-
-  //   let data = {
-  //     //   date: eventDate,
-  //     //   time: eventTime,
-  //     category: category,
-  //     //   type: eventType,
-  //     //   latitude: lat,
-  //     //   longitude: lng,
-  //     description: desc,
-  //   };
-
-  //   console.log(data);
-
-  //   return data;
-
-
-
   // AG Code
   // uses one state variable for all the form data
-  const [formData, setFormData] = useState({})
-  const categoryArr = ['Visual Sighting', 'Audible Sighting', 'Physical contact', 'Environmental change', 'PsychoKinesis'];
+  const [formData, setFormData] = useState({});
+  const categoryArr = [
+    "Visual Sighting",
+    "Audible Sighting",
+    "Physical contact",
+    "Environmental change",
+    "PsychoKinesis",
+  ];
 
   const handleInputChange = (e) => {
     const { name, value } = e.target;
@@ -53,30 +27,28 @@ export default function Createpost() {
     console.log(e);
   };
 
-  const [addEvent, { error }] = useMutation(ADD_EVENT)
-  
+  const [addEvent, { error }] = useMutation(ADD_EVENT);
+
   // const { loading, err, data } = useMutation(ADD_EVENT);
   // if (loading) return "loading...";
   // if (err) return err.message;
 
   // handles the form submit and runs the create mutation
   const submitHandler = async (e) => {
-
     e.preventDefault();
 
     try {
-        const { data } = await addEvent({
-            variables: {
-                ...formData,
-                // figure out how to pull the username from the context
-                // user: Auth.getProfile().data.username
-            },
-        });
+      const { data } = await addEvent({
+        variables: {
+          ...formData,
+          // figure out how to pull the username from the context
+          // user: Auth.getProfile().data.username
+        },
+      });
 
-        console.log(data);
-        
+      console.log(data);
     } catch (err) {
-        console.log(err);
+      console.log(err);
     }
 
     // resets formData to empty
@@ -91,16 +63,6 @@ export default function Createpost() {
       <div className="input-flex-container">
         <div className="main-box">
           <form onSubmit={submitHandler}>
-
-            {/* <input
-              className="text-box"
-              type="textarea"
-              placeholder="Have a recent encounter?"
-              value={desc}
-              name="desc"
-              onChange={handleDescChange}
-            ></input> */}
-
             <label>Date:</label>
             <input
               type="text"
@@ -109,15 +71,6 @@ export default function Createpost() {
               name="eventDate"
               onChange={handleInputChange}
             ></input>
-
-            {/* <label>Time: </label>
-            <input
-              type="text"
-              placeholder="Time"
-              value={eventTime}
-              name="eventTime"
-              onChange={handleInputChange}
-            ></input> */}
 
             {/* makle this a mapped checkbox */}
             <input
@@ -128,14 +81,6 @@ export default function Createpost() {
               onChange={handleCategoryChange}
             ></input>
 
-            {/* <input
-              type="text"
-              placeholder="Type"
-              value={eventType}
-              name="type"
-              onChange={handleTypeChange}
-            ></input> */}
-            
             <input
               type="text"
               placeholder="Latitude"
@@ -151,27 +96,26 @@ export default function Createpost() {
               onChange={handleInputChange}
             ></input>
             <label>Describe your encounter:</label>
-            <input
-              className="text-box"
+            {/* changed input to text area */}
+            <textarea
+              className="text-box-encounter"
               type="textarea"
               placeholder="Description"
               value={formData.desc}
               name="desc"
               onChange={handleInputChange}
-            ></input>
+            ></textarea>
 
             {/* category checkboxes - changed to radio buttons */}
-            <div className="button-box">
+            <div className="category-box">
               <span id="radio-buttons">
-              {/* <span id="checkbox"> */}
+                {/* <span id="checkbox"> */}
                 <input
                   type="radio"
-                  // type="checkbox"
                   placeholder="Category"
                   value={formData.category}
                   id="paranormal"
-                  className="checkbox-element"
-                  // name="paranormal"
+                  className="radio-element"
                   name="category"
                   onChange={handleCategoryChange}
                 ></input>
@@ -181,10 +125,9 @@ export default function Createpost() {
 
                 <input
                   type="radio"
-                  // type="checkbox"
                   value={formData.category}
                   id="crypto-zoological"
-                  // name="crypto-zoological"
+                  className="radio-element"
                   name="category"
                   onChange={handleCategoryChange}
                 ></input>
@@ -194,10 +137,9 @@ export default function Createpost() {
 
                 <input
                   type="radio"
-                  // type="checkbox"
                   value={formData.category}
                   id="extraterrestrial"
-                  // name="extraterrestrial"
+                  className="radio-element"
                   name="category"
                   onChange={handleCategoryChange}
                 ></input>
@@ -211,21 +153,21 @@ export default function Createpost() {
               <span id="checkbox">
                 {categoryArr.map((item, index) => {
                   return (
-                  <div>
-                    <input
-                      type="checkbox"
-                      value={item}
-                      id={index}
-                      name={item}
-                      // onChange={}
-                    ></input>
-                    <label>{item}</label>
-                  </div>
-                )})}
+                    <div>
+                      <input
+                        className="category-input"
+                        type="checkbox"
+                        value={item}
+                        id={index}
+                        name={item}
+                        // onChange={}
+                      ></input>
+                      <label>{item}</label>
+                    </div>
+                  );
+                })}
               </span>
-
             </div>
-
           </form>
         </div>
       </div>
