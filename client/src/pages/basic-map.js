@@ -13,6 +13,8 @@ import L from "leaflet";
 import tileLayer from "../utils/tileLayer";
 import { VIS_ENCOUNTERS } from "../utils/queries";
 import { isConstValueNode } from "graphql";
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import { faRocket, faGhost, faDragon} from '@fortawesome/free-solid-svg-icons'
 
 const mapPositions = [39.7392, -104.9903];
 
@@ -63,8 +65,14 @@ function makeACall(bounds, zoom, zoomThreshold = 8) {
 }
 
 const markerIcon = (type) => {
-  // let myIconURL = "";
+  let myIconURL = "";
   let myIconColor = "";
+
+  const svgTemplate = `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32" class="marker">
+  <path fill-opacity=".25" d="M16 32s1.427-9.585 3.761-12.025c4.595-4.805 8.685-.99 8.685-.99s4.044 3.964-.526 8.743C25.514 30.245 16 32 16 32z"/>
+  <path fill="${myIconColor}" stroke="#fff" d="M15.938 32S6 17.938 6 11.938C6 .125 15.938 0 15.938 0S26 .125 26 11.875C26 18.062 15.938 32 15.938 32zM16 6a4 4 0 100 8 4 4 0 000-8z"/>
+  </svg>`;
+
 
   switch (type) {
     case "UFO":
@@ -83,21 +91,19 @@ const markerIcon = (type) => {
       myIconColor = "#55edb5";
       break;
     default:
-      // myIconURL =
+      myIconURL = svgTemplate;
       // myIconURL = DF;
       myIconColor = "#000000";
   }
 
-  const svgTemplate = `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32" class="marker">
-      <path fill-opacity=".25" d="M16 32s1.427-9.585 3.761-12.025c4.595-4.805 8.685-.99 8.685-.99s4.044 3.964-.526 8.743C25.514 30.245 16 32 16 32z"/>
-      <path fill="${myIconColor}" stroke="#fff" d="M15.938 32S6 17.938 6 11.938C6 .125 15.938 0 15.938 0S26 .125 26 11.875C26 18.062 15.938 32 15.938 32zM16 6a4 4 0 100 8 4 4 0 000-8z"/>
-      </svg>`;
 
-  const otherSVG = `<svg><use xlink:href="fa-brands.svg#twitter"></use></svg>`;
+
+  const otherSVG = faRocket;
+  console.log(otherSVG)
 
   return new L.DivIcon({
     className: "test",
-    html: svgTemplate,
+    html: otherSVG,
     iconSize: [25, 41],
     iconAnchor: [10, 41],
     popupAnchor: [2, -40],
