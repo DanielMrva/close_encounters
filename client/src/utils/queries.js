@@ -32,12 +32,15 @@ export const VIS_ENCOUNTERS = gql`
     query Visencounters($lowlat: Float!, $hilat: Float!, $lowlng: Float!, $hilng: Float!) {
     visencounters(lowlat: $lowlat, hilat: $hilat, lowlng: $lowlng, hilng: $hilng) {
       _id
+      encounterUser
+      date
       category
       type
       lat
       lng
       title
       description
+      createdAt
       userId
     }
   }
