@@ -87,6 +87,8 @@ const markerIcon = (type) => {
       <path fill-opacity=".25" d="M16 32s1.427-9.585 3.761-12.025c4.595-4.805 8.685-.99 8.685-.99s4.044 3.964-.526 8.743C25.514 30.245 16 32 16 32z"/>
       <path fill="${myIconColor}" stroke="#fff" d="M15.938 32S6 17.938 6 11.938C6 .125 15.938 0 15.938 0S26 .125 26 11.875C26 18.062 15.938 32 15.938 32zM16 6a4 4 0 100 8 4 4 0 000-8z"/>
       </svg>`;
+
+    const otherSVG = `<svg><use xlink:href="fa-brands.svg#twitter"></use></svg>`
   
     return new L.DivIcon({
       className: "test",
