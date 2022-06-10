@@ -43,5 +43,3 @@ export const VIS_ENCOUNTERS = gql`
   }
 
 `;
-
-// export const USER_EVENT = gql``
