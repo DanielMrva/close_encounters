@@ -1,5 +1,103 @@
 const LoremIpsum = require("lorem-ipsum").LoremIpsum;
 
+const moreWords = [
+    "monster", 
+    "alien", 
+    "ghost", 
+    "zombie", 
+    "sacred", 
+    "probed", 
+    "abducted", 
+    "mauled", 
+    "attacked", 
+    "paralized", 
+    "Unicorn", 
+    "Big Foot", 
+    "Nessie", 
+    "Moth-Man", 
+    "Tom Cruise", 
+    "spider", 
+    "cryptid", 
+    "specter", 
+    "grandfather", 
+    "grandmother", 
+    "dead", 
+    "UFO", 
+    "silver", 
+    "cigar", 
+    "triangle", 
+    "silent", 
+    "zoom", 
+    "stalked", 
+    "slithered", 
+    "swam", 
+    "glowed", 
+    "Grey", 
+    "Sasquach", 
+    "slime", 
+    "sonic-boom", 
+    "exploded", 
+    "floated", 
+    "drifted", 
+    "ectoplasim", 
+    "teleported", 
+    "undead", 
+    "ran", 
+    "nightime", 
+    "spoke to me", 
+    "attacked me",
+    "animal mutilations",
+    "Bermuda Triangle",
+    "Cetus",
+    "dreamland",
+    "Foo Fighters",
+    "flying disk",
+    "flying saucer",
+    "faded giant",
+    "MK Ultra",
+    "Orion",
+    "Epsilon Eridani",
+    "Pluto",
+    "rainbow",
+    "Saint",
+    "stigmata",
+    "Thomas",
+    "Augustine",
+    "Abrosima",
+    "Catherine of Genoa",
+    "flash",
+    "bang",
+    "umprella",
+    "ultra terrestrials",
+    "Zeta Reticuli",
+    "slow",
+    "hovered",
+    "landed",
+    "flew",
+    "disappeared",
+    "exploded",
+    "crashed",
+    "greeted",
+    "captured",
+    "hid",
+    "punched bigfoot",
+    "disceted",
+    "hybrid",
+    "alien-human",
+    "monster-human",
+    "half-man",
+    "satyr",
+    "gryphon",
+    "beholder",
+    "Demi-Gorgon",
+    "upsideown",
+    "chem trails",
+    "implanted chip",
+    "woke up",
+    "went to sleep",
+    "lost"
+]
+
 const lorem = new LoremIpsum({
     sentencesPerParagraph: {
       max: 16,
@@ -9,7 +107,7 @@ const lorem = new LoremIpsum({
       max: 16,
       min: 2
     },
-    words: ["Monster", "Alien", "Ghost", "Zombie", "sacred", "probed", "abducted", "mauled", "attacked", "paralized", "Unicorn", "Big Foot", "Nessie", "Moth-Man", "Tom Cruise", "Spider", "Cryptid", "Specter", "Grandfather", "Grandmother", "dead", "UFO", "silver", "cigar", "triangle", "silent", "zoom", "stalked", "slithered", "swam", "glowed", "Grey", "Sasquach", "slime", "sonic-boom", "exploded", "floated", "drifted", "ectoplasim", "teleported", "undead", "ran", "nightime", "spoke to me", "attacked me"]
+    words: [...moreWords]
 });
 
 
@@ -74,7 +172,7 @@ const getEncounters = (qtt, descLength) => {
             description: randomText(rndInt(descLength))
         })
     } 
-    // console.log(encounters);
+    console.log(encounters);
     return encounters;
 }
 
@@ -92,6 +190,6 @@ const numTest = (int) => {
 
 // numTest(400);
 
-// getEncounters(10, 10);
+getEncounters(10, 10);
 
-module.exports = {getEncounters, getRandomArrItem, category, type, getRandomFloat, rndInt, randomText}
+// module.exports = {getEncounters, getRandomArrItem, category, type, getRandomFloat, rndInt, randomText}
