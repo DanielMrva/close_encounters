@@ -121,33 +121,6 @@ const randomText = (int) => {
 
 const getRandomArrItem = (arr) => arr[Math.floor(Math.random() * arr.length)];
 
-// const randomLat = () => {
-//     const rndNum = Math.random() + Math.floor((Math.random() * 55))
-//     const boundedLat = parseFloat(rndNum.toFixed(4));
-//     if(60 >= boundedLat && boundedLat >= 25) {
-//     // console.log(boundedLat);
-//     return boundedLat
-//     } else {
-//         randomLat();
-//     }
-// }
-
-// const randomLng = () => {
-//     const rndNum = (Math.random() * 65) + Math.floor((Math.random() * 65))
-//     console.log(rndNum);
-//     const boundedLng = parseFloat(rndNum.toFixed(4));
-//     console.log(boundedLng)
-//     if(130 >= boundedLng && boundedLng >= 60) {
-//         const negLng = boundedLng * -1
-//         console.log(negLng);
-//         console.log(`------------`)
-    
-//         return negLng;
-//     } else {
-//         console.log(`failed`)
-//         randomLng();
-//     }
-// };
 
 function getRandomFloat(min, max, decimals) {
     const str = (Math.random() * (max - min) + min).toFixed(decimals);
@@ -175,21 +148,5 @@ const getEncounters = (qtt, descLength) => {
     console.log(encounters);
     return encounters;
 }
-
-const numTest = (int) => {
-    const test = [];
-    for(i = 0; i < int; i++) {
-        test.push({
-            lat: getRandomFloat(-61, -131, 4),
-            lng: getRandomFloat(25, 55, 4)
-        })
-
-    }
-    console.log(test);
-}
-
-// numTest(400);
-
-// getEncounters(10, 10);
 
 module.exports = {getEncounters, getRandomArrItem, category, type, getRandomFloat, rndInt, randomText}
