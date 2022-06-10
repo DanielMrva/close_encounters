@@ -3,6 +3,8 @@ import React, { useState } from 'react';
 import { useMutation } from '@apollo/client';
 import { LOGIN_USER } from '../../utils/mutations';
 import Auth from '../../utils/auth';
+import { Link } from "react-router-dom";
+import Loginnew from "./Loginnew";
 
 export default function Login({ currentPage, handlePageChange }) { 
   const [formState, setFormState] = useState({ email: '', password: '' });
@@ -91,9 +93,9 @@ export default function Login({ currentPage, handlePageChange }) {
 
         <div className="center-flex-container">
           <div className="sub-text" style={{ fontWeight: "700" }}>
-            <a href="#Loginnew" onClick={() => handlePageChange("Loginnew")}>
+            <Link to="/loginnew">
               new user? click here
-            </a>
+            </Link>
           </div>
         </div>
 

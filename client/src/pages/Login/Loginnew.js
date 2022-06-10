@@ -1,5 +1,6 @@
 import "./Login.css";
 import React, { useState } from "react";
+import { Link } from "react-router-dom";
 
 export default function Loginnew({ currentPage, handlePageChange }) {
   const [username, setUsername] = useState(" ");
@@ -56,9 +57,9 @@ export default function Loginnew({ currentPage, handlePageChange }) {
 
         <div className="center-flex-container">
           <div className="sub-text" style={{ fontWeight: "700" }}>
-            <a href="#Login" onClick={() => handlePageChange("Login")}>
+            <Link to="login">
               existing user? click here
-            </a>
+            </Link>
           </div>
         </div>
         <h2>{username}</h2>
