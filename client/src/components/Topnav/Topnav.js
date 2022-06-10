@@ -27,6 +27,7 @@ export default function Topnav() {
         <Link to="/user">
           <i className="fa-solid fa-person-falling fa-2xl"></i>
         </Link>
+        
         {/* this is where the OR logout IF logged in icon/button goes */}
 
         <a>
