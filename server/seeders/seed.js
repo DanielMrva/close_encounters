@@ -2,6 +2,7 @@ const db = require('../config/connection');
 const { User, Encounter } = require('../models');
 const userSeeds = require('./userSeeds.json');
 const encounterSeeds = require('./encounterSeeds.json');
+const {getEncounters} = require('./seedutils/data')
 
 db.once('open', async () => {
   try {
@@ -10,8 +11,12 @@ db.once('open', async () => {
     await Encounter.deleteMany({});
 
     //creates users and encounters
+
+    let moreEncounters = getEncounters(100, 10);
+
     await User.create(userSeeds);
     await Encounter.create(encounterSeeds);
+    await Encounter.insertMany(moreEncounters);
 
     //creates an array of users and encounters
     const users = await User.find({});
