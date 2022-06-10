@@ -1,6 +1,11 @@
 import "./Topnav.css";
+import Auth from '../../utils/auth';
 
 export default function Topnav({ currentPage, handlePageChange }) {
+  const logout = (event) => {
+    event.preventDefault();
+    Auth.logout();
+  };
   return (
     <div className="topnav-flex-container">
       <a
@@ -34,6 +39,15 @@ export default function Topnav({ currentPage, handlePageChange }) {
         >
           <i className="fa-solid fa-person-falling fa-2xl"></i>
         </a>
+{/* this is where the logout icon button goes */}
+        <a
+          href="#User"
+          onClick={() => handlePageChange("User")}
+          className={currentPage === "User" ? "nav-link active" : "nav-link"}
+        >
+          <i className="fa-solid fa-person-falling fa-2xl"></i>
+        </a>
+
       </div>
     </div>
   );

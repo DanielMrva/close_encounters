@@ -1,15 +1,49 @@
 import "./Login.css";
-import React, { useState } from "react";
-import Loginnew from "./Loginnew";
+import React, { useState } from 'react';
+import { useMutation } from '@apollo/client';
+import { LOGIN_USER } from '../../utils/mutations';
+import Auth from '../../utils/auth';
 
-export default function Login({ currentPage, handlePageChange }) {
-  const [username, setUsername] = useState(" ");
-  const [password, setPassword] = useState(" ");
+export default function Login({ currentPage, handlePageChange }) { 
+  const [formState, setFormState] = useState({ email: '', password: '' });
+  const [login, { error, data }] = useMutation(LOGIN_USER);
 
-  const handleSubmit = (e) => {
-    e.preventDefault();
-    const login = { username, password };
-    console.log(login);
+// const Login = (props) => {
+//   const [formState, setFormState] = useState({ email: '', password: '' });
+//   const [login, { error, data }] = useMutation(LOGIN_USER);
+
+  // const handleSubmit = (e) => {
+  //   e.preventDefault();
+  //   const login = { username, password };
+  //   console.log(login);
+  // };
+  const handleChange = (event) => {
+    const { name, value } = event.target;
+
+    setFormState({
+      ...formState,
+      [name]: value,
+    });
+  };
+  
+  const handleFormSubmit = async (event) => {
+    event.preventDefault();
+    console.log(formState);
+    try {
+      const { data } = await login({
+        variables: { ...formState },
+      });
+
+      Auth.login(data.login.token);
+    } catch (e) {
+      console.error(e);
+    }
+
+    // clear form values
+    setFormState({
+      email: '',
+      password: '',
+    });
   };
 
   return (
@@ -21,28 +55,36 @@ export default function Login({ currentPage, handlePageChange }) {
         </div>
 
         <div className="form-flex-container">
-          <form onSubmit={handleSubmit}>
-            <label className="sub-text">username</label>
+          <form onSubmit={handleFormSubmit}>
+            <label className="sub-text">email</label>
             <div className="input-area">
               <input
-                type="text"
+                className="form-input"
+                name="email"
+                type="email"
                 required
-                defaultValue={username}
-                onChange={(e) => setUsername(e.target.value)}
+                defaultValue={formState.email}
+                onChange={(e) => handleChange(e.target.value)}
               />
             </div>
 
             <label className="sub-text">password</label>
             <div className="input-area">
               <input
-                type="text"
+                name="password"
+                type="password"
                 required
-                defaultValue={password}
-                onChange={(e) => setPassword(e.target.value)}
+                value={formState.password}
+                onChange={handleChange}
               />
             </div>
             <div style={{ display: "flex", justifyContent: "center" }}>
-              <button className="button1 sub-text">login</button>
+              <button href="#User" onClick={() => handlePageChange("User")}
+              className="button1 sub-text"
+              type="submit"
+              >
+                login   
+              </button>
             </div>
           </form>
         </div>
@@ -55,8 +97,10 @@ export default function Login({ currentPage, handlePageChange }) {
           </div>
         </div>
 
-        <h2>{username}</h2>
+        {/* <h2>{username}</h2> */}
       </div>
     </div>
   );
 }
+
+// export default Login;
