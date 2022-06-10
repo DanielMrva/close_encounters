@@ -22,7 +22,7 @@
     "react-leaflet": "^4.0.0",
     "react-leaflet-draw": "^0.19.8",
     "react-leaflet-markercluster": "^3.0.0-rc1",
-    "react-router-dom": "^5.2.0",
+    "react-router-dom": "^6.2.1",
     "react-scripts": "5.0.1",
     "web-vitals": "^2.1.4"
   },

@@ -45,7 +45,7 @@ const markerIcon = (category) => {
 
   return new L.DivIcon({
     className: "test",
-    html: `<i class="fa-solid fa-${iconType} fa-xl" style="backgroundcolor:${iconColor};"></i>`,
+    html: `<i class="fa-solid fa-${iconType} fa-xl" style="color:${iconColor};"></i>`,
     iconSize: [30, 30],
     iconAnchor: [15, 31],
     popupAnchor: [0, -32],
@@ -70,7 +70,7 @@ const MapMarkers = ({ data }) => {
               </div>
               <div className="card-header-flex">
                 <div className="title-card">{item.title}</div>
-                <div className="username-card">Zimzam21098</div>
+                <div className="username-card">{item.encounterUser}</div>
                 <div className="location-card">Boulder, CO</div>
                 <div className="date-card">{item.date}</div>
               </div>
