@@ -13,8 +13,7 @@ import L from "leaflet";
 import tileLayer from "../utils/tileLayer";
 import { VIS_ENCOUNTERS } from "../utils/queries";
 import { isConstValueNode } from "graphql";
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { faRocket, faGhost, faDragon} from '@fortawesome/free-solid-svg-icons'
+
 
 const mapPositions = [39.7392, -104.9903];
 
@@ -64,49 +63,36 @@ function makeACall(bounds, zoom, zoomThreshold = 8) {
   }
 }
 
-const markerIcon = (type) => {
-  let myIconURL = "";
-  let myIconColor = "";
+const markerIcon = (category) => {
+  let iconColor = "";
+  let iconType = "";
 
-  const svgTemplate = `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32" class="marker">
-  <path fill-opacity=".25" d="M16 32s1.427-9.585 3.761-12.025c4.595-4.805 8.685-.99 8.685-.99s4.044 3.964-.526 8.743C25.514 30.245 16 32 16 32z"/>
-  <path fill="${myIconColor}" stroke="#fff" d="M15.938 32S6 17.938 6 11.938C6 .125 15.938 0 15.938 0S26 .125 26 11.875C26 18.062 15.938 32 15.938 32zM16 6a4 4 0 100 8 4 4 0 000-8z"/>
-  </svg>`;
-
-
-  switch (type) {
-    case "UFO":
-      // myIconURL = '../mapassets/ufo-svgrepo-com.svg'
-      // myIconURL = UFO;
-      myIconColor = "#03fcec";
+  switch (category) {
+    case "Extraterrestrial":
+      iconType = "rocket";
+      iconColor = "#03fcec";
       break;
-    case "CZ":
-      // myIconURL = '../mapassets/unicorn-svgrepo-com.svg'
-      // myIconURL = CZ;
-      myIconColor = "#e77ef2";
+    case "Zoological":
+      iconType = "dragon";
+      iconColor = "#e77ef2";
       break;
-    case "PN":
-      // myIconURL = '../mapassets/ghost-svgrepo-com.svg'
-      // myIconURL = PN;
-      myIconColor = "#55edb5";
+    case "Paranormal":
+      iconType = "ghost";
+      iconColor = "#55edb5";
       break;
     default:
-      myIconURL = svgTemplate;
-      // myIconURL = DF;
-      myIconColor = "#000000";
+      iconType = "location-dot";
+      iconColor = "#000000";
   }
 
 
 
-  const otherSVG = faRocket;
-  console.log(otherSVG)
-
   return new L.DivIcon({
     className: "test",
-    html: otherSVG,
-    iconSize: [25, 41],
-    iconAnchor: [10, 41],
-    popupAnchor: [2, -40],
+    html: `<i class="fa-solid fa-${iconType} fa-xl" style="backgroundcolor:${iconColor};!important"></i>`,
+    iconSize: [30, 30],
+    iconAnchor: [15, 31],
+    popupAnchor: [0, -32],
   });
 };
 
@@ -114,15 +100,37 @@ const MapMarkers = ({ data }) => {
   return data.map((item, index) => (
     <Marker
       key={index}
-      icon={markerIcon(item.type)}
+      icon={markerIcon(item.category)}
       position={{ lat: item.lat, lng: item.lng }}
     >
-      <Popup>{item.type}</Popup>
+      <Popup maxWidth={400}>
+        <div className="card-page">
+          <div className="card-container">
+            <div className="card-top-flex">
+              <div className="user-icon">
+                {/* <div className="pic-header-flex">
+                  <img className="profile-pic" src={profileImage} alt="user" />
+                </div> */}
+              </div>
+              <div className="card-header-flex">
+                <div className="title-card">{item.title}</div>
+                <div className="username-card">Zimzam21098</div>
+                <div className="location-card">Boulder, CO</div>
+                <div className="date-card">{item.date}</div>
+              </div>
+            </div>
+            <div className="description-flex">
+              <p>
+                {item.description}
+              </p>
+            </div>
+          </div>
+        </div>
+      </Popup>
     </Marker>
   ));
 };
 
-// lowlat: 39.0078, hilat: 40.7190, lowlng: -105.5732, hilng: -101.9901
 
 const MapWrapper = () => {
   const [map, setMap] = useState(null);
