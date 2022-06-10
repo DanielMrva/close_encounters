@@ -8,6 +8,7 @@ import {
   Popup,
   useMapEvents,
   useMap,
+  Tooltip
 } from "react-leaflet";
 import L from "leaflet";
 import tileLayer from "../utils/tileLayer";
@@ -15,53 +16,8 @@ import { VIS_ENCOUNTERS } from "../utils/queries";
 import { isConstValueNode } from "graphql";
 
 
+
 const mapPositions = [39.7392, -104.9903];
-
-const mockData = [
-  {
-    lat: 40.719,
-    lng: -103.101,
-    type: "UFO",
-    title: "Cigar UFO Encounter",
-    date: "10-21-2020",
-  },
-  {
-    lat: 39.0078,
-    lng: -102.4587,
-    type: "PN",
-    title: "Vision of my great grandfather",
-    date: "6-19-1999",
-  },
-  {
-    lat: 40.2213,
-    lng: -105.5732,
-    type: "CZ",
-    title: "Unicorn Sighting",
-    date: "12-24-2012",
-  },
-  {
-    lat: 40.5109,
-    lng: -104.157,
-    type: "UFO",
-    title: "Silver Disk UFO signting",
-    date: "7-4-1958",
-  },
-  {
-    lat: 40.2268,
-    lng: -101.9901,
-    type: "UFO",
-    title: "Little green men spotted in field",
-    date: "2-14-2001",
-  },
-];
-
-function makeACall(bounds, zoom, zoomThreshold = 8) {
-  console.log(`current map zoom is ${zoom}`);
-  if (zoom > zoomThreshold) {
-    // console.log(`make a call to the server with the bounds`, bounds);
-    console.log(bounds.getNorth());
-  }
-}
 
 const markerIcon = (category) => {
   let iconColor = "";
@@ -134,13 +90,10 @@ const MapMarkers = ({ data }) => {
 
 const MapWrapper = () => {
   const [map, setMap] = useState(null);
-  const [position, setPosition] = useState(null);
-  const [variables, setVariables] = useState({
-    lowlat: 39.0078,
-    hilat: 40.719,
-    lowlng: -105.5732,
-    hilng: -101.99017,
-  });
+  const [position, setPosition] = useState([39.7392, -104.9903]);
+  const [variables, setVariables] = useState({});
+
+
 
   const NewMapEvents = () => {
     const map = useMap();
@@ -155,58 +108,54 @@ const MapWrapper = () => {
     useMapEvents({
       moveend: () => {
         setVariables(bonundsList);
-        console.log(bonundsList);
       },
       zoomend: () => {
         setVariables(bonundsList);
-        console.log(bonundsList);
       },
     });
   };
 
-  // const Locator = ({ map }) => {
-  //     // const [bounds, setBounds] = useState({})
+  const Locator = ({ map }) => {
+      // const [bounds, setBounds] = useState({})
 
-  //     useEffect(() => {
-  //             if (!map) return;
+      useEffect(() => {
+              if (!map) return;
 
-  //             map.locate().on("locationfound", function (e) {
-  //             setPosition(e.latlng);
-  //             map.flyTo(e.latlng, map.getZoom());
-  //             const bounds = map.getBounds();
-  //             console.log(bounds);
-  //             const bonundsList = {
-  //                 lowlat: bounds.getSouth(),
-  //                 hilat: bounds.getNorth(),
-  //                 lowlng: bounds.getWest(),
-  //                 hilng: bounds.getEast(),
-  //             }
-  //             console.log(bonundsList)
-  //             setVariables(bonundsList)
-  //             // setBounds(bonundsList)
-  //         })
+              map.locate().on("locationfound", function (e) {
+              setPosition(e.latlng);
+              console.log(position);
+              map.flyTo(e.latlng, map.getZoom());
+              const bounds = map.getBounds();
+              console.log(bounds);
+              const bonundsList = {
+                  lowlat: bounds.getSouth(),
+                  hilat: bounds.getNorth(),
+                  lowlng: bounds.getWest(),
+                  hilng: bounds.getEast(),
+              }
+              console.log(bonundsList)
+              setVariables(bonundsList)
+              // setBounds(bonundsList)
+          })
 
-  //     }, [map]);
+      }, [map]);
 
-  // }
+  }
 
   const { loading, data } = useQuery(VIS_ENCOUNTERS, {
     variables: variables,
-    // variables: {lowlat: 39.0078, hilat: 40.7190, lowlng: -105.5732, hilng: -101.9901}
   });
   const encounters = data?.visencounters || [];
-  // console.log(encounters);
+
   return (
     <MapContainer
       className="map"
       whenCreated={setMap}
-      // whenReady={Locator}
       center={mapPositions}
       zoom={10}
     >
-      {/* <VisibleBox/> */}
       <NewMapEvents map={map} />
-      {/* <Locator map={map}/> */}
+      <Locator map={map}/>
 
       <TileLayer {...tileLayer} />
 
@@ -243,3 +192,16 @@ export default MapWrapper;
 //     });
 //     return null;
 // };
+
+// const Bounder = () => {
+//   const map = useMap();
+//   const bounds = map.getBounds();
+//   const bonundsList = {
+//     lowlat: bounds.getSouth(),
+//     hilat: bounds.getNorth(),
+//     lowlng: bounds.getWest(),
+//     hilng: bounds.getEast(),
+//   };
+//   setVariables(bonundsList);
+
+// }
