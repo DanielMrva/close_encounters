@@ -3,10 +3,6 @@ import Auth from '../../utils/auth';
 import { Link } from "react-router-dom";
 
 export default function Topnav() {
-  const logout = (event) => {
-    event.preventDefault();
-    Auth.logout();
-  };
   return (
     <div className="topnav-flex-container">
 
@@ -27,12 +23,6 @@ export default function Topnav() {
         <Link to="/user">
           <i className="fa-solid fa-person-falling fa-2xl"></i>
         </Link>
-        
-        {/* this is where the OR logout IF logged in icon/button goes */}
-
-        <a>
-          <i className="fa-solid fa-person-falling fa-2xl"></i>
-        </a>
 
       </div>
     </div>

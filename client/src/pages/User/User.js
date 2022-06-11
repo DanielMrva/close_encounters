@@ -1,7 +1,12 @@
 import "./User.css";
 import clockImage from "../../images/clocks.png";
+import { Link } from "react-router-dom";
+import Auth from '../../utils/auth';
+import Login from '../Login/Login';
 
 export default function User() {
+  if (Auth.loggedIn()) {
+
   return (
     <div className="user-container">
       <div className="flex-center scenario-into">
@@ -34,4 +39,11 @@ export default function User() {
       </div>
     </div>
   );
+
+  } else {
+
+    return <Login/>
+
+  }
+
 }
