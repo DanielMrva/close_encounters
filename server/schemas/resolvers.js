@@ -9,7 +9,7 @@ const resolvers = {
       const params = _id ? { _id } : {};
       return User.find(params);
     },
-    user: async(parent, {userId }) => {
+    user: async(parent, { userId }) => {
       return User.findOne({_id:userId});
     },
     users: async () => {
@@ -43,15 +43,17 @@ const resolvers = {
     login: async (parent, { email, password }) => {
       const user = await User.findOne({ email });
 
-      const badAttempt = "Username or password has failed, please try again!";
+      const badAttempt = "Email or password has failed, please try again!";
 
       if (!user) {
+        console.log("bad user", user);
         throw new AuthenticationError(badAttempt);
       }
 
       const correctPassword = await user.isCorrectPassword(password);
 
       if (!correctPassword) {
+        console.log("bad password", user);
         throw new AuthenticationError(badAttempt);
       }
 
@@ -59,6 +61,7 @@ const resolvers = {
 
       return { token, user };
     },
+
     saveEncounter: async (
       parent,
       { encounterUser, date, category, type, lat, lng, title, description }
