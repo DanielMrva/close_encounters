@@ -100,7 +100,16 @@ const encounterSchema = new Schema({
     type: Date,
     default: Date.now,
     get: (timestamp) => dateFormat(timestamp)
-  }
+  },
+    encounterUser: {
+    type: String,
+    required: false,
+    trim: true,
+  },
+    userId: {
+    type: Schema.Types.ObjectId,
+    ref: "User",
+  },
 });
 
 const Encounter = model("Encounter", encounterSchema);
