@@ -1,7 +1,6 @@
 import "./Createpost.css";
 import React, { useState } from "react";
 
-// added
 import { useMutation } from '@apollo/client';
 import { ADD_EVENT } from '../../utils/mutations';
 
@@ -9,40 +8,9 @@ let catArr = []
 
 export default function Createpost() {
 
-  // commented out
-  // const [category, setCategory] = useState("");
-  // const [desc, setDesc] = useState("");
-
-  // const handleDescChange = (e) => {
-  //   setDesc(e.target.value);
-  // };
-
-  // const handleCategoryChange = (e) => {
-  //   setCategory(e.target.value);
-  // };
-
-  // const submitHandler = (e) => {
-  //   e.preventDefault();
-
-  //   let data = {
-  //     //   date: eventDate,
-  //     //   time: eventTime,
-  //     category: category,
-  //     //   type: eventType,
-  //     //   latitude: lat,
-  //     //   longitude: lng,
-  //     description: desc,
-  //   };
-
-  //   console.log(data);
-
-  //   return data;
-
-
-
-  // AG Code
-  // uses one state variable for all the form data
   const [formData, setFormData] = useState({});
+
+  const [addEvent, { error }] = useMutation(ADD_EVENT);
 
   const categoryArr = ['Visual Sighting', 'Audible Sighting', 'Physical contact', 'Environmental change', 'PsychoKinesis'];
 
@@ -68,26 +36,31 @@ export default function Createpost() {
 
   };
 
-
-  const [addEvent, { error }] = useMutation(ADD_EVENT)
-  
-  // const { loading, err, data } = useMutation(ADD_EVENT);
-  // if (loading) return "loading...";
-  // if (err) return err.message;
-
   // handles the form submit and runs the create mutation
   const submitHandler = async (e) => {
 
     e.preventDefault();
 
+    if (!formData.category || formData.category.length === 0) {
+      console.log('Please select at least one category');
+      return;
+    }
+    
+
     console.log(formData)
+    
 
     try {
         const { data } = await addEvent({
             variables: {
-                ...formData,
-                // figure out how to pull the username from the context
-                // user: Auth.getProfile().data.username
+                category: formData.category,
+                date: formData.date,
+                description: formData.description,
+                type: formData.type,
+                lat: parseFloat(formData.lat),
+                lng: parseFloat(formData.lng),
+                // encounterUser: formData.encounterUser,
+                // userId: formData.userId
             },
         });
 
@@ -97,72 +70,43 @@ export default function Createpost() {
         console.log(err);
     }
 
-    // resets formData to empty
-    // setFormData({});
   };
 
 
   const handleTypeChange = (e) => {
 
-    setFormData({ ...formData, eventType: e.target.id })
+    setFormData({ ...formData, type: e.target.id })
 
   }
 
   return (
     <div className="create-post">
-      <h6>you are currently in</h6>
+      <h6>Tell me about your encounter</h6>
       {/* make this a generated location */}
-      <h2>DENVER, COLORADO</h2>
       <div className="input-flex-container">
         <div className="main-box">
           <form onSubmit={submitHandler}>
-
-            {/* <input
-              className="text-box"
-              type="textarea"
-              placeholder="Have a recent encounter?"
-              value={desc}
-              name="desc"
-              onChange={handleDescChange}
-            ></input> */}
 
             <label>Date:</label>
             <input
               type="text"
               placeholder="Date"
-              value={formData.eventDate}
-              name="eventDate"
+              value={formData.date ?? ""}
+              name="date"
               onChange={handleInputChange}
             ></input>
-
-            {/* <label>Time: </label>
-            <input
-              type="text"
-              placeholder="Time"
-              value={eventTime}
-              name="eventTime"
-              onChange={handleInputChange}
-            ></input> */}
-
-            {/* <input
-              type="text"
-              placeholder="Type"
-              value={eventType}
-              name="type"
-              onChange={handleTypeChange}
-            ></input> */}
             
             <input
               type="text"
               placeholder="Latitude"
-              value={formData.lat}
+              value={formData.lat ?? ""}
               name="lat"
               onChange={handleInputChange}
             ></input>
             <input
               type="text"
               placeholder="Longitude"
-              value={formData.lng}
+              value={formData.lng ?? ""}
               name="lng"
               onChange={handleInputChange}
             ></input>
@@ -171,23 +115,19 @@ export default function Createpost() {
               className="text-box"
               type="textarea"
               placeholder="Description"
-              value={formData.desc}
-              name="desc"
+              value={formData.description ?? ""}
+              name="description"
               onChange={handleInputChange}
             ></input>
 
-            {/* category checkboxes - changed to radio buttons */}
             <div className="button-box">
               <span id="radio-buttons">
-              {/* <span id="checkbox"> */}
                 <input
                   type="radio"
-                  // type="checkbox"
                   placeholder="Category"
-                  value={formData.category}
+                  value={formData.category ?? ""}
                   id="paranormal"
                   className="checkbox-element"
-                  // name="paranormal"
                   name="category"
                   onChange={handleTypeChange}
                 ></input>
@@ -197,10 +137,8 @@ export default function Createpost() {
 
                 <input
                   type="radio"
-                  // type="checkbox"
-                  value={formData.category}
+                  value={formData.category ?? ""}
                   id="crypto-zoological"
-                  // name="crypto-zoological"
                   name="category"
                   onChange={handleTypeChange}
                 ></input>
@@ -210,10 +148,8 @@ export default function Createpost() {
 
                 <input
                   type="radio"
-                  // type="checkbox"
-                  value={formData.category}
+                  value={formData.category ?? ""}
                   id="extraterrestrial"
-                  // name="extraterrestrial"
                   name="category"
                   onChange={handleTypeChange}
                 ></input>

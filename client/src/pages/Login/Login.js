@@ -4,21 +4,11 @@ import { useMutation } from '@apollo/client';
 import { LOGIN_USER } from '../../utils/mutations';
 import Auth from '../../utils/auth';
 import { Link } from "react-router-dom";
-import Loginnew from "./Loginnew";
-
-export default function Login({ currentPage, handlePageChange }) { 
+// merging
+export default function Login() { 
   const [formState, setFormState] = useState({ email: '', password: '' });
-  const [login, { error, data }] = useMutation(LOGIN_USER);
+  const [login, { error }] = useMutation(LOGIN_USER);
 
-// const Login = (props) => {
-//   const [formState, setFormState] = useState({ email: '', password: '' });
-//   const [login, { error, data }] = useMutation(LOGIN_USER);
-
-  // const handleSubmit = (e) => {
-  //   e.preventDefault();
-  //   const login = { username, password };
-  //   console.log(login);
-  // };
   const handleChange = (event) => {
     const { name, value } = event.target;
 
@@ -57,6 +47,15 @@ export default function Login({ currentPage, handlePageChange }) {
         </div>
 
         <div className="form-flex-container">
+        {/* {data ? (
+
+              <p>
+                Success! You may now head{' '}
+                <Link to="/user">to your profile page.</Link>
+              </p>
+
+            ) : ( */}
+
           <form onSubmit={handleFormSubmit}>
             <label className="sub-text">email</label>
             <div className="input-area">
@@ -66,7 +65,7 @@ export default function Login({ currentPage, handlePageChange }) {
                 type="email"
                 required
                 defaultValue={formState.email}
-                onChange={(e) => handleChange(e.target.value)}
+                onChange={handleChange}
               />
             </div>
 
@@ -81,14 +80,23 @@ export default function Login({ currentPage, handlePageChange }) {
               />
             </div>
             <div style={{ display: "flex", justifyContent: "center" }}>
-              <button href="#User" onClick={() => handlePageChange("User")}
+              <button 
               className="button1 sub-text"
+              style={{ cursor: 'pointer' }}
               type="submit"
               >
                 login   
               </button>
             </div>
           </form>
+        {/* )} */}
+
+        {error && (
+            <div className="my-3 p-3 bg-danger text-white">
+              {error.message}
+            </div>
+        )}
+
         </div>
 
         <div className="center-flex-container">
