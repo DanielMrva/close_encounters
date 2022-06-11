@@ -18,17 +18,17 @@ function App() {
 
 
   return (
-  <NewMarkerContext value={newMarkerPos}>
-    <ModalContext.Provider value={showModal}>
-      <BoundBoxContext.Provider value={boundBox}>
+  // <NewMarkerContext value={newMarkerPos}>
+  //   <ModalContext.Provider value={showModal}>
+  //     <BoundBoxContext.Provider value={boundBox}>
         <ApolloProvider client={client}>
           <div className="App">
             <Home />
           </div>
         </ApolloProvider>
-      </BoundBoxContext.Provider>
-    </ModalContext.Provider>
-  </NewMarkerContext>
+  //     </BoundBoxContext.Provider>
+  //   </ModalContext.Provider>
+  // </NewMarkerContext>
   );
 }
 

@@ -154,8 +154,8 @@ const MapWrapper = () => {
   const encounters = data?.visencounters || [];
 
   return (
-    <NewMarkProvider>
-      <ModalProvider> 
+    // <NewMarkProvider>
+      // <ModalProvider> 
         <MapContainer
           className="map"
           whenCreated={setMap}
@@ -170,8 +170,8 @@ const MapWrapper = () => {
           <TileLayer {...tileLayer} />
 
         </MapContainer>
-      </ModalProvider>
-    </NewMarkProvider>
+      // </ModalProvider>
+    // </NewMarkProvider>
   );
 };
 
