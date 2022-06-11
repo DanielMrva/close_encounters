@@ -35,7 +35,7 @@ db.once('open', async () => {
       ? console.log('no encounter found')
       : Encounter.findOneAndUpdate(
         {_id: enc._id},
-        {$set: {userId: use._id}}
+        {$set: {userId: use._id, encounterUser: use.username}}
       )
       .then((user) =>
       ! user? console.log('no user found')
