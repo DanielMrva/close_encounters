@@ -16,7 +16,7 @@ const resolvers = {
       return User.find().populate("encounters");
     },
     user: async (parent, { userId }) => {
-      return User.findOne({ _id: userId });
+      return User.findOne({ _id: userId }).populate('encounters');
       },
     allencounters: async () => {
       return Encounter.find();
@@ -59,27 +59,52 @@ const resolvers = {
 
       return { token, user };
     },
+    // saveEncounter: async (
+    //   parent,
+    //   // { encounterUser, date, category, type, lat, lng, title, description }
+    //   { encounterUser, date, category, type, lat, lng, description, userId }
+    // ) => {
+    //   const encounter = await Encounter.create({
+    //     encounterUser,
+    //     date,
+    //     category,
+    //     type,
+    //     lat,
+    //     lng,
+    //     // title,
+    //     description,
+    //     userId,
+    //   });
+
+    //   await User.findOneAndUpdate(
+    //     { username: encounterUser },
+    //     { $addToSet: { encounters: encounter._id } }
+    //   );
+    //   return encounter;
+    // },
+
+
     saveEncounter: async (
       parent,
-      { encounterUser, date, category, type, lat, lng, title, description }
+      // { encounterUser, date, category, type, lat, lng, title, description }
+      { description, type, category, date, lat, lng }, context
     ) => {
       const encounter = await Encounter.create({
-        encounterUser,
-        date,
-        category,
+        description,
         type,
+        category,
+        date,
         lat,
         lng,
-        title,
-        description,
       });
 
-      await User.findOneAndUpdate(
-        { username: encounterUser },
-        { $addToSet: { encounters: encounter._id } }
-      );
+      // await User.findOneAndUpdate(
+      //   { username: encounterUser },
+      //   { $addToSet: { encounters: encounter._id } }
+      // );
       return encounter;
     },
+
     removeEncounter: async (parent, { encounterId }) => {
       return Encounter.findOneAndDelete({ _id: encounterId });
     },
