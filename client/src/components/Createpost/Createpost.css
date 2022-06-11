@@ -1,5 +1,9 @@
 .create-post {
-  height: 2000px;
+  height: fit-content;
+  display: flex;
+  flex-direction: column;
+  width: 100vw;
+  align-items: center;
 }
 
 .encounter-form {
@@ -41,7 +45,7 @@
 
 .encounter-input-style {
   border: none;
-  border-bottom: 4px solid red;
+  border-bottom: 3px solid red;
   height: 40px;
   margin-bottom: 20px;
 }
@@ -69,6 +73,7 @@
   display: flex;
   justify-content: center;
   flex-direction: column;
+  margin: 40px 0px;
 }
 
 /* .text-box-encounter {
@@ -101,9 +106,9 @@
 }
 
 .button-box {
-  width: 356px;
+  width: 100%;
   height: fit-content;
-  display: flex;
+  /* display: flex; */
   border: 1px solid rgba(19, 33, 106, 0.2);
   align-items: center;
   padding: 20px;
@@ -134,8 +139,19 @@
 }
 
 .category {
-  padding: 10px 10px;
+  padding: 8px 10px;
   font-size: 16px;
+}
+
+#radio-buttons {
+  display: flex;
+}
+
+.center-flex-submit {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 10px;
 }
 
 /* input[type="radio"] {

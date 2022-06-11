@@ -77,7 +77,7 @@ export default function Createpost() {
 
   return (
     <div className="create-post">
-      <h6>Tell me about your encounter</h6>
+      <h6>Share your encounter with others</h6>
       {/* make this a generated location */}
       <div className="input-flex-container">
         <div className="main-box">
@@ -124,52 +124,65 @@ export default function Createpost() {
 
             <div className="button-box">
               <span id="radio-buttons">
-                <div>
-                  {/* <label className="sub-text-form">Encounter Kind</label> */}
+                {/* <label className="sub-text-form">Encounter Kind</label> */}
+
+                <div className="radio-icon container">
+                  <input
+                    type="radio"
+                    placeholder="Category"
+                    value={formData.category ?? ""}
+                    id="Paranormal"
+                    className="radio-element"
+                    name="category"
+                    onChange={handleTypeChange}
+                  ></input>
+                  <label for="paranormal">
+                    <i className="fa-solid fa-ghost fa-2xl"></i>
+                  </label>
                 </div>
-                <input
-                  type="radio"
-                  placeholder="Category"
-                  value={formData.category ?? ""}
-                  id="Paranormal"
-                  className="radio-element"
-                  name="category"
-                  onChange={handleTypeChange}
-                ></input>
-                <label for="paranormal">
-                  <i className="fa-solid fa-ghost fa-2xl"></i>
-                </label>
 
-                <input
-                  type="radio"
-                  className="radio-element"
-                  value={formData.category ?? ""}
-                  id="Zoological"
-                  name="category"
-                  onChange={handleTypeChange}
-                ></input>
-                <label for="crypto-zoological">
-                  <i className="fa-solid fa-dragon fa-2xl"></i>
-                </label>
+                <div className="radio-icon container">
+                  <input
+                    type="radio"
+                    className="radio-element"
+                    value={formData.category ?? ""}
+                    id="Zoological"
+                    name="category"
+                    onChange={handleTypeChange}
+                  ></input>
+                  <label for="crypto-zoological">
+                    <i className="fa-solid fa-dragon fa-2xl"></i>
+                  </label>
+                </div>
 
-                <input
-                  type="radio"
-                  className="radio-element"
-                  value={formData.category ?? ""}
-                  id="Extraterrestrial"
-                  name="category"
-                  onChange={handleTypeChange}
-                ></input>
-                <label for="extraterrestrial">
-                  <i className="fa-solid fa-rocket fa-2xl"></i>
-                </label>
+                <div className="radio-icon container">
+                  <input
+                    type="radio"
+                    className="radio-element"
+                    value={formData.category ?? ""}
+                    id="Extraterrestrial"
+                    name="category"
+                    onChange={handleTypeChange}
+                  ></input>
+                  <label for="extraterrestrial">
+                    <i className="fa-solid fa-rocket fa-2xl"></i>
+                  </label>
+                </div>
               </span>
             </div>
 
             <div className="button-box">
-              {/* <label className="sub-text-form">
-                Changes in environment or self as a result of encounter{" "}
-              </label> */}
+              <label
+                style={{
+                  padding: "5px",
+                  textAlign: "center",
+                  width: "100%",
+                  color: "red",
+                }}
+                className="sub-text-form"
+              >
+                Type of encounter{" "}
+              </label>
               <span id="checkbox">
                 {categoryArr.map((item, index) => {
                   return (
@@ -188,8 +201,13 @@ export default function Createpost() {
                 })}
               </span>
             </div>
-
-            <input type="submit" value="Submit!" className="button1 sub-text" />
+            <div className="center-flex-submit">
+              <input
+                type="submit"
+                value="Submit!"
+                className="button1 sub-text"
+              />
+            </div>
           </form>
         </div>
       </div>
