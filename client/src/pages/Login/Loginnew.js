@@ -1,16 +1,46 @@
 import "./Login.css";
 import React, { useState } from "react";
 import { Link } from "react-router-dom";
+import { useMutation } from '@apollo/client';
+import { ADD_USER } from '../../utils/mutations';
+import Auth from '../../utils/auth';
 
-export default function Loginnew({ currentPage, handlePageChange }) {
-  const [username, setUsername] = useState(" ");
-  const [email, setEmail] = useState(" ");
-  const [password, setPassword] = useState(" ");
+export default function Loginnew() {
+  const [formState, setFormState] = useState({
+    username: '',
+    email: '',
+    password: '',
+  });
+  const [addUser, { error }] = useMutation(ADD_USER);
 
-  const handleSubmit = (e) => {
-    e.preventDefault();
-    const newLogin = { username, email, password };
-    console.log(newLogin);
+  const handleChange = (event) => {
+    const { name, value } = event.target;
+
+    setFormState({
+      ...formState,
+      [name]: value,
+    });
+  };
+
+  const handleFormSubmit = async (event) => {
+    event.preventDefault();
+    console.log(formState);
+
+    try {
+      const { data } = await addUser({
+        variables: { ...formState },
+      });
+
+      Auth.login(data.addUser.token);
+    } catch (e) {
+      console.error(e);
+    }
+
+    setFormState({
+      email: '',
+      password: '',
+    });
+
   };
 
   return (
@@ -22,38 +52,52 @@ export default function Loginnew({ currentPage, handlePageChange }) {
         </div>
 
         <div className="form-flex-container">
-          <form onSubmit={handleSubmit}>
+          <form onSubmit={handleFormSubmit}>
             <label className="sub-text">username:</label>
             <input
-              className="input-area"
+              className="form-input"
+              name="username"
               type="text"
               required
-              value={username}
-              onChange={(e) => setUsername(e.target.value)}
+              value={formState.username}
+              onChange={handleChange}
             />
 
             <label className="sub-text">email:</label>
             <input
-              className="input-area"
+              className="form-input"
+              name="email"
               type="text"
               required
-              value={email}
-              onChange={(e) => setEmail(e.target.value)}
+              value={formState.email}
+              onChange={handleChange}
             />
 
             <label className="sub-text">password:</label>
             <input
-              className="input-area"
-              type="text"
+              className="form-input"
+              name="password"
+              type="password"
               required
-              value={password}
-              onChange={(e) => setPassword(e.target.value)}
+              value={formState.password}
+              onChange={handleChange}
             />
             <div style={{ display: "flex", justifyContent: "center" }}>
-              <button className="button1 sub-text">sign-up</button>
+              <button className="button1 sub-text"
+              style={{ cursor: 'pointer' }}
+              type="submit"
+              >
+                sign-up
+              </button>
             </div>
           </form>
         </div>
+
+        {error && (
+              <div className="my-3 p-3 bg-danger text-white">
+                {error.message}
+              </div>
+        )}
 
         <div className="center-flex-container">
           <div className="sub-text" style={{ fontWeight: "700" }}>
@@ -62,7 +106,6 @@ export default function Loginnew({ currentPage, handlePageChange }) {
             </Link>
           </div>
         </div>
-        <h2>{username}</h2>
       </div>
     </div>
   );

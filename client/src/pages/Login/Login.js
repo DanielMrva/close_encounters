@@ -47,14 +47,6 @@ export default function Login() {
         </div>
 
         <div className="form-flex-container">
-        {/* {data ? (
-
-              <p>
-                Success! You may now head{' '}
-                <Link to="/user">to your profile page.</Link>
-              </p>
-
-            ) : ( */}
 
           <form onSubmit={handleFormSubmit}>
             <label className="sub-text">email</label>
@@ -62,7 +54,7 @@ export default function Login() {
               <input
                 className="form-input"
                 name="email"
-                type="email"
+                type="text"
                 required
                 defaultValue={formState.email}
                 onChange={handleChange}
