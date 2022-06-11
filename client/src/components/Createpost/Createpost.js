@@ -59,8 +59,9 @@ export default function Createpost() {
                 type: formData.type,
                 lat: parseFloat(formData.lat),
                 lng: parseFloat(formData.lng),
-                // encounterUser: formData.encounterUser,
-                // userId: formData.userId
+                encounterUser: "allison.fischer",
+                userId: "123456",
+                title: "Test Title"
             },
         });
 
