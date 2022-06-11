@@ -9,13 +9,13 @@ import {
   useMap,
   Tooltip
 } from "react-leaflet";
-import L, { bounds } from "leaflet";
-import AddMarker from "../components/MapSubmit/AddMarker";
-import SubmitModal from "../components/MapSubmit/MapSubmit";
+import L from "leaflet";
+// import AddMarker from "../components/MapSubmit/AddMarker";
+// import SubmitModal from "../components/MapSubmit/MapSubmit";
 import tileLayer from "../utils/tileLayer";
 import { VIS_ENCOUNTERS } from "../utils/queries";
-import { ModalProvider, ModalContext, ModalUpdateContext } from "../contexts/modalContext";
-import { NewMarkerProvider, NewMarkerContext, NewMarkerUpdateContext } from "../contexts/newMarkerContext";
+// import { ModalProvider, ModalContext, ModalUpdateContext } from "../contexts/modalContext";
+// import { NewMarkerProvider, NewMarkerContext, NewMarkerUpdateContext } from "../contexts/newMarkerContext";
 
 
 
@@ -46,8 +46,6 @@ const markerIcon = (category) => {
       iconType = "location-dot";
       iconColor = "#000000";
   }
-
-  console.log(category)
 
   return new L.DivIcon({
     className: "test",
@@ -97,8 +95,8 @@ const MapWrapper = () => {
   const [map, setMap] = useState(null);
   const [position, setPosition] = useState([39.7392, -104.9903]);
   const [variables, setVariables] = useState({});
-  const [showModal, setShowModal] = useState(false);
-  const [newMarkPos, setNewMarkPos] = useState([0,0])
+  // const [showModal, setShowModal] = useState(false);
+  // const [newMarkPos, setNewMarkPos] = useState([0,0])
 
 
 
