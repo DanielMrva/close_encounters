@@ -1,5 +1,4 @@
-import React from "react";
-import { useState, useEffect } from "react";
+import React, { useState, useEffect, useContext } from "react";
 import { useQuery } from "@apollo/client";
 import {
   MapContainer,
@@ -10,9 +9,21 @@ import {
   useMap,
   Tooltip,
 } from "react-leaflet";
-import L from "leaflet";
+import L, { bounds } from "leaflet";
+import AddMarker from "../components/MapSubmit/AddMarker";
+import SubmitModal from "../components/MapSubmit/MapSubmit";
 import tileLayer from "../utils/tileLayer";
 import { VIS_ENCOUNTERS } from "../utils/queries";
+import {
+  ModalProvider,
+  ModalContext,
+  ModalUpdateContext,
+} from "../contexts/modalContext";
+import {
+  NewMarkerProvider,
+  NewMarkerContext,
+  NewMarkerUpdateContext,
+} from "../contexts/newMarkerContext";
 
 const mapPositions = [39.7392, -104.9903];
 
@@ -51,7 +62,7 @@ const MapMarkers = ({ data }) => {
   return data.map((item, index) => (
     <Marker
       key={index}
-      icon={markerIcon(item.category)}
+      icon={markerIcon(item.type)}
       position={{ lat: item.lat, lng: item.lng }}
     >
       <Popup maxWidth={400}>
@@ -84,6 +95,8 @@ const MapWrapper = () => {
   const [map, setMap] = useState(null);
   const [position, setPosition] = useState([39.7392, -104.9903]);
   const [variables, setVariables] = useState({});
+  // const [showModal, setShowModal] = useState(false);
+  // const [newMarkPos, setNewMarkPos] = useState([0,0])
 
   const NewMapEvents = () => {
     const map = useMap();

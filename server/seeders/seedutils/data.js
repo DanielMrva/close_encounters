@@ -129,9 +129,9 @@ function getRandomFloat(min, max, decimals) {
     return parseFloat(str);
 }
 
-const category = ["Extraterrestrial", "Paranormal", "Zoological"];
+const type = ["Extraterrestrial", "Paranormal", "Zoological"];
 
-const type = ['Visual Sighting', 'Audible Sighting', 'Physical contact', 'Environmental change', 'PsychoKinesis'];
+const category = ['Visual Sighting', 'Audible Sighting', 'Physical contact', 'Environmental change', 'PsychoKinesis'];
 
 const getEncounters = (qtt, descLength) => {
     const encounters = [];
@@ -139,8 +139,8 @@ const getEncounters = (qtt, descLength) => {
         encounters.push({
             category: getRandomArrItem(category),
             type: getRandomArrItem(type),
-            lat: getRandomFloat(25, 55, 4),
-            lng: getRandomFloat(-65, -135, 4),
+            lat: getRandomFloat(37, 42, 4),
+            lng: getRandomFloat(-95, -110, 4),
             title: randomText(1),
             description: randomText(rndInt(descLength))
         })

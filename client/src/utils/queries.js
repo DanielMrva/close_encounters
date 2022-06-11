@@ -17,20 +17,12 @@ export const QUERY_USER = gql`
   }
 `;
 
-export const QUERY_SINGLE_USER = gql`
-  query user($userId: ID!) {
-    user(userId: $userId) {
-      _id
-      username
-      email
-    }
-  }
-`;
-
+// this needs to be fixed
 export const ALL_EVENTS = gql`
   query Allencounters {
     encounters {
       _id
+      date
       category
       type
       lat
@@ -38,6 +30,20 @@ export const ALL_EVENTS = gql`
       title
       description
       userId
+    }
+  }
+`;
+
+export const USER_EVENTS = gql`
+  query encounters($username: String!) {
+    encounters(username: $username) {
+      _id
+      date
+      type
+      category
+      lat
+      long
+      description
     }
   }
 `;

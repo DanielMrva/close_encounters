@@ -1,5 +1,5 @@
 import "./App.css";
-import React from 'react';
+import React, { useState} from 'react';
 import { Link } from "react-router-dom";
 // import AppContainer from "./AppContainer";
 // import Test from "./pages/Test";
@@ -15,12 +15,20 @@ const client = new ApolloClient({
 });
 
 function App() {
+
+
   return (
-    <ApolloProvider client={client}>
-      <div className="App">
-        <Home />
-      </div>
-    </ApolloProvider>
+  // <NewMarkerContext value={newMarkerPos}>
+  //   <ModalContext.Provider value={showModal}>
+  //     <BoundBoxContext.Provider value={boundBox}>
+        <ApolloProvider client={client}>
+          <div className="App">
+            <Home />
+          </div>
+        </ApolloProvider>
+  //     </BoundBoxContext.Provider>
+  //   </ModalContext.Provider>
+  // </NewMarkerContext>
   );
 }
 
