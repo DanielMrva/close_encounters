@@ -8,14 +8,11 @@ import {
   Popup,
   useMapEvents,
   useMap,
-  Tooltip
+  Tooltip,
 } from "react-leaflet";
 import L from "leaflet";
 import tileLayer from "../utils/tileLayer";
 import { VIS_ENCOUNTERS } from "../utils/queries";
-
-
-
 
 const mapPositions = [39.7392, -104.9903];
 
@@ -40,8 +37,6 @@ const markerIcon = (category) => {
       iconType = "location-dot";
       iconColor = "#000000";
   }
-
-
 
   return new L.DivIcon({
     className: "test",
@@ -76,9 +71,7 @@ const MapMarkers = ({ data }) => {
               </div>
             </div>
             <div className="description-flex">
-              <p>
-                {item.description}
-              </p>
+              <p>{item.description}</p>
             </div>
           </div>
         </div>
@@ -91,7 +84,7 @@ const MapWrapper = () => {
   const [map, setMap] = useState(null);
   const [position, setPosition] = useState([39.7392, -104.9903]);
   const [variables, setVariables] = useState({});
-  
+
   const NewMapEvents = () => {
     const map = useMap();
     const bounds = map.getBounds();
@@ -113,29 +106,26 @@ const MapWrapper = () => {
   };
 
   const Locator = ({ map }) => {
+    useEffect(() => {
+      if (!map) return;
 
-      useEffect(() => {
-              if (!map) return;
-
-              map.locate().on("locationfound", function (e) {
-              setPosition(e.latlng);
-              console.log(position);
-              map.flyTo(e.latlng, map.getZoom());
-              const bounds = map.getBounds();
-              console.log(bounds);
-              const bonundsList = {
-                  lowlat: bounds.getSouth(),
-                  hilat: bounds.getNorth(),
-                  lowlng: bounds.getWest(),
-                  hilng: bounds.getEast(),
-              }
-              console.log(bonundsList)
-              setVariables(bonundsList)
-          })
-
-      }, [map]);
-
-  }
+      map.locate().on("locationfound", function (e) {
+        setPosition(e.latlng);
+        console.log(position);
+        map.flyTo(e.latlng, map.getZoom());
+        const bounds = map.getBounds();
+        console.log(bounds);
+        const bonundsList = {
+          lowlat: bounds.getSouth(),
+          hilat: bounds.getNorth(),
+          lowlng: bounds.getWest(),
+          hilng: bounds.getEast(),
+        };
+        console.log(bonundsList);
+        setVariables(bonundsList);
+      });
+    }, [map]);
+  };
 
   const { loading, data } = useQuery(VIS_ENCOUNTERS, {
     variables: variables,
@@ -144,17 +134,16 @@ const MapWrapper = () => {
 
   return (
     <MapContainer
-      className="map"
+      style={{ height: "800px" }}
       whenCreated={setMap}
       center={mapPositions}
       zoom={10}
     >
       <NewMapEvents map={map} />
-      <Locator map={map}/>
+      <Locator map={map} />
 
       <MapMarkers data={encounters} />
       <TileLayer {...tileLayer} />
-
     </MapContainer>
   );
 };
@@ -201,7 +190,6 @@ export default MapWrapper;
 
 // }
 
-
 // const ShowMarkers = ({ mapContainer, markers }) => {
 //   return markers.map((marker, index) => {
 //     return <Marker
@@ -227,9 +215,9 @@ export default MapWrapper;
 
 //   useMapEvents({
 //     click: () => {
-      
+
 //     }
-//   }) 
+//   })
 
 //   if(marker.length) {
 //     return (
@@ -242,30 +230,30 @@ export default MapWrapper;
 
 // const [clickedPos, setClickedPos] = useState([])
 
-  // useEffect(() => {
-  //   navigator.geolocation.getCurrentPosition(position => {
-  //     const { lat, lng } = position.coords;
-  //     setPosition([lat, lng]);
-  //   });
-  // }, []);
+// useEffect(() => {
+//   navigator.geolocation.getCurrentPosition(position => {
+//     const { lat, lng } = position.coords;
+//     setPosition([lat, lng]);
+//   });
+// }, []);
 
-  // const DroppedMarker = () => {
-  //   const map = useMapEvents({
-  //     click(e) {
-  //       setClickedPos([
-  //         e.latlng.lat,
-  //         e.latlng.lng
-  //       ]);
-  //     },
-  //   })
+// const DroppedMarker = () => {
+//   const map = useMapEvents({
+//     click(e) {
+//       setClickedPos([
+//         e.latlng.lat,
+//         e.latlng.lng
+//       ]);
+//     },
+//   })
 
-  //   return (
-  //     clickedPos ? 
-  //     <Marker 
-  //     key={clickedPos[0]}
-  //     position={clickedPos}
-      
-  //     />
-  //     :null
-  //   )
-  // }
+//   return (
+//     clickedPos ?
+//     <Marker
+//     key={clickedPos[0]}
+//     position={clickedPos}
+
+//     />
+//     :null
+//   )
+// }

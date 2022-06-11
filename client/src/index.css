@@ -28,6 +28,15 @@ code {
     monospace;
 }
 
-.map {
-  height: 100vh;
-}
+/* .map-container {
+  display: flex;
+  height: fit-content;
+  border: solid;
+  border-color: red;
+  border-width: 4px;
+} */
+
+/* .map {
+  height: 500px;
+  width: 500px;
+} */

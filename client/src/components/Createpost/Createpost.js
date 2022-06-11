@@ -8,35 +8,6 @@ import { ADD_EVENT } from "../../utils/mutations";
 let catArr = [];
 
 export default function Createpost() {
-  // commented out
-  // const [category, setCategory] = useState("");
-  // const [desc, setDesc] = useState("");
-
-  // const handleDescChange = (e) => {
-  //   setDesc(e.target.value);
-  // };
-
-  // const handleCategoryChange = (e) => {
-  //   setCategory(e.target.value);
-  // };
-
-  // const submitHandler = (e) => {
-  //   e.preventDefault();
-
-  //   let data = {
-  //     //   date: eventDate,
-  //     //   time: eventTime,
-  //     category: category,
-  //     //   type: eventType,
-  //     //   latitude: lat,
-  //     //   longitude: lng,
-  //     description: desc,
-  //   };
-
-  //   console.log(data);
-
-  //   return data;
-
   // AG Code
   // uses one state variable for all the form data
   const [formData, setFormData] = useState({});

@@ -1,5 +1,11 @@
 import "./Encountercard.css";
-import profilepic from "../../images/profilepic.jpg";
+import propic from "../../images/profilepic.jpg";
+import propic1 from "../../images/profilepic1.png";
+import propic2 from "../../images/profilepic2.png";
+import propic3 from "../../images/profilepic3.png";
+import propic4 from "../../images/profilepic4.png";
+import propic5 from "../../images/profilepic5.png";
+
 import { useQuery } from "@apollo/client";
 import { ALL_EVENTS } from "../../utils/queries";
 
@@ -20,7 +26,7 @@ export default function Encountercard() {
               <div className="card-top-flex">
                 <div className="user-icon">
                   <div className="pic-header-flex">
-                    <img className="profile-pic" src={profilepic} alt="user" />
+                    <img className="profile-pic" src={propic} alt="user" />
                   </div>
                 </div>
                 <div className="card-header-flex">

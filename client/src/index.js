@@ -13,7 +13,8 @@ import "leaflet/dist/leaflet.css";
 import "./index.css";
 
 import Home from "./pages/Home/Home";
-import Map from "./pages/basic-map";
+// import MapWrapper from "./pages/basic-map";
+import Map from "./pages/Mappage/Mappage";
 import Topnav from "./components/Topnav/Topnav";
 import User from "./pages/User/User";
 import Createpost from "./components/Createpost/Createpost";
@@ -21,6 +22,7 @@ import Login from "./pages/Login/Login";
 import Loginnew from "./pages/Login/Loginnew";
 import Bottomnav from "./components/Bottomnav/Bottomnav";
 import Encountercard from "./components/Encountercard/Encountercard";
+import Postpage from "./pages/Postpage/Postpage";
 
 import reportWebVitals from "./reportWebVitals";
 
@@ -53,14 +55,17 @@ root.render(
     <Router>
       {/* <App /> */}
       <Topnav />
-      <Routes>
-        <Route path="/" element={<Home />} />
-        <Route path="/map" element={<Map />} />
-        <Route path="/user" element={<User />} />
-        <Route path="/login" element={<Login />} />
-        <Route path="/createpost" element={<Createpost />} />
-        <Route path="/loginnew" element={<Loginnew />} />
-      </Routes>
+      <div style={{ height: "fit-content" }}>
+        <Routes>
+          <Route path="/" element={<Home />} />
+          <Route path="/map" element={<Map />} />
+          <Route path="/user" element={<User />} />
+          <Route path="/login" element={<Login />} />
+          <Route path="/postpage" element={<Postpage />} />
+          <Route path="/createpost" element={<Createpost />} />
+          <Route path="/loginnew" element={<Loginnew />} />
+        </Routes>
+      </div>
       <Bottomnav />
     </Router>
   </ApolloProvider>
