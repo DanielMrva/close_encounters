@@ -7,16 +7,11 @@
 //     required: false,
 //     trim: true,
 //   },
-//   // date: {
-//   //   type: Date,
-//   //   default: Date.now,
-//   //   get: (timestamp) => dateFormat(timestamp),
-//   //   required: true,
-//   // },
 //   date: {
-//     type: String,
-//     required: false,
-//     trim: true,
+//     type: Date,
+//     default: Date.now,
+//     get: (timestamp) => dateFormat(timestamp),
+//     required: true,
 //   },
 //   category: {
 //     type: String,
@@ -101,15 +96,21 @@ const encounterSchema = new Schema({
     default: Date.now,
     get: (timestamp) => dateFormat(timestamp)
   },
-    encounterUser: {
+  title: {
     type: String,
     required: false,
+    trim: true
+  },
+  encounterUser: {
+    type: String,
+    encounter: false,
     trim: true,
   },
-    userId: {
+  userId: {
     type: Schema.Types.ObjectId,
     ref: "User",
   },
+
 });
 
 const Encounter = model("Encounter", encounterSchema);

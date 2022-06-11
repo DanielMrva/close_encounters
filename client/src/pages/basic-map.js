@@ -47,7 +47,7 @@ const markerIcon = (category) => {
       iconColor = "#000000";
   }
 
-
+  console.log(category)
 
   return new L.DivIcon({
     className: "test",
@@ -62,7 +62,7 @@ const MapMarkers = ({ data }) => {
   return data.map((item, index) => (
     <Marker
       key={index}
-      icon={markerIcon(item.category)}
+      icon={markerIcon(item.type)}
       position={{ lat: item.lat, lng: item.lng }}
     >
       <Popup maxWidth={400}>
