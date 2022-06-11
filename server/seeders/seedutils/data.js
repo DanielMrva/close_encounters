@@ -129,9 +129,9 @@ function getRandomFloat(min, max, decimals) {
     return parseFloat(str);
 }
 
-const category = ["Extraterrestrial", "Paranormal", "Zoological"];
+const type = ["Extraterrestrial", "Paranormal", "Zoological"];
 
-const type = ['Visual Sighting', 'Audible Sighting', 'Physical contact', 'Environmental change', 'PsychoKinesis'];
+const category = ['Visual Sighting', 'Audible Sighting', 'Physical contact', 'Environmental change', 'PsychoKinesis'];
 
 const getEncounters = (qtt, descLength) => {
     const encounters = [];
