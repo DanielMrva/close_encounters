@@ -126,7 +126,7 @@ export default function Createpost() {
                   type="radio"
                   placeholder="Category"
                   value={formData.category ?? ""}
-                  id="paranormal"
+                  id="Paranormal"
                   className="checkbox-element"
                   name="category"
                   onChange={handleTypeChange}
@@ -138,7 +138,7 @@ export default function Createpost() {
                 <input
                   type="radio"
                   value={formData.category ?? ""}
-                  id="crypto-zoological"
+                  id="Zoological"
                   name="category"
                   onChange={handleTypeChange}
                 ></input>
@@ -149,7 +149,7 @@ export default function Createpost() {
                 <input
                   type="radio"
                   value={formData.category ?? ""}
-                  id="extraterrestrial"
+                  id="Extraterrestrial"
                   name="category"
                   onChange={handleTypeChange}
                 ></input>
