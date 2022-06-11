@@ -1,45 +1,15 @@
 import "./Createpost.css";
 import React, { useState } from "react";
 
-// added
 import { useMutation } from "@apollo/client";
 import { ADD_EVENT } from "../../utils/mutations";
 
 let catArr = [];
 
 export default function Createpost() {
-  // commented out
-  // const [category, setCategory] = useState("");
-  // const [desc, setDesc] = useState("");
-
-  // const handleDescChange = (e) => {
-  //   setDesc(e.target.value);
-  // };
-
-  // const handleCategoryChange = (e) => {
-  //   setCategory(e.target.value);
-  // };
-
-  // const submitHandler = (e) => {
-  //   e.preventDefault();
-
-  //   let data = {
-  //     //   date: eventDate,
-  //     //   time: eventTime,
-  //     category: category,
-  //     //   type: eventType,
-  //     //   latitude: lat,
-  //     //   longitude: lng,
-  //     description: desc,
-  //   };
-
-  //   console.log(data);
-
-  //   return data;
-
-  // AG Code
-  // uses one state variable for all the form data
   const [formData, setFormData] = useState({});
+
+  const [addEvent, { error }] = useMutation(ADD_EVENT);
 
   const categoryArr = [
     "Visual Sighting",
@@ -69,24 +39,29 @@ export default function Createpost() {
     setFormData({ ...formData, category: catArr });
   };
 
-  const [addEvent, { error }] = useMutation(ADD_EVENT);
-
-  // const { loading, err, data } = useMutation(ADD_EVENT);
-  // if (loading) return "loading...";
-  // if (err) return err.message;
-
   // handles the form submit and runs the create mutation
   const submitHandler = async (e) => {
     e.preventDefault();
+
+    if (!formData.category || formData.category.length === 0) {
+      console.log("Please select at least one category");
+      return;
+    }
 
     console.log(formData);
 
     try {
       const { data } = await addEvent({
         variables: {
-          ...formData,
-          // figure out how to pull the username from the context
-          // user: Auth.getProfile().data.username
+          category: formData.category,
+          date: formData.date,
+          description: formData.description,
+          type: formData.type,
+          lat: parseFloat(formData.lat),
+          lng: parseFloat(formData.lng),
+          encounterUser: "allison.fischer",
+          userId: "123456",
+          title: "Test Title",
         },
       });
 
@@ -94,131 +69,127 @@ export default function Createpost() {
     } catch (err) {
       console.log(err);
     }
-
-    // resets formData to empty
-    // setFormData({});
   };
 
   const handleTypeChange = (e) => {
-    setFormData({ ...formData, eventType: e.target.id });
+    setFormData({ ...formData, type: e.target.id });
   };
 
   return (
     <div className="create-post">
-      <h6>you are currently in</h6>
+      <h6>Tell me about your encounter</h6>
       {/* make this a generated location */}
-      <h2>DENVER, COLORADO</h2>
       <div className="input-flex-container">
         <div className="main-box">
-          <form onSubmit={submitHandler}>
-            {/* <input
-              className="text-box"
-              type="textarea"
-              placeholder="Have a recent encounter?"
-              value={desc}
-              name="desc"
-              onChange={handleDescChange}
-            ></input> */}
-
-            <label>Date:</label>
+          <form className="encounter-form" onSubmit={submitHandler}>
+            {/* <label className="sub-text-form">Date</label> */}
             <input
+              className="encounter-input-style"
               type="text"
               placeholder="Date"
-              value={formData.eventDate}
-              name="eventDate"
+              value={formData.date ?? ""}
+              name="date"
               onChange={handleInputChange}
             ></input>
+
+            {/* <label className="sub-text-form">Latitude</label> */}
             <input
+              className="encounter-input-style"
               type="text"
               placeholder="Latitude"
-              value={formData.lat}
+              value={formData.lat ?? ""}
               name="lat"
               onChange={handleInputChange}
             ></input>
+
+            {/* <label className="sub-text-form">Longitude</label> */}
             <input
+              className="encounter-input-style"
               type="text"
               placeholder="Longitude"
-              value={formData.lng}
+              value={formData.lng ?? ""}
               name="lng"
               onChange={handleInputChange}
             ></input>
-            <label>Describe your encounter:</label>
+
+            {/* <label className="sub-text-form">Describe Your Encounter</label> */}
             <input
-              className="text-box-encounter"
+              className="encounter-textarea-style"
               type="textarea"
               placeholder="Description"
-              value={formData.desc}
-              name="desc"
+              value={formData.description ?? ""}
+              name="description"
               onChange={handleInputChange}
             ></input>
 
-            {/* category checkboxes - changed to radio buttons */}
             <div className="button-box">
               <span id="radio-buttons">
-                {/* <span id="checkbox"> */}
+                <div>
+                  {/* <label className="sub-text-form">Encounter Kind</label> */}
+                </div>
                 <input
                   type="radio"
-                  // type="checkbox"
                   placeholder="Category"
-                  value={formData.category}
-                  id="paranormal"
-                  className="checkbox-element"
-                  // name="paranormal"
+                  value={formData.category ?? ""}
+                  id="Paranormal"
+                  className="radio-element"
                   name="category"
                   onChange={handleTypeChange}
                 ></input>
                 <label for="paranormal">
-                  <i className="fa-solid fa-ghost fa-xl"></i>
+                  <i className="fa-solid fa-ghost fa-2xl"></i>
                 </label>
 
                 <input
                   type="radio"
-                  // type="checkbox"
-                  value={formData.category}
-                  id="crypto-zoological"
-                  // name="crypto-zoological"
+                  className="radio-element"
+                  value={formData.category ?? ""}
+                  id="Zoological"
                   name="category"
                   onChange={handleTypeChange}
                 ></input>
                 <label for="crypto-zoological">
-                  <i className="fa-solid fa-dragon fa-xl"></i>
+                  <i className="fa-solid fa-dragon fa-2xl"></i>
                 </label>
 
                 <input
                   type="radio"
-                  // type="checkbox"
-                  value={formData.category}
-                  id="extraterrestrial"
-                  // name="extraterrestrial"
+                  className="radio-element"
+                  value={formData.category ?? ""}
+                  id="Extraterrestrial"
                   name="category"
                   onChange={handleTypeChange}
                 ></input>
                 <label for="extraterrestrial">
-                  <i className="fa-solid fa-rocket fa-xl"></i>
+                  <i className="fa-solid fa-rocket fa-2xl"></i>
                 </label>
               </span>
             </div>
 
             <div className="button-box">
+              {/* <label className="sub-text-form">
+                Changes in environment or self as a result of encounter{" "}
+              </label> */}
               <span id="checkbox">
                 {categoryArr.map((item, index) => {
                   return (
                     <div>
                       <input
+                        className="check-input"
                         type="checkbox"
                         value={item}
                         key={index}
                         name={item}
                         onChange={handleCategoryChange}
                       ></input>
-                      <label>{item}</label>
+                      <label className="sub-text-form category">{item}</label>
                     </div>
                   );
                 })}
               </span>
             </div>
 
-            <input type="submit" value="Submit!" />
+            <input type="submit" value="Submit!" className="button1 sub-text" />
           </form>
         </div>
       </div>

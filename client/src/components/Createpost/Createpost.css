@@ -2,6 +2,10 @@
   height: 2000px;
 }
 
+.encounter-form {
+  width: 100%;
+}
+
 /* You are currently in text */
 .create-post h6 {
   font-family: "Roboto Mono";
@@ -35,6 +39,31 @@
   justify-content: center;
 }
 
+.encounter-input-style {
+  border: none;
+  border-bottom: 4px solid red;
+  height: 40px;
+  margin-bottom: 20px;
+}
+
+::placeholder {
+  width: fit-content;
+  font-family: "Red Rose";
+  font-style: normal;
+  font-weight: 400;
+  font-size: 16px;
+  line-height: 26px;
+  color: var(--blue);
+  text-align: center;
+  text-transform: lowercase;
+  padding: 0;
+  margin: 0;
+}
+
+.encounter-textarea-style {
+  height: 100px;
+}
+
 .main-box {
   width: 356px;
   display: flex;
@@ -42,11 +71,25 @@
   flex-direction: column;
 }
 
-.text-box-encounter {
+/* .text-box-encounter {
   width: 100%;
   height: 100px;
   border: 1px solid rgba(19, 33, 106, 0.2);
   overflow: auto;
+} */
+
+.sub-text-form {
+  width: fit-content;
+  font-family: "Red Rose";
+  font-style: normal;
+  font-weight: 400;
+  font-size: 20px;
+  line-height: 26px;
+  color: var(--blue);
+  text-align: center;
+  text-transform: lowercase;
+  padding: 0;
+  margin: 0;
 }
 
 .category-box {
@@ -63,18 +106,36 @@
   display: flex;
   border: 1px solid rgba(19, 33, 106, 0.2);
   align-items: center;
+  padding: 20px;
 }
+
+/* .button-box label {
+  margin: 0px;
+} */
 
 .radio-element {
-  width: 30px;
-  height: 30px;
+  width: 20px;
+  height: 20px;
   padding: 10px;
 }
 
-.category-input {
-  width: 30px;
-  height: 30px;
+.check-input {
+  width: 20px;
+  height: 20px;
   padding: 10px;
+}
+
+[type="checkbox"] {
+  vertical-align: middle;
+}
+
+[type="radio"] {
+  vertical-align: middle;
+}
+
+.category {
+  padding: 10px 10px;
+  font-size: 16px;
 }
 
 /* input[type="radio"] {
