@@ -14,7 +14,7 @@ import Createpost from "./components/Createpost/Createpost";
 import Login from "./pages/Login/Login";
 import Loginnew from "./pages/Login/Loginnew";
 import Bottomnav from "./components/Bottomnav/Bottomnav";
-import Encountercard from "./components/Encountercard/Encountercard";
+// import Encountercard from "./components/Encountercard/Encountercard";
 
 import reportWebVitals from "./reportWebVitals";
 
@@ -29,14 +29,14 @@ root.render(
     <Router>
       {/* <App /> */}
       <Topnav />
-        <Routes>
-          <Route path="/" element={<Home />} />
-          <Route path="/map" element={<Map />} />
-          <Route path="/user" element={<User />} />
-          <Route path="/login" element={<Login />} />
-          <Route path="/createpost" element={<Createpost />} />
-          <Route path="/loginnew" element={<Loginnew />} />
-        </Routes>
+      <Routes>
+        <Route path="/" element={<Home />} />
+        <Route path="/map" element={<Map />} />
+        <Route path="/user" element={<User />} />
+        <Route path="/login" element={<Login />} />
+        <Route path="/createpost" element={<Createpost />} />
+        <Route path="/loginnew" element={<Loginnew />} />
+      </Routes>
       <Bottomnav />
     </Router>
   </ApolloProvider>
