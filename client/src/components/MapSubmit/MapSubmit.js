@@ -1,16 +1,6 @@
 import React from 'react';
 import { useState, useEffect } from "react";
-// import { useQuery } from "@apollo/client";
-// import {
-//   MapContainer,
-//   TileLayer,
-//   Marker,
-//   Popup,
-//   useMapEvents,
-//   useMap,
-//   Tooltip
-// } from "react-leaflet";
-// import L, {LatLng, LatLngExpression} from "leaflet";
+import {useModal, useModalUpdate} from '../../contexts/modalContext';
 import {Modal, Button, Form} from 'react-bootstrap';
 import 'bootstrap/dist/css/bootstrap.min.css';
 

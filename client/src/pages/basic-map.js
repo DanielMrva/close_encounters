@@ -1,5 +1,4 @@
-import React from "react";
-import { useState, useEffect } from "react";
+import React, { useState, useEffect, useContext }  from "react";
 import { useQuery } from "@apollo/client";
 import {
   MapContainer,
@@ -10,11 +9,15 @@ import {
   useMap,
   Tooltip
 } from "react-leaflet";
-import L from "leaflet";
+import L, { bounds } from "leaflet";
 import AddMarker from "../components/MapSubmit/AddMarker";
 import SubmitModal from "../components/MapSubmit/MapSubmit";
 import tileLayer from "../utils/tileLayer";
 import { VIS_ENCOUNTERS } from "../utils/queries";
+import { ModalProvider, ModalContext, ModalUpdateContext } from "../contexts/modalContext";
+import { NewMarkerProvider, NewMarkerContext, NewMarkerUpdateContext } from "../contexts/newMarkerContext";
+
+
 
 
 
@@ -95,7 +98,9 @@ const MapWrapper = () => {
   const [position, setPosition] = useState([39.7392, -104.9903]);
   const [variables, setVariables] = useState({});
   const [showModal, setShowModal] = useState(false);
-  const [newMarkPos, setNewMarkPos] = useState([0,0]);
+  const [newMarkPos, setNewMarkPos] = useState([0,0])
+
+
 
   
   const NewMapEvents = () => {
@@ -149,20 +154,24 @@ const MapWrapper = () => {
   const encounters = data?.visencounters || [];
 
   return (
-    <MapContainer
-      className="map"
-      whenCreated={setMap}
-      center={mapPositions}
-      zoom={10}
-    >
-      <NewMapEvents map={map} />
-      <Locator map={map}/>
-      {/* <AddMarker setShowModal={setShowModal} showModal={showModal} newMarkPos={newMarkPos} setNewMarkPos={setNewMarkPos} map={map}/> */}
-      {/* <SubmitModal setShowModal={setShowModal} showModal={showModal} newMarkPos={newMarkPos} setNewMarkPos={setNewMarkPos}/> */}
-      <MapMarkers data={encounters} />
-      <TileLayer {...tileLayer} />
+    <NewMarkProvider>
+      <ModalProvider> 
+        <MapContainer
+          className="map"
+          whenCreated={setMap}
+          center={mapPositions}
+          zoom={10}
+        >
+          <NewMapEvents map={map} />
+          <Locator map={map}/>
+          {/* <AddMarker setShowModal={setShowModal} showModal={showModal} newMarkPos={newMarkPos} setNewMarkPos={setNewMarkPos} map={map}/> */}
+          {/* <SubmitModal setShowModal={setShowModal} showModal={showModal} newMarkPos={newMarkPos} setNewMarkPos={setNewMarkPos}/> */}
+          <MapMarkers data={encounters} />
+          <TileLayer {...tileLayer} />
 
-    </MapContainer>
+        </MapContainer>
+      </ModalProvider>
+    </NewMarkProvider>
   );
 };
 
