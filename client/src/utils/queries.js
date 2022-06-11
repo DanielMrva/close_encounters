@@ -10,24 +10,14 @@ export const QUERY_USER = gql`
   }
 `;
 
-export const QUERY_SINGLE_USER = gql`
-  query user($userId: ID!) {
-    user(userId: $userId) {
-      _id
-      username
-      email
-    }
-  }
-`;
-
+// this needs to be fixed
 export const ALL_EVENTS = gql`
   query allEvents {
     event {
       _id
-      eventDate
-      eventTime
+      date
       category
-      eventType
+      type
       lat
       lng
       desc
@@ -37,6 +27,19 @@ export const ALL_EVENTS = gql`
     }
   }
 `;
+
+export const USER_EVENTS = gql`
+  query encounters( $username: String!) {
+    encounters(username: $username) {
+      _id
+      date
+      type
+      category
+      lat
+      long
+      description
+    }
+  }`
 
 export const VIS_ENCOUNTERS = gql`
     query Visencounters($lowlat: Float!, $hilat: Float!, $lowlng: Float!, $hilng: Float!) {

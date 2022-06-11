@@ -14,7 +14,7 @@ const typeDefs = gql`
         _id: ID!
         encounterUser: String
         date: String
-        category: String!
+        category: [String!]
         type: String!
         lat: Float!
         lng: Float!
@@ -39,19 +39,33 @@ const typeDefs = gql`
         visencounters(lowlat: Float!, hilat: Float!, lowlng: Float!, hilng: Float!): [Encounter]
     }
 
+    # type Mutation {
+    #     addUser(username: String!, email: String!, password: String!): Auth
+    #     login(email: String!, password: String!): Auth
+    #     saveEncounter(
+    #         encounterUser: String!,
+    #         date: String!, 
+    #         category: String!, 
+    #         type: String!, 
+    #         lat: Float!, 
+    #         lng: Float!, 
+    #         # title: String!, 
+    #         description: String!)
+    #         : Encounter
+    #     removeEncounter(encounterId: ID!): Encounter
+    # }
+
     type Mutation {
         addUser(username: String!, email: String!, password: String!): Auth
         login(email: String!, password: String!): Auth
         saveEncounter(
-            encounterUser: String!,
-            date: String!, 
-            category: String!, 
-            type: String!, 
-            lat: Float!, 
-            lng: Float!, 
-            # title: String!, 
-            description: String!)
-            : Encounter
+            description: String
+            type: String
+            category: [String]
+            date: String
+            lat: Float
+            lng: Float
+            ): Encounter
         removeEncounter(encounterId: ID!): Encounter
     }
 `;
