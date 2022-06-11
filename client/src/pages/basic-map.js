@@ -11,8 +11,11 @@ import {
   Tooltip
 } from "react-leaflet";
 import L from "leaflet";
+import AddMarker from "../components/MapSubmit/AddMarker";
+import SubmitModal from "../components/MapSubmit/MapSubmit";
 import tileLayer from "../utils/tileLayer";
 import { VIS_ENCOUNTERS } from "../utils/queries";
+
 
 
 
@@ -91,6 +94,9 @@ const MapWrapper = () => {
   const [map, setMap] = useState(null);
   const [position, setPosition] = useState([39.7392, -104.9903]);
   const [variables, setVariables] = useState({});
+  const [showModal, setShowModal] = useState(false);
+  const [newMarkPos, setNewMarkPos] = useState([0,0]);
+
   
   const NewMapEvents = () => {
     const map = useMap();
@@ -151,7 +157,8 @@ const MapWrapper = () => {
     >
       <NewMapEvents map={map} />
       <Locator map={map}/>
-
+      {/* <AddMarker setShowModal={setShowModal} showModal={showModal} newMarkPos={newMarkPos} setNewMarkPos={setNewMarkPos} map={map}/> */}
+      {/* <SubmitModal setShowModal={setShowModal} showModal={showModal} newMarkPos={newMarkPos} setNewMarkPos={setNewMarkPos}/> */}
       <MapMarkers data={encounters} />
       <TileLayer {...tileLayer} />
 
