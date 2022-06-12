@@ -29,7 +29,7 @@
     /* flex: 1 0 40%; */
 
     /* display: flex; */
-    /* overflow: scroll; */
+    overflow: scroll;
     height: 400px;
     width: 500px;
   }

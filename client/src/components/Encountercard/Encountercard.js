@@ -9,28 +9,51 @@ import propic5 from "../../images/profilepic5.png";
 import { useQuery } from "@apollo/client";
 import { ALL_EVENTS } from "../../utils/queries";
 
-export default function Encountercard() {
+export default function Encountercard(props) {
   const { loading, err, data } = useQuery(ALL_EVENTS);
 
   if (loading) return "loading...";
   if (err) return err.message;
-  const encounterList = data?.encounters || [];
-  const smallEncounterList = encounterList.slice(0, 10);
+
+  console.log(props);
+
+  let randomPics = [propic, propic1, propic2, propic3, propic4, propic5];
+
+  let getRandomArrItem = (arr) => arr[Math.floor(Math.random() * arr.length)];
+
+  let encounterList = data?.encounters || [];
+  let smallEncounterList = encounterList.slice(0, props.quantityDisplay);
+
+  let listWithPic = smallEncounterList.map((item) =>
+    Object.assign({}, item, { profilepic: getRandomArrItem(randomPics) })
+  );
+
+  console.log(listWithPic);
+
+  // let cardTitle = `${props.cardStyle}`;
+
+  // const titleColor = {
+  //   color: props.color,
+  // };
 
   return (
     <div className="card-page">
-      {smallEncounterList.map((data, index) => {
+      {listWithPic.map((data, index) => {
         return (
           <div key={index}>
             <div className="card-container">
               <div className="card-top-flex">
                 <div className="user-icon">
                   <div className="pic-header-flex">
-                    <img className="profile-pic" src={propic} alt="user" />
+                    <img
+                      className="profile-pic"
+                      src={data.profilepic}
+                      alt="user"
+                    />
                   </div>
                 </div>
                 <div className="card-header-flex">
-                  <div className="username-card">{data.title}</div>
+                  <div className="username-card">{data.encounterUser}</div>
                   <div className="location-card">{data.category}</div>
                   <div className="date-card">{data.type}</div>
                 </div>

@@ -11,7 +11,7 @@ export default function Home() {
           UNDENIABLE
         </h2>
         <div className="encountercard-home">
-          <Encountercard />
+          <Encountercard quantityDisplay={40} />
         </div>
       </div>
 
