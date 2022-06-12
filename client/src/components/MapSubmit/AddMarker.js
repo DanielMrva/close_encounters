@@ -11,15 +11,14 @@ import {
   Tooltip,
 } from "react-leaflet";
 import L, { LatLng, LatLngExpression } from "leaflet";
-import tileLayer from "../../utils/tileLayer";
-import MapSubmit from "./MapSubmit";
+
 
 const AddMarker = ({ onMapClick, newMarkPos }) => {
   useMapEvents({
     click: (e) => onMapClick(e),
   });
   // console.log(newMarkPos);
-  return <Marker key={newMarkPos} position={newMarkPos}></Marker>;
+  return ( <Marker key={newMarkPos} position={newMarkPos}></Marker> );
 };
 
 export default AddMarker;
