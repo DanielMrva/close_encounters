@@ -29,6 +29,6 @@ code {
 }
 
 .map {
-  height: 50vh;
-  max-height: 500px;
+  height: 80vh;
+  max-height: 80%;
 }

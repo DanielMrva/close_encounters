@@ -4,13 +4,13 @@ import { useQuery } from "@apollo/client";
 import { QUERY_USER } from "../../utils/queries";
 
 export default function Encountercard() {
-  const { loading, err, data } = useQuery(QUERY_USER);
+  // const { loading, err, data } = useQuery(QUERY_USER);
 
-  if (loading) return "loading...";
-  if (err) return err.message;
-  // const userList = data?.user || [];
+  // if (loading) return "loading...";
+  // if (err) return err.message;
+  // // const userList = data?.user || [];
 
-  console.log(data);
+  // console.log(data);
 
   return (
     <div className="card-page">

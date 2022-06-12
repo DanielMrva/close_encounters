@@ -15,6 +15,7 @@ export const ALL_EVENTS = gql`
   query allEvents {
     event {
       _id
+      
       date
       category
       type

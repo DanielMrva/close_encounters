@@ -4,10 +4,10 @@ import React, { useState } from "react";
 import { useMutation } from '@apollo/client';
 import { ADD_EVENT } from '../../utils/mutations';
 
-let catArr = []
+
 
 export default function Createpost() {
-
+  let catArr = []
   const [formData, setFormData] = useState({});
 
   const [addEvent, { error }] = useMutation(ADD_EVENT);
@@ -70,7 +70,9 @@ export default function Createpost() {
     } catch (err) {
         console.log(err);
     }
-
+    // if(onModalSubmit) {
+    //   onModalSubmit();
+    // }
   };
 
 
