@@ -1,4 +1,4 @@
-import React from 'react';
+import React from "react";
 import { useState, useEffect } from "react";
 import { useQuery } from "@apollo/client";
 import {
@@ -8,34 +8,18 @@ import {
   Popup,
   useMapEvents,
   useMap,
-  Tooltip
+  Tooltip,
 } from "react-leaflet";
-import L, {LatLng, LatLngExpression} from "leaflet";
-// import tileLayer from "../../utils/tileLayer";
-// import MapSubmit from "./MapSubmit"
+import L, { LatLng, LatLngExpression } from "leaflet";
+import tileLayer from "../../utils/tileLayer";
+import MapSubmit from "./MapSubmit";
 
-
-const AddMarker = (showModal, setShowModal, newMarkPos, setNewMarkPos) => {
-    const handleShow = () => setShowModal(true);
-
-
-    useMapEvents({
-        click: (e) => {
-            console.log(e.latlng)
-            // setNewMarkPos([e.latlng.lat, e.latlng.lng]);
-            // handleShow();
-            
-        }
-    })
-    // console.log(newMarkPos);
-    return (
-            <Marker
-                // key={newMarkPos}
-                position={newMarkPos}
-
-            >
-                
-            </Marker>)
-}
+const AddMarker = ({ onMapClick, newMarkPos }) => {
+  useMapEvents({
+    click: (e) => onMapClick(e),
+  });
+  // console.log(newMarkPos);
+  return <Marker key={newMarkPos} position={newMarkPos}></Marker>;
+};
 
 export default AddMarker;

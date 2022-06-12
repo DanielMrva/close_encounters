@@ -22,6 +22,9 @@ const resolvers = {
     encounter: async (parent, { encounterId }) => {
       return Encounter.findOne({ _id: encounterId });
     },
+    allencounters: async () => {
+      return Encounter.find().sort({createdAt: -1});
+    },
     visencounters: async (parent, { lowlat, hilat, lowlng, hilng }) => {
       return Encounter.find({
         $and: [
