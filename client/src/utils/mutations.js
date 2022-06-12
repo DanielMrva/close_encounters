@@ -37,6 +37,8 @@ import { gql } from '@apollo/client';
 
 export const ADD_EVENT = gql`
     mutation saveEncounter(  
+        $encounterUser: String,
+        $title: String,
         $description: String,
         $type: String,
         $category: [String],
@@ -44,7 +46,9 @@ export const ADD_EVENT = gql`
         $lat: Float,
         $lng: Float,
         ) {
-        saveEncounter(             
+        saveEncounter(    
+            encounterUser: $encounterUser
+            title: $title,         
             description: $description,
             type: $type,
             category: $category,
@@ -53,6 +57,8 @@ export const ADD_EVENT = gql`
             lng: $lng,
             ) {
             _id
+            encounterUser
+            title
             description
             type
             category
