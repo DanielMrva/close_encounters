@@ -11,6 +11,9 @@ export default function User() {
       <div className="user-container">
         <div className="main-flex-container">
           <div className="encountercard-user">
+            <h4 style={{ fontWeight: "300" }}>
+              Recent Encounters of Close Friends
+            </h4>
             <Encountercard
               quantityDisplay={10}
               viewableStyleTitle="not-viewable"

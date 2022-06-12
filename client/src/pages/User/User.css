@@ -32,6 +32,18 @@
     color: var(--blue);
   }
 
+  .encountercard-user h4 {
+    font-family: "Roboto Mono";
+    font-style: normal;
+    font-weight: 400;
+    font-size: 20px;
+    line-height: 26px;
+    color: var(--red);
+    padding: 0px;
+    margin: 0px;
+    text-align: left;
+  }
+
   .user-container h3 {
     width: 348px;
     height: 111px;
