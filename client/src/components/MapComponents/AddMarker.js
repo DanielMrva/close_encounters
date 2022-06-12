@@ -11,6 +11,8 @@ import {
   Tooltip,
 } from "react-leaflet";
 import L, { LatLng, LatLngExpression } from "leaflet";
+import CustDivIcon from "./DivMarker";
+import MarkerIcon from "./MarkerIcon";
 
 
 const AddMarker = ({ onMapClick, newMarkPos }) => {
@@ -18,7 +20,7 @@ const AddMarker = ({ onMapClick, newMarkPos }) => {
     click: (e) => onMapClick(e),
   });
   // console.log(newMarkPos);
-  return ( <Marker key={newMarkPos} position={newMarkPos} ></Marker> );
+  return ( <Marker icon={CustDivIcon(MarkerIcon("default"))} key={newMarkPos} position={newMarkPos} ></Marker> );
 };
 
 export default AddMarker;

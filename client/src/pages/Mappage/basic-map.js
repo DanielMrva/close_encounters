@@ -50,9 +50,28 @@ const MapMarkers = ({ data }) => {
 };
 
 const MapWrapper = () => {
+
+  let lat = localStorage.getItem('lat');
+  let lng = localStorage.getItem('lng');
+
+  if (!lat) {
+
+    lat = 39.7392;
+    lng = -104.9903
+
+  }
+
+  const mapPositions = [lat, lng];
+  const defaultVariables = {
+    lowlat: 20,
+    hilat: 70,
+    lowlng: -110,
+    hilng: -70
+  }
+
   const [map, setMap] = useState(null);
-  const [position, setPosition] = useState([39.7392, -104.9903]);
-  const [variables, setVariables] = useState({});
+  const [position, setPosition] = useState([lat, lng]);
+  const [variables, setVariables] = useState(defaultVariables);
   const [showModal, setShowModal] = useState(false);
   const [newMarkPos, setNewMarkPos] = useState([0,0]);
 
@@ -76,6 +95,11 @@ const MapWrapper = () => {
       },
     });
   };
+  
+  const { loading, data } = useQuery(VIS_ENCOUNTERS, {
+    variables: variables,
+  });
+  const encounters = data?.visencounters || [];
 
   const Locator = ({ map }) => {
     useEffect(() => {
@@ -108,15 +132,15 @@ const MapWrapper = () => {
     }
   };
 
-  const { loading, data } = useQuery(VIS_ENCOUNTERS, {
-    variables: variables,
-  });
-  const encounters = data?.visencounters || [];
+  // const { loading, data } = useQuery(VIS_ENCOUNTERS, {
+  //   variables: variables,
+  // });
+  // const encounters = data?.visencounters || [];
 
   return (
     <MapContainer
       className="map"
-      whenCreated={setMap}
+      whenCreated={Locator}
       center={mapPositions}
       zoom={10}
     >
