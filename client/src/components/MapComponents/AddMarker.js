@@ -18,7 +18,7 @@ const AddMarker = ({ onMapClick, newMarkPos }) => {
     click: (e) => onMapClick(e),
   });
   // console.log(newMarkPos);
-  return ( <Marker key={newMarkPos} position={newMarkPos}></Marker> );
+  return ( <Marker key={newMarkPos} position={newMarkPos} ></Marker> );
 };
 
 export default AddMarker;

@@ -1,5 +1,5 @@
 import "./Mappage.css";
-import MapWrapper from "../basic-map";
+import MapWrapper from "./basic-map";
 
 export default function Map() {
   return (
