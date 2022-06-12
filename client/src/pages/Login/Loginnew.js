@@ -32,6 +32,11 @@ export default function Loginnew() {
       });
 
       Auth.login(data.addUser.token);
+      
+      if(Auth.loggedIn) {
+        
+        window.location.href = "/user";}
+  
     } catch (e) {
       console.error(e);
     }
@@ -101,7 +106,7 @@ export default function Loginnew() {
 
         <div className="center-flex-container">
           <div className="sub-text" style={{ fontWeight: "700" }}>
-            <Link to="login">
+            <Link to="/login">
               existing user? click here
             </Link>
           </div>
