@@ -10,7 +10,7 @@ let catArr = [];
 export default function Createpost() {
   const [formData, setFormData] = useState({});
 
-  const [addEvent, { error }] = useMutation(ADD_EVENT);
+  const [saveEncounter, { error }] = useMutation(ADD_EVENT);
 
   const categoryArr = [
     "Visual Sighting",
@@ -32,11 +32,11 @@ export default function Createpost() {
 
     if (!e.target.checked) {
       let index = catArr.indexOf(e.target.name);
-      console.log(index);
+      // console.log(index);
       catArr.splice(index, 1);
     }
 
-    console.log(catArr);
+    // console.log(catArr);
     setFormData({ ...formData, category: catArr });
   };
 
@@ -52,7 +52,10 @@ export default function Createpost() {
     console.log(formData);
 
     try {
-      const { data } = await addEvent({
+      
+      const username = localStorage.getItem('user');
+      console.log("username", username);
+      const { data } = await saveEncounter({
         variables: {
           category: formData.category,
           date: formData.date,
@@ -60,9 +63,9 @@ export default function Createpost() {
           type: formData.type,
           lat: parseFloat(formData.lat),
           lng: parseFloat(formData.lng),
-          encounterUser: "allison.fischer",
-          userId: "123456",
-          title: "Test Title",
+          encounterUser: username,
+          // userId: Auth.getProfile().data._id,
+          title: "My Super Close Encounter",
         },
       });
 
