@@ -2,13 +2,14 @@ import "./Createpost.css";
 import React, { useState } from "react";
 import { useMutation } from "@apollo/client";
 import { ADD_EVENT } from "../../utils/mutations";
-import Auth from "../../utils/auth";
-import Login from "../../pages/Login/Login";
+import { useNavigate } from 'react-router-dom';
 
 let catArr = [];
 
 export default function Createpost() {
   const [formData, setFormData] = useState({});
+
+  const navigate = useNavigate();
 
   const [saveEncounter, { error }] = useMutation(ADD_EVENT);
 
@@ -70,6 +71,12 @@ export default function Createpost() {
       });
 
       console.log(data);
+
+      localStorage.setItem('lat', parseFloat(formData.lat));
+      localStorage.setItem('lng', parseFloat(formData.lng));
+
+      navigate('/map');
+
     } catch (err) {
       console.log(err);
     }

@@ -20,6 +20,7 @@ import { VIS_ENCOUNTERS } from "../../utils/queries";
 const mapPositions = [39.7392, -104.9903];
 
 const MapMarkers = ({ data }) => {
+
   return data.map((item, index) => (
     <Marker
       key={index}
@@ -51,24 +52,23 @@ const MapMarkers = ({ data }) => {
 
 const MapWrapper = () => {
 
-  let lat = localStorage.getItem('lat');
-  let lng = localStorage.getItem('lng');
+let lat = localStorage.getItem('lat');
+let lng = localStorage.getItem('lng');
 
-  if (!lat) {
+if (!lat) {
 
-    lat = 39.7392;
-    lng = -104.9903
+  lat = 39.7392;
+  lng = -104.9903;
 
-  }
+}
 
-  const mapPositions = [lat, lng];
-  const defaultVariables = {
-    lowlat: 20,
-    hilat: 70,
-    lowlng: -110,
-    hilng: -70
-  }
-
+const mapPositions = [lat, lng];
+const defaultVariables = {
+  lowlat: 20,
+  hilat: 70,
+  lowlng: -110,
+  hilng: -70
+}
   const [map, setMap] = useState(null);
   const [position, setPosition] = useState([lat, lng]);
   const [variables, setVariables] = useState(defaultVariables);
@@ -86,6 +86,7 @@ const MapWrapper = () => {
       lowlng: bounds.getWest(),
       hilng: bounds.getEast(),
     };
+
     useMapEvents({
       dragend: () => {
         setVariables(bonundsList);
@@ -101,8 +102,10 @@ const MapWrapper = () => {
   });
   const encounters = data?.visencounters || [];
 
+
   const Locator = ({ map }) => {
     useEffect(() => {
+
       if (!map) return;
 
       map.locate().on("locationfound", function (e) {
