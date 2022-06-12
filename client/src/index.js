@@ -55,17 +55,17 @@ root.render(
     <Router>
       {/* <App /> */}
       <Topnav />
-      <div style={{ height: "fit-content" }}>
-        <Routes>
-          <Route path="/" element={<Home />} />
-          <Route path="/map" element={<Map />} />
-          <Route path="/user" element={<User />} />
-          <Route path="/login" element={<Login />} />
-          <Route path="/postpage" element={<Postpage />} />
-          <Route path="/createpost" element={<Createpost />} />
-          <Route path="/loginnew" element={<Loginnew />} />
-        </Routes>
-      </div>
+      {/* <div style={{ height: "fit-content" }}> */}
+      <Routes>
+        <Route path="/" element={<Home />} />
+        <Route path="/map" element={<Map />} />
+        <Route path="/user" element={<User />} />
+        <Route path="/login" element={<Login />} />
+        <Route path="/postpage" element={<Postpage />} />
+        <Route path="/createpost" element={<Createpost />} />
+        <Route path="/loginnew" element={<Loginnew />} />
+      </Routes>
+      {/* </div> */}
       <Bottomnav />
     </Router>
   </ApolloProvider>
