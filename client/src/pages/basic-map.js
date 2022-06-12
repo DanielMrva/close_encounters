@@ -147,7 +147,7 @@ const MapWrapper = () => {
 
   return (
     <MapContainer
-      style={{ height: "800px" }}
+      className="map"
       whenCreated={setMap}
       center={mapPositions}
       zoom={10}
