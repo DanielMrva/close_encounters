@@ -33,6 +33,7 @@ const typeDefs = gql`
         me(_id: String!): User
         users: [User]
         user(userId: ID!): User
+        singleuser(email: String!): User
         allencounters: [Encounter]
         encounters(username: String): [Encounter]
         encounter(encounterId: ID!): Encounter
@@ -59,6 +60,8 @@ const typeDefs = gql`
         addUser(username: String!, email: String!, password: String!): Auth
         login(email: String!, password: String!): Auth
         saveEncounter(
+            encounterUser: String
+            title: String
             description: String
             type: String
             category: [String]

@@ -17,6 +17,16 @@ export const QUERY_USER = gql`
   }
 `;
 
+export const QUERY_SINGLEUSER = gql`
+  query user {
+    user {
+      username
+      email
+      password
+    }
+  }
+`;
+
 // this needs to be fixed
 export const ALL_EVENTS = gql`
   query Allencounters {
