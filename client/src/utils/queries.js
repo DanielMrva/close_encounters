@@ -22,6 +22,7 @@ export const ALL_EVENTS = gql`
   query Allencounters {
     encounters {
       _id
+      
       date
       category
       type
