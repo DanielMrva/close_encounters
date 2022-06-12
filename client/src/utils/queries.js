@@ -3,17 +3,24 @@ import { gql } from "@apollo/client";
 export const QUERY_USER = gql`
   query users {
     users {
-      username
-      email
-      password
+      encounters {
+        _id
+        type
+        category
+        lat
+        lng
+        title
+        description
+        userId
+      }
     }
   }
 `;
 
 // this needs to be fixed
 export const ALL_EVENTS = gql`
-  query allEvents {
-    event {
+  query Allencounters {
+    encounters {
       _id
       
       date
@@ -21,16 +28,15 @@ export const ALL_EVENTS = gql`
       type
       lat
       lng
-      desc
-      user {
-        username
-      }
+      title
+      description
+      userId
     }
   }
 `;
 
 export const USER_EVENTS = gql`
-  query encounters( $username: String!) {
+  query encounters($username: String!) {
     encounters(username: $username) {
       _id
       date
@@ -40,11 +46,22 @@ export const USER_EVENTS = gql`
       long
       description
     }
-  }`
+  }
+`;
 
 export const VIS_ENCOUNTERS = gql`
-    query Visencounters($lowlat: Float!, $hilat: Float!, $lowlng: Float!, $hilng: Float!) {
-    visencounters(lowlat: $lowlat, hilat: $hilat, lowlng: $lowlng, hilng: $hilng) {
+  query Visencounters(
+    $lowlat: Float!
+    $hilat: Float!
+    $lowlng: Float!
+    $hilng: Float!
+  ) {
+    visencounters(
+      lowlat: $lowlat
+      hilat: $hilat
+      lowlng: $lowlng
+      hilng: $hilng
+    ) {
       _id
       encounterUser
       date
@@ -58,5 +75,4 @@ export const VIS_ENCOUNTERS = gql`
       userId
     }
   }
-
 `;

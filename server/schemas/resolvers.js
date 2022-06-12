@@ -9,33 +9,31 @@ const resolvers = {
       const params = _id ? { _id } : {};
       return User.find(params);
     },
-    user: async(parent, {userId }) => {
-      return User.findOne({_id:userId});
+    user: async (parent, { userId }) => {
+      return User.findOne({ _id: userId });
     },
     users: async () => {
       return User.find().populate("encounters");
     },
-    user: async (parent, { userId }) => {
-      return User.findOne({ _id: userId }).populate('encounters');
-      },
-    allencounters: async () => {
-      return Encounter.find();
-    },
+    user: async (parent, { userId }) => {},
     encounters: async (parent, { username }) => {
-      const params = username ? { username } : {};
       return Encounter.find(params).sort({ createdAt: -1 });
     },
     encounter: async (parent, { encounterId }) => {
       return Encounter.findOne({ _id: encounterId });
     },
-    visencounters: async (parent, {lowlat, hilat, lowlng, hilng}) => {
-      return Encounter.find({$and: [{ lat : { $gte :  lowlat, $lte : hilat}}, {lng: {$gte: lowlng, $lte: hilng}}]});
-    }
+    visencounters: async (parent, { lowlat, hilat, lowlng, hilng }) => {
+      return Encounter.find({
+        $and: [
+          { lat: { $gte: lowlat, $lte: hilat } },
+          { lng: { $gte: lowlng, $lte: hilng } },
+        ],
+      });
+    },
   },
   Mutation: {
     addUser: async (parent, { username, email, password }) => {
       const user = await User.create({ username, email, password });
-
       const token = signToken(user);
 
       return { token, user };
@@ -82,7 +80,6 @@ const resolvers = {
     //   );
     //   return encounter;
     // },
-
 
     saveEncounter: async (
       parent,
