@@ -1,39 +1,47 @@
 import "./Encountercard.css";
-import profileImage from "../../images/profilepic.jpg";
+import propic from "../../images/profilepic.jpg";
+import propic1 from "../../images/profilepic1.png";
+import propic2 from "../../images/profilepic2.png";
+import propic3 from "../../images/profilepic3.png";
+import propic4 from "../../images/profilepic4.png";
+import propic5 from "../../images/profilepic5.png";
+
 import { useQuery } from "@apollo/client";
-import { QUERY_USER } from "../../utils/queries";
+import { ALL_EVENTS } from "../../utils/queries";
 
 export default function Encountercard() {
-  const { loading, err, data } = useQuery(QUERY_USER);
+  const { loading, err, data } = useQuery(ALL_EVENTS);
 
   if (loading) return "loading...";
   if (err) return err.message;
-  // const userList = data?.user || [];
-
-  console.log(data);
+  const encounterList = data?.encounters || [];
+  const smallEncounterList = encounterList.slice(0, 10);
 
   return (
     <div className="card-page">
-      <div className="card-container">
-        <div className="card-top-flex">
-          <div className="user-icon">
-            <div className="pic-header-flex">
-              <img className="profile-pic" src={profileImage} alt="user" />
+      {smallEncounterList.map((data, index) => {
+        return (
+          <div key={index}>
+            <div className="card-container">
+              <div className="card-top-flex">
+                <div className="user-icon">
+                  <div className="pic-header-flex">
+                    <img className="profile-pic" src={propic} alt="user" />
+                  </div>
+                </div>
+                <div className="card-header-flex">
+                  <div className="username-card">{data.title}</div>
+                  <div className="location-card">{data.category}</div>
+                  <div className="date-card">{data.type}</div>
+                </div>
+              </div>
+              <div className="description-flex">
+                <p>{data.description}</p>
+              </div>
             </div>
           </div>
-          <div className="card-header-flex">
-            <div className="username-card">Zimzam21098</div>
-            <div className="location-card">Boulder, CO</div>
-            <div className="date-card">June 7th 2022</div>
-          </div>
-        </div>
-        <div className="description-flex">
-          <p>
-            Was walking the dog around 7pm last night when I looked into the sky
-            and saw a large triangular object hovering above. It made no sound.
-          </p>
-        </div>
-      </div>
+        );
+      })}
     </div>
   );
 }

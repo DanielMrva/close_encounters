@@ -1,0 +1,14 @@
+.map-page-container {
+  height: 500px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 40px 0px;
+}
+
+.map-wrapper-container {
+  width: 400px;
+  height: 400px;
+  object-fit: cover;
+  overflow: hidden;
+}

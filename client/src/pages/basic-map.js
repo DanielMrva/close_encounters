@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useContext }  from "react";
+import React, { useState, useEffect, useContext } from "react";
 import { useQuery } from "@apollo/client";
 import {
   MapContainer,
@@ -7,21 +7,23 @@ import {
   Popup,
   useMapEvents,
   useMap,
-  Tooltip
+  Tooltip,
 } from "react-leaflet";
 import L, { bounds } from "leaflet";
 import AddMarker from "../components/MapSubmit/AddMarker";
 import SubmitModal from "../components/MapSubmit/MapSubmit";
 import tileLayer from "../utils/tileLayer";
 import { VIS_ENCOUNTERS } from "../utils/queries";
-import { ModalProvider, ModalContext, ModalUpdateContext } from "../contexts/modalContext";
-import { NewMarkerProvider, NewMarkerContext, NewMarkerUpdateContext } from "../contexts/newMarkerContext";
-
-
-
-
-
-
+import {
+  ModalProvider,
+  ModalContext,
+  ModalUpdateContext,
+} from "../contexts/modalContext";
+import {
+  NewMarkerProvider,
+  NewMarkerContext,
+  NewMarkerUpdateContext,
+} from "../contexts/newMarkerContext";
 
 const mapPositions = [39.7392, -104.9903];
 
@@ -46,8 +48,6 @@ const markerIcon = (category) => {
       iconType = "location-dot";
       iconColor = "#000000";
   }
-
-  console.log(category)
 
   return new L.DivIcon({
     className: "test",
@@ -82,9 +82,7 @@ const MapMarkers = ({ data }) => {
               </div>
             </div>
             <div className="description-flex">
-              <p>
-                {item.description}
-              </p>
+              <p>{item.description}</p>
             </div>
           </div>
         </div>
@@ -97,12 +95,9 @@ const MapWrapper = () => {
   const [map, setMap] = useState(null);
   const [position, setPosition] = useState([39.7392, -104.9903]);
   const [variables, setVariables] = useState({});
-  const [showModal, setShowModal] = useState(false);
-  const [newMarkPos, setNewMarkPos] = useState([0,0])
+  // const [showModal, setShowModal] = useState(false);
+  // const [newMarkPos, setNewMarkPos] = useState([0,0])
 
-
-
-  
   const NewMapEvents = () => {
     const map = useMap();
     const bounds = map.getBounds();
@@ -124,29 +119,26 @@ const MapWrapper = () => {
   };
 
   const Locator = ({ map }) => {
+    useEffect(() => {
+      if (!map) return;
 
-      useEffect(() => {
-              if (!map) return;
-
-              map.locate().on("locationfound", function (e) {
-              setPosition(e.latlng);
-              console.log(position);
-              map.flyTo(e.latlng, map.getZoom());
-              const bounds = map.getBounds();
-              console.log(bounds);
-              const bonundsList = {
-                  lowlat: bounds.getSouth(),
-                  hilat: bounds.getNorth(),
-                  lowlng: bounds.getWest(),
-                  hilng: bounds.getEast(),
-              }
-              console.log(bonundsList)
-              setVariables(bonundsList)
-          })
-
-      }, [map]);
-
-  }
+      map.locate().on("locationfound", function (e) {
+        setPosition(e.latlng);
+        console.log(position);
+        map.flyTo(e.latlng, map.getZoom());
+        const bounds = map.getBounds();
+        console.log(bounds);
+        const bonundsList = {
+          lowlat: bounds.getSouth(),
+          hilat: bounds.getNorth(),
+          lowlng: bounds.getWest(),
+          hilng: bounds.getEast(),
+        };
+        console.log(bonundsList);
+        setVariables(bonundsList);
+      });
+    }, [map]);
+  };
 
   const { loading, data } = useQuery(VIS_ENCOUNTERS, {
     variables: variables,
@@ -154,24 +146,18 @@ const MapWrapper = () => {
   const encounters = data?.visencounters || [];
 
   return (
-    // <NewMarkProvider>
-      // <ModalProvider> 
-        <MapContainer
-          className="map"
-          whenCreated={setMap}
-          center={mapPositions}
-          zoom={10}
-        >
-          <NewMapEvents map={map} />
-          <Locator map={map}/>
-          {/* <AddMarker setShowModal={setShowModal} showModal={showModal} newMarkPos={newMarkPos} setNewMarkPos={setNewMarkPos} map={map}/> */}
-          {/* <SubmitModal setShowModal={setShowModal} showModal={showModal} newMarkPos={newMarkPos} setNewMarkPos={setNewMarkPos}/> */}
-          <MapMarkers data={encounters} />
-          <TileLayer {...tileLayer} />
+    <MapContainer
+      style={{ height: "800px" }}
+      whenCreated={setMap}
+      center={mapPositions}
+      zoom={10}
+    >
+      <NewMapEvents map={map} />
+      <Locator map={map} />
 
-        </MapContainer>
-      // </ModalProvider>
-    // </NewMarkProvider>
+      <MapMarkers data={encounters} />
+      <TileLayer {...tileLayer} />
+    </MapContainer>
   );
 };
 
@@ -217,7 +203,6 @@ export default MapWrapper;
 
 // }
 
-
 // const ShowMarkers = ({ mapContainer, markers }) => {
 //   return markers.map((marker, index) => {
 //     return <Marker
@@ -243,9 +228,9 @@ export default MapWrapper;
 
 //   useMapEvents({
 //     click: () => {
-      
+
 //     }
-//   }) 
+//   })
 
 //   if(marker.length) {
 //     return (
@@ -258,30 +243,30 @@ export default MapWrapper;
 
 // const [clickedPos, setClickedPos] = useState([])
 
-  // useEffect(() => {
-  //   navigator.geolocation.getCurrentPosition(position => {
-  //     const { lat, lng } = position.coords;
-  //     setPosition([lat, lng]);
-  //   });
-  // }, []);
+// useEffect(() => {
+//   navigator.geolocation.getCurrentPosition(position => {
+//     const { lat, lng } = position.coords;
+//     setPosition([lat, lng]);
+//   });
+// }, []);
 
-  // const DroppedMarker = () => {
-  //   const map = useMapEvents({
-  //     click(e) {
-  //       setClickedPos([
-  //         e.latlng.lat,
-  //         e.latlng.lng
-  //       ]);
-  //     },
-  //   })
+// const DroppedMarker = () => {
+//   const map = useMapEvents({
+//     click(e) {
+//       setClickedPos([
+//         e.latlng.lat,
+//         e.latlng.lng
+//       ]);
+//     },
+//   })
 
-  //   return (
-  //     clickedPos ? 
-  //     <Marker 
-  //     key={clickedPos[0]}
-  //     position={clickedPos}
-      
-  //     />
-  //     :null
-  //   )
-  // }
+//   return (
+//     clickedPos ?
+//     <Marker
+//     key={clickedPos[0]}
+//     position={clickedPos}
+
+//     />
+//     :null
+//   )
+// }
