@@ -77,7 +77,7 @@ export default function Createpost() {
   };
 
   return (
-    <div className="create-post">
+    <div>
       <form className="encounter-form" onSubmit={submitHandler}>
         {/* <label className="sub-text-form">Date</label> */}
         <input
