@@ -1,6 +1,5 @@
 import React from 'react';
 import { useState, useEffect } from "react";
-import {useModal, useModalUpdate} from '../../contexts/modalContext';
 import {Modal, Button, Form} from 'react-bootstrap';
 import 'bootstrap/dist/css/bootstrap.min.css';
 

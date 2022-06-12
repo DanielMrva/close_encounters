@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useContext } from "react";
+import React, { useState, useEffect} from "react";
 import { useQuery } from "@apollo/client";
   import {
   MapContainer,
@@ -80,7 +80,7 @@ const MapWrapper = () => {
   const [map, setMap] = useState(null);
   const [position, setPosition] = useState([39.7392, -104.9903]);
   const [variables, setVariables] = useState({});
-  const [newMarkPos, setNewMarkPos] = useState();
+  const [newMarkPos, setNewMarkPos] = useState([]);
   const [showModal, setShowModal] = useState(false)
 
 
