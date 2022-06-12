@@ -26,11 +26,12 @@
   }
 
   .encountercard-home {
-    flex: 1 0 40%;
+    /* flex: 1 0 40%; */
 
     /* display: flex; */
-    overflow: scroll;
+    /* overflow: scroll; */
     height: 400px;
+    width: 500px;
   }
 
   .image-container {
@@ -38,7 +39,7 @@
     display: flex;
   }
 
-  img {
+  .home-image {
     flex: 1 0;
     height: 90vh;
     padding: 20px 60px;

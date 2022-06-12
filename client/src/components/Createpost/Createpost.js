@@ -1,6 +1,6 @@
 import "./Createpost.css";
 import React, { useState } from "react";
-
+import listenImage from "../../images/listening-form.png";
 import { useMutation } from "@apollo/client";
 import { ADD_EVENT } from "../../utils/mutations";
 
@@ -77,10 +77,17 @@ export default function Createpost() {
 
   return (
     <div className="create-post">
-      <h6>Share your encounter with others</h6>
       {/* make this a generated location */}
+      <div style={{ display: "flex" }}>
+        <img
+          className="image-create-container"
+          src={listenImage}
+          alt="Guy listening"
+        />
+      </div>
       <div className="input-flex-container">
         <div className="main-box">
+          <h6>Share your encounter with others</h6>
           <form className="encounter-form" onSubmit={submitHandler}>
             {/* <label className="sub-text-form">Date</label> */}
             <input
@@ -174,10 +181,12 @@ export default function Createpost() {
             <div className="button-box">
               <label
                 style={{
-                  padding: "5px",
+                  paddingBottom: "10px",
                   textAlign: "center",
                   width: "100%",
                   color: "red",
+                  textTransform: "uppercase",
+                  fontFamily: "Red Rose",
                 }}
                 className="sub-text-form"
               >
