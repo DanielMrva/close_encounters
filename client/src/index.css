@@ -29,6 +29,13 @@ code {
 }
 
 .map {
-  height: 50vh;
-  max-height: 500px;
+  height: 100vh;
+  width: 100vw;
+  margin-bottom: 100px;
+  /* width: 100vw; */
+  /* max-height: 500px; */
 }
+
+/* .leaflet-pane {
+  position: block;
+} */

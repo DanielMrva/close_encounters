@@ -1,0 +1,10 @@
+.map-page-container {
+  height: 80vh;
+  overflow: hidden;
+}
+
+.map-wrapper-container {
+  overflow: hidden;
+  margin-bottom: 100px;
+  height: 80vh;
+}

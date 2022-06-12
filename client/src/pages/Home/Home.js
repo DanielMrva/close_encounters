@@ -10,10 +10,13 @@ export default function Home() {
           TOGETHER WE CAN MAKE THE UNEXPLAINED AND THE UNIMAGINABLE...
           UNDENIABLE
         </h2>
-        <Encountercard />
+        <div className="encountercard-home">
+          <Encountercard />
+        </div>
       </div>
+
       <div className="image-container">
-        <img src={homeImage} alt="Curvy Shelf" />
+        <img className="home-image" src={homeImage} alt="Curvy Shelf" />
       </div>
       <h6>blank encounters since June</h6>
     </div>

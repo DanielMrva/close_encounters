@@ -26,8 +26,8 @@
 }
 
 /* all icon styling */
-i {
-  padding: 0 5px;
+.icon-container i {
+  padding: 0 10px;
   color: var(--blue);
 }
 
