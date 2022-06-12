@@ -20,12 +20,13 @@ export default function Topnav() {
         </Link> */}
         {Auth.loggedIn() ? (
           <button className="btn btn-lg btn-light m-2" onClick={logout}>
-            Logout
+            <i className="fa-solid fa-user-check"></i>
           </button>
         ) : (
           <>
             <Link to="/login">
-              <i className="fa-solid fa-people-group fa-2xl"></i>
+              <i className="fa-solid fa-user fa-2xl"></i>
+              {/* <i className="fa-solid fa-people-group fa-2xl"></i> */}
             </Link>
           </>
         )}

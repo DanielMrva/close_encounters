@@ -16,3 +16,15 @@ i {
   padding: 0 5px;
   color: var(--blue);
 }
+
+.active i {
+  color: var(--red);
+}
+
+a {
+  text-decoration: none;
+}
+
+.active {
+  color: var(--red);
+}
