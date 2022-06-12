@@ -80,8 +80,9 @@ const MapWrapper = () => {
   const [map, setMap] = useState(null);
   const [position, setPosition] = useState([39.7392, -104.9903]);
   const [variables, setVariables] = useState({});
-  const [showModal, setShowModal] = useState(false);
-  const [newMarkPos, setNewMarkPos] = useState([0,0])
+  const [newMarkPos, setNewMarkPos] = useState();
+  const [showModal, setShowModal] = useState(false)
+
 
   const NewMapEvents = () => {
     const map = useMap();
