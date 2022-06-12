@@ -1,6 +1,6 @@
 import React, { useState, useEffect, useContext } from "react";
 import { useQuery } from "@apollo/client";
-import {
+  import {
   MapContainer,
   TileLayer,
   Marker,
@@ -9,21 +9,11 @@ import {
   useMap,
   Tooltip,
 } from "react-leaflet";
-import L, { bounds } from "leaflet";
+import L from "leaflet";
 import AddMarker from "../components/MapSubmit/AddMarker";
 import SubmitModal from "../components/MapSubmit/MapSubmit";
 import tileLayer from "../utils/tileLayer";
 import { VIS_ENCOUNTERS } from "../utils/queries";
-import {
-  ModalProvider,
-  ModalContext,
-  ModalUpdateContext,
-} from "../contexts/modalContext";
-import {
-  NewMarkerProvider,
-  NewMarkerContext,
-  NewMarkerUpdateContext,
-} from "../contexts/newMarkerContext";
 
 const mapPositions = [39.7392, -104.9903];
 
@@ -65,19 +55,14 @@ const MapMarkers = ({ data }) => {
       icon={markerIcon(item.type)}
       position={{ lat: item.lat, lng: item.lng }}
     >
-      <Popup maxWidth={400}>
+      <Popup maxWidth={400} maxHeight={300}>
         <div className="card-page">
           <div className="card-container">
             <div className="card-top-flex">
-              <div className="user-icon">
-                {/* <div className="pic-header-flex">
-                  <img className="profile-pic" src={profileImage} alt="user" />
-                </div> */}
-              </div>
               <div className="card-header-flex">
                 <div className="title-card">{item.title}</div>
                 <div className="username-card">{item.encounterUser}</div>
-                <div className="location-card">Boulder, CO</div>
+                <div className="location-card">Lat: {item.lat} Lng: {item.lng}</div>
                 <div className="date-card">{item.date}</div>
               </div>
             </div>
@@ -95,8 +80,8 @@ const MapWrapper = () => {
   const [map, setMap] = useState(null);
   const [position, setPosition] = useState([39.7392, -104.9903]);
   const [variables, setVariables] = useState({});
-  // const [showModal, setShowModal] = useState(false);
-  // const [newMarkPos, setNewMarkPos] = useState([0,0])
+  const [showModal, setShowModal] = useState(false);
+  const [newMarkPos, setNewMarkPos] = useState([0,0])
 
   const NewMapEvents = () => {
     const map = useMap();
@@ -109,7 +94,7 @@ const MapWrapper = () => {
       hilng: bounds.getEast(),
     };
     useMapEvents({
-      moveend: () => {
+      dragend: () => {
         setVariables(bonundsList);
       },
       zoomend: () => {
@@ -140,24 +125,37 @@ const MapWrapper = () => {
     }, [map]);
   };
 
+  const onMapClick = (e) => {
+    console.log('rendering')
+    if(e && e.latlng){
+    console.log(e.latlng)
+    setNewMarkPos([e.latlng.lat, e.latlng.lng]);
+    setShowModal(true);
+    }
+}
+
   const { loading, data } = useQuery(VIS_ENCOUNTERS, {
     variables: variables,
   });
   const encounters = data?.visencounters || [];
 
   return (
-    <MapContainer
-      style={{ height: "800px" }}
-      whenCreated={setMap}
-      center={mapPositions}
-      zoom={10}
-    >
-      <NewMapEvents map={map} />
-      <Locator map={map} />
 
-      <MapMarkers data={encounters} />
-      <TileLayer {...tileLayer} />
-    </MapContainer>
+        <MapContainer
+          className="map"
+          whenCreated={setMap}
+          center={mapPositions}
+          zoom={10}
+        >
+          <NewMapEvents map={map} />
+          <Locator map={map}/>
+          <AddMarker  onMapClick={onMapClick} newMarkPos={newMarkPos}/>
+          <SubmitModal newMarkPos={newMarkPos} setShowModal={setShowModal} showModal={showModal}/>
+          <MapMarkers data={encounters} />
+          <TileLayer {...tileLayer} />
+
+        </MapContainer>
+
   );
 };
 

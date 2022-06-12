@@ -4,18 +4,18 @@ import {useModal, useModalUpdate} from '../../contexts/modalContext';
 import {Modal, Button, Form} from 'react-bootstrap';
 import 'bootstrap/dist/css/bootstrap.min.css';
 
-const SubmitModal = (setShowModal, showModal, newMarkPos, setNewMarkPos) => {
+const SubmitModal = ({setShowModal, showModal, newMarkPos}) => {
   
     const handleClose = () => setShowModal(false);
     const handleShow = () => setShowModal(true);
-  
+    console.log(showModal)
     return (
       <>
         {/* <Button variant="primary" onClick={handleShow}>
           Launch demo modal
         </Button> */}
   
-        <Modal showModal={showModal} onHide={handleClose}>
+        <Modal show={showModal} onHide={handleClose}>
           <Modal.Header closeButton>
             <Modal.Title>Modal heading</Modal.Title>
           </Modal.Header>

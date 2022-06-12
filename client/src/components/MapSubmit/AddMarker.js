@@ -15,22 +15,16 @@ import L, {LatLng, LatLngExpression} from "leaflet";
 // import MapSubmit from "./MapSubmit"
 
 
-const AddMarker = (showModal, setShowModal, newMarkPos, setNewMarkPos) => {
-    const handleShow = () => setShowModal(true);
+const AddMarker = ({onMapClick, newMarkPos}) => {
 
 
     useMapEvents({
-        click: (e) => {
-            console.log(e.latlng)
-            // setNewMarkPos([e.latlng.lat, e.latlng.lng]);
-            // handleShow();
-            
-        }
+        click: (e) => onMapClick(e)
     })
     // console.log(newMarkPos);
     return (
             <Marker
-                // key={newMarkPos}
+                key={newMarkPos}
                 position={newMarkPos}
 
             >
@@ -39,3 +33,4 @@ const AddMarker = (showModal, setShowModal, newMarkPos, setNewMarkPos) => {
 }
 
 export default AddMarker;
+
