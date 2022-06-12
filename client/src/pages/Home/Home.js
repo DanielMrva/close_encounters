@@ -11,14 +11,14 @@ export default function Home() {
           UNDENIABLE
         </h2>
         <div className="encountercard-home">
-          <Encountercard quantityDisplay={40} />
+          <Encountercard quantityDisplay={40} viewableStyle="not-viewable" />
         </div>
       </div>
 
       <div className="image-container">
         <img className="home-image" src={homeImage} alt="Curvy Shelf" />
       </div>
-      <h6>blank encounters since June</h6>
+      {/* <h6>blank encounters since June</h6> */}
     </div>
   );
 }

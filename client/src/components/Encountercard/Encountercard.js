@@ -36,6 +36,8 @@ export default function Encountercard(props) {
   //   color: props.color,
   // };
 
+  let viewableStyleDescription = `${props.viewableStyle}`;
+
   return (
     <div className="card-page">
       {listWithPic.map((data, index) => {
@@ -52,13 +54,16 @@ export default function Encountercard(props) {
                     />
                   </div>
                 </div>
-                <div className="card-header-flex">
+                <div className={`card-header-encounter`}>
                   <div className="username-card">{data.encounterUser}</div>
+                  <div className="date-card" style={{ color: "black" }}>
+                    {data.date}
+                  </div>
                   <div className="location-card">{data.category}</div>
                   <div className="date-card">{data.type}</div>
                 </div>
               </div>
-              <div className="description-flex">
+              <div className={`description-flex ${viewableStyleDescription}`}>
                 <p>{data.description}</p>
               </div>
             </div>
