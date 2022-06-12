@@ -1,5 +1,7 @@
 import "./Createpost.css";
 import React, { useState } from "react";
+import Auth from '../../utils/auth';
+import Login from '../../pages/Login/Login';
 
 import { useMutation } from '@apollo/client';
 import { ADD_EVENT } from '../../utils/mutations';
@@ -80,6 +82,7 @@ export default function Createpost() {
 
   }
 
+  if (Auth.loggedIn()) {
   return (
     <div className="create-post">
       <h6>Tell me about your encounter</h6>
@@ -185,4 +188,9 @@ export default function Createpost() {
       </div>
     </div>
   );
+  } else {
+
+    return <Login/>
+
+  }
 }

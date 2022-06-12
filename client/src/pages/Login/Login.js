@@ -4,6 +4,7 @@ import { useMutation } from '@apollo/client';
 import { LOGIN_USER } from '../../utils/mutations';
 import Auth from '../../utils/auth';
 import { Link } from "react-router-dom";
+import User from '../User/User'
 // merging
 export default function Login() { 
   const [formState, setFormState] = useState({ email: '', password: '' });
@@ -25,8 +26,13 @@ export default function Login() {
       const { data } = await login({
         variables: { ...formState },
       });
-
+    
       Auth.login(data.login.token);
+
+      if(Auth.loggedIn) {
+        
+      window.location.href = "/user";}
+
     } catch (e) {
       console.error(e);
     }
@@ -47,14 +53,6 @@ export default function Login() {
         </div>
 
         <div className="form-flex-container">
-        {/* {data ? (
-
-              <p>
-                Success! You may now head{' '}
-                <Link to="/user">to your profile page.</Link>
-              </p>
-
-            ) : ( */}
 
           <form onSubmit={handleFormSubmit}>
             <label className="sub-text">email</label>
@@ -62,7 +60,7 @@ export default function Login() {
               <input
                 className="form-input"
                 name="email"
-                type="email"
+                type="text"
                 required
                 defaultValue={formState.email}
                 onChange={handleChange}
@@ -89,7 +87,6 @@ export default function Login() {
               </button>
             </div>
           </form>
-        {/* )} */}
 
         {error && (
             <div className="my-3 p-3 bg-danger text-white">
