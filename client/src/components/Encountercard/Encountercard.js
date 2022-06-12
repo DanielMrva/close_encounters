@@ -36,7 +36,8 @@ export default function Encountercard(props) {
   //   color: props.color,
   // };
 
-  let viewableStyleDescription = `${props.viewableStyle}`;
+  let viewableStyleDescription = `${props.viewableStyleDescription}`;
+  let viewableStyleTitle = `${props.viewableStyleTitle}`;
 
   return (
     <div className="card-page">
@@ -62,6 +63,20 @@ export default function Encountercard(props) {
                   <div className="location-card">{data.category}</div>
                   <div className="date-card">{data.type}</div>
                 </div>
+              </div>
+              <div className={`description-flex ${viewableStyleTitle}`}>
+                <p
+                  style={{
+                    // fontWeight: "500",
+                    margin: "8px 0px",
+                    fontSize: "1rem",
+                    fontFamily: "Roboto Slab",
+                    textTransform: "capitalize",
+                    lineHeight: "1rem",
+                  }}
+                >
+                  {data.title}
+                </p>
               </div>
               <div className={`description-flex ${viewableStyleDescription}`}>
                 <p>{data.description}</p>

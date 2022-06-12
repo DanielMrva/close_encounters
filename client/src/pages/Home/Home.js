@@ -1,5 +1,7 @@
 import "./Home.css";
-import homeImage from "../../images/curve-shelf-mobile.png";
+// import homeImage from "../../images/curve-shelf-mobile.png";
+import homeImage1 from "../../images/curve-shelf-crop.png";
+
 import Encountercard from "../../components/Encountercard/Encountercard";
 
 export default function Home() {
@@ -11,12 +13,16 @@ export default function Home() {
           UNDENIABLE
         </h2>
         <div className="encountercard-home">
-          <Encountercard quantityDisplay={40} viewableStyle="not-viewable" />
+          <h4 style={{ fontWeight: "300" }}>Recent Sightings</h4>
+          <Encountercard
+            quantityDisplay={40}
+            viewableStyleDescription="not-viewable"
+          />
         </div>
       </div>
 
       <div className="image-container">
-        <img className="home-image" src={homeImage} alt="Curvy Shelf" />
+        <img className="home-image" src={homeImage1} alt="Curvy Shelf" />
       </div>
       {/* <h6>blank encounters since June</h6> */}
     </div>

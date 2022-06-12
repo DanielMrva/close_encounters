@@ -11,7 +11,10 @@ export default function User() {
       <div className="user-container">
         <div className="main-flex-container">
           <div className="encountercard-user">
-            <Encountercard quantityDisplay={10} viewableStyle="viewable" />
+            <Encountercard
+              quantityDisplay={10}
+              viewableStyleTitle="not-viewable"
+            />
           </div>
           <div className="scenario-container">
             <div className="flex-center">
