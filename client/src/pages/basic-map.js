@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useContext } from "react";
+import React, { useState, useEffect} from "react";
 import { useQuery } from "@apollo/client";
 import {
   MapContainer,
@@ -99,8 +99,9 @@ const defaultVariables = {
   const [map, setMap] = useState(null);
   const [position, setPosition] = useState([lat, lng]);
   const [variables, setVariables] = useState(defaultVariables);
-  const [newMarkPos, setNewMarkPos] = useState();
   const [showModal, setShowModal] = useState(false);
+  const [newMarkPos, setNewMarkPos] = useState([0,0]);
+
 
   const NewMapEvents = () => {
     const map = useMap();
@@ -174,12 +175,9 @@ const defaultVariables = {
     >
       <NewMapEvents map={map} />
       <Locator map={map} />
-      {/* <AddMarker onMapClick={onMapClick} newMarkPos={newMarkPos} />
-      <SubmitModal
-        newMarkPos={newMarkPos}
-        setShowModal={setShowModal}
-        showModal={showModal}
-      /> */}
+      <AddMarker onMapClick={onMapClick} newMarkPos={newMarkPos} />
+      <SubmitModal newMarkPos={newMarkPos} setShowModal={setShowModal} showModal={showModal}
+      />
       <MapMarkers data={encounters} />
       <TileLayer {...tileLayer} />
     </MapContainer>
