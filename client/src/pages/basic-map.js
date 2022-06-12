@@ -47,8 +47,6 @@ const markerIcon = (category) => {
       iconColor = "#000000";
   }
 
-  console.log(category)
-
   return new L.DivIcon({
     className: "test",
     html: `<i class="fa-solid fa-${iconType} fa-xl" style="color:${iconColor};"></i>`,

@@ -60,7 +60,7 @@ export default function Createpost() {
                 lat: parseFloat(formData.lat),
                 lng: parseFloat(formData.lng),
                 encounterUser: "allison.fischer",
-                userId: "123456",
+                userId: "62a4f04fa3428a840641c6de",
                 title: "Test Title"
             },
         });
