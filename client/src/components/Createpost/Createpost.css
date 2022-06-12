@@ -1,6 +1,5 @@
 @media screen and (min-width: 800px) {
   .create-post {
-    height: 100vh;
     display: flex;
     flex-direction: row;
     width: 100vw;
@@ -96,7 +95,7 @@
   }
 
   .image-create-container {
-    flex: 1 0;
+    flex: 1;
     /* height: 900px; */
     width: 50vw;
     padding: 20px;
