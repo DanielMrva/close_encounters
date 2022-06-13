@@ -35,7 +35,6 @@ export default function Login(props) {
         console.log(data.login.user);
         localStorage.setItem("user", data.login.user.username);
 
-        window.location.href = "/user";
       }
     } catch (e) {
       console.error(e);
