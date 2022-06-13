@@ -58,17 +58,19 @@ export default function Createpost({ newMarkPos, setShowModal }) {
   // handles the form submit and runs the create mutation
   const submitHandler = async (e) => {
     e.preventDefault();
+    
+    if(latPlaceholder !== "Latitude"){
+      setFormData({...formData, lat:latPlaceholder, lng:lngPlaceholder});
+      }
+      console.log([latPlaceholder, lngPlaceholder]);
+      // console.log(newMarkPos)
+      console.log(formData);
 
     if (!formData.category || formData.category.length === 0) {
       console.log("Please select at least one category");
       return;
     }
-    if(latPlaceholder !== "Latitude"){
-    setFormData({...formData, lat:latPlaceholder, lng:lngPlaceholder});
-    }
-    console.log([latPlaceholder, lngPlaceholder]);
-    // console.log(newMarkPos)
-    console.log(formData);
+
 
     try {
       const username = localStorage.getItem("user");
