@@ -1,4 +1,4 @@
-import React, { useState, useEffect} from "react";
+import React, { useState, useEffect } from "react";
 import { useQuery } from "@apollo/client";
 import {
   MapContainer,
@@ -46,7 +46,6 @@ const markerIcon = (category) => {
 };
 
 const MapMarkers = ({ data }) => {
-
   return data.map((item, index) => (
     <Marker
       key={index}
@@ -77,30 +76,26 @@ const MapMarkers = ({ data }) => {
 };
 
 const MapWrapper = () => {
+  let lat = localStorage.getItem("lat");
+  let lng = localStorage.getItem("lng");
 
-let lat = localStorage.getItem('lat');
-let lng = localStorage.getItem('lng');
+  if (!lat) {
+    lat = 39.7392;
+    lng = -104.9903;
+  }
 
-if (!lat) {
-
-  lat = 39.7392;
-  lng = -104.9903;
-
-}
-
-const mapPositions = [lat, lng];
-const defaultVariables = {
-  lowlat: 20,
-  hilat: 70,
-  lowlng: -110,
-  hilng: -70
-}
+  const mapPositions = [lat, lng];
+  const defaultVariables = {
+    lowlat: 20,
+    hilat: 70,
+    lowlng: -110,
+    hilng: -70,
+  };
   const [map, setMap] = useState(null);
   const [position, setPosition] = useState([lat, lng]);
   const [variables, setVariables] = useState(defaultVariables);
   const [showModal, setShowModal] = useState(false);
-  const [newMarkPos, setNewMarkPos] = useState([0,0]);
-
+  const [newMarkPos, setNewMarkPos] = useState([0, 0]);
 
   const NewMapEvents = () => {
     const map = useMap();
@@ -130,7 +125,6 @@ const defaultVariables = {
 
   const Locator = ({ map }) => {
     useEffect(() => {
-
       if (!map) return;
 
       map.locate().on("locationfound", function (e) {
