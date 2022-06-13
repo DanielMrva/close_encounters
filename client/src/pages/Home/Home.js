@@ -57,8 +57,8 @@ export default function Home() {
             someone else just the sign they need.
           </p>
         </div>
+
         <img className="home-image" src={homeImage1} alt="Curvy Shelf" />
-        {/* </div> */}
 
         <div className="encountercard-home-flex">
           <div className="encountercard-home">

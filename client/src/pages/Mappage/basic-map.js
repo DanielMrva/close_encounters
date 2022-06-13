@@ -17,7 +17,6 @@ import MarkerIcon from "../../components/MapComponents/MarkerIcon";
 import tileLayer from "../../utils/tileLayer";
 import { VIS_ENCOUNTERS } from "../../utils/queries";
 
-
 // const mapPositions = [39.7392, -104.9903];
 
 const MapMarkers = ({ data }) => {
