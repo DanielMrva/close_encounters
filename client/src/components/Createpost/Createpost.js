@@ -5,8 +5,9 @@ import { ADD_EVENT } from "../../utils/mutations";
 import { useNavigate } from 'react-router-dom';
 
 let catArr = [];
+let newMarkPos = ["",""]
 
-export default function Createpost() {
+export default function Createpost({newMarkPos}) {
   const [formData, setFormData] = useState({});
 
   const navigate = useNavigate();
