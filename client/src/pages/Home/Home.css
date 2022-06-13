@@ -64,7 +64,7 @@
     display: flex;
     align-items: center;
     justify-content: center;
-    border: purple solid 2px;
+    /* border: purple solid 2px; */
   }
 
   h4 {
