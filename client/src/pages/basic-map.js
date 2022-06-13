@@ -7,7 +7,6 @@ import {
   Popup,
   useMapEvents,
   useMap,
-  Tooltip,
 } from "react-leaflet";
 import L from "leaflet";
 import AddMarker from "../components/MapSubmit/AddMarker";
@@ -147,18 +146,12 @@ const MapWrapper = () => {
   };
 
   const onMapClick = (e) => {
-    console.log("rendering");
     if (e && e.latlng) {
       console.log(e.latlng);
       setNewMarkPos([e.latlng.lat, e.latlng.lng]);
       setShowModal(true);
     }
   };
-
-  // const { loading, data } = useQuery(VIS_ENCOUNTERS, {
-  //   variables: variables,
-  // });
-  // const encounters = data?.visencounters || [];
 
   return (
     <MapContainer
@@ -170,11 +163,7 @@ const MapWrapper = () => {
       <NewMapEvents map={map} />
       <Locator map={map} />
       <AddMarker onMapClick={onMapClick} newMarkPos={newMarkPos} />
-      <SubmitModal
-        newMarkPos={newMarkPos}
-        setShowModal={setShowModal}
-        showModal={showModal}
-      />
+      <SubmitModal newMarkPos={newMarkPos} setShowModal={setShowModal} showModal={showModal} />
       <MapMarkers data={encounters} />
       <TileLayer {...tileLayer} />
     </MapContainer>

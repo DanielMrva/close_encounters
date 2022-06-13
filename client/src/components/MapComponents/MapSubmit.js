@@ -11,40 +11,16 @@ const SubmitModal = ({ setShowModal, showModal, newMarkPos }) => {
   console.log(showModal);
   return (
     <>
-      {/* <Button variant="primary" onClick={handleShow}>
-          Launch demo modal
-        </Button> */}
-
       <Modal show={showModal} onHide={handleClose}>
         <Modal.Header closeButton>
           <Modal.Title>What did you Encounter?</Modal.Title>
         </Modal.Header>
         <Modal.Body>
-          {/* <Form>
-            <Form.Group className="mb-3" controlId="exampleForm.ControlInput1">
-              <Form.Label>Email address</Form.Label>
-              <Form.Control
-                type="email"
-                placeholder="name@example.com"
-                autoFocus
-              />
-            </Form.Group>
-            <Form.Group
-              className="mb-3"
-              controlId="exampleForm.ControlTextarea1"
-            >
-              <Form.Label>{newMarkPos}</Form.Label>
-              <Form.Control as="textarea" rows={3} />
-            </Form.Group>
-          </Form> */}
-          <Createpost></Createpost>
+          <Createpost newMarkPos={newMarkPos} setShowModal={setShowModal}></Createpost>
         </Modal.Body>
-        <Modal.Footer>
-          <Button variant="secondary" onClick={handleClose}>
-            Close
-          </Button>
-          <Button variant="primary" onClick={handleClose}>
-            Save Changes
+        <Modal.Footer className="center-flex-submit">
+          <Button variant="secondary" onClick={handleClose} className="button1 sub-text">
+            close
           </Button>
         </Modal.Footer>
       </Modal>
