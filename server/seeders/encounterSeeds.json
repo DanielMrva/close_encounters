@@ -1,8 +1,8 @@
 [    
     {
         "date": "10-21-2020",
-        "category": "Extraterrestrial",
-        "type": "UFO Sighting",
+        "type": "Extraterrestrial",
+        "category": "UFO Sighting",
         "lat": 40.7190,
         "lng": -103.1010,
         "title": "Cigar UFO Encounter",
@@ -10,8 +10,8 @@
     },
     {
         "date": "6-19-1999",
-        "category": "Paranormal",
-        "type": "Sighting",
+        "type": "Paranormal",
+        "category": "Sighting",
         "lat": 39.0078,
         "lng": -102.4587,
         "title": "Vision of my great grandfather",
@@ -19,8 +19,8 @@
     },
     {
         "date": "12-24-2012",
-        "category": "Zoological",
-        "type": "CZ",
+        "type": "Zoological",
+        "category": "CZ",
         "lat": 40.2213,
         "lng": -105.5732,
         "title": "Unicorn Sighting",
@@ -28,8 +28,8 @@
     },
     {
         "date": "7-4-1958",
-        "category": "Extraterrestrial",
-        "type": "UFO Sighting",
+        "type": "Extraterrestrial",
+        "category": "UFO Sighting",
         "lat": 40.5109,
         "lng": -104.1570,
         "title": "Silver Disk UFO signting",
@@ -37,11 +37,13 @@
     },
     {
         "date": "2-14-2001",
-        "category": "Extraterrestrial",
-        "type": "Sighting",
+        "type": "Extraterrestrial",
+        "category": "Sighting",
         "lat": 40.2268,
         "lng": -101.9901,
         "title": "Little green men spotted in field",
         "description": "Aliens were seen in the field by owner of the property. He described the sight as unnerving."
     }
 ]
+
+

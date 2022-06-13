@@ -1,50 +1,59 @@
-const { Schema, model } = require('mongoose');
-const dateFormat = require('../utils/dateFormat');
+const { Schema, model } = require("mongoose");
+const dateFormat = require("../utils/dateFormat");
 
 const encounterSchema = new Schema({
-    date: {
-        type: Date,
-        default: Date.now,
-        get: (timestamp) => dateFormat(timestamp),    
-        required: true,
-    },
-    category: {
-        type: String,
-        required: true,
-    },
-    type: {
-        type: String,
-        required: true,
-    },
-    lat: {
-        type: Number,
-        required: true,
-    },
-    lng: {
-        type: Number, 
-        required: true,
-    },
-    title: {
-        type: String,
-        required: false,
-        max_length: 75,
-    },
-    description: {
-        type: String,
-        required: true,
-        max_length: 250,
-    },  
-    createdAt: {
-        type: Date,
-        default: Date.now,
-        get: (timestamp) => dateFormat(timestamp),
-      },
-    userId: {
-        type: Schema.Types.ObjectId,
-        ref: 'User'
-    }  
+  description: {
+    type: String,
+    required: true,
+    max_length: 250,
+  },
+  type: {
+    type: String,
+    required: true,
+  },
+  category: {
+    type: [String],
+    required: true,
+  },
+  date: {
+    type: Date,
+    default: Date.now,
+    get: (timestamp) => dateFormat(timestamp)
+  },
+  lat: {
+    type: Number,
+    required: true,
+    trim: true,
+  },
+  lng: {
+    type: Number,
+    required: true,
+    trim: true,
+  },
+  createdAt: {
+    type: Date,
+    default: Date.now,
+    get: (timestamp) => dateFormat(timestamp)
+  },
+  title: {
+    type: String,
+    required: false,
+    trim: true,
+    default: 'These ten strange things that happened, #7 will blow your mind',
+    max_length: 75,
+  },
+  encounterUser: {
+    type: String,
+    encounter: false,
+    trim: true,
+  },
+  userId: {
+    type: Schema.Types.ObjectId,
+    ref: "User",
+  },
+
 });
 
-const Encounter = model('Encounter', encounterSchema);
-  
+const Encounter = model("Encounter", encounterSchema);
+
 module.exports = Encounter;

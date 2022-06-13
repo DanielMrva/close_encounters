@@ -1,0 +1,85 @@
+/* .card-page {
+  height: 100vh;
+  width: 100vw;
+} */
+
+.viewable {
+  visibility: visible;
+}
+
+.not-viewable {
+  visibility: hidden;
+  display: none;
+}
+
+.card-container {
+  width: 400px;
+  border-top: 1px solid #d9d9d9;
+  padding: 15px;
+}
+
+.card-top-flex {
+  display: flex;
+}
+
+.pic-header-flex {
+  display: flex;
+}
+
+.profile-pic {
+  flex: 1 0 20%;
+  height: 100px;
+  width: auto;
+  padding: 8px;
+}
+
+.card-header-encounter {
+  flex: 1 0 80%;
+  /* display: flex; */
+  /* flex-direction: column; */
+  /* justify-content: center; */
+  text-align: left;
+  padding: 4px 0px 10px 10px;
+}
+
+.username-card {
+  font-family: "Red Rose";
+  font-style: normal;
+  font-weight: 400;
+  font-size: 18px;
+  line-height: 31px;
+  color: var(--blue);
+  text-transform: uppercase;
+  /* margin-bottom: 4px; */
+}
+
+.location-card {
+  font-family: "Red Rose";
+  font-style: normal;
+  font-weight: 400;
+  font-size: 16px;
+  line-height: 31px;
+  color: #9297a7;
+  margin: -12px 0px;
+}
+
+.date-card {
+  font-family: "Roboto Mono";
+  font-style: normal;
+  font-weight: 400;
+  font-size: 12px;
+  line-height: 26px;
+  color: var(--red);
+}
+
+.description-flex p {
+  font-family: "Roboto Slab";
+  font-style: normal;
+  font-weight: 400;
+  font-size: 14px;
+  line-height: 20px;
+
+  color: var(--blue);
+  text-align: left;
+  padding: 0px 10px;
+}
