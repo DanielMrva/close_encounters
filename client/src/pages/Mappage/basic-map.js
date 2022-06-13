@@ -24,7 +24,7 @@ const MapMarkers = ({ data }) => {
   return data.map((item, index) => (
     <Marker
       key={index}
-      icon={CustDivIcon(MarkerIcon(item.type))}
+      icon={CustDivIcon(MarkerIcon({encounterType: item.type, date: item.date}))}
       position={{ lat: item.lat, lng: item.lng }}
     >
       <Popup maxWidth={400} maxHeight={300}>

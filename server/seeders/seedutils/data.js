@@ -129,6 +129,14 @@ function getRandomFloat(min, max, decimals) {
     return parseFloat(str);
 }
 
+// const getRandomDate = () => {
+//     let utcDate = Date.now();
+//     let randomDate = utcDate - Math.floor((Math.random) * 1103760000000);
+//     let stableDate = new Date(randomDate);
+//     let formatDate = `${stableDate.getMonth()}/${stableDate.getDate}/${stableDate.getFullYear}}`
+//     return formatDate;
+// }
+
 const type = ["Extraterrestrial", "Paranormal", "Zoological"];
 
 const category = ['Visual Sighting', 'Audible Sighting', 'Physical contact', 'Environmental change', 'PsychoKinesis'];
@@ -142,7 +150,8 @@ const getEncounters = (qtt, descLength) => {
             lat: getRandomFloat(37, 42, 4),
             lng: getRandomFloat(-95, -110, 4),
             title: randomText(1),
-            description: randomText(rndInt(descLength))
+            description: randomText(rndInt(descLength)),
+            // date: (Date.now())
         })
     } 
     console.log(encounters);
