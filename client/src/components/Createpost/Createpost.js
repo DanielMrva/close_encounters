@@ -63,7 +63,11 @@ export default function Createpost({ newMarkPos, setShowModal }) {
       console.log("Please select at least one category");
       return;
     }
-    console.log(newMarkPos)
+    if(latPlaceholder !== "Latitude"){
+    setFormData({...formData, lat:latPlaceholder, lng:lngPlaceholder});
+    }
+    console.log([latPlaceholder, lngPlaceholder]);
+    // console.log(newMarkPos)
     console.log(formData);
 
     try {
