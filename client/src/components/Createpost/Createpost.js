@@ -67,7 +67,6 @@ export default function Createpost({ newMarkPos }) {
           lat: parseFloat(formData.lat),
           lng: parseFloat(formData.lng),
           encounterUser: username,
-          // userId: Auth.getProfile().data._id,
           title: formData.title,
         },
       });
@@ -118,6 +117,15 @@ export default function Createpost({ newMarkPos }) {
             placeholder="Longitude"
             value={formData.lng ?? ""}
             name="lng"
+            onChange={handleInputChange}
+          ></input>
+
+          <input
+            className="encounter-input-style"
+            type="textarea"
+            placeholder="Title"
+            value={formData.title ?? ""}
+            name="title"
             onChange={handleInputChange}
           ></input>
 
