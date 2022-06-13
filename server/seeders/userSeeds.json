@@ -1,33 +1,47 @@
 [
-    {
-        "username":"allison.fischer",
-        "email":"aFischer@gmail.com",
-        "password":"fishfriend94"
-    },
-    {
-        "username":"brandon.ursus",
-        "email":"bUrsus@gmail.com",
-        "password":"whinneyTheP00"
-    },
-    {
-        "username":"arthur.tree",
-        "email":"aTree@usgs.gov",
-        "password":"notAFlyingCircusReferance01"
-    },
-    {
-        "username":"richard.druphus",
-        "email":"rDruphus@gmail.com",
-        "password":"IWannaMesa77"
-    },
-    {
-        "username":"wendy.starlink",
-        "email":"wStarlink@gmail.com",
-        "password":"weStar1337"
-    },
-    {
-        "username":"joe.junior",
-        "email":"joe.junior@gmail.com",
-        "password":"mrthompson"
-    }
+  {
+    "username": "allison.fischer",
+    "email": "aFischer@gmail.com",
+    "password": "fishfriend94"
+  },
+  {
+    "username": "pat.of.the.paranormal",
+    "email": "pat.of.the.paranormal@gmail.com",
+    "password": "whinneyTheP00"
+  },
+  {
+    "username": "bigfoots.girlfriend",
+    "email": "bigfoots.girlfriend@usgs.gov",
+    "password": "notAFlyingCircusReferance01"
+  },
+  {
+    "username": "richard.druphus",
+    "email": "rDruphus@gmail.com",
+    "password": "IWannaMesa77"
+  },
+  {
+    "username": "wendy.starlink",
+    "email": "wStarlink@gmail.com",
+    "password": "weStar1337"
+  },
+  {
+    "username": "alienhunter.229",
+    "email": "alienhunter.229@gmail.com",
+    "password": "mrthompson"
+  },
+  {
+    "username": "lover.of.unknown",
+    "email": "loverofunknown@gmail.com",
+    "password": "mrthompson"
+  },
+  {
+    "username": "susie.seeks.ghosts",
+    "email": "susieseeksghosts.junior@gmail.com",
+    "password": "mrthompson"
+  },
+  {
+    "username": "chupacabra.collector88",
+    "email": "chupacabra.collector88.junior@gmail.com",
+    "password": "mrthompson"
+  }
 ]
-
