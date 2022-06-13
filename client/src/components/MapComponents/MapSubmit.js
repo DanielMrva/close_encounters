@@ -3,6 +3,7 @@ import { useState, useEffect } from "react";
 import { useModal, useModalUpdate } from "../../contexts/modalContext";
 import { Modal, Button, Form } from "react-bootstrap";
 import "bootstrap/dist/css/bootstrap.min.css";
+import Createpost from "../Createpost/Createpost";
 
 const SubmitModal = ({ setShowModal, showModal, newMarkPos }) => {
   const handleClose = () => setShowModal(false);
@@ -16,10 +17,10 @@ const SubmitModal = ({ setShowModal, showModal, newMarkPos }) => {
 
       <Modal show={showModal} onHide={handleClose}>
         <Modal.Header closeButton>
-          <Modal.Title>Modal heading</Modal.Title>
+          <Modal.Title>What did you Encounter?</Modal.Title>
         </Modal.Header>
         <Modal.Body>
-          <Form>
+          {/* <Form>
             <Form.Group className="mb-3" controlId="exampleForm.ControlInput1">
               <Form.Label>Email address</Form.Label>
               <Form.Control
@@ -35,7 +36,8 @@ const SubmitModal = ({ setShowModal, showModal, newMarkPos }) => {
               <Form.Label>{newMarkPos}</Form.Label>
               <Form.Control as="textarea" rows={3} />
             </Form.Group>
-          </Form>
+          </Form> */}
+          <Createpost></Createpost>
         </Modal.Body>
         <Modal.Footer>
           <Button variant="secondary" onClick={handleClose}>

@@ -20,7 +20,7 @@ const AddMarker = ({ onMapClick, newMarkPos }) => {
     click: (e) => onMapClick(e),
   });
   // console.log(newMarkPos);
-  return ( <Marker icon={CustDivIcon(MarkerIcon("default"))} key={newMarkPos} position={newMarkPos} ></Marker> );
+  return ( <Marker icon={CustDivIcon({iconType: "location-dot", iconColor:"#000000", iconStyle:"solid"})} key={newMarkPos} position={newMarkPos} ></Marker> );
 };
 
 export default AddMarker;
