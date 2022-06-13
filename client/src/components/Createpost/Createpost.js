@@ -7,10 +7,21 @@ import Auth from "../../utils/auth";
 import Login from "../../pages/Login/Login";
 
 let catArr = [];
-let newMarkPos = ["", ""];
 
-export default function Createpost({ newMarkPos }) {
+
+export default function Createpost({ newMarkPos, setShowModal }) {
   const [formData, setFormData] = useState({});
+
+  let latPlaceholder;
+  let lngPlaceholder
+
+  if(newMarkPos === undefined){
+    latPlaceholder = "Latitude";
+    lngPlaceholder = "Longitude";
+  } else {
+    latPlaceholder = newMarkPos[0];
+    lngPlaceholder = newMarkPos[1];
+  } 
 
   const navigate = useNavigate();
 
@@ -52,7 +63,7 @@ export default function Createpost({ newMarkPos }) {
       console.log("Please select at least one category");
       return;
     }
-
+    console.log(newMarkPos)
     console.log(formData);
 
     try {
@@ -64,8 +75,8 @@ export default function Createpost({ newMarkPos }) {
           date: formData.date,
           description: formData.description,
           type: formData.type,
-          lat: parseFloat(formData.lat),
-          lng: parseFloat(formData.lng),
+          lat: parseFloat(formData.lat) ?? latPlaceholder,
+          lng: parseFloat(formData.lng) ?? lngPlaceholder,
           encounterUser: username,
           title: formData.title,
         },
@@ -73,8 +84,12 @@ export default function Createpost({ newMarkPos }) {
 
       console.log(data);
 
-      localStorage.setItem("lat", parseFloat(formData.lat));
-      localStorage.setItem("lng", parseFloat(formData.lng));
+      localStorage.setItem("lat", parseFloat(formData.lat ?? latPlaceholder));
+      localStorage.setItem("lng", parseFloat(formData.lng ?? lngPlaceholder));
+
+      if(setShowModal){
+        setShowModal(false);
+      }
 
       navigate("/map");
     } catch (err) {
@@ -104,8 +119,8 @@ export default function Createpost({ newMarkPos }) {
           <input
             className="encounter-input-style"
             type="text"
-            placeholder="Latitude"
-            value={formData.lat ?? ""}
+            placeholder={latPlaceholder}
+            value={formData.lat ?? ""} //here is where I would want a different (or-ish) operator with latPlaceholder
             name="lat"
             onChange={handleInputChange}
           ></input>
@@ -114,7 +129,7 @@ export default function Createpost({ newMarkPos }) {
           <input
             className="encounter-input-style"
             type="text"
-            placeholder="Longitude"
+            placeholder={lngPlaceholder}
             value={formData.lng ?? ""}
             name="lng"
             onChange={handleInputChange}
