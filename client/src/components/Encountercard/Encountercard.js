@@ -69,8 +69,8 @@ export default function Encountercard(props) {
                   <div className="date-card" style={{ color: "black" }}>
                     {data.date}
                   </div>
-                  <div className="location-card">{data.category}</div>
-                  <div className="date-card">{data.type}</div>
+                  <div className="location-card">{data.type}</div>
+                  <div className="date-card">{data.category}</div>
                 </div>
               </div>
               <div className={`description-flex ${viewableStyleTitle}`}>
@@ -79,10 +79,12 @@ export default function Encountercard(props) {
                     // fontWeight: "500",
                     margin: "8px 0px",
                     fontSize: "1rem",
-                    fontFamily: "Roboto Slab",
+                    fontFamily: "Red rose",
                     textTransform: "capitalize",
                     lineHeight: "1rem",
+                    color: "black",
                   }}
+                  location-card
                 >
                   {data.title}
                 </p>
