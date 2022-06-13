@@ -1,83 +1,112 @@
-# Getting Started with Create React App
+# Close Encounters
+[![License: MPL 2.0](https://img.shields.io/badge/License-MPL_2.0-brightgreen.svg)](https://opensource.org/licenses/MPL-2.0)
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+## Table of Contents
+[Description](#description)
 
-### View deployed project below
+[Installation](#installation)
 
-Check out our page: [https://closer-encounters.herokuapp.com/](https://closer-encounters.herokuapp.com/)
+[Usage](#usage)
 
-## Available Scripts
+[Screenshots](#screenshots)
 
-In the project directory, you can run:
+[Credits](#credits)
 
-### `npm start`
+[Dependencies and Libraries](#dependencies/libraries)
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+[Questions](#questions)
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+---
 
-### `npm test`
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+## Description
+Everyone, even the most skeptical, has had moments where they've experienced something they can't explain. It could be something you saw in the night sky or maybe it was a chill when you entered a room. Close Encounters is a social media platform designed for us to catalog and share these experiences. It allows us to see where these events are happening and how many people have experienced the same one as well. 
 
-### `npm run build`
+                
+---     
+## Installation
+Using your chosen CLI, navigate to your chosen directory and type
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+        git clone git@github.com:DanielMrva/close_encounters.git 
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+Then, within the close_encounters directory 
 
-### `npm run eject`
+        npm i
+        npm run build
+        npm start
 
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
+If you wish to seed some sample data
 
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+        npm run seed
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
+    
+---
+## Usage
+Within the app you are required to login or generate a new account. Trying to access any aspect aside from the map will prompt you to do this, or you can click the icon in the top right. Within the app you can go to your user profile, enter a new event, and look at the map of events. 
 
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
 
-## Learn More
+<img src="./client/src/images/project-ss/ss1.png" alt="drawing" width="45%"/>
+<img src="./client/src/images/project-ss/ss4.png" alt="drawing" width="45%"/>
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+<img src="./client/src/images/project-ss/ss2.png" alt="drawing" width="45%"/>
+<img src="./client/src/images/project-ss/ss6.png" alt="drawing" width="45%"/>
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+<img src="./client/src/images/project-ss/ss3.png" alt="drawing" width="45%"/>
+<img src="./client/src/images/project-ss/ss5.png" alt="drawing" width="45%"/>
 
-### Code Splitting
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
 
-### Analyzing the Bundle Size
+    
+---
+## Credits
+* Alfred Garraffa
+    
+    agarraffa@gmail.com
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
+    https://github.com/AGarraffa
 
-### Making a Progressive Web App
+* AmberZimmerman 
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
+    developwithamber@gmail.com
 
-### Advanced Configuration
+    https://github.com/AmberZimmerman
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
+* Daniel Mrva 
 
-### Deployment
+    Mrva.develops@gmail.com
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
+    https://github.com/DanielMrva
 
-### `npm run build` fails to minify
+* Lyndsey Choi 
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+    Lindsey.e.choi@gmail.com
 
-### Screenshots
+    https://github.com/lindseychoi
 
-![Main](./src/images/project-ss/ss1.png)
-![About](./src/images/project-ss/ss2.png)
-![Map](./src/images/project-ss/ss3.png)
-![Login](./src/images/project-ss/ss4.png)
-![Form](./src/images/project-ss/ss5.png)
-![Feed](./src/images/project-ss/ss6.png)
+
+---
+## Dependencies/Libraries
+
+* Fontawesome
+* Bootstrap
+* Apollo
+* GraphQL
+* MongoDB
+* JWT Decode
+* ESRI Leaflet
+* React
+* Express
+* Node.js
+
+
+---
+## Future Development
+
+* Increased mutation functionality within the User page
+* Filtering and search option for the map
+* Comment/Like interactions with other users
+* Friends list
+* Picture uploads
+* Geolocation calls based on computer/mobile location
+* Increased map functionality
