@@ -8,15 +8,15 @@ const MarkerIcon = ({encounterType, date}) => {
     switch (encounterType) {
       case "Extraterrestrial":
         iconType = "rocket";
-        iconColor = "#03fcec";
+        iconColor = "#000080";
         break;
       case "Zoological":
         iconType = "dragon";
-        iconColor = "#e77ef2";
+        iconColor = "#FF0000";
         break;
       case "Paranormal":
         iconType = "ghost";
-        iconColor = "#55edb5";
+        iconColor = "#000000";
         break;
       default:
         iconType = "location-dot";
