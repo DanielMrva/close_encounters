@@ -5,6 +5,7 @@ import propic2 from "../../images/profilepic2.png";
 import propic3 from "../../images/profilepic3.png";
 import propic4 from "../../images/profilepic4.png";
 import propic5 from "../../images/profilepic5.png";
+import propic6 from "../../images/profilepic6.png";
 
 import { useQuery } from "@apollo/client";
 import { ALL_EVENTS } from "../../utils/queries";
@@ -17,7 +18,15 @@ export default function Encountercard(props) {
 
   console.log(props);
 
-  let randomPics = [propic, propic1, propic2, propic3, propic4, propic5];
+  let randomPics = [
+    propic,
+    propic1,
+    propic2,
+    propic3,
+    propic4,
+    propic5,
+    propic6,
+  ];
 
   let getRandomArrItem = (arr) => arr[Math.floor(Math.random() * arr.length)];
 

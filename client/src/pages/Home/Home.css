@@ -34,15 +34,37 @@
     width: 500px;
   }
 
-  .image-container {
+  /* .image-container {
     width: 100vw;
     display: flex;
+  } */
+
+  /* .home-image {
+    flex: 1 0;
+    height: 400px;
+    padding: 20px 60px;
+  } */
+
+  .image-container {
+    height: 400px;
+    width: 100vw;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border: red solid 2px;
   }
 
   .home-image {
     flex: 1 0;
-    height: 90vh;
-    padding: 20px 60px;
+    height: 600px;
+  }
+
+  .center-animation {
+    width: 100vw;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border: purple solid 2px;
   }
 
   h4 {
