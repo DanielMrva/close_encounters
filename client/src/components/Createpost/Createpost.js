@@ -85,7 +85,7 @@ export default function Createpost({ newMarkPos }) {
   const handleTypeChange = (e) => {
     setFormData({ ...formData, type: e.target.id });
   };
-  
+
   if (Auth.loggedIn()) {
     return (
       <div>
@@ -122,7 +122,7 @@ export default function Createpost({ newMarkPos }) {
 
           <input
             className="encounter-input-style"
-            type="textarea"
+            type="text"
             placeholder="Title"
             value={formData.title ?? ""}
             name="title"
@@ -130,14 +130,14 @@ export default function Createpost({ newMarkPos }) {
           ></input>
 
           {/* <label className="sub-text-form">Describe Your Encounter</label> */}
-          <input
+          <textarea
             className="encounter-textarea-style"
             type="textarea"
             placeholder="Description"
             value={formData.description ?? ""}
             name="description"
             onChange={handleInputChange}
-          ></input>
+          ></textarea>
 
           <div className="button-box">
             <span id="radio-buttons">
@@ -230,7 +230,3 @@ export default function Createpost({ newMarkPos }) {
     return <Login />;
   }
 }
-          
-                
-                
-                    
