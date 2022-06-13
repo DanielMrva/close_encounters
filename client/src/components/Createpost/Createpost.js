@@ -86,6 +86,7 @@ export default function Createpost({ newMarkPos }) {
   const handleTypeChange = (e) => {
     setFormData({ ...formData, type: e.target.id });
   };
+  
   if (Auth.loggedIn()) {
     return (
       <div>
@@ -221,3 +222,7 @@ export default function Createpost({ newMarkPos }) {
     return <Login />;
   }
 }
+          
+                
+                
+                    
