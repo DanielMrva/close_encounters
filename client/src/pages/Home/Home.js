@@ -33,7 +33,7 @@ export default function Home() {
     <div>
       <div className="heading-container">
         <h2>
-          TOGETHER WE CAN MAKE THE UNEXPLAINED AND THE UNIMAGINABLE...
+          TOGETHER WE CAN MAKE THE UNEXPLAINABLE AND THE UNIMAGINABLE...
           UNDENIABLE
         </h2>
         <div className="encountercard-home">
