@@ -68,7 +68,7 @@ export default function Createpost({ newMarkPos }) {
           lng: parseFloat(formData.lng),
           encounterUser: username,
           // userId: Auth.getProfile().data._id,
-          title: "My Super Close Encounter",
+          title: formData.title,
         },
       });
 

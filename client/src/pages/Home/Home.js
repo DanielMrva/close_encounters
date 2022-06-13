@@ -47,7 +47,7 @@ export default function Home() {
       </div>
 
       {/* <button onClick={toggle}>Click me</button> */}
-      <div className="center-animation">
+      {/* <div className="center-animation">
         <animated.div
           // toggle={this.toggle}
           style={{
@@ -58,7 +58,7 @@ export default function Home() {
         >
           <img className="home-image" src={homeImage1} alt="Curvy Shelf" />
         </animated.div>
-      </div>
+      </div> */}
 
       {/* <div className="center-animation">
       
