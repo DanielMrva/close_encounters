@@ -67,7 +67,7 @@ export default function Createpost({newMarkPos}) {
           lng: parseFloat(formData.lng),
           encounterUser: username,
           // userId: Auth.getProfile().data._id,
-          title: "My Super Close Encounter",
+          title: formData.title,
         },
       });
 
@@ -117,6 +117,15 @@ export default function Createpost({newMarkPos}) {
           placeholder="Longitude"
           value={formData.lng ?? ""}
           name="lng"
+          onChange={handleInputChange}
+        ></input>
+
+        <input
+          className="encounter-textarea-style"
+          type="textarea"
+          placeholder="Title"
+          value={formData.title ?? ""}
+          name="title"
           onChange={handleInputChange}
         ></input>
 
