@@ -121,7 +121,7 @@ export default function Createpost({newMarkPos}) {
         ></input>
 
         <input
-          className="encounter-textarea-style"
+          className="encounter-input-style"
           type="textarea"
           placeholder="Title"
           value={formData.title ?? ""}
