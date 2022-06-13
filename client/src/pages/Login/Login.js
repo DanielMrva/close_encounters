@@ -1,26 +1,26 @@
 import "./Login.css";
-import React, { useState } from 'react';
-import { useMutation } from '@apollo/client';
-import { LOGIN_USER } from '../../utils/mutations';
-import Auth from '../../utils/auth';
+import React, { useState } from "react";
+import { useMutation } from "@apollo/client";
+import { LOGIN_USER } from "../../utils/mutations";
+import Auth from "../../utils/auth";
 import { Link } from "react-router-dom";
-import User from '../User/User';
-import {QUERY_SINGLEUSER} from '../../utils/mutations';
+import User from "../User/User";
+import { QUERY_SINGLEUSER } from "../../utils/mutations";
 // merging
-export default function Login() { 
-  const [formState, setFormState] = useState({ email: '', password: '' });
+export default function Login(props) {
+  const [formState, setFormState] = useState({ email: "", password: "" });
   const [login, { error }] = useMutation(LOGIN_USER);
   const handleChange = (event) => {
     const { name, value } = event.target;
-  
-  // localStorage.setItem('username', )
+
+    // localStorage.setItem('username', )
 
     setFormState({
       ...formState,
       [name]: value,
     });
   };
-  
+
   const handleFormSubmit = async (event) => {
     event.preventDefault();
     console.log(formState);
@@ -28,25 +28,23 @@ export default function Login() {
       const { data } = await login({
         variables: { ...formState },
       });
-    
+
       Auth.login(data.login.token);
 
-      if(Auth.loggedIn) {
+      if (Auth.loggedIn) {
+        console.log(data.login.user);
+        localStorage.setItem("user", data.login.user.username);
 
-      console.log(data.login.user);
-      localStorage.setItem('user', data.login.user.username);
-
-      window.location.href = "/user";
-    }
-
+        window.location.href = "/user";
+      }
     } catch (e) {
       console.error(e);
     }
 
     // clear form values
     setFormState({
-      email: '',
-      password: '',
+      email: "",
+      password: "",
     });
   };
 
@@ -59,7 +57,6 @@ export default function Login() {
         </div>
 
         <div className="form-flex-container">
-
           <form onSubmit={handleFormSubmit}>
             <label className="sub-text">email</label>
             <div className="input-area">
@@ -84,29 +81,24 @@ export default function Login() {
               />
             </div>
             <div style={{ display: "flex", justifyContent: "center" }}>
-              <button 
-              className="button1 sub-text"
-              style={{ cursor: 'pointer' }}
-              type="submit"
+              <button
+                className="button1 sub-text"
+                style={{ cursor: "pointer" }}
+                type="submit"
               >
-                login   
+                login
               </button>
             </div>
           </form>
 
-        {error && (
-            <div className="my-3 p-3 bg-danger text-white">
-              {error.message}
-            </div>
-        )}
-
+          {error && (
+            <div className="my-3 p-3 bg-danger text-white">{error.message}</div>
+          )}
         </div>
 
         <div className="center-flex-container">
           <div className="sub-text" style={{ fontWeight: "700" }}>
-            <Link to="/loginnew">
-              new user? click here
-            </Link>
+            <Link to="/loginnew">new user? click here</Link>
           </div>
         </div>
 
