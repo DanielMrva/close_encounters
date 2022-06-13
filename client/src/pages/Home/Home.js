@@ -41,7 +41,7 @@ export default function Home() {
           <Encountercard
             quantityDisplay={40}
             viewableStyleDescription="not-viewable"
-            viewableStyleTitle="not-viewable"
+            viewableStyleTitle="viewable"
           />
         </div>
       </div>

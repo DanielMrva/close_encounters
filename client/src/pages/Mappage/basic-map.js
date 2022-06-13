@@ -1,4 +1,4 @@
-import React, { useState, useEffect} from "react";
+import React, { useState, useEffect } from "react";
 import { useQuery } from "@apollo/client";
 import {
   MapContainer,
@@ -17,12 +17,16 @@ import MarkerIcon from "../../components/MapComponents/MarkerIcon";
 import tileLayer from "../../utils/tileLayer";
 import { VIS_ENCOUNTERS } from "../../utils/queries";
 
-const MapMarkers = ({ data }) => {
 
+// const mapPositions = [39.7392, -104.9903];
+
+const MapMarkers = ({ data }) => {
   return data.map((item, index) => (
     <Marker
       key={index}
-      icon={CustDivIcon(MarkerIcon({encounterType: item.type, date: item.date}))}
+      icon={CustDivIcon(
+        MarkerIcon({ encounterType: item.type, date: item.date })
+      )}
       position={{ lat: item.lat, lng: item.lng }}
     >
       <Popup maxWidth={400} maxHeight={300}>
@@ -49,30 +53,26 @@ const MapMarkers = ({ data }) => {
 };
 
 const MapWrapper = () => {
+  let lat = localStorage.getItem("lat");
+  let lng = localStorage.getItem("lng");
 
-let lat = localStorage.getItem('lat');
-let lng = localStorage.getItem('lng');
+  if (!lat) {
+    lat = 39.7392;
+    lng = -104.9903;
+  }
 
-if (!lat) {
-
-  lat = 39.7392;
-  lng = -104.9903;
-
-}
-
-const mapPositions = [lat, lng];
-const defaultVariables = {
-  lowlat: 20,
-  hilat: 70,
-  lowlng: -110,
-  hilng: -70
-}
+  const mapPositions = [lat, lng];
+  const defaultVariables = {
+    lowlat: 20,
+    hilat: 70,
+    lowlng: -110,
+    hilng: -70,
+  };
   const [map, setMap] = useState(null);
   const [position, setPosition] = useState([lat, lng]);
   const [variables, setVariables] = useState(defaultVariables);
   const [showModal, setShowModal] = useState(false);
-  const [newMarkPos, setNewMarkPos] = useState([0,0]);
-
+  const [newMarkPos, setNewMarkPos] = useState([0, 0]);
 
   const NewMapEvents = () => {
     const map = useMap();
@@ -94,16 +94,14 @@ const defaultVariables = {
       },
     });
   };
-  
+
   const { loading, data } = useQuery(VIS_ENCOUNTERS, {
     variables: variables,
   });
   const encounters = data?.visencounters || [];
 
-
   const Locator = ({ map }) => {
     useEffect(() => {
-
       if (!map) return;
 
       map.locate().on("locationfound", function (e) {
@@ -148,7 +146,10 @@ const defaultVariables = {
       <NewMapEvents map={map} />
       <Locator map={map} />
       <AddMarker onMapClick={onMapClick} newMarkPos={newMarkPos} />
-      <SubmitModal newMarkPos={newMarkPos} setShowModal={setShowModal} showModal={showModal}
+      <SubmitModal
+        newMarkPos={newMarkPos}
+        setShowModal={setShowModal}
+        showModal={showModal}
       />
       <MapMarkers data={encounters} />
       <TileLayer {...tileLayer} />
