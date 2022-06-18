@@ -1,28 +1,80 @@
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
 @media screen and (min-width: 800px) {
+  .home-page {
+    width: 100vw;
+    height: fit-content;
+    overflow: hidden;
+  }
+
   .heading-container {
     width: 100vw;
     display: flex;
-    /* justify-content: center; */
     align-items: center;
-    height: fit-content;
+    justify-items: center;
+    height: 90vh;
+    flex-direction: column;
   }
 
   /* undeniable text */
-  .heading-container h2 {
-    flex: 1 0 60%;
+  .header-text h2 {
     font-family: "Red Rose";
     font-style: normal;
     font-weight: 400;
     /* font-size: calc(2em + 1vw); */
     font-size: 5rem;
-    line-height: 65px;
+    line-height: 70px;
     text-align: center;
     color: var(--blue);
     text-transform: uppercase;
     width: 100%;
     /* width: 360px; */
     height: fit-content;
-    padding: 80px 20px;
+    padding: 80px 0px 80px 20px;
+  }
+
+  .keep-scroll {
+    font-family: "Roboto Mono";
+    font-style: normal;
+    font-weight: 400;
+    font-size: 1rem;
+    line-height: 26px;
+    color: var(--red);
+    text-transform: capitalize;
+  }
+
+  .about-text {
+    width: 270px;
+    padding: 0px 20px 0px 40px;
+  }
+
+  .about-para {
+    margin: 8px 0px;
+    font-size: 0.7rem;
+    font-family: Roboto Slab;
+    line-height: 1rem;
+  }
+
+  .home-belowfold {
+    width: 97vw;
+    height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    border-top: 1px solid #d9d9d9;
+    /* padding: 15px; */
+  }
+
+  .encountercard-home-flex {
+    /* flex: 1 0 40%; */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 100%;
   }
 
   .encountercard-home {
@@ -30,22 +82,34 @@
 
     /* display: flex; */
     overflow: scroll;
-    height: 400px;
-    width: 500px;
+    height: 80%;
+    width: 415px;
+    padding: 20px 0px;
+    border: 1px solid #d9d9d9;
+    padding: 15px 0px 15px 10px;
+  }
+
+  .encountercard-home::-webkit-scrollbar-thumb {
+    background: rgba(19, 34, 106, 0.1);
+  }
+
+  .encountercard-home::-webkit-scrollbar-thumb:horizontal {
+    display: none;
   }
 
   /* .image-container {
-    width: 100vw;
+    height: 650px;
     display: flex;
+    align-items: center;
   } */
 
-  /* .home-image {
+  .home-image {
     flex: 1 0;
-    height: 400px;
-    padding: 20px 60px;
-  } */
+    height: 80%;
+    padding: 0px 30px;
+  }
 
-  .image-container {
+  /* .image-container {
     height: 400px;
     width: 100vw;
     display: flex;
@@ -57,7 +121,7 @@
   .home-image {
     flex: 1 0;
     height: 600px;
-  }
+  } */
 
   .center-animation {
     width: 100vw;
@@ -90,62 +154,14 @@
 }
 
 /* cell phone size */
-@media screen and (max-width: 800px) {
-  .heading-container {
-    width: 100vw;
-    height: 166px;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-  }
-
-  /* undeniable text */
-  .heading-container h2 {
-    font-family: "Red Rose";
-    font-style: normal;
-    font-weight: 400;
-    /* font-size: calc(2em + 1vw); */
-    font-size: 24px;
-    line-height: 30px;
-    text-align: center;
-    color: var(--blue);
-    text-transform: uppercase;
-    /* width: 70%; */
-    width: 348px;
-    height: fit-content;
-  }
-
-  .image-container {
-    width: 100vw;
-    display: flex;
-  }
-
-  img {
-    flex: 1 0;
-    padding: 30px;
-  }
-
-  /* number of encounters text */
-  h6 {
-    font-family: "Roboto Mono";
-    font-style: normal;
-    font-weight: 400;
-    font-size: 20px;
-    line-height: 26px;
-    color: var(--red);
-    margin-bottom: 20px;
-    text-transform: uppercase;
-  }
-}
-
-/* cell phone size */
 @media screen and (max-width: 799px) {
   .heading-container {
     width: 100vw;
-    display: flex;
-    /* justify-content: center; */
-    align-items: center;
     height: fit-content;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
   }
 
   /* undeniable text */
@@ -155,42 +171,60 @@
     font-style: normal;
     font-weight: 400;
     /* font-size: calc(2em + 1vw); */
-    font-size: 5rem;
-    line-height: 65px;
+    font-size: 2rem;
+    line-height: 2rem;
     text-align: center;
     color: var(--blue);
     text-transform: uppercase;
     width: 100%;
     /* width: 360px; */
     height: fit-content;
-    padding: 80px 20px;
+    padding: 40px 20px;
   }
 
-  .encountercard-home {
-    /* flex: 1 0 40%; */
+  .keep-scroll {
+    font-family: "Roboto Mono";
+    font-style: normal;
+    font-weight: 400;
+    font-size: 0.6rem;
+    line-height: 26px;
+    color: var(--red);
+    text-transform: capitalize;
+  }
 
-    /* display: flex; */
-    overflow: scroll;
-    height: 400px;
-    width: 500px;
+  .encountercard-home-flex {
+    display: none;
+  }
+
+  .about-text {
+    width: fit-content;
+    padding: 30px;
+  }
+  /* 
+  .image-flex-home {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    min-width: 0px;
   }
 
   .image-container {
     width: 100vw;
     display: flex;
-  }
+  } */
 
   .home-image {
     flex: 1 0;
-    height: 90vh;
-    padding: 20px 60px;
+    height: auto;
+    padding: 20px 30px;
+    width: 100vw;
   }
 
   h4 {
     font-family: "Roboto Mono";
     font-style: normal;
     font-weight: 400;
-    font-size: 20px;
+    font-size: 1rem;
     line-height: 26px;
     color: var(--red);
   }
@@ -206,53 +240,11 @@
     margin: 50px 0px;
     text-transform: uppercase;
   }
-}
 
-/* cell phone size */
-@media screen and (max-width: 800px) {
-  .heading-container {
-    width: 100vw;
-    height: 166px;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-  }
-
-  /* undeniable text */
-  .heading-container h2 {
-    font-family: "Red Rose";
-    font-style: normal;
-    font-weight: 400;
-    /* font-size: calc(2em + 1vw); */
-    font-size: 24px;
-    line-height: 30px;
-    text-align: center;
-    color: var(--blue);
-    text-transform: uppercase;
-    /* width: 70%; */
-    width: 348px;
-    height: fit-content;
-  }
-
-  .image-container {
-    width: 100vw;
-    display: flex;
-  }
-
-  img {
-    flex: 1 0;
-    padding: 30px;
-  }
-
-  /* number of encounters text */
-  h6 {
-    font-family: "Roboto Mono";
-    font-style: normal;
-    font-weight: 400;
-    font-size: 20px;
-    line-height: 26px;
-    color: var(--red);
-    margin-bottom: 20px;
-    text-transform: uppercase;
+  .about-para {
+    margin: 8px 0px;
+    font-size: 0.7rem;
+    font-family: Roboto Slab;
+    line-height: 1rem;
   }
 }

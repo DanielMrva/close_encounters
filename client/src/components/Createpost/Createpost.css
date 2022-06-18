@@ -69,7 +69,11 @@
   }
 
   .encounter-textarea-style {
+    border: 1px solid rgba(19, 33, 106, 0.2);
+
     height: 100px;
+    margin-bottom: 20px;
+    width: 100%;
   }
 
   .main-box {
@@ -315,7 +319,10 @@ input[type="checkbox"]:checked ~ label::before {
   }
 
   .encounter-textarea-style {
-    height: 100px;
+    border: 1px solid rgba(19, 33, 106, 0.2);
+
+    height: 40px;
+    margin-bottom: 20px;
   }
 
   .main-box {
