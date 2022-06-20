@@ -51,10 +51,10 @@ const encounterSchema = new Schema({
     type: Schema.Types.ObjectId,
     ref: "User",
   },
-  // commentId: {
+  // commentId: [{
   //   type: Schema.Types.ObjectId,
   //   ref: "Comment",
-  // },
+  // }],
   // cooberations: [{
   //   type: Schema.Types.ObjectId, ref: "User"
   // }]
