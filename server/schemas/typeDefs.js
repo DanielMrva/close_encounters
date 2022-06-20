@@ -21,8 +21,21 @@ const typeDefs = gql`
         title: String!
         description: String!
         createdAt: String
-        userId: String 
+        userId: String
+        # commentId: [String]
+        # cooberations: [String]
     }
+
+    # type Comment {
+    #     _id: ID!
+    #     commentText: String!
+    #     createdAt: String
+    #     title: String
+    #     commentUser: String
+    #     userId: String
+    #     encounterId: String
+    #     cooberations: [String]
+    # }
     
     type Auth {
         token: ID!
@@ -38,6 +51,9 @@ const typeDefs = gql`
         encounters(username: String): [Encounter]
         encounter(encounterId: ID!): Encounter
         visencounters(lowlat: Float!, hilat: Float!, lowlng: Float!, hilng: Float!): [Encounter]
+        # encounterComments(encounterId: ID!): [Comment]
+        # userComments(userId: ID!): [Comment]
+        # allcomments: [Comment]
     }
 
     # type Mutation {
@@ -70,6 +86,21 @@ const typeDefs = gql`
             lng: Float
             ): Encounter
         removeEncounter(encounterId: ID!): Encounter
+        # saveComment(
+        #     commentText: String!
+        #     title: String
+        #     commentUser: String
+        #     encounterId: String
+        #     ): Comment
+        # cooberateEncounter(
+        #     encounterId: String!
+        #     userId: String!
+        # ): Encounter
+        # cooberateComment(
+        #     commentId: String!
+        #     userId: String!
+        # ): Comment
+
     }
 `;
 
