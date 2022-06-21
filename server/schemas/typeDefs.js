@@ -22,8 +22,8 @@ const typeDefs = gql`
         description: String!
         createdAt: String
         userId: String
-        # commentId: [String]
-        # cooberations: [String]
+        # commentId: [String] Array of comment ID's for the comments
+        # cooberations: [String] Array of UserID's for users that have cooberated this
     }
 
     # type Comment {
@@ -34,7 +34,7 @@ const typeDefs = gql`
     #     commentUser: String
     #     userId: String
     #     encounterId: String
-    #     cooberations: [String]
+    #     cooberations: [String] same as L26
     # }
     
     type Auth {
@@ -51,9 +51,9 @@ const typeDefs = gql`
         encounters(username: String): [Encounter]
         encounter(encounterId: ID!): Encounter
         visencounters(lowlat: Float!, hilat: Float!, lowlng: Float!, hilng: Float!): [Encounter]
-        # encounterComments(encounterId: ID!): [Comment]
-        # userComments(userId: ID!): [Comment]
-        # allcomments: [Comment]
+        # encounterComments(encounterId: ID!): [Comment] Query for all comments associated with Encounter
+        # userComments(userId: ID!): [Comment] User Comment's query
+        # allcomments: [Comment] Just in case?...All comments from all encounters
     }
 
     # type Mutation {
@@ -91,7 +91,7 @@ const typeDefs = gql`
         #     title: String
         #     commentUser: String
         #     encounterId: String
-        #     ): Comment
+        #     ): Comment 
         # cooberateEncounter(
         #     encounterId: String!
         #     userId: String!
