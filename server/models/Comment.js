@@ -37,6 +37,6 @@ const commentSchema = new Schema({
 
 });
 
-const Comment = model("Encounter", encounterSchema);
+const Comment = model("Comment", commentSchema);
 
 module.exports = Comment;

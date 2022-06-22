@@ -1,4 +1,4 @@
-const { User, Encounter } = require("../models");
+const { User, Encounter, Comment } = require("../models");
 const { AuthenticationError } = require("apollo-server-express");
 const { signToken } = require("../utils/auth");
 const { sign } = require("jsonwebtoken");
@@ -14,7 +14,7 @@ const resolvers = {
       return User.findOne({_id:userId});
     },
     users: async () => {
-      return User.find().populate("encounters");
+      return User.find().populate("encounters").populate("comments");
     },
     user: async (parent, { userId }) => {
       return User.findOne({ _id: userId });
@@ -35,15 +35,15 @@ const resolvers = {
     visencounters: async (parent, {lowlat, hilat, lowlng, hilng}) => {
       return Encounter.find({$and: [{ lat : { $gte :  lowlat, $lte : hilat}}, {lng: {$gte: lowlng, $lte: hilng}}]});
     },
-    // encounterComments: async (parent, { encounterId }) => {
-    //   return Comment.find({ encounterId: encounterId }).sort({ createdAt: -1 });
-    // },
-    // userComments: async (parent, { userId }) => {
-    //   return Comment.find({ userId: userId }).sort({ createdAt: -1 });
-    // },
-    // allcomments: async () => {
-    //   return Comments.find();
-    // }
+    encounterComments: async (parent, { encounterId }) => {
+      return Comment.find({ encounterId: encounterId }).sort({ createdAt: -1 });
+    },
+    userComments: async (parent, { userId }) => {
+      return Comment.find({ userId: userId }).sort({ createdAt: -1 });
+    },
+    allcomments: async () => {
+      return Comment.find();
+    }
   },
   Mutation: {
     addUser: async (parent, { username, email, password }) => {
@@ -98,36 +98,43 @@ const resolvers = {
     removeEncounter: async (parent, { encounterId }) => {
       return Encounter.findOneAndDelete({ _id: encounterId });
     },
-    // saveComment: async (
-    //   parent, {commentText, title, commentUser, encounterId}
-    // ) => {
-    //   const comment = await Comment.create({
-    //     commentText,
-    //     title,
-    //     commentUser,
-    //     encounterId,
-    //   });
+    saveComment: async (
+      parent, {commentText, title, commentUser, encounterId, userId}
+    ) => {
+      const comment = await Comment.create({
+        commentText,
+        title,
+        commentUser,
+        encounterId,
+        userId
+      });
 
-    //   await Encounter.findOneAndUpdate(
-    //     { _id: encounterId },
-    //     { $addToSet: {commentId: comment._id}}
-    //   )
-    //   return comment;
-    // }
-    // cooberateEncounter: async (parent, { encounterId, userId }) => {
-    //   const encounter = await Encounter.findOneAndUpdate(
-    //     { _id: encounterId }, 
-    //     { $addToSet: {cooberations: userId}}
-    //     );
-    //     return encounter;
-    // },
-    // cooberateComment: async (parent, {commentId, userId}) => {
-    //   const comment = await Comment.findOneAndUpdate(
-    //     { _id: commentId },
-    //     { $addToSet: {cooberations: userId}}
-    //   );
-    //   return comment;
-    // }
+      await Encounter.findOneAndUpdate(
+        { _id: encounterId },
+        { $addToSet: {commentId: comment._id}}
+      )
+
+      await User.findOneAndUpdate(
+        { _id: userId },
+        { $addToSet: {comments: comment._id} }
+      )
+
+      return comment;
+    },
+    cooberateEncounter: async (parent, { encounterId, userId }) => {
+      const encounter = await Encounter.findOneAndUpdate(
+        { _id: encounterId }, 
+        { $addToSet: {cooberations: userId}}
+        );
+        return encounter;
+    },
+    cooberateComment: async (parent, {commentId, userId}) => {
+      const comment = await Comment.findOneAndUpdate(
+        { _id: commentId },
+        { $addToSet: {cooberations: userId}}
+      );
+      return comment;
+    }
 
   },
 };
