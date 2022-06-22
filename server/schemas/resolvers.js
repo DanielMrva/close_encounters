@@ -96,7 +96,8 @@ const resolvers = {
       return encounter;
     },
     removeEncounter: async (parent, { encounterId }) => {
-      return Encounter.findOneAndDelete({ _id: encounterId });
+      await Comment.deleteMany({encounterId: encounterId});
+      await Encounter.findOneAndDelete({ _id: encounterId });
     },
     saveComment: async (
       parent, {commentText, title, commentUser, encounterId, userId}
