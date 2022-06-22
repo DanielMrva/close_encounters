@@ -60,7 +60,7 @@ Within the app you are required to login or generate a new account. Trying to ac
 Page is deployed at: https://closer-encounters.herokuapp.com/
 Github: https://github.com/DanielMrva/close_encounters
 
-    
+
 ---
 ## Credits
 * Alfred Garraffa

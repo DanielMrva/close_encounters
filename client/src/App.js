@@ -1,5 +1,5 @@
 import "./App.css";
-import React, { useState} from 'react';
+import React, { useState, useContext } from 'react';
 import { Link } from "react-router-dom";
 // import AppContainer from "./AppContainer";
 // import Test from "./pages/Test";
@@ -8,11 +8,14 @@ import ReactDOM from "react-dom/client";
 import { ApolloClient, ApolloProvider, InMemoryCache } from "@apollo/client";
 import Home from "./pages/Home/Home";
 
+import { UserProvider } from "./components/Context/UserContext";
+
 
 const client = new ApolloClient({
   uri: "/graphql",
   cache: new InMemoryCache(),
 });
+
 
 function App() {
 
@@ -22,15 +25,18 @@ function App() {
   //   <ModalContext.Provider value={showModal}>
   //     <BoundBoxContext.Provider value={boundBox}>
         <ApolloProvider client={client}>
-          <div className="App">
-            <Home />
-          </div>
+          <UserProvider value="user">
+              <div className="App">
+                <Home />
+              </div>
+            </UserProvider>
         </ApolloProvider>
   //     </BoundBoxContext.Provider>
   //   </ModalContext.Provider>
   // </NewMarkerContext>
   );
 }
+
 
 export default App;
 
