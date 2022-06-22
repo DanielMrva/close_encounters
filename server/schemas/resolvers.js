@@ -9,8 +9,8 @@ const resolvers = {
       const params = _id ? { _id } : {};
       return User.find(params);
     },
-    user: async(parent, { userId }) => {
-      return User.findOne({_id:userId});
+    user: async (parent, { userId }) => {
+      return User.findOne({ _id: userId });
     },
     users: async () => {
       return User.find().populate("encounters");
@@ -31,13 +31,18 @@ const resolvers = {
     encounter: async (parent, { encounterId }) => {
       return Encounter.findOne({ _id: encounterId });
     },
-    visencounters: async (parent, {lowlat, hilat, lowlng, hilng}) => {
-      return Encounter.find({$and: [{ lat : { $gte :  lowlat, $lte : hilat}}, {lng: {$gte: lowlng, $lte: hilng}}]});
-    }
+    visencounters: async (parent, { lowlat, hilat, lowlng, hilng }) => {
+      return Encounter.find({
+        $and: [
+          { lat: { $gte: lowlat, $lte: hilat } },
+          { lng: { $gte: lowlng, $lte: hilng } },
+        ],
+      });
+    },
   },
   Mutation: {
-    addUser: async (parent, { username, email, password }) => {
-      const user = await User.create({ username, email, password });
+    addUser: async (parent, { username, email, password, profilepic }) => {
+      const user = await User.create({ username, email, password, profilepic });
       const token = signToken(user);
 
       return { token, user };
