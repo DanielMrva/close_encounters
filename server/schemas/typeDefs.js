@@ -79,6 +79,7 @@ const typeDefs = gql`
       date: String
       lat: Float
       lng: Float
+      userId: ID
     ): Encounter
     removeEncounter(encounterId: ID!): Encounter
   }

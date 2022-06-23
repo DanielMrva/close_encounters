@@ -26,6 +26,8 @@ export const QUERY_SINGLEUSER = gql`
       username
       email
       password
+      profilepic
+      _id
     }
   }
 `;

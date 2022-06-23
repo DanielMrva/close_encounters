@@ -20,7 +20,7 @@ export default function Encountercard(props) {
   if (err) return err.message;
 
   let encounterList = data?.encounters || [];
-
+  console.log(data);
   let smallEncounterList = encounterList.slice(0, props.quantityDisplay);
 
   // let randomPics = [
@@ -52,7 +52,6 @@ export default function Encountercard(props) {
   let viewableStyleDescription = `${props.viewableStyleDescription}`;
   let viewableStyleTitle = `${props.viewableStyleTitle}`;
 
-  console.log(smallEncounterList);
   return (
     <div className="card-page">
       {smallEncounterList.map((data, index) => {
@@ -62,13 +61,24 @@ export default function Encountercard(props) {
               <div className="card-top-flex">
                 <div className="user-icon">
                   <div className="pic-header-flex">
-                    <img
-                      className="profile-pic"
-                      src={require("../../images/" +
-                        data.userId.profilepic +
-                        ".png")}
-                      alt="user"
-                    />
+                    {/* {data?.userId?.profilepic
+                      ? {
+                        <img
+                        className="profile-pic"
+                        src={require(`../../images/${data.userId.profilepic}.png`)}
+                        alt="user"
+                      /> 
+                        }
+                      : null} */}
+                    {data?.userId?.profilepic ? (
+                      <img
+                        className="profile-pic"
+                        src={require("../../images/" +
+                          data.userId.profilepic +
+                          ".png")}
+                        alt="user"
+                      />
+                    ) : null}
                   </div>
                 </div>
                 <div className={`card-header-encounter`}>

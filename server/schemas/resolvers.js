@@ -46,13 +46,13 @@ const resolvers = {
   Mutation: {
     addUser: async (parent, { username, email, password }) => {
       let profilepicoptions = [
-        "propic",
-        "propic1",
-        "propic2",
-        "propic3",
-        "propic4",
-        "propic5",
-        "propic6",
+        "profilepic",
+        "profilepic1",
+        "profilepic2",
+        "profilepic3",
+        "profilepic4",
+        "profilepic5",
+        "profilepic6",
       ];
 
       let getRandomArrItem = (arr) =>
@@ -89,7 +89,17 @@ const resolvers = {
 
     saveEncounter: async (
       parent,
-      { encounterUser, date, category, type, lat, lng, title, description }
+      {
+        encounterUser,
+        date,
+        category,
+        type,
+        lat,
+        lng,
+        title,
+        description,
+        userId,
+      }
     ) => {
       const encounter = await Encounter.create({
         encounterUser,
@@ -100,6 +110,7 @@ const resolvers = {
         lng,
         title,
         description,
+        userId,
       });
 
       await User.findOneAndUpdate(
