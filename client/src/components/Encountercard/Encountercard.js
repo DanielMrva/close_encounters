@@ -1,50 +1,49 @@
 import "./Encountercard.css";
-import propic from "../../images/profilepic.jpg";
-import propic1 from "../../images/profilepic1.png";
-import propic2 from "../../images/profilepic2.png";
-import propic3 from "../../images/profilepic3.png";
-import propic4 from "../../images/profilepic4.png";
-import propic5 from "../../images/profilepic5.png";
-import propic6 from "../../images/profilepic6.png";
+// import propic from "../../images/profilepic.jpg";
+// import propic1 from "../../images/profilepic1.png";
+// import propic2 from "../../images/profilepic2.png";
+// import propic3 from "../../images/profilepic3.png";
+// import propic4 from "../../images/profilepic4.png";
+// import propic5 from "../../images/profilepic5.png";
+// import propic6 from "../../images/profilepic6.png";
 
 import { useQuery } from "@apollo/client";
 import { ALL_EVENTS } from "../../utils/queries";
+import { printIntrospectionSchema } from "graphql";
 
 export default function Encountercard(props) {
   const { loading, err, data } = useQuery(ALL_EVENTS);
 
+  console.log(data);
+
   if (loading) return "loading...";
   if (err) return err.message;
-
-  console.log(props);
 
   let encounterList = data?.encounters || [];
 
   let smallEncounterList = encounterList.slice(0, props.quantityDisplay);
 
-  let randomPics = [
-    propic,
-    propic1,
-    propic2,
-    propic3,
-    propic4,
-    propic5,
-    propic6,
-  ];
+  // let randomPics = [
+  //   propic,
+  //   propic1,
+  //   propic2,
+  //   propic3,
+  //   propic4,
+  //   propic5,
+  //   propic6,
+  // ];
 
-  let getRandomArrItem = (arr) => arr[Math.floor(Math.random() * arr.length)];
+  // let getRandomArrItem = (arr) => arr[Math.floor(Math.random() * arr.length)];
 
-  let listWithPic = smallEncounterList.map((item) =>
-    Object.assign({}, item, { profilepic: getRandomArrItem(randomPics) })
-  );
-
-  console.log(listWithPic);
+  // let listWithPic = smallEncounterList.map((item) =>
+  //   Object.assign({}, item, { profilepic: getRandomArrItem(randomPics) })
+  // );
 
   // console.log(...listWithPic);
 
-  let newListWithPic = [...listWithPic];
+  // let newListWithPic = [...listWithPic];
 
-  console.log(newListWithPic);
+  // console.log(newListWithPic);
 
   // const titleColor = {
   //   color: props.color,
@@ -53,9 +52,10 @@ export default function Encountercard(props) {
   let viewableStyleDescription = `${props.viewableStyleDescription}`;
   let viewableStyleTitle = `${props.viewableStyleTitle}`;
 
+  console.log(smallEncounterList);
   return (
     <div className="card-page">
-      {listWithPic.map((data, index) => {
+      {smallEncounterList.map((data, index) => {
         return (
           <div key={index}>
             <div className="card-container">
@@ -64,7 +64,9 @@ export default function Encountercard(props) {
                   <div className="pic-header-flex">
                     <img
                       className="profile-pic"
-                      src={data.profilepic}
+                      src={require("../../images/" +
+                        data.userId.profilepic +
+                        ".png")}
                       alt="user"
                     />
                   </div>

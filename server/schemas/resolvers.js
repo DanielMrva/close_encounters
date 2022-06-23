@@ -25,8 +25,11 @@ const resolvers = {
       return Encounter.find();
     },
     encounters: async (parent, { username }) => {
+      console.log("test");
       const params = username ? { username } : {};
-      return Encounter.find(params).sort({ createdAt: -1 });
+      return await Encounter.find(params)
+        .sort({ createdAt: -1 })
+        .populate("userId");
     },
     encounter: async (parent, { encounterId }) => {
       return Encounter.findOne({ _id: encounterId });
@@ -37,11 +40,26 @@ const resolvers = {
           { lat: { $gte: lowlat, $lte: hilat } },
           { lng: { $gte: lowlng, $lte: hilng } },
         ],
-      });
+      }).populate("userId");
     },
   },
   Mutation: {
-    addUser: async (parent, { username, email, password, profilepic }) => {
+    addUser: async (parent, { username, email, password }) => {
+      let profilepicoptions = [
+        "propic",
+        "propic1",
+        "propic2",
+        "propic3",
+        "propic4",
+        "propic5",
+        "propic6",
+      ];
+
+      let getRandomArrItem = (arr) =>
+        arr[Math.floor(Math.random() * arr.length)];
+
+      let profilepic = getRandomArrItem(profilepicoptions);
+
       const user = await User.create({ username, email, password, profilepic });
       const token = signToken(user);
 

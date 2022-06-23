@@ -22,7 +22,7 @@ const typeDefs = gql`
     title: String!
     description: String!
     createdAt: String
-    userId: String
+    userId: User
   }
 
   type Auth {
