@@ -22,19 +22,19 @@ const typeDefs = gql`
         title: String!
         description: String!
         createdAt: String
-        userId: String
-        commentId: [String]
+        userId: User
+        commentId: [Comment]
         cooberations: [String]
     }
 
     type Comment {
         _id: ID!
-        commentText: String!
+        commentText: String
         createdAt: String
         title: String
         commentUser: String
-        userId: String
-        encounterId: String
+        userId: User
+        encounterId: Encounter
         cooberations: [String]
     }
     

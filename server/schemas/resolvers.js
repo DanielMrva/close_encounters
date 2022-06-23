@@ -14,35 +14,35 @@ const resolvers = {
       return User.findOne({_id:userId});
     },
     users: async () => {
-      return User.find().populate("encounters").populate("comments");
+      return User.find().populate(["encounters", "comments"]);
     },
     user: async (parent, { userId }) => {
-      return User.findOne({ _id: userId });
+      return User.findOne({ _id: userId }).populate(["encounters","comments"]);
     },
     singleuser: async (parent, { email }) => {
       return User.findOne({ email: email });
     },
     allencounters: async () => {
-      return Encounter.find();
+      return Encounter.find().populate(["userId", "commentId"]);
     },
     encounters: async (parent, { username }) => {
       const params = username ? { username } : {};
-      return Encounter.find(params).sort({ createdAt: -1 });
+      return Encounter.find(params).sort({ createdAt: -1 }).populate(["userId", "commentId"]);
     },
     encounter: async (parent, { encounterId }) => {
-      return Encounter.findOne({ _id: encounterId });
+      return Encounter.findOne({ _id: encounterId }).populate(["userId", "commentId"]);
     },
     visencounters: async (parent, {lowlat, hilat, lowlng, hilng}) => {
-      return Encounter.find({$and: [{ lat : { $gte :  lowlat, $lte : hilat}}, {lng: {$gte: lowlng, $lte: hilng}}]});
+      return Encounter.find({$and: [{ lat : { $gte :  lowlat, $lte : hilat}}, {lng: {$gte: lowlng, $lte: hilng}}]}).populate(["userId", "commentId"]);
     },
     encounterComments: async (parent, { encounterId }) => {
-      return Comment.find({ encounterId: encounterId }).sort({ createdAt: -1 });
+      return Comment.find({ encounterId: encounterId }).populate("userId").sort({ createdAt: -1 });
     },
     userComments: async (parent, { userId }) => {
-      return Comment.find({ userId: userId }).sort({ createdAt: -1 });
+      return Comment.find({ userId: userId }).populate(["userId", "encounterId"]).sort({ createdAt: -1 });
     },
     allcomments: async () => {
-      return Comment.find();
+      return Comment.find().populate(["userId", "encounterId"]).sort({ createdAt: -1 });
     }
   },
   Mutation: {
