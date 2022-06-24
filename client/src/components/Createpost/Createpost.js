@@ -6,16 +6,11 @@ import { useNavigate } from "react-router-dom";
 import Auth from "../../utils/auth";
 import Login from "../../pages/Login/Login";
 
-import { useUserName } from '../Context/UserContext';
-
 let catArr = [];
 
 export default function Createpost({ newMarkPos, setShowModal }) {
 
   const [formData, setFormData] = useState({});
-
-  let username = useUserName();
-  console.log(username);
 
   let latPlaceholder;
   let lngPlaceholder
@@ -79,8 +74,6 @@ export default function Createpost({ newMarkPos, setShowModal }) {
 
     try {
       const username = localStorage.getItem("user");
-      // console.log("username", username);
-      // console.log('userName: ', userName);
       const { data } = await saveEncounter({
         variables: {
           category: formData.category,
@@ -90,7 +83,6 @@ export default function Createpost({ newMarkPos, setShowModal }) {
           lat: parseFloat(formData.lat) ?? latPlaceholder,
           lng: parseFloat(formData.lng) ?? lngPlaceholder,
           encounterUser: username,
-          // encounterUser: userName,
           title: formData.title,
         },
       });

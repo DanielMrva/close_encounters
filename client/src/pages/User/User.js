@@ -7,6 +7,7 @@ import Login from "../Login/Login";
 import Encountercard from "../../components/Encountercard/Encountercard";
 
 export default function User() {
+
   if (Auth.loggedIn()) {
     return (
       <div className="user-container">

@@ -8,20 +8,14 @@ import User from "../User/User";
 import { QUERY_SINGLEUSER } from "../../utils/mutations";
 // merging
 
- import { useUpdateUserName } from "../../components/Context/UserContext";
- import { useUserName } from "../../components/Context/UserContext";
+// export default function Login(props) {
+export default function Login() {
 
-export default function Login(props) {
   const [formState, setFormState] = useState({ email: "", password: "" });
   const [login, { error }] = useMutation(LOGIN_USER);
 
-  const updateUserName = useUpdateUserName();
-  const userName = useUserName();
-
-
   const handleChange = (event) => {
     const { name, value } = event.target;
-
 
     // localStorage.setItem('username', )
 
@@ -43,14 +37,7 @@ export default function Login(props) {
       Auth.login(data.login.token);
 
       if (Auth.loggedIn) {
-        // console.log(data.login.user);
-
-        updateUserName(formState.username);
-
-        console.log(updateUserName);
-
         localStorage.setItem("user", data.login.user.username);
-
       }
     } catch (e) {
       console.error(e);
