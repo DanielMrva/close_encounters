@@ -8,20 +8,19 @@ import Login from "../../pages/Login/Login";
 
 let catArr = [];
 
-
 export default function Createpost({ newMarkPos, setShowModal }) {
   const [formData, setFormData] = useState({});
 
   let latPlaceholder;
-  let lngPlaceholder
+  let lngPlaceholder;
 
-  if(newMarkPos === undefined){
+  if (newMarkPos === undefined) {
     latPlaceholder = "Latitude";
     lngPlaceholder = "Longitude";
   } else {
     latPlaceholder = newMarkPos[0];
     lngPlaceholder = newMarkPos[1];
-  } 
+  }
 
   const navigate = useNavigate();
 
@@ -58,23 +57,25 @@ export default function Createpost({ newMarkPos, setShowModal }) {
   // handles the form submit and runs the create mutation
   const submitHandler = async (e) => {
     e.preventDefault();
-    
-    if(latPlaceholder !== "Latitude"){
-      setFormData({...formData, lat:latPlaceholder, lng:lngPlaceholder});
-      }
-      console.log([latPlaceholder, lngPlaceholder]);
-      // console.log(newMarkPos)
-      console.log(formData);
+
+    if (latPlaceholder !== "Latitude") {
+      setFormData({ ...formData, lat: latPlaceholder, lng: lngPlaceholder });
+    }
+    console.log([latPlaceholder, lngPlaceholder]);
+    // console.log(newMarkPos)
+    console.log(formData);
 
     if (!formData.category || formData.category.length === 0) {
       console.log("Please select at least one category");
       return;
     }
 
-
     try {
       const username = localStorage.getItem("user");
       console.log("username", username);
+      const userId = localStorage.getItem("userId");
+      console.log("userId", userId);
+
       const { data } = await saveEncounter({
         variables: {
           category: formData.category,
@@ -85,6 +86,7 @@ export default function Createpost({ newMarkPos, setShowModal }) {
           lng: parseFloat(formData.lng) ?? lngPlaceholder,
           encounterUser: username,
           title: formData.title,
+          userId: userId,
         },
       });
 
@@ -93,7 +95,7 @@ export default function Createpost({ newMarkPos, setShowModal }) {
       localStorage.setItem("lat", parseFloat(formData.lat ?? latPlaceholder));
       localStorage.setItem("lng", parseFloat(formData.lng ?? lngPlaceholder));
 
-      if(setShowModal){
+      if (setShowModal) {
         setShowModal(false);
       }
 

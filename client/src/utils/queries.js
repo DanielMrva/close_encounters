@@ -11,7 +11,10 @@ export const QUERY_USER = gql`
         lng
         title
         description
-        userId
+        userId {
+          username
+          profilepic
+        }
       }
     }
   }
@@ -23,6 +26,8 @@ export const QUERY_SINGLEUSER = gql`
       username
       email
       password
+      profilepic
+      _id
     }
   }
 `;
@@ -40,7 +45,10 @@ export const ALL_EVENTS = gql`
       lng
       title
       description
-      userId
+      userId {
+        username
+        profilepic
+      }
     }
   }
 `;
@@ -82,7 +90,10 @@ export const VIS_ENCOUNTERS = gql`
       title
       description
       createdAt
-      userId
+      userId {
+        username
+        profilepic
+      }
     }
   }
 `;
