@@ -13,43 +13,14 @@ import AddMarker from "../components/MapSubmit/AddMarker";
 import SubmitModal from "../components/MapSubmit/MapSubmit";
 import tileLayer from "../utils/tileLayer";
 import { VIS_ENCOUNTERS } from "../utils/queries";
-
-const markerIcon = (category) => {
-  let iconColor = "";
-  let iconType = "";
-
-  switch (category) {
-    case "Extraterrestrial":
-      iconType = "rocket";
-      iconColor = "#03fcec";
-      break;
-    case "Zoological":
-      iconType = "dragon";
-      iconColor = "#e77ef2";
-      break;
-    case "Paranormal":
-      iconType = "ghost";
-      iconColor = "#55edb5";
-      break;
-    default:
-      iconType = "location-dot";
-      iconColor = "#000000";
-  }
-
-  return new L.DivIcon({
-    className: "test",
-    html: `<i class="fa-solid fa-${iconType} fa-xl" style="color:${iconColor};"></i>`,
-    iconSize: [30, 30],
-    iconAnchor: [15, 31],
-    popupAnchor: [0, -32],
-  });
-};
+import MarkerIcon from '../components/MapComponents/MarkerIcon'
+import CustDivIcon from "../components/MapComponents/DivMarker";
 
 const MapMarkers = ({ data }) => {
   return data.map((item, index) => (
     <Marker
       key={index}
-      icon={markerIcon(item.type)}
+      icon={CustDivIcon(MarkerIcon({encounterType:item.type,date:item.date}))}
       position={{ lat: item.lat, lng: item.lng }}
     >
       <Popup maxWidth={400} maxHeight={300}>
@@ -74,6 +45,37 @@ const MapMarkers = ({ data }) => {
     </Marker>
   ));
 };
+
+function Locator() {
+  const [position, setPosition] = useState(null);
+  const [bbox, setBbox] = useState([]);
+
+  const map = useMap();
+
+  useEffect(() => {
+    map.locate().on("locationfound", function (e) {
+      setPosition(e.latlng);
+      map.flyTo(e.latlng, map.getZoom());
+      const radius = e.accuracy;
+      const circle = L.circle(e.latlng, radius);
+      circle.addTo(map);
+      setBbox(e.bounds.toBBoxString().split(","));
+  });
+}, [map]);
+
+  return position === null ? null : (
+    <Marker position={position} icon={CustDivIcon({iconType: "location-dot", iconColor:"#000000", iconStyle:"solid"})}>
+      <Popup>
+        You are here. <br />
+        Map bbox: <br />
+        <b>Southwest lng</b>: {bbox[0]} <br />
+        <b>Southwest lat</b>: {bbox[1]} <br />
+        <b>Northeast lng</b>: {bbox[2]} <br />
+        <b>Northeast lat</b>: {bbox[3]}
+      </Popup>
+    </Marker>
+  );
+}
 
 const MapWrapper = () => {
   let lat = localStorage.getItem("lat");
@@ -123,28 +125,6 @@ const MapWrapper = () => {
   });
   const encounters = data?.visencounters || [];
 
-  const Locator = ({ map }) => {
-    useEffect(() => {
-      if (!map) return;
-
-      map.locate().on("locationfound", function (e) {
-        setPosition(e.latlng);
-        console.log(position);
-        map.flyTo(e.latlng, map.getZoom());
-        const bounds = map.getBounds();
-        console.log(bounds);
-        const bonundsList = {
-          lowlat: bounds.getSouth(),
-          hilat: bounds.getNorth(),
-          lowlng: bounds.getWest(),
-          hilng: bounds.getEast(),
-        };
-        console.log(bonundsList);
-        setVariables(bonundsList);
-      });
-    }, [map]);
-  };
-
   const onMapClick = (e) => {
     if (e && e.latlng) {
       console.log(e.latlng);
@@ -156,11 +136,11 @@ const MapWrapper = () => {
   return (
     <MapContainer
       className="map"
-      whenCreated={Locator}
+      whenCreated={setMap}
       center={mapPositions}
       zoom={10}
     >
-      <NewMapEvents map={map} />
+      <NewMapEvents />
       <Locator map={map} />
       <AddMarker onMapClick={onMapClick} newMarkPos={newMarkPos} />
       <SubmitModal newMarkPos={newMarkPos} setShowModal={setShowModal} showModal={showModal} />
