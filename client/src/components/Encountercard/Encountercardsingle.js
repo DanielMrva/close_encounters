@@ -1,8 +1,12 @@
 import "./Encountercard.css";
+import { Accordion, Card, Button, Form } from 'react-bootstrap'
+import 'bootstrap/dist/css/bootstrap.min.css';
+import React, { useState } from "react";
 
 export default function Encountercardsingle(props) {
   //   let profilepic = props.profilepic;
   //   console.log("this is props", props);
+  const [formData, setFormData] = useState({});
 
   console.log(props);
   return (
@@ -53,6 +57,36 @@ export default function Encountercardsingle(props) {
         {/* <div className={`description-flex ${viewableStyleDescription}`}> */}
         <p>{props.description}</p>
       </div>
+      <Accordion>
+        <Accordion.Item eventKey="0">
+          <Accordion.Header className="location-card"
+                      style={{
+                        fontFamily: "Red rose",
+                        textTransform: "capitalize",
+                        lineHeight: "0rem",
+                        color: "black",
+                      }}
+          
+          >Corroborate</Accordion.Header>
+          <Accordion.Body
+            style={{
+              fontFamily: "Red rose",
+              textTransform: "capitalize",
+              lineHeight: "1rem",
+              color: "black",
+            }}
+          >
+            <Form>
+              <Form.Group className="mb-3" controlId="exampleForm.ControlTextarea1">
+                <Form.Control size="sm" type="text" placeholder="leave a comment" />
+              </Form.Group>
+            </Form>
+            <Button variant="light">Submit</Button>
+          </Accordion.Body>
+        </Accordion.Item>
+      </Accordion>
+
     </div>
+
   );
 }
