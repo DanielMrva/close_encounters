@@ -51,8 +51,19 @@ const encounterSchema = new Schema({
     type: Schema.Types.ObjectId,
     ref: "User",
   },
+  commentId: [{
+    type: Schema.Types.ObjectId,
+    ref: "Comment",
+  }],
+  cooberations: [{
+    type: Schema.Types.ObjectId, ref: "User"
+  }]
 
 });
+
+encounterSchema.methods.coCount = function () {
+  coCount = this.cooberations.length();
+}
 
 const Encounter = model("Encounter", encounterSchema);
 

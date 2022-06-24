@@ -27,8 +27,10 @@ const userSchema = new Schema({
     {
       type: Schema.Types.ObjectId,
       ref: "Encounter",
-    },
-  ],
+    }],
+    comments: [{
+        type: Schema.Types.ObjectId,
+        ref: 'Comment' }]
 });
 
 userSchema.pre("save", async function (next) {
