@@ -9,8 +9,8 @@ const resolvers = {
       const params = _id ? { _id } : {};
       return User.find(params);
     },
-    user: async(parent, { userId }) => {
-      return User.findOne({_id:userId});
+    user: async (parent, { userId }) => {
+      return User.findOne({ _id: userId });
     },
     users: async () => {
       return User.find().populate("encounters");
@@ -25,19 +25,42 @@ const resolvers = {
       return Encounter.find();
     },
     encounters: async (parent, { username }) => {
+      console.log("test");
       const params = username ? { username } : {};
-      return Encounter.find(params).sort({ createdAt: -1 });
+      return await Encounter.find(params)
+        .sort({ createdAt: -1 })
+        .populate("userId");
     },
     encounter: async (parent, { encounterId }) => {
       return Encounter.findOne({ _id: encounterId });
     },
-    visencounters: async (parent, {lowlat, hilat, lowlng, hilng}) => {
-      return Encounter.find({$and: [{ lat : { $gte :  lowlat, $lte : hilat}}, {lng: {$gte: lowlng, $lte: hilng}}]});
-    }
+    visencounters: async (parent, { lowlat, hilat, lowlng, hilng }) => {
+      return Encounter.find({
+        $and: [
+          { lat: { $gte: lowlat, $lte: hilat } },
+          { lng: { $gte: lowlng, $lte: hilng } },
+        ],
+      }).populate("userId");
+    },
   },
   Mutation: {
     addUser: async (parent, { username, email, password }) => {
-      const user = await User.create({ username, email, password });
+      let profilepicoptions = [
+        "profilepic",
+        "profilepic1",
+        "profilepic2",
+        "profilepic3",
+        "profilepic4",
+        "profilepic5",
+        "profilepic6",
+      ];
+
+      let getRandomArrItem = (arr) =>
+        arr[Math.floor(Math.random() * arr.length)];
+
+      let profilepic = getRandomArrItem(profilepicoptions);
+
+      const user = await User.create({ username, email, password, profilepic });
       const token = signToken(user);
 
       return { token, user };
@@ -66,7 +89,17 @@ const resolvers = {
 
     saveEncounter: async (
       parent,
-      { encounterUser, date, category, type, lat, lng, title, description }
+      {
+        encounterUser,
+        date,
+        category,
+        type,
+        lat,
+        lng,
+        title,
+        description,
+        userId,
+      }
     ) => {
       const encounter = await Encounter.create({
         encounterUser,
@@ -77,6 +110,7 @@ const resolvers = {
         lng,
         title,
         description,
+        userId,
       });
 
       await User.findOneAndUpdate(

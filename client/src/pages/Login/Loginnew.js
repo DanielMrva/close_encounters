@@ -1,15 +1,15 @@
 import "./Login.css";
 import React, { useState } from "react";
 import { Link } from "react-router-dom";
-import { useMutation } from '@apollo/client';
-import { ADD_USER } from '../../utils/mutations';
-import Auth from '../../utils/auth';
+import { useMutation } from "@apollo/client";
+import { ADD_USER } from "../../utils/mutations";
+import Auth from "../../utils/auth";
 
 export default function Loginnew() {
   const [formState, setFormState] = useState({
-    username: '',
-    email: '',
-    password: '',
+    username: "",
+    email: "",
+    password: "",
   });
   const [addUser, { error }] = useMutation(ADD_USER);
 
@@ -32,20 +32,21 @@ export default function Loginnew() {
       });
 
       Auth.login(data.addUser.token);
-      
-      if(Auth.loggedIn) {
-        
-        window.location.href = "/user";}
-  
+
+      if (Auth.loggedIn) {
+        console.log("this is data", data);
+        localStorage.setItem("user", data.addUser.user.username);
+        localStorage.setItem("userId", data.addUser.user._id);
+        // window.location.href = "/user";
+      }
     } catch (e) {
       console.error(e);
     }
 
     setFormState({
-      email: '',
-      password: '',
+      email: "",
+      password: "",
     });
-
   };
 
   return (
@@ -88,9 +89,10 @@ export default function Loginnew() {
               onChange={handleChange}
             />
             <div style={{ display: "flex", justifyContent: "center" }}>
-              <button className="button1 sub-text"
-              style={{ cursor: 'pointer' }}
-              type="submit"
+              <button
+                className="button1 sub-text"
+                style={{ cursor: "pointer" }}
+                type="submit"
               >
                 sign-up
               </button>
@@ -99,16 +101,12 @@ export default function Loginnew() {
         </div>
 
         {error && (
-              <div className="my-3 p-3 bg-danger text-white">
-                {error.message}
-              </div>
+          <div className="my-3 p-3 bg-danger text-white">{error.message}</div>
         )}
 
         <div className="center-flex-container">
           <div className="sub-text" style={{ fontWeight: "700" }}>
-            <Link to="/login">
-              existing user? click here
-            </Link>
+            <Link to="/login">existing user? click here</Link>
           </div>
         </div>
       </div>

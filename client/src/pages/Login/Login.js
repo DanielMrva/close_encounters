@@ -34,7 +34,7 @@ export default function Login(props) {
       if (Auth.loggedIn) {
         console.log(data.login.user);
         localStorage.setItem("user", data.login.user.username);
-
+        localStorage.setItem("userId", data.login.user._id);
       }
     } catch (e) {
       console.error(e);
