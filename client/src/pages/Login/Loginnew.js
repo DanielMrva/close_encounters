@@ -34,10 +34,10 @@ export default function Loginnew() {
       Auth.login(data.addUser.token);
 
       if (Auth.loggedIn) {
-        console.log(data);
+        console.log("this is data", data);
         localStorage.setItem("user", data.addUser.user.username);
-        localStorage.setItem("userId", data.login.user._id);
-        window.location.href = "/user";
+        localStorage.setItem("userId", data.addUser.user._id);
+        // window.location.href = "/user";
       }
     } catch (e) {
       console.error(e);

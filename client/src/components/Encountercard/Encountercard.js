@@ -55,6 +55,7 @@ export default function Encountercard(props) {
   return (
     <div className="card-page">
       {smallEncounterList.map((data, index) => {
+        console.log(data);
         return (
           <div key={index}>
             <div className="card-container">
