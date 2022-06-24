@@ -16,10 +16,12 @@ import CustDivIcon from "../../components/MapComponents/DivMarker";
 import MarkerIcon from "../../components/MapComponents/MarkerIcon";
 import tileLayer from "../../utils/tileLayer";
 import { VIS_ENCOUNTERS } from "../../utils/queries";
+import Encountercardsingle from "../../components/Encountercard/Encountercardsingle";
 
 // const mapPositions = [39.7392, -104.9903];
 
 const MapMarkers = ({ data }) => {
+  console.log(data);
   return data.map((item, index) => (
     <Marker
       key={index}
@@ -29,7 +31,9 @@ const MapMarkers = ({ data }) => {
       position={{ lat: item.lat, lng: item.lng }}
     >
       <Popup maxWidth={400} maxHeight={300}>
-        <div className="card-page">
+        <Encountercardsingle {...item} />
+        {/* <Encountercardsingle profilepic={item.userId.profilepic} /> */}
+        {/* <div className="card-page">
           <div className="card-container">
             <div className="card-top-flex">
               <div className="card-header-flex">
@@ -45,7 +49,7 @@ const MapMarkers = ({ data }) => {
               <p>{item.description}</p>
             </div>
           </div>
-        </div>
+        </div> */}
       </Popup>
     </Marker>
   ));

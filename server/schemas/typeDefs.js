@@ -1,4 +1,4 @@
-const { gql } = require('apollo-server-express');
+const { gql } = require("apollo-server-express");
 // import { gql } from '@apollo/client';
 
 const typeDefs = gql`
@@ -7,7 +7,9 @@ const typeDefs = gql`
         username: String!
         email: String!
         password: String!
+        profilepic: String
         encounters: [Encounter]
+        comments: [Comment]
     }
 
     type Encounter {
@@ -21,7 +23,20 @@ const typeDefs = gql`
         title: String!
         description: String!
         createdAt: String
-        userId: String 
+        userId: User
+        commentId: [Comment]
+        cooberations: [String]
+    }
+
+    type Comment {
+        _id: ID!
+        commentText: String
+        createdAt: String
+        title: String
+        commentUser: String
+        userId: User
+        encounterId: Encounter
+        cooberations: [String]
     }
     
     type Auth {
@@ -38,26 +53,12 @@ const typeDefs = gql`
         encounters(username: String): [Encounter]
         encounter(encounterId: ID!): Encounter
         visencounters(lowlat: Float!, hilat: Float!, lowlng: Float!, hilng: Float!): [Encounter]
+        encounterComments(encounterId: ID!): [Comment]
+        userComments(userId: ID!): [Comment]
+        allcomments: [Comment]
     }
-
-    # type Mutation {
-    #     addUser(username: String!, email: String!, password: String!): Auth
-    #     login(email: String!, password: String!): Auth
-    #     saveEncounter(
-    #         encounterUser: String!,
-    #         date: String!, 
-    #         category: String!, 
-    #         type: String!, 
-    #         lat: Float!, 
-    #         lng: Float!, 
-    #         # title: String!, 
-    #         description: String!)
-    #         : Encounter
-    #     removeEncounter(encounterId: ID!): Encounter
-    # }
-
     type Mutation {
-        addUser(username: String!, email: String!, password: String!): Auth
+        addUser(username: String!, email: String!, password: String!, profilepic: String): Auth
         login(email: String!, password: String!): Auth
         saveEncounter(
             encounterUser: String
@@ -68,8 +69,25 @@ const typeDefs = gql`
             date: String
             lat: Float
             lng: Float
+            userId: ID
             ): Encounter
         removeEncounter(encounterId: ID!): Encounter
+        saveComment(
+            commentText: String!
+            title: String
+            commentUser: String
+            encounterId: String
+            userId: String
+            ): Comment 
+        cooberateEncounter(
+            encounterId: String!
+            userId: String!
+        ): Encounter
+        cooberateComment(
+            commentId: String!
+            userId: String!
+        ): Comment
+
     }
 `;
 

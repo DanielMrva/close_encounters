@@ -1,7 +1,8 @@
-const { User, Encounter } = require("../models");
+const { User, Encounter, Comment } = require("../models");
 const { AuthenticationError } = require("apollo-server-express");
 const { signToken } = require("../utils/auth");
 const { sign } = require("jsonwebtoken");
+const { faCommentSlash } = require("@fortawesome/free-solid-svg-icons");
 
 const resolvers = {
   Query: {
@@ -9,35 +10,60 @@ const resolvers = {
       const params = _id ? { _id } : {};
       return User.find(params);
     },
-    user: async(parent, { userId }) => {
-      return User.findOne({_id:userId});
-    },
-    users: async () => {
-      return User.find().populate("encounters");
-    },
     user: async (parent, { userId }) => {
       return User.findOne({ _id: userId });
+    },
+    users: async () => {
+      return User.find().populate(["encounters", "comments"]);
+    },
+    user: async (parent, { userId }) => {
+      return User.findOne({ _id: userId }).populate(["encounters","comments"]);
     },
     singleuser: async (parent, { email }) => {
       return User.findOne({ email: email });
     },
     allencounters: async () => {
-      return Encounter.find();
+      return Encounter.find().populate(["userId", "commentId"]);
     },
     encounters: async (parent, { username }) => {
+      console.log("test");
       const params = username ? { username } : {};
-      return Encounter.find(params).sort({ createdAt: -1 });
+      return await Encounter.find(params).sort({ createdAt: -1 }).populate(["userId", "commentId"]);
     },
     encounter: async (parent, { encounterId }) => {
-      return Encounter.findOne({ _id: encounterId });
+      return Encounter.findOne({ _id: encounterId }).populate(["userId", "commentId"]);
     },
     visencounters: async (parent, {lowlat, hilat, lowlng, hilng}) => {
-      return Encounter.find({$and: [{ lat : { $gte :  lowlat, $lte : hilat}}, {lng: {$gte: lowlng, $lte: hilng}}]});
+      return Encounter.find({$and: [{ lat : { $gte :  lowlat, $lte : hilat}}, {lng: {$gte: lowlng, $lte: hilng}}]}).populate(["userId", "commentId"]);
+    },
+    encounterComments: async (parent, { encounterId }) => {
+      return Comment.find({ encounterId: encounterId }).populate("userId").sort({ createdAt: -1 });
+    },
+    userComments: async (parent, { userId }) => {
+      return Comment.find({ userId: userId }).populate(["userId", "encounterId"]).sort({ createdAt: -1 });
+    },
+    allcomments: async () => {
+      return Comment.find().populate(["userId", "encounterId"]).sort({ createdAt: -1 });
     }
   },
   Mutation: {
     addUser: async (parent, { username, email, password }) => {
-      const user = await User.create({ username, email, password });
+      let profilepicoptions = [
+        "profilepic",
+        "profilepic1",
+        "profilepic2",
+        "profilepic3",
+        "profilepic4",
+        "profilepic5",
+        "profilepic6",
+      ];
+
+      let getRandomArrItem = (arr) =>
+        arr[Math.floor(Math.random() * arr.length)];
+
+      let profilepic = getRandomArrItem(profilepicoptions);
+
+      const user = await User.create({ username, email, password, profilepic });
       const token = signToken(user);
 
       return { token, user };
@@ -66,7 +92,17 @@ const resolvers = {
 
     saveEncounter: async (
       parent,
-      { encounterUser, date, category, type, lat, lng, title, description }
+      {
+        encounterUser,
+        date,
+        category,
+        type,
+        lat,
+        lng,
+        title,
+        description,
+        userId,
+      }
     ) => {
       const encounter = await Encounter.create({
         encounterUser,
@@ -77,6 +113,7 @@ const resolvers = {
         lng,
         title,
         description,
+        userId,
       });
 
       await User.findOneAndUpdate(
@@ -86,8 +123,48 @@ const resolvers = {
       return encounter;
     },
     removeEncounter: async (parent, { encounterId }) => {
-      return Encounter.findOneAndDelete({ _id: encounterId });
+      await Comment.deleteMany({encounterId: encounterId});
+      await Encounter.findOneAndDelete({ _id: encounterId });
+      return Encounter
     },
+    saveComment: async (
+      parent, {commentText, title, commentUser, encounterId, userId}
+    ) => {
+      const comment = await Comment.create({
+        commentText,
+        title,
+        commentUser,
+        encounterId,
+        userId
+      });
+
+      await Encounter.findOneAndUpdate(
+        { _id: encounterId },
+        { $addToSet: {commentId: comment._id}}
+      )
+
+      await User.findOneAndUpdate(
+        { _id: userId },
+        { $addToSet: {comments: comment._id} }
+      )
+
+      return comment;
+    },
+    cooberateEncounter: async (parent, { encounterId, userId }) => {
+      const encounter = await Encounter.findOneAndUpdate(
+        { _id: encounterId }, 
+        { $addToSet: {cooberations: userId}}
+        );
+        return encounter;
+    },
+    cooberateComment: async (parent, {commentId, userId}) => {
+      const comment = await Comment.findOneAndUpdate(
+        { _id: commentId },
+        { $addToSet: {cooberations: userId}}
+      );
+      return comment;
+    }
+
   },
 };
 

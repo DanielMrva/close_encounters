@@ -2,46 +2,55 @@
   {
     "username": "allison.fischer",
     "email": "aFischer@gmail.com",
-    "password": "fishfriend94"
+    "password": "fishfriend94",
+    "profilepic": "profilepic1"
   },
   {
     "username": "pat.of.the.paranormal",
     "email": "pat.of.the.paranormal@gmail.com",
-    "password": "whinneyTheP00"
+    "password": "whinneyTheP00",
+    "profilepic": "profilepic2"
   },
   {
     "username": "bigfoots.girlfriend",
     "email": "bigfoots.girlfriend@usgs.gov",
-    "password": "notAFlyingCircusReferance01"
+    "password": "notAFlyingCircusReferance01",
+    "profilepic": "profilepic3"
   },
   {
     "username": "richard.druphus",
     "email": "rDruphus@gmail.com",
-    "password": "IWannaMesa77"
+    "password": "IWannaMesa77",
+    "profilepic": "profilepic4"
   },
   {
     "username": "wendy.starlink",
     "email": "wStarlink@gmail.com",
-    "password": "weStar1337"
+    "password": "weStar1337",
+    "profilepic": "profilepic5"
   },
   {
     "username": "alienhunter.229",
     "email": "alienhunter.229@gmail.com",
-    "password": "mrthompson"
+    "password": "mrthompson",
+    "profilepic": "profilepic6"
   },
   {
     "username": "lover.of.unknown",
     "email": "loverofunknown@gmail.com",
-    "password": "mrthompson"
+    "password": "mrthompson",
+    "profilepic": "profilepic"
   },
   {
     "username": "susie.seeks.ghosts",
     "email": "susieseeksghosts.junior@gmail.com",
-    "password": "mrthompson"
+    "password": "mrthompson",
+    "profilepic": "profilepic1"
   },
   {
     "username": "chupacabra.collector88",
     "email": "chupacabra.collector88.junior@gmail.com",
-    "password": "mrthompson"
+    "password": "mrthompson",
+    "profilepic": "profilepic2"
   }
 ]
