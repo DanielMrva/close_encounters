@@ -109,7 +109,6 @@ export const ADD_COMMENT = gql`
   ) {
     saveComment(
       commentText: $commentText
-      title: $title
       commentUser: $commentUser
       encounterId: $encounterId
       userId: $userId
@@ -117,58 +116,57 @@ export const ADD_COMMENT = gql`
       _id
       commentText
       createdAt
-      title
       commentUser
       userId 
       encounterId
-      corroborations 
+      corroborations
     }
   }
 `;
 
-export const COB_ENC = gql`
-  corroborate Encounter(
-    $encounterId: ID!
-    $userId: ID!
-  ) { 
-    corroborate Encounter(
-      encounterId: $encounterId
-      userId: $userId
-    ) {
-      _id
-      encounterUser
-      title
-      description
-      type
-      category
-      date
-      lat
-      lng
-      userId {
-        _id
-      } 
-      corroborations 
-    }
-  }
-`;
+// export const COB_ENC = gql`
+//   corroborateEncounter(
+//     $encounterId: ID!
+//     $userId: ID!
+//   ) { 
+//     corroborateEncounter(
+//       encounterId: $encounterId
+//       userId: $userId
+//     ) {
+//       _id
+//       encounterUser
+//       title
+//       description
+//       type
+//       category
+//       date
+//       lat
+//       lng
+//       userId {
+//         _id
+//       } 
+//       corroborations 
+//     }
+//   }
+// `;
 
-export const COB_COM = gql`
-   corroborate Comment(
-    $commentId: ID!
-    $userId: ID!
-  ) {
-    corroborate Comment(
-      commentId: $commentId
-      userId: $userId
-    )  {
-      _id
-      commentText
-      createdAt
-      title
-      commentUser
-      userId 
-      encounterId
-      corroborations 
-    }
-  }
-`;
+// export const COB_COM = gql`
+//    corroborateComment(
+//     $commentId: ID!
+//     $userId: ID!
+//   ) {
+//     corroborateComment(
+//       commentId: $commentId
+//       userId: $userId
+//     )  {
+//       _id
+//       commentText
+//       createdAt
+//       title
+//       commentUser
+//       userId 
+//       encounterId
+//       corroborations 
+//     }
+//   }
+// `;

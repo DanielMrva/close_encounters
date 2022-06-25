@@ -25,7 +25,7 @@ const commentSchema = new Schema({
     type: Schema.Types.ObjectId,
     ref: "Encounter"
   },
-  corroborations : [{
+  corroborations: [{
       type: Schema.Types.ObjectId, 
       ref: "User"
   }] //seems like this might be best as an array of user ID's that have corroborated the encounter?

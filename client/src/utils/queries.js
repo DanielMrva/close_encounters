@@ -34,7 +34,7 @@ export const QUERY_SINGLEUSER = gql`
 
 // this needs to be fixed
 export const ALL_EVENTS = gql`
-  query Allencounters {
+  query allencounters {
     encounters {
       _id
       encounterUser
@@ -51,12 +51,7 @@ export const ALL_EVENTS = gql`
       }
       commentId {
         commentText
-        createdAt
-        title
         commentUser
-        userId
-        encounterId
-        corroborations 
       }
     }
   }
@@ -78,19 +73,14 @@ export const USER_EVENTS = gql`
       }
       commentId {
         commentText
-        createdAt
-        title
         commentUser
-        userId
-        encounterId
-        corroborations 
       }
     }
   }
 `;
 
 export const VIS_ENCOUNTERS = gql`
-  query Visencounters(
+  query visencounters(
     $lowlat: Float!
     $hilat: Float!
     $lowlng: Float!
@@ -118,12 +108,7 @@ export const VIS_ENCOUNTERS = gql`
       }
       commentId {
         commentText
-        createdAt
-        title
         commentUser
-        userId
-        encounterId
-        corroborations 
       }
     }
   }
@@ -134,11 +119,10 @@ export const ENC_COMMENTS = gql`
     encounterComments{
       commentText
       createdAt
-      title
       commentUser
       userId
       encounterId
-      corroborations 
+      corroborations
     }
   }
 `;
@@ -148,11 +132,10 @@ export const USER_COMMENTS = gql`
     userComments{
       commentText
       createdAt
-      title
       commentUser
       userId
       encounterId
-      corroborations 
+      corroborations
     }
   }
 `;
@@ -162,21 +145,19 @@ export const ALL_COMMENTS = gql`
     allcomments {
       commentText
       createdAt
-      title
       commentUser
       userId
       encounterId
-      corroborations 
+      corroborations
     }
   }
 `;
 
 export const ONE_COMMENT = gql`
-  query oncComment( $commentId: ID!) {
+  query oneComment( $commentId: ID!) {
     oneComment {
       commentText
       createdAt
-      title
       commentUser
       userId
       encounterId

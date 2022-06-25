@@ -55,7 +55,7 @@ const encounterSchema = new Schema({
     type: Schema.Types.ObjectId,
     ref: "Comment",
   }],
-  corroborations : [{
+  corroborations: [{
     type: Schema.Types.ObjectId, ref: "User"
   }]
 
