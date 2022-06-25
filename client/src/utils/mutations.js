@@ -104,8 +104,8 @@ export const ADD_COMMENT = gql`
     $commentText: String
     $title: String
     $commentUser: String
-    encounterId: ID
-    userId: ID
+    $encounterId: ID
+    $userId: ID
   ) {
     saveComment(
       commentText: $commentText
@@ -121,17 +121,17 @@ export const ADD_COMMENT = gql`
       commentUser
       userId 
       encounterId
-      cooberations
+      corroborations 
     }
   }
 `;
 
 export const COB_ENC = gql`
-  cooberateEncounter(
+  corroborate Encounter(
     $encounterId: ID!
     $userId: ID!
-  ) {
-    cooberateEncounter(
+  ) { 
+    corroborate Encounter(
       encounterId: $encounterId
       userId: $userId
     ) {
@@ -146,18 +146,18 @@ export const COB_ENC = gql`
       lng
       userId {
         _id
-      }
-      cooberations
+      } 
+      corroborations 
     }
   }
 `;
 
 export const COB_COM = gql`
-   cooberateComment(
+   corroborate Comment(
     $commentId: ID!
     $userId: ID!
   ) {
-    cooberateComment(
+    corroborate Comment(
       commentId: $commentId
       userId: $userId
     )  {
@@ -168,7 +168,7 @@ export const COB_COM = gql`
       commentUser
       userId 
       encounterId
-      cooberations
+      corroborations 
     }
   }
 `;

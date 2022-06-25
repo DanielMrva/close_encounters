@@ -56,7 +56,7 @@ export const ALL_EVENTS = gql`
         commentUser
         userId
         encounterId
-        cooberations
+        corroborations 
       }
     }
   }
@@ -83,7 +83,7 @@ export const USER_EVENTS = gql`
         commentUser
         userId
         encounterId
-        cooberations
+        corroborations 
       }
     }
   }
@@ -123,7 +123,7 @@ export const VIS_ENCOUNTERS = gql`
         commentUser
         userId
         encounterId
-        cooberations
+        corroborations 
       }
     }
   }
@@ -138,7 +138,7 @@ export const ENC_COMMENTS = gql`
       commentUser
       userId
       encounterId
-      cooberations
+      corroborations 
     }
   }
 `;
@@ -152,7 +152,7 @@ export const USER_COMMENTS = gql`
       commentUser
       userId
       encounterId
-      cooberations
+      corroborations 
     }
   }
 `;
@@ -166,7 +166,7 @@ export const ALL_COMMENTS = gql`
       commentUser
       userId
       encounterId
-      cooberations
+      corroborations 
     }
   }
 `;
@@ -180,7 +180,7 @@ export const ONE_COMMENT = gql`
       commentUser
       userId
       encounterId
-      cooberations
+      corroborations 
     }
   }
 `;

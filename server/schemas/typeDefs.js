@@ -25,7 +25,7 @@ const typeDefs = gql`
         createdAt: String
         userId: User
         commentId: [Comment]
-        cooberations: [ID]
+        corroborations : [ID]
     }
 
     type Comment {
@@ -36,7 +36,7 @@ const typeDefs = gql`
         commentUser: String
         userId: User
         encounterId: Encounter
-        cooberations: [ID]
+        corroborations : [ID]
     }
     
     type Auth {
@@ -79,11 +79,11 @@ const typeDefs = gql`
             encounterId: ID
             userId: ID
             ): Comment 
-        cooberateEncounter(
+        corroborateEncounter(
             encounterId: ID!
             userId: ID!
         ): Encounter
-        cooberateComment(
+        corroborateComment(
             commentId: ID!
             userId: ID!
         ): Comment

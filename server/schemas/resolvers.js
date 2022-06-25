@@ -152,17 +152,17 @@ const resolvers = {
 
       return comment;
     },
-    cooberateEncounter: async (parent, { encounterId, userId }) => {
+    corroborateEncounter: async (parent, { encounterId, userId }) => {
       const encounter = await Encounter.findOneAndUpdate(
         { _id: encounterId }, 
-        { $addToSet: {cooberations: userId}}
+        { $addToSet: {corroborations : userId}}
         );
         return encounter;
     },
-    cooberateComment: async (parent, {commentId, userId}) => {
+    corroborateComment: async (parent, {commentId, userId}) => {
       const comment = await Comment.findOneAndUpdate(
         { _id: commentId },
-        { $addToSet: {cooberations: userId}}
+        { $addToSet: {corroborations : userId}}
       );
       return comment;
     }
