@@ -75,7 +75,6 @@ const typeDefs = gql`
         removeEncounter(encounterId: ID!): Encounter
         saveComment(
             commentText: String!
-            title: String
             commentUser: String
             encounterId: ID
             userId: ID

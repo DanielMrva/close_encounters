@@ -12,12 +12,6 @@ const commentSchema = new Schema({
     default: Date.now,
     get: (timestamp) => dateFormat(timestamp)
   },
-  title: {
-    type: String,
-    required: false,
-    trim: true,
-    max_length: 75,
-  },
   commentUser: {
     type: String,
     encounter: false,
