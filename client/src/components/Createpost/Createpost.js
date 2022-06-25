@@ -73,13 +73,10 @@ export default function Createpost({ newMarkPos, setShowModal }) {
 
     try {
       const username = localStorage.getItem("user");
-<<<<<<< HEAD
-=======
       console.log("username", username);
       const userId = localStorage.getItem("userId");
       console.log("userId", userId);
 
->>>>>>> 49696aa6942240fdf2c8fbbab012cf5caf0ae7d7
       const { data } = await saveEncounter({
         variables: {
           category: formData.category,

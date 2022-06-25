@@ -4,12 +4,15 @@ import { useMutation } from "@apollo/client";
 import { LOGIN_USER } from "../../utils/mutations";
 import Auth from "../../utils/auth";
 import { Link } from "react-router-dom";
-import User from "../User/User";
-import { QUERY_SINGLEUSER } from "../../utils/mutations";
 // merging
+
+import { useUserName, useUpdateUserName } from "../../components/Context/UserContext";
 
 // export default function Login(props) {
 export default function Login() {
+
+  const updateUserName = useUpdateUserName();
+  const userName = useUserName();
 
   const [formState, setFormState] = useState({ email: "", password: "" });
   const [login, { error }] = useMutation(LOGIN_USER);
@@ -27,6 +30,8 @@ export default function Login() {
 
   const handleFormSubmit = async (event) => {
 
+    let loggedIn;
+
     event.preventDefault();
     // console.log(formState);
     try {
@@ -39,10 +44,15 @@ export default function Login() {
       if (Auth.loggedIn) {
         localStorage.setItem("user", data.login.user.username);
         localStorage.setItem("userId", data.login.user._id);
+
+        loggedIn = data.login.user.username;
+
       }
     } catch (e) {
       console.error(e);
     }
+
+    updateUserName(loggedIn);
 
     // clear form values
     setFormState({

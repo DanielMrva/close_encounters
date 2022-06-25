@@ -5,8 +5,16 @@ import shipImage from "../../images/light-ship.png";
 import Auth from "../../utils/auth";
 import Login from "../Login/Login";
 import Encountercard from "../../components/Encountercard/Encountercard";
+import { useState, useContext, useEffect } from 'react';
+
+// context shit
+import { useUserName } from "../../components/Context/UserContext";
 
 export default function User() {
+
+  // context shit
+  const userName = useUserName();
+  console.log(userName)
 
   if (Auth.loggedIn()) {
     return (
@@ -24,7 +32,7 @@ export default function User() {
           <div className="scenario-container">
             <div className="flex-center">
               <h4>
-                TOMORROW YOU MAY WAKE UP IN A LOCATION WITH NO IDEA HOW YOU GOT
+                WELCOME BACK, {userName}. TOMORROW YOU MAY WAKE UP IN A LOCATION WITH NO IDEA HOW YOU GOT
                 THERE
               </h4>
             </div>
