@@ -12,12 +12,6 @@ const commentSchema = new Schema({
     default: Date.now,
     get: (timestamp) => dateFormat(timestamp)
   },
-  title: {
-    type: String,
-    required: false,
-    trim: true,
-    max_length: 75,
-  },
   commentUser: {
     type: String,
     encounter: false,
@@ -32,7 +26,8 @@ const commentSchema = new Schema({
     ref: "Encounter"
   },
   cooberations: [{
-      type: Schema.Types.ObjectId, ref: "User"
+      type: Schema.Types.ObjectId, 
+      ref: "User"
   }] //seems like this might be best as an array of user ID's that have cooberated the encounter?
 
 });
