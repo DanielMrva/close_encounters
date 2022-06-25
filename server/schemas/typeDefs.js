@@ -76,11 +76,7 @@ const typeDefs = gql`
         saveComment(
             commentText: String!
             commentUser: String
-<<<<<<< HEAD
-            encounterId: String
-=======
             encounterId: ID
->>>>>>> 54aac043b40937989862d8466e97629d1856ab75
             userId: ID
             ): Comment 
         cooberateEncounter(
