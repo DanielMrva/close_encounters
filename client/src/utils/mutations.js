@@ -74,34 +74,6 @@ export const ADD_EVENT = gql`
   }
 `;
 
-export const ADD_COMMENT = gql`
-  mutation saveComment(
-    $commentText: String
-    $title: String
-    $commentUser: String
-    $encounterId: String
-    $userId: ID
-  ) {
-    saveComment(
-      commentText: $commentText
-      title: $title
-      commentUser: $commentUser
-      encounterId: $encounterId
-      userId: $userId
-    ) {
-      _id
-      commentText
-      title
-      commentUser
-      encounterId
-      userId {
-        _id
-      }
-
-    }
-  }
-`;
-
 export const LOGIN_USER = gql`
   mutation login($email: String!, $password: String!) {
     login(email: $email, password: $password) {
@@ -123,6 +95,80 @@ export const ADD_USER = gql`
         username
         profilepic
       }
+    }
+  }
+`;
+
+export const ADD_COMMENT = gql`
+  mutation saveComment(
+    $commentText: String
+    $title: String
+    $commentUser: String
+    encounterId: ID
+    userId: ID
+  ) {
+    saveComment(
+      commentText: $commentText
+      title: $title
+      commentUser: $commentUser
+      encounterId: $encounterId
+      userId: $userId
+    ) {
+      _id
+      commentText
+      createdAt
+      title
+      commentUser
+      userId 
+      encounterId
+      cooberations
+    }
+  }
+`;
+
+export const COB_ENC = gql`
+  cooberateEncounter(
+    $encounterId: ID!
+    $userId: ID!
+  ) {
+    cooberateEncounter(
+      encounterId: $encounterId
+      userId: $userId
+    ) {
+      _id
+      encounterUser
+      title
+      description
+      type
+      category
+      date
+      lat
+      lng
+      userId {
+        _id
+      }
+      cooberations
+    }
+  }
+`;
+
+export const COB_COM = gql`
+   cooberateComment(
+    $commentId: ID!
+    $userId: ID!
+  ) {
+    cooberateComment(
+      commentId: $commentId
+      userId: $userId
+    )  {
+      _id
+      commentText
+      createdAt
+      title
+      commentUser
+      userId 
+      encounterId
+      cooberations
     }
   }
 `;
