@@ -44,6 +44,9 @@ const resolvers = {
     },
     allcomments: async () => {
       return Comment.find().populate(["userId", "encounterId"]).sort({ createdAt: -1 });
+    },
+    oncComment: async (parent, { commentId }) => {
+      return Comment.findOne({ _id: commentId });
     }
   },
   Mutation: {

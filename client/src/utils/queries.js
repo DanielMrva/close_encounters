@@ -49,6 +49,15 @@ export const ALL_EVENTS = gql`
         username
         profilepic
       }
+      commentId {
+        commentText
+        createdAt
+        title
+        commentUser
+        userId
+        encounterId
+        cooberations
+      }
     }
   }
 `;
@@ -63,6 +72,19 @@ export const USER_EVENTS = gql`
       lat
       long
       description
+      userId {
+        username
+        profilepic
+      }
+      commentId {
+        commentText
+        createdAt
+        title
+        commentUser
+        userId
+        encounterId
+        cooberations
+      }
     }
   }
 `;
@@ -94,6 +116,71 @@ export const VIS_ENCOUNTERS = gql`
         username
         profilepic
       }
+      commentId {
+        commentText
+        createdAt
+        title
+        commentUser
+        userId
+        encounterId
+        cooberations
+      }
+    }
+  }
+`;
+
+export const ENC_COMMENTS = gql`
+  query encounterComments( $encounterID: ID! ) {
+    encounterComments{
+      commentText
+      createdAt
+      title
+      commentUser
+      userId
+      encounterId
+      cooberations
+    }
+  }
+`;
+
+export const USER_COMMENTS = gql`
+  query userComments( $userId: ID! ) {
+    userComments{
+      commentText
+      createdAt
+      title
+      commentUser
+      userId
+      encounterId
+      cooberations
+    }
+  }
+`;
+
+export const ALL_COMMENTS = gql`
+  query allcomments {
+    allcomments {
+      commentText
+      createdAt
+      title
+      commentUser
+      userId
+      encounterId
+      cooberations
+    }
+  }
+`;
+
+export const ONE_COMMENT = gql`
+  query oncComment( $commentId: ID!) {
+    oneComment {
+      commentText
+      createdAt
+      title
+      commentUser
+      userId
+      encounterId
+      cooberations
     }
   }
 `;
