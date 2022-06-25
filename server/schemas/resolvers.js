@@ -131,7 +131,7 @@ const resolvers = {
       return Encounter
     },
     saveComment: async (
-      parent, {commentText, title, commentUser, encounterId, userId}
+      parent, {commentText, commentUser, encounterId, userId}
     ) => {
       const comment = await Comment.create({
         commentText,

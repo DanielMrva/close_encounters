@@ -22,12 +22,15 @@ export default function Encountercardsingle(props) {
       console.log("username", username);
       const userId = localStorage.getItem("userId");
       console.log("userId", userId);
+      const encounterId = e.target.getattribute('data-encounter')
+      console.log("encounterId", encounterId);
 
       const { data } = await saveComment({
         variables: {
           commentText: formData.commentText,
           commentUser: username,
-          userId: userId
+          userId: userId,
+          encounterId: encounterId
         },
       })
     } catch (err) {
@@ -105,7 +108,7 @@ return (
               />
             </Form.Group>
           </Form>
-          <Button variant="light" type="submit" value="Submit!">Submit</Button>
+          <Button variant="light" type="submit" value="Submit!" data-encounter={props._id}>Submit</Button>
         </Accordion.Body>
       </Accordion.Item>
     </Accordion>
