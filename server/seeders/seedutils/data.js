@@ -162,12 +162,26 @@ const getEncounters = (qtt, descLength) => {
   return encounters;
 };
 
+const getComments = (qtt, commLength) => {
+  const comments = [];
+  for (i = 0; i < qtt; i++) {
+    comments.push({
+      commentText: randomText(rndInt(commLength)),
+      title: randomText(1)
+    })
+  }
+  console.log(comments);
+  return comments;
+}
+
 module.exports = {
   getEncounters,
+  getComments,
   getRandomArrItem,
   category,
   type,
   getRandomFloat,
   rndInt,
   randomText,
+  
 };
