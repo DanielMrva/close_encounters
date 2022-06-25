@@ -167,7 +167,6 @@ const getComments = (qtt, commLength) => {
   for (i = 0; i < qtt; i++) {
     comments.push({
       commentText: randomText(rndInt(commLength)),
-      title: randomText(1)
     })
   }
   console.log(comments);
