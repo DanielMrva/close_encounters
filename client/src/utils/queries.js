@@ -49,15 +49,14 @@ export const ALL_EVENTS = gql`
         username
         profilepic
       }
-      commentId {
-        commentText
-        createdAt
-        title
-        commentUser
-        userId
-        encounterId
-        cooberations
-      }
+      # commentId {
+      #   commentText
+      #   createdAt
+      #   commentUser
+      #   userId
+      #   encounterId
+      #   corroborations
+      # }
     }
   }
 `;
@@ -76,15 +75,14 @@ export const USER_EVENTS = gql`
         username
         profilepic
       }
-      commentId {
-        commentText
-        createdAt
-        title
-        commentUser
-        userId
-        encounterId
-        cooberations
-      }
+      # commentId {
+      #   commentText
+      #   createdAt
+      #   commentUser
+      #   userId
+      #   encounterId
+      #   corroborations
+      # }
     }
   }
 `;
@@ -116,15 +114,15 @@ export const VIS_ENCOUNTERS = gql`
         username
         profilepic
       }
-      commentId {
-        commentText
-        createdAt
-        title
-        commentUser
-        userId
-        encounterId
-        cooberations
-      }
+      # commentId {
+      #   commentText
+      #   createdAt
+      #   title
+      #   commentUser
+      #   userId
+      #   encounterId
+      #   corroborations
+      # }
     }
   }
 `;
@@ -138,7 +136,7 @@ export const ENC_COMMENTS = gql`
       commentUser
       userId
       encounterId
-      cooberations
+      corroborations
     }
   }
 `;
@@ -152,7 +150,7 @@ export const USER_COMMENTS = gql`
       commentUser
       userId
       encounterId
-      cooberations
+      corroborations
     }
   }
 `;
@@ -166,13 +164,13 @@ export const ALL_COMMENTS = gql`
       commentUser
       userId
       encounterId
-      cooberations
+      corroborations
     }
   }
 `;
 
 export const ONE_COMMENT = gql`
-  query oncComment( $commentId: ID!) {
+  query oneComment( $commentId: ID!) {
     oneComment {
       commentText
       createdAt
@@ -180,7 +178,7 @@ export const ONE_COMMENT = gql`
       commentUser
       userId
       encounterId
-      cooberations
+      corroborations
     }
   }
 `;

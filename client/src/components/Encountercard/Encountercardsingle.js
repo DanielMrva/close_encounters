@@ -1,5 +1,5 @@
 import "./Encountercard.css";
-import { Accordion, Card, Button, Form } from 'react-bootstrap'
+import { Accordion, Card, Button, Form, FormControl } from 'react-bootstrap'
 import 'bootstrap/dist/css/bootstrap.min.css';
 import React, { useState } from "react";
 import { useMutation } from "@apollo/client";
@@ -97,8 +97,9 @@ return (
           }}
         >
           <Form onSubmit={submitHandler}>
-            <Form.Group className="mb-3" controlId="exampleForm.ControlTextarea1">
+            <Form.Group className="mb-3" role="form">
               <Form.Control 
+              className="form-control"
               size="sm" 
               type="text" 
               placeholder="leave a comment"
@@ -107,8 +108,8 @@ return (
               onChange={handleInputChange}
               />
             </Form.Group>
+            <Button variant="light" type="submit" value="Submit!" data-encounter={props._id}>Submit</Button>
           </Form>
-          <Button variant="light" type="submit" value="Submit!" data-encounter={props._id}>Submit</Button>
         </Accordion.Body>
       </Accordion.Item>
     </Accordion>

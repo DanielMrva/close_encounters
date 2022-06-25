@@ -104,8 +104,8 @@ export const ADD_COMMENT = gql`
     $commentText: String
     $title: String
     $commentUser: String
-    encounterId: ID
-    userId: ID
+    $encounterId: ID
+    $userId: ID
   ) {
     saveComment(
       commentText: $commentText
@@ -121,54 +121,54 @@ export const ADD_COMMENT = gql`
       commentUser
       userId 
       encounterId
-      cooberations
+      corroberations
     }
   }
 `;
 
-export const COB_ENC = gql`
-  cooberateEncounter(
-    $encounterId: ID!
-    $userId: ID!
-  ) {
-    cooberateEncounter(
-      encounterId: $encounterId
-      userId: $userId
-    ) {
-      _id
-      encounterUser
-      title
-      description
-      type
-      category
-      date
-      lat
-      lng
-      userId {
-        _id
-      }
-      cooberations
-    }
-  }
-`;
+// export const COB_ENC = gql`
+//   corroborateEncounter(
+//     $encounterId: ID!
+//     $userId: ID!
+//   ) {
+//     corroborateEncounter(
+//       encounterId: $encounterId
+//       userId: $userId
+//     ) {
+//       _id
+//       encounterUser
+//       title
+//       description
+//       type
+//       category
+//       date
+//       lat
+//       lng
+//       userId {
+//         _id
+//       }
+//       corroborations
+//     }
+//   }
+// `;
 
-export const COB_COM = gql`
-   cooberateComment(
-    $commentId: ID!
-    $userId: ID!
-  ) {
-    cooberateComment(
-      commentId: $commentId
-      userId: $userId
-    )  {
-      _id
-      commentText
-      createdAt
-      title
-      commentUser
-      userId 
-      encounterId
-      cooberations
-    }
-  }
-`;
+// export const COB_COM = gql`
+//    corroborateComment(
+//     $commentId: ID!
+//     $userId: ID!
+//   ) {
+//     corroborateComment(
+//       commentId: $commentId
+//       userId: $userId
+//     )  {
+//       _id
+//       commentText
+//       createdAt
+//       title
+//       commentUser
+//       userId 
+//       encounterId
+//       corroborations
+//     }
+//   }
+// `;
