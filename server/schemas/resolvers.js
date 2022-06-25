@@ -132,7 +132,6 @@ const resolvers = {
     ) => {
       const comment = await Comment.create({
         commentText,
-        title,
         commentUser,
         encounterId,
         userId

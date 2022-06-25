@@ -74,6 +74,34 @@ export const ADD_EVENT = gql`
   }
 `;
 
+export const ADD_COMMENT = gql`
+  mutation saveComment(
+    $commentText: String
+    $title: String
+    $commentUser: String
+    $encounterId: String
+    $userId: ID
+  ) {
+    saveComment(
+      commentText: $commentText
+      title: $title
+      commentUser: $commentUser
+      encounterId: $encounterId
+      userId: $userId
+    ) {
+      _id
+      commentText
+      title
+      commentUser
+      encounterId
+      userId {
+        _id
+      }
+
+    }
+  }
+`;
+
 export const LOGIN_USER = gql`
   mutation login($email: String!, $password: String!) {
     login(email: $email, password: $password) {
