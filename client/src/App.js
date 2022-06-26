@@ -24,6 +24,8 @@ import Loginnew from "./pages/Login/Loginnew";
 import Bottomnav from "./components/Bottomnav/Bottomnav";
 import Postpage from "./pages/Postpage/Postpage";
 
+import {UserProvider} from './utils/UserContext';
+
 // Construct our main GraphQL API endpoint
 const httpLink = createHttpLink({
     uri: "/graphql",
@@ -50,25 +52,26 @@ const client = new ApolloClient({
 });
 
 function App() {
-    
 
     return (
         <ApolloProvider client={client}>
-            <Router>
-                <Topnav />
-                    <div style={{ height: "fit-content" }}>
-                        <Routes>
-                        <Route path="/" element={<Home />} />
-                        <Route path="/map" element={<Map />} />
-                        <Route path="/user" element={<User />} />
-                        <Route path="/login" element={<Login />} />
-                        <Route path="/postpage" element={<Postpage />} />
-                        <Route path="/createpost" element={<Createpost />} />
-                        <Route path="/loginnew" element={<Loginnew />} />
-                        </Routes>
-                    </div>
-                <Bottomnav />
-            </Router>
+            <UserProvider>
+                <Router>
+                    <Topnav />
+                        <div style={{ height: "fit-content" }}>
+                            <Routes>
+                            <Route path="/" element={<Home />} />
+                            <Route path="/map" element={<Map />} />
+                            <Route path="/user" element={<User />} />
+                            <Route path="/login" element={<Login />} />
+                            <Route path="/postpage" element={<Postpage />} />
+                            <Route path="/createpost" element={<Createpost />} />
+                            <Route path="/loginnew" element={<Loginnew />} />
+                            </Routes>
+                        </div>
+                    <Bottomnav />
+                </Router>
+            </UserProvider>
       </ApolloProvider>
     );
 };
