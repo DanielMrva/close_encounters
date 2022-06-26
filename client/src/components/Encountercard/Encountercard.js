@@ -9,7 +9,7 @@ import "./Encountercard.css";
 
 import { useQuery } from "@apollo/client";
 import { ALL_EVENTS } from "../../utils/queries";
-import { printIntrospectionSchema } from "graphql";
+// import { printIntrospectionSchema } from "graphql";
 
 export default function Encountercard(props) {
   const { loading, err, data } = useQuery(ALL_EVENTS);

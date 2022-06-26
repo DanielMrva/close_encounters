@@ -74,7 +74,7 @@ db.once("open", async () => {
                 ).then((comment) => 
                   !comment
                     ? console.log("no comment found 3")
-                    : console.log(`added comment: ${com.title}`)
+                    : console.log(`added comment: ${com.commentText}`)
                 )
             )
            
