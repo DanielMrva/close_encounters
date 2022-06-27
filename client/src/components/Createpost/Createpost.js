@@ -91,7 +91,7 @@ export default function Createpost({ newMarkPos, setShowModal }) {
       });
 
       console.log(data);
-
+      // localStorage.setItem("encounterId", formData._id);
       localStorage.setItem("lat", parseFloat(formData.lat ?? latPlaceholder));
       localStorage.setItem("lng", parseFloat(formData.lng ?? lngPlaceholder));
 

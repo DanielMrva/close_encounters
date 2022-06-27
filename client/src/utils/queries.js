@@ -111,6 +111,7 @@ export const VIS_ENCOUNTERS = gql`
       description
       createdAt
       userId {
+        _id
         username
         profilepic
       }

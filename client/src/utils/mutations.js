@@ -102,14 +102,12 @@ export const ADD_USER = gql`
 export const ADD_COMMENT = gql`
   mutation saveComment(
     $commentText: String
-    $title: String
     $commentUser: String
     $encounterId: ID
     $userId: ID
   ) {
     saveComment(
       commentText: $commentText
-      title: $title
       commentUser: $commentUser
       encounterId: $encounterId
       userId: $userId
@@ -117,7 +115,6 @@ export const ADD_COMMENT = gql`
       _id
       commentText
       createdAt
-      title
       commentUser
       userId 
       encounterId
