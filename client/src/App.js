@@ -11,6 +11,8 @@ import {
     BrowserRouter as Router,
     Routes,
     Route,
+    Switch,
+    Link,
     } from "react-router-dom";
 
 import Home from "./pages/Home/Home";
@@ -55,7 +57,7 @@ function App() {
 
     return (
         <ApolloProvider client={client}>
-            <UserProvider>
+            <UserProvider>               
                 <Router>
                     <Topnav />
                         <div style={{ height: "fit-content" }}>
@@ -69,9 +71,9 @@ function App() {
                             <Route path="/loginnew" element={<Loginnew />} />
                             </Routes>
                         </div>
-                    <Bottomnav />
+                    <Bottomnav />  
                 </Router>
-            </UserProvider>
+            </UserProvider>  
       </ApolloProvider>
     );
 };

@@ -3,35 +3,37 @@ import React, { useContext, useState } from "react";
 import { useMutation } from "@apollo/client";
 import { LOGIN_USER } from "../../utils/mutations";
 import Auth from "../../utils/auth";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 // merging
 
 import { UserContext } from "../../utils/UserContext";
 
-let user;
-
 export default function Login() {
 
-  const { dispatch } = useContext(UserContext);
+  const navigate = useNavigate();
+
+  let user;
+
+  const {state, dispatch} = useContext(UserContext);
 
   const [formState, setFormState] = useState({ email: "", password: "" });
   const [login, { error }] = useMutation(LOGIN_USER);
 
   const handleChange = (event) => {
-    const { name, value } = event.target;
-
-    // localStorage.setItem('username', )
+  const { name, value } = event.target;
 
     setFormState({
       ...formState,
       [name]: value,
     });
+
+
   };
 
   const handleFormSubmit = async (event) => {
 
     event.preventDefault();
-    // console.log(formState);
+
     try {
       const { data } = await login({
         variables: { ...formState },
@@ -39,34 +41,37 @@ export default function Login() {
 
       Auth.login(data.login.token);
 
-      dispatch({
-        type: 'SET_USER',
-        username: 'function'
-      })
 
       if (Auth.loggedIn) {
         localStorage.setItem("user", data.login.user.username);
         localStorage.setItem("userId", data.login.user._id);
-        user = data.login.user.username;
+        user = data.login.user.username;  
+        
+        await dispatch({
+          type: "SET_USER",
+          payload: {
+            username: data.login.user.username,
+            userId: data.login.user._id
+          }
+        })
+
+        navigate('/user');
+
       }
 
-      dispatch({
-        type: 'SET_USER',
-        username: 'function test'
-      })
 
     } catch (e) {
       console.error(e);
     }
-
-    console.log('user: ', user);
 
     // clear form values
     setFormState({
       email: "",
       password: "",
     });
-  };
+
+
+  }; 
 
 
   return (

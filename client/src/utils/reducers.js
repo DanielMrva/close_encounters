@@ -1,32 +1,16 @@
 
-
-const initialState = {
-    username: 'initial'
- };
-
- export default function userReducer(state = initialState, action) {
+ export default function userReducer(state, action) {
     switch (action.type) {
         case 'SET_USER': {
-            const username = action;
+            const username = action.payload;
             return username;
         }
         case 'CLEAR_USER': {
-            const username = {username: ''};
+            const username = {};
             return username;
         }
         default: {
             return state;
         }
-    }
- }
-
-// export const userReducer = (state, action) => {
-//     switch(action.type) {
-//         case 'SET_USER': 
-//             return action.payload
-//         case 'CLEAR_USER':
-//             return ''
-//         default: 
-//             return state
-//     }
-// }
+    };
+ };

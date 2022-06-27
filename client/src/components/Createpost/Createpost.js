@@ -1,16 +1,24 @@
 import "./Createpost.css";
-import React, { useState } from "react";
+import React, { useContext, useState } from "react";
 import { useMutation } from "@apollo/client";
 import { ADD_EVENT } from "../../utils/mutations";
 import { useNavigate } from "react-router-dom";
 import Auth from "../../utils/auth";
 import Login from "../../pages/Login/Login";
 
+import { UserContext } from '../../utils/UserContext'
+
 let catArr = [];
 
 export default function Createpost({ newMarkPos, setShowModal }) {
 
   const [formData, setFormData] = useState({});
+
+  const { state, dispatch } = useContext(UserContext);
+
+  const user = state
+
+  console.log(user)
 
   let latPlaceholder;
   let lngPlaceholder;
@@ -59,6 +67,8 @@ export default function Createpost({ newMarkPos, setShowModal }) {
   const submitHandler = async (e) => {
     e.preventDefault();
 
+    setFormData({ ...formData, encounterUser: state.username, userId: state.userId})
+
     if (latPlaceholder !== "Latitude") {
       setFormData({ ...formData, lat: latPlaceholder, lng: lngPlaceholder });
     }
@@ -72,10 +82,17 @@ export default function Createpost({ newMarkPos, setShowModal }) {
     }
 
     try {
+
+
       const username = localStorage.getItem("user");
-      console.log("username", username);
+
+      // console.log('state: ', state)
+
+      // const username = state.username;
+      // console.log("username", username);
       const userId = localStorage.getItem("userId");
-      console.log("userId", userId);
+      // const userId = state.userId;
+      // console.log("userId", userId);
 
       const { data } = await saveEncounter({
         variables: {
@@ -85,9 +102,11 @@ export default function Createpost({ newMarkPos, setShowModal }) {
           type: formData.type,
           lat: parseFloat(formData.lat) ?? latPlaceholder,
           lng: parseFloat(formData.lng) ?? lngPlaceholder,
+          // encounterUser: 'test',
           encounterUser: username,
           title: formData.title,
           userId: userId,
+          // userId: '00',
         },
       });
 

@@ -1,7 +1,6 @@
 import "./User.css";
 import clockImage from "../../images/clocks.png";
 import shipImage from "../../images/light-ship.png";
-// import { Link } from "react-router-dom";
 import Auth from "../../utils/auth";
 import Login from "../Login/Login";
 import Encountercard from "../../components/Encountercard/Encountercard";
@@ -12,9 +11,10 @@ import { useContext } from "react";
 
 export default function User() {
 
-  const { username } = useContext(UserContext);
-  console.log(username)
-
+  const { state, dispatch } = useContext(UserContext);
+  
+  console.log('username: ', state.username)
+  console.log('id: ', state.userId);
 
   if (Auth.loggedIn()) {
     return (
@@ -32,7 +32,7 @@ export default function User() {
           <div className="scenario-container">
             <div className="flex-center">
               <h4>
-                WELCOME BACK, {}. TOMORROW YOU MAY WAKE UP IN A LOCATION WITH NO IDEA HOW YOU GOT
+                WELCOME BACK, {state.username}, id of {state.userId}. TOMORROW YOU MAY WAKE UP IN A LOCATION WITH NO IDEA HOW YOU GOT
                 THERE
               </h4>
             </div>

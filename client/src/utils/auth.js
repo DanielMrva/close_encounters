@@ -1,6 +1,7 @@
 // use this to decode a token and get the user's information out of it
 import { faPersonWalkingDashedLineArrowRight } from "@fortawesome/free-solid-svg-icons";
 import decode from "jwt-decode";
+import { Link } from 'react-router-dom';
 
 // create a new class to instantiate for a user
 class AuthService {
@@ -36,7 +37,10 @@ class AuthService {
   login(idToken) {
     // Saves user token to localStorage and reloads the application for logged in status to take effect
     localStorage.setItem("id_token", idToken);
-    window.location.href = "/user";
+    // window.location.href = "/user";
+    // return (
+    //   <Link to='/user'></Link>
+    // )
   }
 
   logout() {
