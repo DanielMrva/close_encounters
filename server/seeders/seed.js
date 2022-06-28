@@ -64,11 +64,11 @@ db.once("open", async () => {
             ? console.log("no comment found")
             : Comment.findOneAndUpdate(
               { _id: com._id },
-              { $set: { userId: use._id, commentUser: use.username}},
+              { $set: { userId: use._id, commentUser: use.username, encounterId: enc._id}},
             ).then((comment) => 
               !comment
                 ? console.log("no comment found 2")
-                : Encounter.findByIdAndUpdate(
+                : Encounter.findOneAndUpdate(
                   { _id: enc._id },
                   { $addToSet: { commentId: com._id }}
                 ).then((comment) => 

@@ -116,7 +116,7 @@ export const VIS_ENCOUNTERS = gql`
 `;
 
 export const ENC_COMMENTS = gql`
-  query encounterComments( $encounterId: ID! ) {
+  query encounterComments( $encounterId: String! ) {
     encounterComments( encounterId: $encounterId){
       commentText
       createdAt

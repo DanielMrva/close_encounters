@@ -8,15 +8,15 @@ const CommentContainer = (props) => {
     // const { loading, data } = useQuery(VIS_ENCOUNTERS, {
     //     variables: variables,
     //   });
-    console.log("deez props:", props);
-    console.log('thar be vars here', vars)
+    // console.log("deez props:", props);
+    // console.log('thar be vars here', vars)
     console.log(data)
 
     if (loading) return "loading...";
     // if (err) return err.message;
 
-    let commentList = data?.comments || [];
-    console.log(commentList)
+    let commentList = data?.encounterComments || [];
+    // console.log(commentList)
     let shortCommentList = commentList.slice(0, props.quantityDisplay);
     console.log("shawty", shortCommentList)
 
