@@ -32,35 +32,51 @@ const MapMarkers = ({ data }) => {
     >
       <Popup maxWidth={400} maxHeight={300}>
         <Encountercardsingle {...item} />
-        {/* <Encountercardsingle profilepic={item.userId.profilepic} /> */}
-        {/* <div className="card-page">
-          <div className="card-container">
-            <div className="card-top-flex">
-              <div className="card-header-flex">
-                <div className="title-card">{item.title}</div>
-                <div className="username-card">{item.encounterUser}</div>
-                <div className="location-card">
-                  Lat: {item.lat} Lng: {item.lng}
-                </div>
-                <div className="date-card">{item.date}</div>
-              </div>
-            </div>
-            <div className="description-flex">
-              <p>{item.description}</p>
-            </div>
-          </div>
-        </div> */}
       </Popup>
     </Marker>
   ));
 };
 
+// function MyComponent() {
+//   const map = useMapEvents({
+//     click: () => {
+//       map.locate()
+//     },
+//     locationfound: (location) => {
+//       console.log('location found:', location)
+//     },
+//   })
+//   return null
+// }
+
+// function Locator() {
+//   const [position, setPosition] = useState(null);
+//   const [bbox, setBbox] = useState([]);
+
+//   const map = useMap();
+
+//   useEffect(() => {
+//     map.locate().on("locationfound", function (e) {
+//       setPosition(e.latlng);
+//       console.log(position);
+//       map.flyTo(e.latlng, map.getZoom());
+//       setBbox(e.bounds.toBBoxString().split(","));
+//       console.log(bbox);
+//     })
+//   }, [map]);
+
+
+// }
+
 const MapWrapper = () => {
   let lat = localStorage.getItem("lat");
   let lng = localStorage.getItem("lng");
 
+  // let lat = 30;
+  // let lng = 95;
+
   if (!lat) {
-    lat = 39.7392;
+    lat = 35.7392;
     lng = -104.9903;
   }
 
@@ -103,7 +119,7 @@ const MapWrapper = () => {
   });
   const encounters = data?.visencounters || [];
 
-  const Locator = ({ map }) => {
+  const Locator = () => {
     useEffect(() => {
       if (!map) return;
 
@@ -122,32 +138,28 @@ const MapWrapper = () => {
         console.log(bonundsList);
         setVariables(bonundsList);
       });
-    }, [map]);
+    }, []);
   };
 
   const onMapClick = (e) => {
-    console.log("rendering");
     if (e && e.latlng) {
-      console.log(e.latlng);
+      console.log("clicked position:", e.latlng);
       setNewMarkPos([e.latlng.lat, e.latlng.lng]);
       setShowModal(true);
     }
   };
 
-  // const { loading, data } = useQuery(VIS_ENCOUNTERS, {
-  //   variables: variables,
-  // });
-  // const encounters = data?.visencounters || [];
 
   return (
     <MapContainer
       className="map"
-      whenCreated={Locator}
+      whenCreated={setMap}
       center={mapPositions}
       zoom={10}
     >
       <NewMapEvents map={map} />
-      <Locator map={map} />
+      <Locator/>
+
       <AddMarker onMapClick={onMapClick} newMarkPos={newMarkPos} />
       <SubmitModal
         newMarkPos={newMarkPos}

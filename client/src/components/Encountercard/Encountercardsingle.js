@@ -74,7 +74,7 @@ return (
           lineHeight: "1rem",
           color: "black",
         }}
-        location-card
+        className="location-card"
       >
         {props.title}
       </p>
@@ -122,7 +122,7 @@ return (
       </Accordion.Item>
 
       <Accordion.Item eventKey="1">
-      <Accordion.Header>All Comments</Accordion.Header>
+      <Accordion.Header className="location-card">All Comments</Accordion.Header>
       <Accordion.Body>
         <CommentContainer quantityDisplay={10} encounterId={props._id}>
 

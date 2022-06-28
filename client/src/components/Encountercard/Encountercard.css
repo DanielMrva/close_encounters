@@ -18,6 +18,10 @@
   padding: 15px;
 }
 
+.card-top-border {
+  border-top: 1px solid #d9d9d9;
+}
+
 .card-top-flex {
   display: flex;
 }

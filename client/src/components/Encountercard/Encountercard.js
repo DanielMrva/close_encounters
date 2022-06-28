@@ -92,8 +92,7 @@ export default function Encountercard(props) {
                 </div>
               </div>
               <div className={`description-flex ${viewableStyleTitle}`}>
-                <p
-                  style={{
+                <p style={{
                     // fontWeight: "500",
                     margin: "8px 0px",
                     fontSize: "1rem",
@@ -102,7 +101,7 @@ export default function Encountercard(props) {
                     lineHeight: "1rem",
                     color: "black",
                   }}
-                  location-card
+                  className="location-card"
                 >
                   {data.title}
                 </p>
