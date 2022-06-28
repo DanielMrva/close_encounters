@@ -34,7 +34,7 @@ export const QUERY_SINGLEUSER = gql`
 
 // this needs to be fixed
 export const ALL_EVENTS = gql`
-  query Allencounters {
+  query allencounters {
     encounters {
       _id
       encounterUser
@@ -49,14 +49,10 @@ export const ALL_EVENTS = gql`
         username
         profilepic
       }
-      # commentId {
-      #   commentText
-      #   createdAt
-      #   commentUser
-      #   userId
-      #   encounterId
-      #   corroborations
-      # }
+      commentId {
+        commentText
+        commentUser
+      }
     }
   }
 `;
@@ -75,20 +71,16 @@ export const USER_EVENTS = gql`
         username
         profilepic
       }
-      # commentId {
-      #   commentText
-      #   createdAt
-      #   commentUser
-      #   userId
-      #   encounterId
-      #   corroborations
-      # }
+      commentId {
+        commentText
+        commentUser
+      }
     }
   }
 `;
 
 export const VIS_ENCOUNTERS = gql`
-  query Visencounters(
+  query visencounters(
     $lowlat: Float!
     $hilat: Float!
     $lowlng: Float!
@@ -115,15 +107,10 @@ export const VIS_ENCOUNTERS = gql`
         username
         profilepic
       }
-      # commentId {
-      #   commentText
-      #   createdAt
-      #   title
-      #   commentUser
-      #   userId
-      #   encounterId
-      #   corroborations
-      # }
+      commentId {
+        commentText
+        commentUser
+      }
     }
   }
 `;
@@ -140,7 +127,6 @@ export const ENC_COMMENTS = gql`
       encounterId {
         _id
       }
-      # corroborations
     }
   }
 `;
@@ -150,7 +136,6 @@ export const USER_COMMENTS = gql`
     userComments{
       commentText
       createdAt
-      title
       commentUser
       userId
       encounterId
@@ -164,7 +149,6 @@ export const ALL_COMMENTS = gql`
     allcomments {
       commentText
       createdAt
-      title
       commentUser
       userId
       encounterId
@@ -178,11 +162,9 @@ export const ONE_COMMENT = gql`
     oneComment {
       commentText
       createdAt
-      title
       commentUser
       userId
       encounterId
-      corroborations
     }
   }
 `;

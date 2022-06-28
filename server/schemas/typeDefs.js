@@ -31,7 +31,6 @@ const typeDefs = gql`
         _id: ID!
         commentText: String
         createdAt: String
-        title: String
         commentUser: String
         userId: User
         encounterId: Encounter
