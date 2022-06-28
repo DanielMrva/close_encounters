@@ -103,6 +103,7 @@ export const VIS_ENCOUNTERS = gql`
       description
       createdAt
       userId {
+        _id
         username
         profilepic
       }
@@ -116,13 +117,16 @@ export const VIS_ENCOUNTERS = gql`
 
 export const ENC_COMMENTS = gql`
   query encounterComments( $encounterID: ID! ) {
-    encounterComments{
+    encounterComments(id: $id){
       commentText
       createdAt
       commentUser
-      userId
-      encounterId
-      corroborations
+      userId {
+        _id
+      }
+      encounterId {
+        _id
+      }
     }
   }
 `;
@@ -161,7 +165,6 @@ export const ONE_COMMENT = gql`
       commentUser
       userId
       encounterId
-      corroborations 
     }
   }
 `;

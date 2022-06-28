@@ -102,7 +102,6 @@ export const ADD_USER = gql`
 export const ADD_COMMENT = gql`
   mutation saveComment(
     $commentText: String
-    $title: String
     $commentUser: String
     $encounterId: ID
     $userId: ID
@@ -117,12 +116,41 @@ export const ADD_COMMENT = gql`
       commentText
       createdAt
       commentUser
-      userId 
-      encounterId
-      corroborations
+      userId {
+        _id
+      }
+      encounterId {
+        _id
+      }
     }
   }
 `;
+
+// export const COB_ENC = gql`
+//   corroborateEncounter(
+//     $encounterId: ID!
+//     $userId: ID!
+//   ) {
+//     corroborateEncounter(
+//       encounterId: $encounterId
+//       userId: $userId
+//     ) {
+//       _id
+//       encounterUser
+//       title
+//       description
+//       type
+//       category
+//       date
+//       lat
+//       lng
+//       userId {
+//         _id
+//       }
+//       corroborations
+//     }
+//   }
+// `;
 
 // export const COB_ENC = gql`
 //   corroborateEncounter(
@@ -166,7 +194,6 @@ export const ADD_COMMENT = gql`
 //       commentUser
 //       userId 
 //       encounterId
-//       corroborations 
 //     }
 //   }
 // `;
