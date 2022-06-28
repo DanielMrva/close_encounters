@@ -7,7 +7,12 @@ import { Link } from "react-router-dom";
 import User from "../User/User";
 import { QUERY_SINGLEUSER } from "../../utils/mutations";
 // merging
+import Cookies from 'universal-cookie';
+
 export default function Login(props) {
+
+  const cookie = new Cookies;
+
   const [formState, setFormState] = useState({ email: "", password: "" });
   const [login, { error }] = useMutation(LOGIN_USER);
   const handleChange = (event) => {
@@ -35,6 +40,9 @@ export default function Login(props) {
         console.log(data.login.user);
         localStorage.setItem("user", data.login.user.username);
         localStorage.setItem("userId", data.login.user._id);
+        cookie.set('username', data.login.user.username, {path: '/'});
+        cookie.set('userId', data.login.user._id, {path: '/'});
+
       }
     } catch (e) {
       console.error(e);

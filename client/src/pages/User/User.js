@@ -6,7 +6,16 @@ import Auth from "../../utils/auth";
 import Login from "../Login/Login";
 import Encountercard from "../../components/Encountercard/Encountercard";
 
-export default function User() {
+import Cookies from 'universal-cookie';
+
+function User() {
+
+  const cookie = new Cookies;
+
+  const username = cookie.get('username');
+
+  console.log('user: ', username)
+
   if (Auth.loggedIn()) {
     return (
       <div className="user-container">
@@ -23,7 +32,7 @@ export default function User() {
           <div className="scenario-container">
             <div className="flex-center">
               <h4>
-                TOMORROW YOU MAY WAKE UP IN A LOCATION WITH NO IDEA HOW YOU GOT
+                WELCOM BACK, {username} . TOMORROW YOU MAY WAKE UP IN A LOCATION WITH NO IDEA HOW YOU GOT
                 THERE
               </h4>
             </div>
@@ -96,3 +105,5 @@ export default function User() {
     return <Login />;
   }
 }
+
+export default User;

@@ -1,6 +1,7 @@
 // use this to decode a token and get the user's information out of it
 import { faPersonWalkingDashedLineArrowRight } from "@fortawesome/free-solid-svg-icons";
 import decode from "jwt-decode";
+import Cookies from 'universal-cookie';
 
 // create a new class to instantiate for a user
 class AuthService {
@@ -40,11 +41,15 @@ class AuthService {
   }
 
   logout() {
+    
+    const cookie = new Cookies;
     // Clear user token and profile data from localStorage
     localStorage.removeItem("id_token");
     localStorage.removeItem("user");
     localStorage.removeItem("lat");
     localStorage.removeItem("lng");
+    cookie.remove('username');
+    cookie.remove('userId')
     // this will reload the page and reset the state of the application
     window.location.reload();
   }

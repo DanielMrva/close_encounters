@@ -5,7 +5,12 @@ import { useMutation } from "@apollo/client";
 import { ADD_USER } from "../../utils/mutations";
 import Auth from "../../utils/auth";
 
+import Cookies from 'universal-cookie';
+
 export default function Loginnew() {
+
+  const cookie = new Cookies;
+
   const [formState, setFormState] = useState({
     username: "",
     email: "",
@@ -37,6 +42,9 @@ export default function Loginnew() {
         console.log("this is data", data);
         localStorage.setItem("user", data.addUser.user.username);
         localStorage.setItem("userId", data.addUser.user._id);
+        cookie.set('username', data.addUser.user.username, {path: '/'})
+        cookie.set('userId', data.addUser.user._id, {path: '/'});
+
         // window.location.href = "/user";
       }
     } catch (e) {

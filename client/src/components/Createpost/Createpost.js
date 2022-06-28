@@ -5,6 +5,8 @@ import { ADD_EVENT } from "../../utils/mutations";
 import { useNavigate } from "react-router-dom";
 import Auth from "../../utils/auth";
 import Login from "../../pages/Login/Login";
+import Cookies from 'universal-cookie';
+
 
 let catArr = [];
 
@@ -56,7 +58,10 @@ export default function Createpost({ newMarkPos, setShowModal }) {
 
   // handles the form submit and runs the create mutation
   const submitHandler = async (e) => {
+
     e.preventDefault();
+    
+    const cookie = new Cookies;
 
     if (latPlaceholder !== "Latitude") {
       setFormData({ ...formData, lat: latPlaceholder, lng: lngPlaceholder });
@@ -71,10 +76,13 @@ export default function Createpost({ newMarkPos, setShowModal }) {
     }
 
     try {
-      const username = localStorage.getItem("user");
-      console.log("username", username);
-      const userId = localStorage.getItem("userId");
-      console.log("userId", userId);
+      // const username = localStorage.getItem("user");
+      // console.log("username", username);
+      // const userId = localStorage.getItem("userId");
+      // console.log("userId", userId);
+
+      const username = cookie.get('username');
+      const userId = cookie.get('userId');
 
       const { data } = await saveEncounter({
         variables: {
