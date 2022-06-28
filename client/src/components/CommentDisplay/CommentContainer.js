@@ -5,20 +5,14 @@ import  CommentCard  from "./CommentCard"
 const CommentContainer = (props) => {
     const vars = props.encounterId;
     const { loading, data } = useQuery(ENC_COMMENTS, { variables: {encounterId: vars}, });
-    // const { loading, data } = useQuery(VIS_ENCOUNTERS, {
-    //     variables: variables,
-    //   });
-    // console.log("deez props:", props);
-    // console.log('thar be vars here', vars)
+
     console.log(data)
 
     if (loading) return "loading...";
-    // if (err) return err.message;
 
     let commentList = data?.encounterComments || [];
-    // console.log(commentList)
+
     let shortCommentList = commentList.slice(0, props.quantityDisplay);
-    console.log("shawty", shortCommentList)
 
     return (
         <div className="comment-container">
