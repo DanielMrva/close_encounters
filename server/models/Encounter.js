@@ -62,7 +62,7 @@ const encounterSchema = new Schema({
 });
 
 encounterSchema.methods.coCount = function () {
-  coCount = this.corroborations .length();
+  coCount = this.corroborations.length();
 }
 
 const Encounter = model("Encounter", encounterSchema);

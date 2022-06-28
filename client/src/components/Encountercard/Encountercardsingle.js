@@ -7,38 +7,37 @@ import { useMutation } from "@apollo/client";
 import { ADD_COMMENT } from "../../utils/mutations";
 
 export default function Encountercardsingle(props) {
-  //   let profilepic = props.profilepic;
-  //   console.log("this is props", props);
-  
-  const [formData, setFormData] = useState({});
+
+  const [commentData, setCommentData] = useState({});
   const [saveComment, { error }] = useMutation(ADD_COMMENT);
-  const handleInputChange = (e) => {
+
+  const handleCommentChange = (e) => {
     const { name, value } = e.target;
-    setFormData({ ...formData, [name]: value });
+    setCommentData({ ...commentData, [name]: value });
   };
-  const submitHandler = async (e) => {
+
+  const commentHandler = async (e) => {
     e.preventDefault();
     
 
     console.log("click");
     try {
-      const username = props.encounterUser;
+      const username = localStorage.getItem("user");
       console.log("username", username);
-      const userId = props.userId._id;
+      const userId = localStorage.getItem("userId");
       console.log("userId", userId);
       const encounterId = props._id;
-      // const encounterId = e.target.getAttribute('data-encounter')
-      console.log("encounterId", encounterId);
-      console.log("commentText", formData.commentText)
+      console.log("encounterId:", encounterId);
 
       const { data } = await saveComment({
         variables: {
-          commentText: formData.commentText,
+          commentText: commentData.commentText,
           commentUser: username,
-          userId: userId,
-          encounterId: encounterId
+          encounterId:encounterId,
+          userId: userId
         },
-      })
+      });
+      console.log("comment:", data);
     } catch (err) {
       console.log(err);
     }
@@ -102,24 +101,26 @@ return (
             color: "black",
           }}
         >
-          <Form onSubmit={submitHandler}>
-            <Form.Group className="mb-3" controlId="exampleForm.ControlTextarea1">
+          <Form onSubmit={commentHandler}>
+            <Form.Group className="mb-3" role="form">
               <Form.Control 
+              className="form-control"
               size="sm" 
               type="text" 
               placeholder="leave a comment"
               defaultValue="your thoughts here"
+              value={commentData.commentText}
               name="commentText"
-              value={formData.commentText}
-              onChange={handleInputChange}
+              onChange={handleCommentChange}
               />
-              
-            <Button variant="light" type="submit" value="Submit!" className="buttonClass">Submit</Button>
+              {console.log("commentdata.commentText:", commentData.commentText)}
             </Form.Group>
+            <Button variant="light" type="submit" value="Submit!">Submit</Button>
+            {/* {console.log("these are the props", props)} */}
           </Form>
         </Accordion.Body>
       </Accordion.Item>
-      
+
       <Accordion.Item eventKey="1">
       <Accordion.Header>All Comments</Accordion.Header>
       <Accordion.Body>
