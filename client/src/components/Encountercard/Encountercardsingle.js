@@ -1,5 +1,6 @@
 import "./Encountercard.css";
 import { Accordion, Card, Button, Form } from 'react-bootstrap'
+import CommentContainer from "../CommentDisplay/CommentContainer";
 import 'bootstrap/dist/css/bootstrap.min.css';
 import React, { useState } from "react";
 import { useMutation } from "@apollo/client";
@@ -8,7 +9,7 @@ import { ADD_COMMENT } from "../../utils/mutations";
 export default function Encountercardsingle(props) {
   //   let profilepic = props.profilepic;
   //   console.log("this is props", props);
-
+  
   const [formData, setFormData] = useState({});
   const [saveComment, { error }] = useMutation(ADD_COMMENT);
   const handleInputChange = (e) => {
@@ -17,13 +18,18 @@ export default function Encountercardsingle(props) {
   };
   const submitHandler = async (e) => {
     e.preventDefault();
+    
+
+    console.log("click");
     try {
-      const username = localStorage.getItem("user");
+      const username = props.encounterUser;
       console.log("username", username);
-      const userId = localStorage.getItem("userId");
+      const userId = props.userId._id;
       console.log("userId", userId);
-      const encounterId = e.target.getattribute('data-encounter')
+      const encounterId = props._id;
+      // const encounterId = e.target.getAttribute('data-encounter')
       console.log("encounterId", encounterId);
+      console.log("commentText", formData.commentText)
 
       const { data } = await saveComment({
         variables: {
@@ -103,14 +109,26 @@ return (
               type="text" 
               placeholder="leave a comment"
               defaultValue="your thoughts here"
+              name="commentText"
               value={formData.commentText}
               onChange={handleInputChange}
               />
+              
+            <Button variant="light" type="submit" value="Submit!" className="buttonClass">Submit</Button>
             </Form.Group>
           </Form>
-          <Button variant="light" type="submit" value="Submit!" data-encounter={props._id}>Submit</Button>
         </Accordion.Body>
       </Accordion.Item>
+      
+      <Accordion.Item eventKey="1">
+      <Accordion.Header>All Comments</Accordion.Header>
+      <Accordion.Body>
+        <CommentContainer quantityDisplay={10} encounterId={props._id}>
+
+        </CommentContainer>
+
+      </Accordion.Body>
+    </Accordion.Item>
     </Accordion>
 
   </div>

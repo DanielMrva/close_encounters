@@ -102,7 +102,6 @@ export const ADD_USER = gql`
 export const ADD_COMMENT = gql`
   mutation saveComment(
     $commentText: String
-    $title: String
     $commentUser: String
     $encounterId: ID
     $userId: ID
@@ -117,9 +116,12 @@ export const ADD_COMMENT = gql`
       commentText
       createdAt
       commentUser
-      userId 
-      encounterId
-      corroborations
+      userId {
+        _id
+      }
+      encounterId {
+        _id
+      }
     }
   }
 `;
