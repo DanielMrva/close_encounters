@@ -1,5 +1,6 @@
 import "./Encountercard.css";
-import { Accordion, Card, Button, Form, FormControl } from 'react-bootstrap'
+import { Accordion, Card, Button, Form } from 'react-bootstrap'
+import CommentContainer from "../CommentDisplay/CommentContainer";
 import 'bootstrap/dist/css/bootstrap.min.css';
 import React, { useState } from "react";
 import { useMutation } from "@apollo/client";
@@ -17,6 +18,9 @@ export default function Encountercardsingle(props) {
 
   const commentHandler = async (e) => {
     e.preventDefault();
+    
+
+    console.log("click");
     try {
       const username = localStorage.getItem("user");
       console.log("username", username);
@@ -116,6 +120,16 @@ return (
           </Form>
         </Accordion.Body>
       </Accordion.Item>
+
+      <Accordion.Item eventKey="1">
+      <Accordion.Header>All Comments</Accordion.Header>
+      <Accordion.Body>
+        <CommentContainer quantityDisplay={10} encounterId={props._id}>
+
+        </CommentContainer>
+
+      </Accordion.Body>
+    </Accordion.Item>
     </Accordion>
 
   </div>

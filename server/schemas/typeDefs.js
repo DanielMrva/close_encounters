@@ -51,7 +51,7 @@ const typeDefs = gql`
         encounters(username: String): [Encounter]
         encounter(encounterId: ID!): Encounter
         visencounters(lowlat: Float!, hilat: Float!, lowlng: Float!, hilng: Float!): [Encounter]
-        encounterComments(encounterId: ID!): [Comment]
+        encounterComments(encounterId: String!): [Comment]
         userComments(userId: ID!): [Comment]
         allcomments: [Comment]
         oneComment(commentId: ID!): Comment
