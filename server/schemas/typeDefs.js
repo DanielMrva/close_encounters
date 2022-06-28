@@ -1,5 +1,4 @@
 const { gql } = require("apollo-server-express");
-// import { gql } from '@apollo/client';
 
 const typeDefs = gql`
     type User {
@@ -52,7 +51,7 @@ const typeDefs = gql`
         encounters(username: String): [Encounter]
         encounter(encounterId: ID!): Encounter
         visencounters(lowlat: Float!, hilat: Float!, lowlng: Float!, hilng: Float!): [Encounter]
-        encounterComments(encounterId: ID!): [Comment]
+        encounterComments(encounterId: String!): [Comment]
         userComments(userId: ID!): [Comment]
         allcomments: [Comment]
         oneComment(commentId: ID!): Comment
@@ -73,7 +72,7 @@ const typeDefs = gql`
             ): Encounter
         removeEncounter(encounterId: ID!): Encounter
         saveComment(
-            commentText: String!
+            commentText: String
             commentUser: String
             encounterId: ID
             userId: ID
@@ -92,9 +91,3 @@ const typeDefs = gql`
 
 module.exports = typeDefs;
 
-// input saveEncounterInput {
-//     encounterId: String!
-//     category: String!
-//     location: String!
-//     description: String!
-// }
