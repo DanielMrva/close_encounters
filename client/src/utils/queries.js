@@ -130,14 +130,17 @@ export const VIS_ENCOUNTERS = gql`
 
 export const ENC_COMMENTS = gql`
   query encounterComments( $encounterID: ID! ) {
-    encounterComments{
+    encounterComments(id: $id){
       commentText
       createdAt
-      title
       commentUser
-      userId
-      encounterId
-      corroborations
+      userId {
+        _id
+      }
+      encounterId {
+        _id
+      }
+      # corroborations
     }
   }
 `;
