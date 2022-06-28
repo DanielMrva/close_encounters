@@ -29,7 +29,7 @@ export default function Encountercardsingle(props) {
         variables: {
           commentText: commentData.commentText,
           commentUser: username,
-          encounterId: encounterId,
+          encounterId:encounterId,
           userId: userId
         },
       });

@@ -139,17 +139,17 @@ const resolvers = {
         encounterId,
         userId
       });
-
+      console.log("here 1")
       await Encounter.findOneAndUpdate(
         { _id: encounterId },
         { $addToSet: {commentId: comment._id}}
       )
-
+      console.log("here 2")  
       await User.findOneAndUpdate(
         { _id: userId },
         { $addToSet: {comments: comment._id} }
       )
-
+      console.log("this is the comment on the backend", comment);
       return comment;
     },
     corroborateEncounter: async (parent, { encounterId, userId }) => {

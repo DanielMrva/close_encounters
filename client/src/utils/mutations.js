@@ -116,9 +116,13 @@ export const ADD_COMMENT = gql`
       commentText
       createdAt
       commentUser
-      userId 
-      encounterId
-      corroberations
+      userId {
+        _id
+      }
+      encounterId {
+        _id
+      }
+      # corroberations
     }
   }
 `;
