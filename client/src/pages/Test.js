@@ -7,9 +7,6 @@ export default function Test() {
 
   if (loading) return "loading...";
   if (err) return err.message;
-  // const userList = data?.user || [];
-  console.log(data);
-
   return (
     <div className="create-post">
       <h6>you are currently in</h6>

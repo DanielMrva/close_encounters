@@ -21,7 +21,7 @@ import Encountercardsingle from "../../components/Encountercard/Encountercardsin
 // const mapPositions = [39.7392, -104.9903];
 
 const MapMarkers = ({ data }) => {
-  // console.log(data);
+
   return data.map((item, index) => (
     <Marker
       key={index}
@@ -110,7 +110,9 @@ const MapWrapper = () => {
 
   const onMapClick = (e) => {
     if (e && e.latlng) {
+
       console.log("clicked position:", e.latlng);
+      
       setNewMarkPos([e.latlng.lat, e.latlng.lng]);
       setShowModal(true);
     }

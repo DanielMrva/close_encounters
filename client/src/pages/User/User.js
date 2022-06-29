@@ -1,12 +1,18 @@
 import "./User.css";
 import clockImage from "../../images/clocks.png";
 import shipImage from "../../images/light-ship.png";
-// import { Link } from "react-router-dom";
 import Auth from "../../utils/auth";
 import Login from "../Login/Login";
 import Encountercard from "../../components/Encountercard/Encountercard";
 
-export default function User() {
+import ls from 'localstorage-slim';
+
+function User() {
+
+  ls.config.encrypt=true;
+
+  let username = ls.get('usernameHash');
+
   if (Auth.loggedIn()) {
     return (
       <div className="user-container">
@@ -23,7 +29,7 @@ export default function User() {
           <div className="scenario-container">
             <div className="flex-center">
               <h4>
-                TOMORROW YOU MAY WAKE UP IN A LOCATION WITH NO IDEA HOW YOU GOT
+                WELCOME BACK, {username} . TOMORROW YOU MAY WAKE UP IN A LOCATION WITH NO IDEA HOW YOU GOT
                 THERE
               </h4>
             </div>
@@ -35,10 +41,6 @@ export default function User() {
             <div className="flex-center time">
               <h3>SITUATION: UNACCOUNTED FOR LOSS OF TIME</h3>
             </div>
-
-            {/* <div className="flex-center time">
-              <h3>SITUATION: UNACCOUNTED FOR LOSS OF TIME</h3>
-            </div> */}
 
             <div className="flex-center question-title">
               <div>HOW WOULD YOU RESPOND</div>
@@ -96,3 +98,5 @@ export default function User() {
     return <Login />;
   }
 }
+
+export default User;

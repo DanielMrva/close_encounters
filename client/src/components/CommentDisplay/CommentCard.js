@@ -18,13 +18,3 @@ const CommentCard = ({data, index}) => {
 };
 
 export default CommentCard;
-
-// Below is just a reference to the stuff pulled by the query
-// encounterComments{
-//     commentText
-//     createdAt
-//     commentUser
-//     userId
-//     encounterId
-//     corroborations
-//   }
