@@ -11,7 +11,7 @@ import ls from 'localstorage-slim';
 let catArr = [];
 
 export default function Createpost({ newMarkPos, setShowModal }) {
-  const [formData, setFormData] = useState({lat: newMarkPos[0], lng: newMarkPos[1]});
+  const [formData, setFormData] = useState({lat: "" && newMarkPos[0], lng: "" && newMarkPos[1]});
 
   ls.config.encrypt=true;
 
