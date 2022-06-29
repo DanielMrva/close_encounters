@@ -1,12 +1,14 @@
 .topnav-flex-container {
   display: flex;
   width: 100vw;
-  height: 60px;
-  background-color: white;
+  height: 55px;
+  background-color: rgba(255, 255, 255, 0.1);
   justify-content: space-between;
   align-items: center;
   padding: 0 10px;
   border-bottom: 2px solid var(--bluefade);
+  z-index: 2;
+  position: relative;
 }
 
 .close {

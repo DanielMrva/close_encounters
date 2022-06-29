@@ -25,18 +25,17 @@ const typeDefs = gql`
         createdAt: String
         userId: User
         commentId: [Comment]
-        cooberations: [String]
+        corroborations: [ID]
     }
 
     type Comment {
         _id: ID!
         commentText: String
         createdAt: String
-        title: String
         commentUser: String
         userId: User
         encounterId: Encounter
-        cooberations: [String]
+        corroborations: [ID]
     }
     
     type Auth {
@@ -56,6 +55,7 @@ const typeDefs = gql`
         encounterComments(encounterId: ID!): [Comment]
         userComments(userId: ID!): [Comment]
         allcomments: [Comment]
+        oneComment(commentId: ID!): Comment
     }
     type Mutation {
         addUser(username: String!, email: String!, password: String!, profilepic: String): Auth
@@ -74,18 +74,17 @@ const typeDefs = gql`
         removeEncounter(encounterId: ID!): Encounter
         saveComment(
             commentText: String!
-            title: String
             commentUser: String
-            encounterId: String
-            userId: String
+            encounterId: ID
+            userId: ID
             ): Comment 
-        cooberateEncounter(
-            encounterId: String!
-            userId: String!
+        corroborateEncounter(
+            encounterId: ID!
+            userId: ID!
         ): Encounter
-        cooberateComment(
-            commentId: String!
-            userId: String!
+        corroborateComment(
+            commentId: ID!
+            userId: ID!
         ): Comment
 
     }

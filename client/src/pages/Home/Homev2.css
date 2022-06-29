@@ -1,0 +1,252 @@
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+@media screen and (min-width: 800px) {
+  .home-page {
+    width: 100vw;
+    height: fit-content;
+    overflow: hidden;
+    /* z-index: 1;
+    position: sticky; */
+  }
+
+  .heading-container {
+    width: 100vw;
+    display: flex;
+    align-items: center;
+    justify-items: center;
+    height: 100vh;
+    flex-direction: column;
+  }
+
+  /* undeniable text */
+  .header-text h2 {
+    font-family: "Red Rose";
+    font-style: normal;
+    font-weight: 400;
+    /* font-size: calc(2em + 1vw); */
+    font-size: 5rem;
+    line-height: 70px;
+    text-align: center;
+    color: var(--blue);
+    text-transform: uppercase;
+    width: 100%;
+    /* width: 360px; */
+    height: fit-content;
+    padding: 80px 0px 80px 20px;
+  }
+
+  .keep-scroll {
+    font-family: "Roboto Mono";
+    font-style: normal;
+    font-weight: 400;
+    font-size: 1rem;
+    line-height: 26px;
+    color: var(--red);
+    text-transform: capitalize;
+  }
+
+  .about-text {
+    width: 270px;
+    padding: 0px 20px 0px 40px;
+  }
+
+  .about-para {
+    margin: 8px 0px;
+    font-size: 0.7rem;
+    font-family: Roboto Slab;
+    line-height: 1rem;
+  }
+
+  .home-belowfold {
+    width: 97vw;
+    height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    border-top: 1px solid #d9d9d9;
+    /* padding: 15px; */
+  }
+
+  .encountercard-home-flex {
+    /* flex: 1 0 40%; */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 100%;
+  }
+
+  .encountercard-home {
+    /* flex: 1 0 40%; */
+
+    /* display: flex; */
+    overflow: scroll;
+    height: 80%;
+    width: 415px;
+    padding: 20px 0px;
+    border: 1px solid #d9d9d9;
+    padding: 15px 0px 15px 10px;
+  }
+
+  .encountercard-home::-webkit-scrollbar-thumb {
+    background: rgba(19, 34, 106, 0.1);
+  }
+
+  .encountercard-home::-webkit-scrollbar-thumb:horizontal {
+    display: none;
+  }
+
+  /* .image-container {
+    height: 650px;
+    display: flex;
+    align-items: center;
+  } */
+
+  .home-image {
+    flex: 1 0;
+    height: 80%;
+    padding: 0px 30px;
+  }
+
+  /* .image-container {
+    height: 400px;
+    width: 100vw;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border: red solid 2px;
+  }
+
+  .home-image {
+    flex: 1 0;
+    height: 600px;
+  } */
+
+  .center-animation {
+    width: 100vw;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    /* border: purple solid 2px; */
+  }
+
+  h4 {
+    font-family: "Roboto Mono";
+    font-style: normal;
+    font-weight: 400;
+    font-size: 20px;
+    line-height: 26px;
+    color: var(--red);
+  }
+
+  /* number of encounters text */
+  h6 {
+    font-family: "Roboto Mono";
+    font-style: normal;
+    font-weight: 400;
+    font-size: 20px;
+    line-height: 26px;
+    color: var(--red);
+    margin: 50px 0px;
+    text-transform: uppercase;
+  }
+}
+
+/* cell phone size */
+@media screen and (max-width: 799px) {
+  .heading-container {
+    width: 100vw;
+    height: fit-content;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+  }
+
+  /* undeniable text */
+  .heading-container h2 {
+    flex: 1 0 60%;
+    font-family: "Red Rose";
+    font-style: normal;
+    font-weight: 400;
+    /* font-size: calc(2em + 1vw); */
+    font-size: 2rem;
+    line-height: 2rem;
+    text-align: center;
+    color: var(--blue);
+    text-transform: uppercase;
+    width: 100%;
+    /* width: 360px; */
+    height: fit-content;
+    padding: 40px 20px;
+  }
+
+  .keep-scroll {
+    font-family: "Roboto Mono";
+    font-style: normal;
+    font-weight: 400;
+    font-size: 0.6rem;
+    line-height: 26px;
+    color: var(--red);
+    text-transform: capitalize;
+  }
+
+  .encountercard-home-flex {
+    display: none;
+  }
+
+  .about-text {
+    width: fit-content;
+    padding: 30px;
+  }
+  /* 
+  .image-flex-home {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    min-width: 0px;
+  }
+
+  .image-container {
+    width: 100vw;
+    display: flex;
+  } */
+
+  .home-image {
+    flex: 1 0;
+    height: auto;
+    padding: 20px 30px;
+    width: 100vw;
+  }
+
+  h4 {
+    font-family: "Roboto Mono";
+    font-style: normal;
+    font-weight: 400;
+    font-size: 1rem;
+    line-height: 26px;
+    color: var(--red);
+  }
+
+  /* number of encounters text */
+  h6 {
+    font-family: "Roboto Mono";
+    font-style: normal;
+    font-weight: 400;
+    font-size: 20px;
+    line-height: 26px;
+    color: var(--red);
+    margin: 50px 0px;
+    text-transform: uppercase;
+  }
+
+  .about-para {
+    margin: 8px 0px;
+    font-size: 0.7rem;
+    font-family: Roboto Slab;
+    line-height: 1rem;
+  }
+}

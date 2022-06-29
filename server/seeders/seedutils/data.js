@@ -97,6 +97,7 @@ const moreWords = [
   "room was wet",
   "went to sleep",
   "lost",
+  "abominable snowman",
 ];
 
 const lorem = new LoremIpsum({
@@ -111,12 +112,24 @@ const lorem = new LoremIpsum({
   words: [...moreWords],
 });
 
+const loremTitle = new LoremIpsum({
+  wordsPerSentence: {
+    max: 5,
+    min: 3,
+  },
+  words: [...moreWords],
+});
+
 const rndInt = (int) => {
   return Math.floor(Math.random() * 3 + int);
 };
 
 const randomText = (int) => {
   return lorem.generateSentences(int);
+};
+
+const randomTitleText = (int) => {
+  return loremTitle.generateSentences(int);
 };
 
 const getRandomArrItem = (arr) => arr[Math.floor(Math.random() * arr.length)];
@@ -153,7 +166,7 @@ const getEncounters = (qtt, descLength) => {
       type: getRandomArrItem(type),
       lat: getRandomFloat(37, 42, 4),
       lng: getRandomFloat(-95, -110, 4),
-      title: randomText(1),
+      title: randomTitleText(1),
       description: randomText(rndInt(descLength)),
       // date: (Date.now())
     });
@@ -162,8 +175,20 @@ const getEncounters = (qtt, descLength) => {
   return encounters;
 };
 
+const getComments = (qtt, commLength) => {
+  const comments = [];
+  for (i = 0; i < qtt; i++) {
+    comments.push({
+      commentText: randomText(rndInt(commLength)),
+    });
+  }
+  console.log(comments);
+  return comments;
+};
+
 module.exports = {
   getEncounters,
+  getComments,
   getRandomArrItem,
   category,
   type,

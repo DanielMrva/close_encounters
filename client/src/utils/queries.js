@@ -34,7 +34,7 @@ export const QUERY_SINGLEUSER = gql`
 
 // this needs to be fixed
 export const ALL_EVENTS = gql`
-  query Allencounters {
+  query allencounters {
     encounters {
       _id
       encounterUser
@@ -48,6 +48,10 @@ export const ALL_EVENTS = gql`
       userId {
         username
         profilepic
+      }
+      commentId {
+        commentText
+        commentUser
       }
     }
   }
@@ -63,12 +67,20 @@ export const USER_EVENTS = gql`
       lat
       long
       description
+      userId {
+        username
+        profilepic
+      }
+      commentId {
+        commentText
+        commentUser
+      }
     }
   }
 `;
 
 export const VIS_ENCOUNTERS = gql`
-  query Visencounters(
+  query visencounters(
     $lowlat: Float!
     $hilat: Float!
     $lowlng: Float!
@@ -94,6 +106,62 @@ export const VIS_ENCOUNTERS = gql`
         username
         profilepic
       }
+      commentId {
+        commentText
+        commentUser
+      }
+    }
+  }
+`;
+
+export const ENC_COMMENTS = gql`
+  query encounterComments( $encounterID: ID! ) {
+    encounterComments{
+      commentText
+      createdAt
+      commentUser
+      userId
+      encounterId
+      corroborations
+    }
+  }
+`;
+
+export const USER_COMMENTS = gql`
+  query userComments( $userId: ID! ) {
+    userComments{
+      commentText
+      createdAt
+      commentUser
+      userId
+      encounterId
+      corroborations
+    }
+  }
+`;
+
+export const ALL_COMMENTS = gql`
+  query allcomments {
+    allcomments {
+      commentText
+      createdAt
+      commentUser
+      userId
+      encounterId
+      corroborations
+    }
+  }
+`;
+
+export const ONE_COMMENT = gql`
+  query oneComment( $commentId: ID!) {
+    oneComment {
+      commentText
+      createdAt
+      commentUser
+      userId
+      encounterId
+      corroborations 
     }
   }
 `;

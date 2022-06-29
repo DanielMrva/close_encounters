@@ -98,3 +98,75 @@ export const ADD_USER = gql`
     }
   }
 `;
+
+export const ADD_COMMENT = gql`
+  mutation saveComment(
+    $commentText: String
+    $title: String
+    $commentUser: String
+    $encounterId: ID
+    $userId: ID
+  ) {
+    saveComment(
+      commentText: $commentText
+      commentUser: $commentUser
+      encounterId: $encounterId
+      userId: $userId
+    ) {
+      _id
+      commentText
+      createdAt
+      commentUser
+      userId 
+      encounterId
+      corroborations
+    }
+  }
+`;
+
+// export const COB_ENC = gql`
+//   corroborateEncounter(
+//     $encounterId: ID!
+//     $userId: ID!
+//   ) { 
+//     corroborateEncounter(
+//       encounterId: $encounterId
+//       userId: $userId
+//     ) {
+//       _id
+//       encounterUser
+//       title
+//       description
+//       type
+//       category
+//       date
+//       lat
+//       lng
+//       userId {
+//         _id
+//       } 
+//       corroborations 
+//     }
+//   }
+// `;
+
+// export const COB_COM = gql`
+//    corroborateComment(
+//     $commentId: ID!
+//     $userId: ID!
+//   ) {
+//     corroborateComment(
+//       commentId: $commentId
+//       userId: $userId
+//     )  {
+//       _id
+//       commentText
+//       createdAt
+//       title
+//       commentUser
+//       userId 
+//       encounterId
+//       corroborations 
+//     }
+//   }
+// `;

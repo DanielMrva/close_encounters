@@ -21,7 +21,7 @@ import Encountercardsingle from "../../components/Encountercard/Encountercardsin
 // const mapPositions = [39.7392, -104.9903];
 
 const MapMarkers = ({ data }) => {
-  console.log(data);
+  // console.log(data);
   return data.map((item, index) => (
     <Marker
       key={index}
@@ -145,6 +145,7 @@ const MapWrapper = () => {
       whenCreated={Locator}
       center={mapPositions}
       zoom={10}
+      style={{ zIndex: 1 }}
     >
       <NewMapEvents map={map} />
       <Locator map={map} />
