@@ -8,7 +8,7 @@ import Createpost from "../Createpost/Createpost";
 const SubmitModal = ({ setShowModal, showModal, newMarkPos }) => {
   const handleClose = () => setShowModal(false);
   const handleShow = () => setShowModal(true);
-  console.log(showModal);
+  // console.log(showModal);
   return (
     <>
       <Modal show={showModal} onHide={handleClose}>

@@ -176,7 +176,7 @@ export default function Createpost({ newMarkPos, setShowModal }) {
                   name="category"
                   onChange={handleTypeChange}
                 ></input>
-                <label for="paranormal">
+                <label htmlFor="paranormal">
                   <i className="fa-solid fa-ghost fa-2xl"></i>
                 </label>
               </div>
@@ -190,7 +190,7 @@ export default function Createpost({ newMarkPos, setShowModal }) {
                   name="category"
                   onChange={handleTypeChange}
                 ></input>
-                <label for="crypto-zoological">
+                <label htmlFor="crypto-zoological">
                   <i className="fa-solid fa-dragon fa-2xl"></i>
                 </label>
               </div>
@@ -204,7 +204,7 @@ export default function Createpost({ newMarkPos, setShowModal }) {
                   name="category"
                   onChange={handleTypeChange}
                 ></input>
-                <label for="extraterrestrial">
+                <label htmlFor="extraterrestrial">
                   <i className="fa-solid fa-rocket fa-2xl"></i>
                 </label>
               </div>
