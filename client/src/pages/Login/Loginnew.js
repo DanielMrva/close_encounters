@@ -40,15 +40,13 @@ export default function Loginnew() {
       Auth.login(data.addUser.token);
 
       if (Auth.loggedIn) {
-        console.log("this is data", data);
-        localStorage.setItem("user", data.addUser.user.username);
-        localStorage.setItem("userId", data.addUser.user._id);
+        // console.log("this is data", data);
+        // localStorage.setItem("user", data.addUser.user.username);
+        // localStorage.setItem("userId", data.addUser.user._id);
 
         // sets hashed username and id to localStorage
         ls.set('usernameHash', data.addUser.user.username);
         ls.set('userIdHash', data.addUser.user._id);
-
-        // window.location.href = "/user";
       }
     } catch (e) {
       console.error(e);

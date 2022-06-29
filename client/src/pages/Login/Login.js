@@ -4,11 +4,7 @@ import { useMutation } from "@apollo/client";
 import { LOGIN_USER } from "../../utils/mutations";
 import Auth from "../../utils/auth";
 import { Link } from "react-router-dom";
-import User from "../User/User";
-import { QUERY_SINGLEUSER } from "../../utils/mutations";
-// merging
 import ls from 'localstorage-slim';
-
 
 export default function Login(props) {
 
@@ -19,8 +15,6 @@ export default function Login(props) {
   const [login, { error }] = useMutation(LOGIN_USER);
   const handleChange = (event) => {
     const { name, value } = event.target;
-
-    // localStorage.setItem('username', )
 
     setFormState({
       ...formState,
@@ -39,14 +33,13 @@ export default function Login(props) {
       Auth.login(data.login.token);
 
       if (Auth.loggedIn) {
-        console.log(data.login.user);
-        localStorage.setItem("user", data.login.user.username);
-        localStorage.setItem("userId", data.login.user._id);
+        // console.log(data.login.user);
+        // localStorage.setItem("user", data.login.user.username);
+        // localStorage.setItem("userId", data.login.user._id);
         
         // sets hashed username and id to localStorage
         ls.set('usernameHash', data.login.user.username);
         ls.set('userIdHash', data.login.user._id);
-
 
       }
     } catch (e) {
@@ -114,10 +107,8 @@ export default function Login(props) {
           </div>
         </div>
 
-        {/* <h2>{username}</h2> */}
       </div>
     </div>
   );
 }
 
-// export default Login;

@@ -5,8 +5,11 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 import React, { useState } from "react";
 import { useMutation } from "@apollo/client";
 import { ADD_COMMENT } from "../../utils/mutations";
+import ls from 'localstorage-slim';
 
 export default function Encountercardsingle(props) {
+
+  ls.config.encrypt=true;
 
   const [commentData, setCommentData] = useState({});
   const [saveComment, { error }] = useMutation(ADD_COMMENT);
@@ -22,12 +25,17 @@ export default function Encountercardsingle(props) {
 
     console.log("click");
     try {
-      const username = localStorage.getItem("user");
-      console.log("username", username);
-      const userId = localStorage.getItem("userId");
-      console.log("userId", userId);
+      // const username = localStorage.getItem("user");
+      // console.log("username", username);
+      // const userId = localStorage.getItem("userId");
+      // console.log("userId", userId);
+
+      const username = ls.get('usernameHash');
+      const userId = ls.get('userIdHash');
+
+
       const encounterId = props._id;
-      console.log("encounterId:", encounterId);
+      // console.log("encounterId:", encounterId);
 
       const { data } = await saveComment({
         variables: {
