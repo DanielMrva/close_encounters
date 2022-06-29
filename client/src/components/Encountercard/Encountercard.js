@@ -1,53 +1,17 @@
 import "./Encountercard.css";
-// import propic from "../../images/profilepic.jpg";
-// import propic1 from "../../images/profilepic1.png";
-// import propic2 from "../../images/profilepic2.png";
-// import propic3 from "../../images/profilepic3.png";
-// import propic4 from "../../images/profilepic4.png";
-// import propic5 from "../../images/profilepic5.png";
-// import propic6 from "../../images/profilepic6.png";
 
 import { useQuery } from "@apollo/client";
 import { ALL_EVENTS } from "../../utils/queries";
-// import { printIntrospectionSchema } from "graphql";
 
 export default function Encountercard(props) {
   const { loading, err, data } = useQuery(ALL_EVENTS);
-
-  console.log(data);
 
   if (loading) return "loading...";
   if (err) return err.message;
 
   let encounterList = data?.encounters || [];
-  console.log(data);
+
   let smallEncounterList = encounterList.slice(0, props.quantityDisplay);
-
-  // let randomPics = [
-  //   propic,
-  //   propic1,
-  //   propic2,
-  //   propic3,
-  //   propic4,
-  //   propic5,
-  //   propic6,
-  // ];
-
-  // let getRandomArrItem = (arr) => arr[Math.floor(Math.random() * arr.length)];
-
-  // let listWithPic = smallEncounterList.map((item) =>
-  //   Object.assign({}, item, { profilepic: getRandomArrItem(randomPics) })
-  // );
-
-  // console.log(...listWithPic);
-
-  // let newListWithPic = [...listWithPic];
-
-  // console.log(newListWithPic);
-
-  // const titleColor = {
-  //   color: props.color,
-  // };
 
   let viewableStyleDescription = `${props.viewableStyleDescription}`;
   let viewableStyleTitle = `${props.viewableStyleTitle}`;
@@ -55,22 +19,12 @@ export default function Encountercard(props) {
   return (
     <div className="card-page">
       {smallEncounterList.map((data, index) => {
-        console.log(data);
         return (
           <div key={index}>
             <div className="card-container">
               <div className="card-top-flex">
                 <div className="user-icon">
                   <div className="pic-header-flex">
-                    {/* {data?.userId?.profilepic
-                      ? {
-                        <img
-                        className="profile-pic"
-                        src={require(`../../images/${data.userId.profilepic}.png`)}
-                        alt="user"
-                      /> 
-                        }
-                      : null} */}
                     {data?.userId?.profilepic ? (
                       <img
                         className="profile-pic"
@@ -116,32 +70,3 @@ export default function Encountercard(props) {
     </div>
   );
 }
-
-// export default function Encountercard() {
-//   const { loading, err, data } = useQuery(QUERY_USER);
-
-//   if (loading) return "loading...";
-//   if (err) return err.message;
-//   // const userList = data?.user || [];
-
-//   console.log(data);
-
-//   return (
-//     <div className="user-container">
-//       <h6>you are currently in encounter card</h6>
-//       <div>
-//         {data.users.map((user, index) => {
-//           return (
-//             <div key={index}>
-//               <div>
-//                 <div>{user.username}</div>
-//               </div>
-//               <div>{user.email}</div>
-//               <div>{user.email}</div>
-//             </div>
-//           );
-//         })}
-//       </div>
-//     </div>
-//   );
-// }

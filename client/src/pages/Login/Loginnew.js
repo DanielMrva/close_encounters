@@ -5,7 +5,13 @@ import { useMutation } from "@apollo/client";
 import { ADD_USER } from "../../utils/mutations";
 import Auth from "../../utils/auth";
 
+import ls from 'localstorage-slim';
+
 export default function Loginnew() {
+
+
+  ls.config.encrypt=true;
+
   const [formState, setFormState] = useState({
     username: "",
     email: "",
@@ -34,10 +40,13 @@ export default function Loginnew() {
       Auth.login(data.addUser.token);
 
       if (Auth.loggedIn) {
-        console.log("this is data", data);
-        localStorage.setItem("user", data.addUser.user.username);
-        localStorage.setItem("userId", data.addUser.user._id);
-        // window.location.href = "/user";
+        // console.log("this is data", data);
+        // localStorage.setItem("user", data.addUser.user.username);
+        // localStorage.setItem("userId", data.addUser.user._id);
+
+        // sets hashed username and id to localStorage
+        ls.set('usernameHash', data.addUser.user.username);
+        ls.set('userIdHash', data.addUser.user._id);
       }
     } catch (e) {
       console.error(e);
