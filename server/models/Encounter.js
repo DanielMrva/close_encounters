@@ -18,7 +18,7 @@ const encounterSchema = new Schema({
   date: {
     type: Date,
     default: Date.now,
-    get: (timestamp) => dateFormat(timestamp)
+    get: (timestamp) => dateFormat(timestamp),
   },
   lat: {
     type: Number,
@@ -33,13 +33,13 @@ const encounterSchema = new Schema({
   createdAt: {
     type: Date,
     default: Date.now,
-    get: (timestamp) => dateFormat(timestamp)
+    get: (timestamp) => dateFormat(timestamp),
   },
   title: {
     type: String,
     required: false,
     trim: true,
-    default: 'These ten strange things that happened, #7 will blow your mind',
+    default: "These ten strange things that happened, #7 will blow your mind",
     max_length: 75,
   },
   encounterUser: {
@@ -51,19 +51,23 @@ const encounterSchema = new Schema({
     type: Schema.Types.ObjectId,
     ref: "User",
   },
-  commentId: [{
-    type: Schema.Types.ObjectId,
-    ref: "Comment",
-  }],
-  corroborations: [{
-    type: Schema.Types.ObjectId, ref: "User"
-  }]
-
+  commentId: [
+    {
+      type: Schema.Types.ObjectId,
+      ref: "Comment",
+    },
+  ],
+  corroborations: [
+    {
+      type: Schema.Types.ObjectId,
+      ref: "User",
+    },
+  ],
 });
 
 encounterSchema.methods.coCount = function () {
-  coCount = this.corroborations .length();
-}
+  coCount = this.corroborations.length();
+};
 
 const Encounter = model("Encounter", encounterSchema);
 

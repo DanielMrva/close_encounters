@@ -103,6 +103,7 @@ export const VIS_ENCOUNTERS = gql`
       description
       createdAt
       userId {
+        _id
         username
         profilepic
       }
@@ -115,27 +116,34 @@ export const VIS_ENCOUNTERS = gql`
 `;
 
 export const ENC_COMMENTS = gql`
-  query encounterComments( $encounterID: ID! ) {
-    encounterComments{
+  query encounterComments($encounterId: String!) {
+    encounterComments(encounterId: $encounterId) {
       commentText
       createdAt
       commentUser
-      userId
-      encounterId
-      corroborations
+      userId {
+        _id
+        username
+      }
+      encounterId {
+        _id
+      }
     }
   }
 `;
 
 export const USER_COMMENTS = gql`
-  query userComments( $userId: ID! ) {
-    userComments{
+  query userComments($userId: ID!) {
+    userComments {
       commentText
       createdAt
       commentUser
-      userId
-      encounterId
-      corroborations
+      userId {
+        _id
+      }
+      encounterId {
+        _id
+      }
     }
   }
 `;
@@ -146,24 +154,24 @@ export const ALL_COMMENTS = gql`
       commentText
       createdAt
       commentUser
-      userId
+      userId {
+        _id
+      }
       encounterId
-      corroborations
     }
   }
 `;
 
 export const ONE_COMMENT = gql`
-  query oneComment( $commentId: ID!) {
+  query oneComment($commentId: ID!) {
     oneComment {
       commentText
       createdAt
       commentUser
-      userId
+      userId {
+        _id
+      }
       encounterId
-      corroborations 
     }
   }
 `;
-
-

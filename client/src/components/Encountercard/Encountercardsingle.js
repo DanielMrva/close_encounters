@@ -1,19 +1,17 @@
 import "./Encountercard.css";
 import { Accordion, Card, Button, Form } from "react-bootstrap";
+import CommentContainer from "../CommentDisplay/CommentContainer";
 import "bootstrap/dist/css/bootstrap.min.css";
 import React, { useState } from "react";
 import { useMutation } from "@apollo/client";
 import { ADD_COMMENT } from "../../utils/mutations";
-import environment from "../../images/icons8-env-100.png";
-import hear from "../../images/icons8-hear-100.png";
-import see from "../../images/icons8-see-100.png";
-import thought from "../../images/icons8-thought-100.png";
-import touch from "../../images/icons8-touch-100.png";
+// import environment from "../../images/icons8-env-100.png";
+// import hear from "../../images/icons8-hear-100.png";
+// import see from "../../images/icons8-see-100.png";
+// import thought from "../../images/icons8-thought-100.png";
+// import touch from "../../images/icons8-touch-100.png";
 
 export default function Encountercardsingle(props) {
-  //   let profilepic = props.profilepic;
-  //   console.log("this is props", props);
-
   // switch (props.category) {
   //   case "Environmental change":
   //     iconCategory = environment;
@@ -30,32 +28,36 @@ export default function Encountercardsingle(props) {
   //   case "Visual Sighting":
   //     iconCategory = see;
   //     break;
-  // }
 
-  const [formData, setFormData] = useState({});
+  const [commentData, setCommentData] = useState({});
   const [saveComment, { error }] = useMutation(ADD_COMMENT);
-  const handleInputChange = (e) => {
+
+  const handleCommentChange = (e) => {
     const { name, value } = e.target;
-    setFormData({ ...formData, [name]: value });
+    setCommentData({ ...commentData, [name]: value });
   };
-  const submitHandler = async (e) => {
+
+  const commentHandler = async (e) => {
     e.preventDefault();
+
+    console.log("click");
     try {
       const username = localStorage.getItem("user");
       console.log("username", username);
       const userId = localStorage.getItem("userId");
       console.log("userId", userId);
-      const encounterId = e.target.getattribute("data-encounter");
-      console.log("encounterId", encounterId);
+      const encounterId = props._id;
+      console.log("encounterId:", encounterId);
 
       const { data } = await saveComment({
         variables: {
-          commentText: formData.commentText,
+          commentText: commentData.commentText,
           commentUser: username,
-          userId: userId,
           encounterId: encounterId,
+          userId: userId,
         },
       });
+      console.log("comment:", data);
     } catch (err) {
       console.log(err);
     }
@@ -97,7 +99,8 @@ export default function Encountercardsingle(props) {
           {props.title}
         </p>
       </div>
-      <div>
+
+      <div className="description-flex">
         <p>{props.description}</p>
       </div>
       <Accordion>
@@ -121,29 +124,38 @@ export default function Encountercardsingle(props) {
               color: "black",
             }}
           >
-            <Form onSubmit={submitHandler}>
-              <Form.Group
-                className="mb-3"
-                controlId="exampleForm.ControlTextarea1"
-              >
+            <Form onSubmit={commentHandler}>
+              <Form.Group className="mb-3" role="form">
                 <Form.Control
+                  className="form-control"
                   size="sm"
                   type="text"
                   placeholder="leave a comment"
                   defaultValue="your thoughts here"
-                  value={formData.commentText}
-                  onChange={handleInputChange}
+                  value={commentData.commentText}
+                  name="commentText"
+                  onChange={handleCommentChange}
                 />
+                {console.log(
+                  "commentdata.commentText:",
+                  commentData.commentText
+                )}
               </Form.Group>
+              <Button variant="light" type="submit" value="Submit!">
+                Submit
+              </Button>
+              {/* {console.log("these are the props", props)} */}
             </Form>
-            <Button
-              variant="light"
-              type="submit"
-              value="Submit!"
-              data-encounter={props._id}
-            >
-              Submit
-            </Button>
+          </Accordion.Body>
+        </Accordion.Item>
+
+        <Accordion.Item eventKey="1">
+          <Accordion.Header>All Comments</Accordion.Header>
+          <Accordion.Body>
+            <CommentContainer
+              quantityDisplay={10}
+              encounterId={props._id}
+            ></CommentContainer>
           </Accordion.Body>
         </Accordion.Item>
       </Accordion>

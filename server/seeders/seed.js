@@ -59,25 +59,30 @@ db.once("open", async () => {
         { _id: use._id },
         { $addToSet: { comments: com._id } }
       )
-        .then((comment) => 
+        .then((comment) =>
           !comment
             ? console.log("no comment found")
             : Comment.findOneAndUpdate(
-              { _id: com._id },
-              { $set: { userId: use._id, commentUser: use.username}},
-            ).then((comment) => 
-              !comment
-                ? console.log("no comment found 2")
-                : Encounter.findByIdAndUpdate(
-                  { _id: enc._id },
-                  { $addToSet: { commentId: com._id }}
-                ).then((comment) => 
-                  !comment
-                    ? console.log("no comment found 3")
-                    : console.log(`added comment: ${com.commentText}`)
-                )
-            )
-           
+                { _id: com._id },
+                {
+                  $set: {
+                    userId: use._id,
+                    commentUser: use.username,
+                    encounterId: enc._id,
+                  },
+                }
+              ).then((comment) =>
+                !comment
+                  ? console.log("no comment found 2")
+                  : Encounter.findOneAndUpdate(
+                      { _id: enc._id },
+                      { $addToSet: { commentId: com._id } }
+                    ).then((comment) =>
+                      !comment
+                        ? console.log("no comment found 3")
+                        : console.log(`added comment: ${com.commentText}`)
+                    )
+              )
         )
         .catch((err) => console.log(err));
     }

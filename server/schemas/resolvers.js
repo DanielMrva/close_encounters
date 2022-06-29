@@ -17,7 +17,7 @@ const resolvers = {
       return User.find().populate(["encounters", "comments"]);
     },
     user: async (parent, { userId }) => {
-      return User.findOne({ _id: userId }).populate(["encounters","comments"]);
+      return User.findOne({ _id: userId }).populate(["encounters", "comments"]);
     },
     singleuser: async (parent, { email }) => {
       return User.findOne({ email: email });
@@ -28,26 +28,42 @@ const resolvers = {
     encounters: async (parent, { username }) => {
       console.log("test");
       const params = username ? { username } : {};
-      return await Encounter.find(params).sort({ createdAt: -1 }).populate(["userId", "commentId"]);
+      return await Encounter.find(params)
+        .sort({ createdAt: -1 })
+        .populate(["userId", "commentId"]);
     },
     encounter: async (parent, { encounterId }) => {
-      return Encounter.findOne({ _id: encounterId }).populate(["userId", "commentId"]);
+      return Encounter.findOne({ _id: encounterId }).populate([
+        "userId",
+        "commentId",
+      ]);
     },
-    visencounters: async (parent, {lowlat, hilat, lowlng, hilng}) => {
-      return Encounter.find({$and: [{ lat : { $gte :  lowlat, $lte : hilat}}, {lng: {$gte: lowlng, $lte: hilng}}]}).populate(["userId", "commentId"]);
+    visencounters: async (parent, { lowlat, hilat, lowlng, hilng }) => {
+      return Encounter.find({
+        $and: [
+          { lat: { $gte: lowlat, $lte: hilat } },
+          { lng: { $gte: lowlng, $lte: hilng } },
+        ],
+      }).populate(["userId", "commentId"]);
     },
     encounterComments: async (parent, { encounterId }) => {
-      return Comment.find({ encounterId: encounterId }).populate("userId").sort({ createdAt: -1 });
+      return Comment.find({ encounterId: encounterId })
+        .populate("userId")
+        .sort({ createdAt: -1 });
     },
     userComments: async (parent, { userId }) => {
-      return Comment.find({ userId: userId }).populate(["userId", "encounterId"]).sort({ createdAt: -1 });
+      return Comment.find({ userId: userId })
+        .populate(["userId", "encounterId"])
+        .sort({ createdAt: -1 });
     },
     allcomments: async () => {
-      return Comment.find().populate(["userId", "encounterId"]).sort({ createdAt: -1 });
+      return Comment.find()
+        .populate(["userId", "encounterId"])
+        .sort({ createdAt: -1 });
     },
     oneComment: async (parent, { commentId }) => {
       return Comment.findOne({ _id: commentId });
-    }
+    },
   },
   Mutation: {
     addUser: async (parent, { username, email, password }) => {
@@ -126,47 +142,47 @@ const resolvers = {
       return encounter;
     },
     removeEncounter: async (parent, { encounterId }) => {
-      await Comment.deleteMany({encounterId: encounterId});
+      await Comment.deleteMany({ encounterId: encounterId });
       await Encounter.findOneAndDelete({ _id: encounterId });
-      return Encounter
+      return Encounter;
     },
     saveComment: async (
-      parent, {commentText, commentUser, encounterId, userId}
+      parent,
+      { commentText, commentUser, encounterId, userId }
     ) => {
       const comment = await Comment.create({
         commentText,
         commentUser,
         encounterId,
-        userId
+        userId,
       });
-
+      console.log("here 1");
       await Encounter.findOneAndUpdate(
         { _id: encounterId },
-        { $addToSet: {commentId: comment._id}}
-      )
-
+        { $addToSet: { commentId: comment._id } }
+      );
+      console.log("here 2");
       await User.findOneAndUpdate(
         { _id: userId },
-        { $addToSet: {comments: comment._id} }
-      )
-
+        { $addToSet: { comments: comment._id } }
+      );
+      console.log("this is the comment on the backend", comment);
       return comment;
     },
     corroborateEncounter: async (parent, { encounterId, userId }) => {
       const encounter = await Encounter.findOneAndUpdate(
-        { _id: encounterId }, 
-        { $addToSet: {corroborations : userId}}
-        );
-        return encounter;
+        { _id: encounterId },
+        { $addToSet: { corroborations: userId } }
+      );
+      return encounter;
     },
-    corroborateComment: async (parent, {commentId, userId}) => {
+    corroborateComment: async (parent, { commentId, userId }) => {
       const comment = await Comment.findOneAndUpdate(
         { _id: commentId },
-        { $addToSet: {corroborations : userId}}
+        { $addToSet: { corroborations: userId } }
       );
       return comment;
-    }
-
+    },
   },
 };
 
