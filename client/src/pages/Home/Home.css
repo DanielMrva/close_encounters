@@ -347,12 +347,25 @@ p {
     align-items: center;
     justify-content: space-between;
     border-top: 1px solid #d9d9d9;
-    padding: 15px;
-    margin-top: 600px;
+    /* padding: 15px; */
     display: block;
   }
 
   /* .image-flex-container {
     display: none;
   } */
+
+  .image-overlay-desc {
+    font-family: "Red Rose";
+    font-style: normal;
+    font-weight: 400;
+    font-size: 12px;
+    line-height: 20px;
+    color: white;
+    text-transform: uppercase;
+    align-self: center;
+    padding: 15px;
+    text-align: center;
+    margin-bottom: 0;
+  }
 }
