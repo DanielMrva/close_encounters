@@ -45,8 +45,11 @@ class AuthService {
     // Clear user token and profile data from localStorage
     localStorage.removeItem("id_token");
     localStorage.removeItem("user");
+    localStorage.removeItem('userId');
     localStorage.removeItem("lat");
     localStorage.removeItem("lng");
+    localStorage.removeItem('usernameHash');
+    localStorage.removeItem('userIdHash');
     cookie.remove('username');
     cookie.remove('userId')
     // this will reload the page and reset the state of the application

@@ -6,15 +6,13 @@ import Auth from "../../utils/auth";
 import Login from "../Login/Login";
 import Encountercard from "../../components/Encountercard/Encountercard";
 
-import Cookies from 'universal-cookie';
+import ls from 'localstorage-slim';
 
 function User() {
 
-  const cookie = new Cookies;
+  ls.config.encrypt=true;
 
-  const username = cookie.get('username');
-
-  console.log('user: ', username)
+  let username = ls.get('usernameHash');
 
   if (Auth.loggedIn()) {
     return (
