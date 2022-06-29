@@ -6,6 +6,8 @@ import React, { useState, useEffect } from "react";
 import { useMutation } from "@apollo/client";
 import { ADD_COMMENT } from "../../utils/mutations";
 import ls from 'localstorage-slim';
+import { useQuery } from "@apollo/client";
+import { ENC_COMMENTS } from "../../utils/queries";
 
 export default function Encountercardsingle(props) {
 
@@ -84,7 +86,7 @@ return (
           lineHeight: "1rem",
           color: "black",
         }}
-        location-card
+        className="location-card"
       >
         {props.title}
       </p>
@@ -131,7 +133,7 @@ return (
       </Accordion.Item>
 
       <Accordion.Item eventKey="1">
-      <Accordion.Header>All Comments</Accordion.Header>
+      <Accordion.Header className="location-card">All Comments</Accordion.Header>
       <Accordion.Body>
         <CommentContainer quantityDisplay={10} encounterId={props._id}>
 

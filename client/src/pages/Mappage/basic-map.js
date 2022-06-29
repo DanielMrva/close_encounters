@@ -37,12 +37,35 @@ const MapMarkers = ({ data }) => {
   ));
 };
 
+
+function Locator() {
+  const [position, setPosition] = useState(null);
+  // const [bbox, setBbox] = useState([]);
+
+  const map = useMap();
+
+  useEffect(() => {
+    map.locate().on("locationfound", function (e) {
+      setPosition(e.latlng);
+      console.log(position);
+      map.flyTo(e.latlng, map.getZoom());
+      // setBbox(e.bounds.toBBoxString().split(","));
+      // console.log(bbox);
+    })
+  }, [map]);
+
+
+}
+
 const MapWrapper = () => {
   let lat = localStorage.getItem("lat");
   let lng = localStorage.getItem("lng");
 
+  // let lat = 30;
+  // let lng = 95;
+
   if (!lat) {
-    lat = 39.7392;
+    lat = 35.7392;
     lng = -104.9903;
   }
 
@@ -85,47 +108,26 @@ const MapWrapper = () => {
   });
   const encounters = data?.visencounters || [];
 
-  const Locator = ({ map }) => {
-    useEffect(() => {
-      if (!map) return;
-
-      map.locate().on("locationfound", function (e) {
-        setPosition(e.latlng);
-        map.flyTo(e.latlng, map.getZoom());
-        const bounds = map.getBounds();
-        const bonundsList = {
-          lowlat: bounds.getSouth(),
-          hilat: bounds.getNorth(),
-          lowlng: bounds.getWest(),
-          hilng: bounds.getEast(),
-        };
-        setVariables(bonundsList);
-      });
-    }, [map]);
-  };
-
   const onMapClick = (e) => {
-    console.log("rendering");
     if (e && e.latlng) {
+
+      console.log("clicked position:", e.latlng);
+      
       setNewMarkPos([e.latlng.lat, e.latlng.lng]);
       setShowModal(true);
     }
   };
 
-  // const { loading, data } = useQuery(VIS_ENCOUNTERS, {
-  //   variables: variables,
-  // });
-  // const encounters = data?.visencounters || [];
-
-  return (
+   return (
     <MapContainer
       className="map"
-      whenCreated={Locator}
+      whenCreated={setMap}
       center={mapPositions}
       zoom={10}
     >
       <NewMapEvents map={map} />
-      <Locator map={map} />
+      <Locator/>
+
       <AddMarker onMapClick={onMapClick} newMarkPos={newMarkPos} />
       <SubmitModal
         newMarkPos={newMarkPos}
