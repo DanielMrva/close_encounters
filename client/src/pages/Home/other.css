@@ -6,13 +6,15 @@
 
 .belowfold-container {
   display: block;
-  margin-top: 80px;
+  margin-top: 200px;
+  height: fit-content;
+  /* overflow: auto; */
 }
 
 .home-page {
   display: flex;
   flex-direction: column;
-  overflow: auto;
+  height: fit-content;
 }
 
 p {
@@ -24,6 +26,7 @@ p {
   /* height: fit-content; */
   width: 100vw;
   height: auto;
+  flex-wrap: wrap;
 }
 
 .single-image-container {
@@ -87,12 +90,12 @@ p {
 }
 
 /* @media screen and (min-width: 1020px) {
-  .home-image {
-    flex: 1 0;
-    height: 80%;
-    padding: 0px 200px;
-  }
-} */
+    .home-image {
+      flex: 1 0;
+      height: 80%;
+      padding: 0px 200px;
+    }
+  } */
 
 @media screen and (min-width: 800px) {
   .home-page {
@@ -106,9 +109,8 @@ p {
     display: flex;
     align-items: center;
     justify-items: center;
-    height: fit-content;
+    height: 90vh;
     flex-direction: column;
-    overflow: auto;
   }
 
   /* undeniable text */
@@ -150,6 +152,12 @@ p {
     line-height: 1rem;
   }
 
+  .belowfold-container {
+    display: block;
+    margin-top: 200px;
+    height: fit-content;
+  }
+
   .home-belowfold {
     width: 97vw;
     height: 100vh;
@@ -158,7 +166,6 @@ p {
     justify-content: space-between;
     border-top: 1px solid #d9d9d9;
     padding: 15px;
-    /* margin-top: 150px; */
   }
 
   .encountercard-home-flex {
@@ -190,10 +197,10 @@ p {
   }
 
   /* .image-container {
-    height: 650px;
-    display: flex;
-    align-items: center;
-  } */
+      height: 650px;
+      display: flex;
+      align-items: center;
+    } */
 
   .home-image {
     flex: 1 0;
@@ -202,18 +209,18 @@ p {
   }
 
   /* .image-container {
-    height: 400px;
-    width: 100vw;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    border: red solid 2px;
-  }
-
-  .home-image {
-    flex: 1 0;
-    height: 600px;
-  } */
+      height: 400px;
+      width: 100vw;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      border: red solid 2px;
+    }
+  
+    .home-image {
+      flex: 1 0;
+      height: 600px;
+    } */
 
   .center-animation {
     width: 100vw;
@@ -293,17 +300,17 @@ p {
     padding: 30px;
   }
   /* 
-  .image-flex-home {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    min-width: 0px;
-  }
-
-  .image-container {
-    width: 100vw;
-    display: flex;
-  } */
+    .image-flex-home {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      min-width: 0px;
+    }
+  
+    .image-container {
+      width: 100vw;
+      display: flex;
+    } */
 
   .home-image {
     flex: 1 0;
@@ -348,11 +355,84 @@ p {
     justify-content: space-between;
     border-top: 1px solid #d9d9d9;
     padding: 15px;
-    margin-top: 600px;
+    margin-top: 0px;
     display: block;
   }
 
+  .image-flex-container {
+    flex-direction: column;
+    align-items: center;
+  }
+
   /* .image-flex-container {
-    display: none;
-  } */
+      display: flex;
+      width: 100vw;
+      height: auto;
+      flex-wrap: wrap;
+    } */
+
+  .single-image-container {
+    position: relative;
+    width: 100%;
+    height: auto;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .home-square-image {
+    height: auto;
+    width: 100%;
+    /* z-index: 1; */
+  }
+
+  .image-overlay {
+    background-color: var(--blue);
+    height: 100%;
+    width: 100%;
+    position: absolute;
+    /* z-index: 2; */
+    opacity: 0;
+    transition: 0.2s;
+  }
+
+  .image-overlay-para {
+    color: white;
+    opacity: 0;
+    height: 35%;
+    width: 50%;
+    position: absolute;
+    background: #a70707;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 10%;
+  }
+
+  .image-overlay-desc {
+    font-family: "Red Rose";
+    font-style: normal;
+    font-weight: 400;
+    font-size: 15px;
+    line-height: 20px;
+    color: white;
+    text-transform: uppercase;
+    align-self: center;
+    padding: 15px;
+    text-align: center;
+    margin-bottom: 0;
+  }
+
+  .single-image-container:hover .image-overlay {
+    opacity: 0.7;
+  }
+
+  .single-image-container:hover .image-overlay-para {
+    opacity: 1;
+  }
+
+  .belowfold-container {
+    display: block;
+    margin-top: 0px;
+  }
 }
