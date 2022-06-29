@@ -11,7 +11,7 @@ import ls from 'localstorage-slim';
 let catArr = [];
 
 export default function Createpost({ newMarkPos, setShowModal }) {
-  const [formData, setFormData] = useState({});
+  const [formData, setFormData] = useState({lat: newMarkPos[0], lng: newMarkPos[1]});
 
   ls.config.encrypt=true;
 
@@ -50,11 +50,9 @@ export default function Createpost({ newMarkPos, setShowModal }) {
 
     if (!e.target.checked) {
       let index = catArr.indexOf(e.target.name);
-      // console.log(index);
       catArr.splice(index, 1);
     }
-
-    // console.log(catArr);
+    
     setFormData({ ...formData, category: catArr });
   };
 
@@ -66,9 +64,6 @@ export default function Createpost({ newMarkPos, setShowModal }) {
     if (latPlaceholder !== "Latitude") {
       setFormData({ ...formData, lat: latPlaceholder, lng: lngPlaceholder });
     }
-    console.log([latPlaceholder, lngPlaceholder]);
-    // console.log(newMarkPos)
-    console.log(formData);
 
     if (!formData.category || formData.category.length === 0) {
       console.log("Please select at least one category");
@@ -79,8 +74,6 @@ export default function Createpost({ newMarkPos, setShowModal }) {
 
       const username = ls.get('usernameHash');
       const userId = ls.get('userIdHash');
-
-      console.log(username, userId);
 
       const { data } = await saveEncounter({
         variables: {
@@ -97,7 +90,6 @@ export default function Createpost({ newMarkPos, setShowModal }) {
       });
 
       console.log(data);
-      // localStorage.setItem("encounterId", formData._id);
       localStorage.setItem("lat", parseFloat(formData.lat ?? latPlaceholder));
       localStorage.setItem("lng", parseFloat(formData.lng ?? lngPlaceholder));
 
@@ -119,7 +111,6 @@ export default function Createpost({ newMarkPos, setShowModal }) {
     return (
       <div>
         <form className="encounter-form" onSubmit={submitHandler}>
-          {/* <label className="sub-text-form">Date</label> */}
           <input
             className="encounter-input-style"
             type="text"
@@ -129,7 +120,6 @@ export default function Createpost({ newMarkPos, setShowModal }) {
             onChange={handleInputChange}
           ></input>
 
-          {/* <label className="sub-text-form">Latitude</label> */}
           <input
             className="encounter-input-style"
             type="text"
@@ -139,7 +129,6 @@ export default function Createpost({ newMarkPos, setShowModal }) {
             onChange={handleInputChange}
           ></input>
 
-          {/* <label className="sub-text-form">Longitude</label> */}
           <input
             className="encounter-input-style"
             type="text"
@@ -158,7 +147,6 @@ export default function Createpost({ newMarkPos, setShowModal }) {
             onChange={handleInputChange}
           ></input>
 
-          {/* <label className="sub-text-form">Describe Your Encounter</label> */}
           <textarea
             className="encounter-textarea-style"
             type="textarea"
@@ -170,7 +158,6 @@ export default function Createpost({ newMarkPos, setShowModal }) {
 
           <div className="button-box">
             <span id="radio-buttons">
-              {/* <label className="sub-text-form">Encounter Kind</label> */}
 
               <div className="radio-icon container">
                 <input

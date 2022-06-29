@@ -21,7 +21,7 @@ import Encountercardsingle from "../../components/Encountercard/Encountercardsin
 // const mapPositions = [39.7392, -104.9903];
 
 const MapMarkers = ({ data }) => {
-  // console.log(data);
+
   return data.map((item, index) => (
     <Marker
       key={index}
@@ -32,24 +32,6 @@ const MapMarkers = ({ data }) => {
     >
       <Popup maxWidth={400} maxHeight={300}>
         <Encountercardsingle {...item} />
-        {/* <Encountercardsingle profilepic={item.userId.profilepic} /> */}
-        {/* <div className="card-page">
-          <div className="card-container">
-            <div className="card-top-flex">
-              <div className="card-header-flex">
-                <div className="title-card">{item.title}</div>
-                <div className="username-card">{item.encounterUser}</div>
-                <div className="location-card">
-                  Lat: {item.lat} Lng: {item.lng}
-                </div>
-                <div className="date-card">{item.date}</div>
-              </div>
-            </div>
-            <div className="description-flex">
-              <p>{item.description}</p>
-            </div>
-          </div>
-        </div> */}
       </Popup>
     </Marker>
   ));
@@ -109,17 +91,14 @@ const MapWrapper = () => {
 
       map.locate().on("locationfound", function (e) {
         setPosition(e.latlng);
-        console.log(position);
         map.flyTo(e.latlng, map.getZoom());
         const bounds = map.getBounds();
-        console.log(bounds);
         const bonundsList = {
           lowlat: bounds.getSouth(),
           hilat: bounds.getNorth(),
           lowlng: bounds.getWest(),
           hilng: bounds.getEast(),
         };
-        console.log(bonundsList);
         setVariables(bonundsList);
       });
     }, [map]);
@@ -128,7 +107,6 @@ const MapWrapper = () => {
   const onMapClick = (e) => {
     console.log("rendering");
     if (e && e.latlng) {
-      console.log(e.latlng);
       setNewMarkPos([e.latlng.lat, e.latlng.lng]);
       setShowModal(true);
     }

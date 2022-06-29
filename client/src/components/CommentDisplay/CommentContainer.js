@@ -6,8 +6,6 @@ const CommentContainer = (props) => {
     const vars = props.encounterId;
     const { loading, data } = useQuery(ENC_COMMENTS, { variables: {encounterId: vars}, });
 
-    console.log(data)
-
     if (loading) return "loading...";
 
     let commentList = data?.encounterComments || [];

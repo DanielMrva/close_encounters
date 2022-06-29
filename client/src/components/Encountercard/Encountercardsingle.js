@@ -2,7 +2,7 @@ import "./Encountercard.css";
 import { Accordion, Card, Button, Form } from 'react-bootstrap'
 import CommentContainer from "../CommentDisplay/CommentContainer";
 import 'bootstrap/dist/css/bootstrap.min.css';
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { useMutation } from "@apollo/client";
 import { ADD_COMMENT } from "../../utils/mutations";
 import ls from 'localstorage-slim';
@@ -19,9 +19,9 @@ export default function Encountercardsingle(props) {
     setCommentData({ ...commentData, [name]: value });
   };
 
+
   const commentHandler = async (e) => {
     e.preventDefault();
-    
 
     console.log("click");
     try {
@@ -35,7 +35,7 @@ export default function Encountercardsingle(props) {
 
 
       const encounterId = props._id;
-      // console.log("encounterId:", encounterId);
+
 
       const { data } = await saveComment({
         variables: {
@@ -45,10 +45,12 @@ export default function Encountercardsingle(props) {
           userId: userId
         },
       });
-      console.log("comment:", data);
+
     } catch (err) {
       console.log(err);
     }
+    
+    window.location.reload(false)
   };
 
 return (
@@ -124,7 +126,6 @@ return (
               {console.log("commentdata.commentText:", commentData.commentText)}
             </Form.Group>
             <Button variant="light" type="submit" value="Submit!">Submit</Button>
-            {/* {console.log("these are the props", props)} */}
           </Form>
         </Accordion.Body>
       </Accordion.Item>

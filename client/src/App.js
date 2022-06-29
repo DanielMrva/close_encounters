@@ -13,7 +13,6 @@ import {
 } from "react-router-dom";
 
 import Home from "./pages/Home/Home";
-// import MapWrapper from "./pages/basic-map";
 import Map from "./pages/Mappage/Mappage";
 import Topnav from "./components/Topnav/Topnav";
 import User from "./pages/User/User";
@@ -21,7 +20,6 @@ import Createpost from "./components/Createpost/Createpost";
 import Login from "./pages/Login/Login";
 import Loginnew from "./pages/Login/Loginnew";
 import Bottomnav from "./components/Bottomnav/Bottomnav";
-import Encountercard from "./components/Encountercard/Encountercard";
 import Postpage from "./pages/Postpage/Postpage";
 
 // Construct our main GraphQL API endpoint
