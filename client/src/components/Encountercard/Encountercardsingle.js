@@ -104,7 +104,7 @@ export default function Encountercardsingle(props) {
           {props.title}
         </p>
       </div>
-      <div>
+      <div className="description-flex">
         <p>{props.description}</p>
       </div>
       <Accordion>
@@ -168,65 +168,9 @@ export default function Encountercardsingle(props) {
         </Accordion.Item>
       </Accordion>
 
-      <div className="description-flex">
+      {/* <div className="description-flex">
         <p>{props.description}</p>
-      </div>
-      <Accordion>
-        <Accordion.Item eventKey="0">
-          <Accordion.Header
-            className="location-card"
-            style={{
-              fontFamily: "Red rose",
-              textTransform: "capitalize",
-              lineHeight: "0rem",
-              color: "black",
-            }}
-          >
-            Comment
-          </Accordion.Header>
-          <Accordion.Body
-            style={{
-              fontFamily: "Red rose",
-              textTransform: "capitalize",
-              lineHeight: "1rem",
-              color: "black",
-            }}
-          >
-            <Form onSubmit={commentHandler}>
-              <Form.Group className="mb-3" role="form">
-                <Form.Control
-                  className="form-control"
-                  size="sm"
-                  type="text"
-                  placeholder="leave a comment"
-                  defaultValue="your thoughts here"
-                  value={commentData.commentText}
-                  name="commentText"
-                  onChange={handleCommentChange}
-                />
-                {console.log(
-                  "commentdata.commentText:",
-                  commentData.commentText
-                )}
-              </Form.Group>
-              <Button variant="light" type="submit" value="Submit!">
-                Submit
-              </Button>
-              {/* {console.log("these are the props", props)} */}
-            </Form>
-          </Accordion.Body>
-        </Accordion.Item>
-
-        <Accordion.Item eventKey="1">
-          <Accordion.Header>All Comments</Accordion.Header>
-          <Accordion.Body>
-            <CommentContainer
-              quantityDisplay={10}
-              encounterId={props._id}
-            ></CommentContainer>
-          </Accordion.Body>
-        </Accordion.Item>
-      </Accordion>
+      </div> */}
     </div>
   );
 }
