@@ -124,6 +124,7 @@ const MapWrapper = () => {
       whenCreated={setMap}
       center={mapPositions}
       zoom={10}
+      style={{ zIndex: 1 }}
     >
       <NewMapEvents map={map} />
       <Locator/>

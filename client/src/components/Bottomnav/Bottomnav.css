@@ -2,14 +2,16 @@
   display: flex;
   width: 100vw;
   height: 50px;
-  background-color: rgba(255, 255, 255, 0.5);
+  background-color: rgba(255, 255, 255, 0.6);
   justify-content: space-between;
   align-items: center;
   padding: 0 10px;
 
   border-top: 2px solid var(--bluefade);
   position: sticky;
+  /* position: relative; */
   bottom: 0;
+  z-index: 2;
 }
 
 /* all icon styling */
