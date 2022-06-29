@@ -37,36 +37,25 @@ const MapMarkers = ({ data }) => {
   ));
 };
 
-// function MyComponent() {
-//   const map = useMapEvents({
-//     click: () => {
-//       map.locate()
-//     },
-//     locationfound: (location) => {
-//       console.log('location found:', location)
-//     },
-//   })
-//   return null
-// }
 
-// function Locator() {
-//   const [position, setPosition] = useState(null);
-//   const [bbox, setBbox] = useState([]);
+function Locator() {
+  const [position, setPosition] = useState(null);
+  // const [bbox, setBbox] = useState([]);
 
-//   const map = useMap();
+  const map = useMap();
 
-//   useEffect(() => {
-//     map.locate().on("locationfound", function (e) {
-//       setPosition(e.latlng);
-//       console.log(position);
-//       map.flyTo(e.latlng, map.getZoom());
-//       setBbox(e.bounds.toBBoxString().split(","));
-//       console.log(bbox);
-//     })
-//   }, [map]);
+  useEffect(() => {
+    map.locate().on("locationfound", function (e) {
+      setPosition(e.latlng);
+      console.log(position);
+      map.flyTo(e.latlng, map.getZoom());
+      // setBbox(e.bounds.toBBoxString().split(","));
+      // console.log(bbox);
+    })
+  }, [map]);
 
 
-// }
+}
 
 const MapWrapper = () => {
   let lat = localStorage.getItem("lat");
@@ -119,28 +108,6 @@ const MapWrapper = () => {
   });
   const encounters = data?.visencounters || [];
 
-  const Locator = () => {
-    useEffect(() => {
-      if (!map) return;
-
-      map.locate().on("locationfound", function (e) {
-        setPosition(e.latlng);
-        console.log(position);
-        map.flyTo(e.latlng, map.getZoom());
-        const bounds = map.getBounds();
-        console.log(bounds);
-        const bonundsList = {
-          lowlat: bounds.getSouth(),
-          hilat: bounds.getNorth(),
-          lowlng: bounds.getWest(),
-          hilng: bounds.getEast(),
-        };
-        console.log(bonundsList);
-        setVariables(bonundsList);
-      });
-    }, []);
-  };
-
   const onMapClick = (e) => {
     if (e && e.latlng) {
       console.log("clicked position:", e.latlng);
@@ -149,8 +116,7 @@ const MapWrapper = () => {
     }
   };
 
-
-  return (
+   return (
     <MapContainer
       className="map"
       whenCreated={setMap}

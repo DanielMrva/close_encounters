@@ -5,6 +5,8 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 import React, { useState } from "react";
 import { useMutation } from "@apollo/client";
 import { ADD_COMMENT } from "../../utils/mutations";
+import { useQuery } from "@apollo/client";
+import { ENC_COMMENTS } from "../../utils/queries";
 
 export default function Encountercardsingle(props) {
 
