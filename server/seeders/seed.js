@@ -25,7 +25,6 @@ db.once("open", async () => {
     const users = await User.find({});
     const encounters = await Encounter.find({});
     const comments = await Comment.find({});
-    // console.log(comments)
 
     //for loop to seed encounters and users
     for (let i = 0; i < encounters.length; i++) {

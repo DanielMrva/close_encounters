@@ -85,13 +85,13 @@ p {
   opacity: 1;
 }
 
-@media screen and (min-width: 1020px) {
+/* @media screen and (min-width: 1020px) {
   .home-image {
     flex: 1 0;
     height: 80%;
-    padding: 0px 50px;
+    padding: 0px 200px;
   }
-}
+} */
 
 @media screen and (min-width: 800px) {
   .home-page {

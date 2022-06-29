@@ -171,7 +171,6 @@ const getEncounters = (qtt, descLength) => {
       // date: (Date.now())
     });
   }
-  console.log(encounters);
   return encounters;
 };
 
@@ -182,7 +181,6 @@ const getComments = (qtt, commLength) => {
       commentText: randomText(rndInt(commLength)),
     });
   }
-  console.log(comments);
   return comments;
 };
 

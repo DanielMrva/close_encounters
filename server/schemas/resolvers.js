@@ -26,7 +26,6 @@ const resolvers = {
       return Encounter.find().populate(["userId", "commentId"]);
     },
     encounters: async (parent, { username }) => {
-      console.log("test");
       const params = username ? { username } : {};
       return await Encounter.find(params)
         .sort({ createdAt: -1 })
@@ -156,12 +155,10 @@ const resolvers = {
         encounterId,
         userId,
       });
-      console.log("here 1");
       await Encounter.findOneAndUpdate(
         { _id: encounterId },
         { $addToSet: { commentId: comment._id } }
       );
-      console.log("here 2");
       await User.findOneAndUpdate(
         { _id: userId },
         { $addToSet: { comments: comment._id } }

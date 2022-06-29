@@ -6,10 +6,14 @@ import { useNavigate } from "react-router-dom";
 import Auth from "../../utils/auth";
 import Login from "../../pages/Login/Login";
 
+import ls from 'localstorage-slim';
+
 let catArr = [];
 
 export default function Createpost({ newMarkPos, setShowModal }) {
-  const [formData, setFormData] = useState({});
+  const [formData, setFormData] = useState({lat: newMarkPos[0], lng: newMarkPos[1]});
+
+  ls.config.encrypt=true;
 
   let latPlaceholder;
   let lngPlaceholder;
@@ -46,24 +50,20 @@ export default function Createpost({ newMarkPos, setShowModal }) {
 
     if (!e.target.checked) {
       let index = catArr.indexOf(e.target.name);
-      // console.log(index);
       catArr.splice(index, 1);
     }
-
-    // console.log(catArr);
+    
     setFormData({ ...formData, category: catArr });
   };
 
   // handles the form submit and runs the create mutation
   const submitHandler = async (e) => {
+
     e.preventDefault();
 
     if (latPlaceholder !== "Latitude") {
       setFormData({ ...formData, lat: latPlaceholder, lng: lngPlaceholder });
     }
-    console.log([latPlaceholder, lngPlaceholder]);
-    // console.log(newMarkPos)
-    console.log(formData);
 
     if (!formData.category || formData.category.length === 0) {
       console.log("Please select at least one category");
@@ -71,10 +71,9 @@ export default function Createpost({ newMarkPos, setShowModal }) {
     }
 
     try {
-      const username = localStorage.getItem("user");
-      console.log("username", username);
-      const userId = localStorage.getItem("userId");
-      console.log("userId", userId);
+
+      const username = ls.get('usernameHash');
+      const userId = ls.get('userIdHash');
 
       const { data } = await saveEncounter({
         variables: {
@@ -91,7 +90,6 @@ export default function Createpost({ newMarkPos, setShowModal }) {
       });
 
       console.log(data);
-      // localStorage.setItem("encounterId", formData._id);
       localStorage.setItem("lat", parseFloat(formData.lat ?? latPlaceholder));
       localStorage.setItem("lng", parseFloat(formData.lng ?? lngPlaceholder));
 
@@ -113,7 +111,6 @@ export default function Createpost({ newMarkPos, setShowModal }) {
     return (
       <div>
         <form className="encounter-form" onSubmit={submitHandler}>
-          {/* <label className="sub-text-form">Date</label> */}
           <input
             className="encounter-input-style"
             type="text"
@@ -123,7 +120,6 @@ export default function Createpost({ newMarkPos, setShowModal }) {
             onChange={handleInputChange}
           ></input>
 
-          {/* <label className="sub-text-form">Latitude</label> */}
           <input
             className="encounter-input-style"
             type="text"
@@ -133,7 +129,6 @@ export default function Createpost({ newMarkPos, setShowModal }) {
             onChange={handleInputChange}
           ></input>
 
-          {/* <label className="sub-text-form">Longitude</label> */}
           <input
             className="encounter-input-style"
             type="text"
@@ -152,7 +147,6 @@ export default function Createpost({ newMarkPos, setShowModal }) {
             onChange={handleInputChange}
           ></input>
 
-          {/* <label className="sub-text-form">Describe Your Encounter</label> */}
           <textarea
             className="encounter-textarea-style"
             type="textarea"
@@ -164,7 +158,6 @@ export default function Createpost({ newMarkPos, setShowModal }) {
 
           <div className="button-box">
             <span id="radio-buttons">
-              {/* <label className="sub-text-form">Encounter Kind</label> */}
 
               <div className="radio-icon container">
                 <input
@@ -176,7 +169,7 @@ export default function Createpost({ newMarkPos, setShowModal }) {
                   name="category"
                   onChange={handleTypeChange}
                 ></input>
-                <label for="paranormal">
+                <label htmlFor="paranormal">
                   <i className="fa-solid fa-ghost fa-2xl"></i>
                 </label>
               </div>
@@ -190,7 +183,7 @@ export default function Createpost({ newMarkPos, setShowModal }) {
                   name="category"
                   onChange={handleTypeChange}
                 ></input>
-                <label for="crypto-zoological">
+                <label htmlFor="crypto-zoological">
                   <i className="fa-solid fa-dragon fa-2xl"></i>
                 </label>
               </div>
@@ -204,7 +197,7 @@ export default function Createpost({ newMarkPos, setShowModal }) {
                   name="category"
                   onChange={handleTypeChange}
                 ></input>
-                <label for="extraterrestrial">
+                <label htmlFor="extraterrestrial">
                   <i className="fa-solid fa-rocket fa-2xl"></i>
                 </label>
               </div>

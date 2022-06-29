@@ -1,12 +1,11 @@
 import { useQuery } from "@apollo/client";
 import { ENC_COMMENTS } from "../../utils/queries";
-import  CommentCard  from "./CommentCard"
+import  CommentCard  from "./CommentCard";
+import "./Comment.css";
 
 const CommentContainer = (props) => {
     const vars = props.encounterId;
     const { loading, data } = useQuery(ENC_COMMENTS, { variables: {encounterId: vars}, });
-
-    console.log(data)
 
     if (loading) return "loading...";
 
