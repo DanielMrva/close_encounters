@@ -156,7 +156,7 @@ export const ADD_COMMENT = gql`
 //   corroborateEncounter(
 //     $encounterId: ID!
 //     $userId: ID!
-//   ) { 
+//   ) {
 //     corroborateEncounter(
 //       encounterId: $encounterId
 //       userId: $userId
@@ -172,8 +172,8 @@ export const ADD_COMMENT = gql`
 //       lng
 //       userId {
 //         _id
-//       } 
-//       corroborations 
+//       }
+//       corroborations
 //     }
 //   }
 // `;
@@ -192,7 +192,7 @@ export const ADD_COMMENT = gql`
 //       createdAt
 //       title
 //       commentUser
-//       userId 
+//       userId
 //       encounterId
 //     }
 //   }

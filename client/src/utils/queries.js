@@ -116,8 +116,8 @@ export const VIS_ENCOUNTERS = gql`
 `;
 
 export const ENC_COMMENTS = gql`
-  query encounterComments( $encounterId: String! ) {
-    encounterComments( encounterId: $encounterId){
+  query encounterComments($encounterId: String!) {
+    encounterComments(encounterId: $encounterId) {
       commentText
       createdAt
       commentUser
@@ -133,8 +133,8 @@ export const ENC_COMMENTS = gql`
 `;
 
 export const USER_COMMENTS = gql`
-  query userComments( $userId: ID! ) {
-    userComments{
+  query userComments($userId: ID!) {
+    userComments {
       commentText
       createdAt
       commentUser
@@ -163,7 +163,7 @@ export const ALL_COMMENTS = gql`
 `;
 
 export const ONE_COMMENT = gql`
-  query oneComment( $commentId: ID!) {
+  query oneComment($commentId: ID!) {
     oneComment {
       commentText
       createdAt
@@ -175,5 +175,3 @@ export const ONE_COMMENT = gql`
     }
   }
 `;
-
-

@@ -4,6 +4,95 @@
   padding: 0;
 }
 
+.belowfold-container {
+  display: block;
+  margin-top: 200px;
+}
+
+.home-page {
+  display: flex;
+  flex-direction: column;
+}
+
+p {
+  margin-bottom: 0;
+}
+
+.image-flex-container {
+  display: flex;
+  /* height: fit-content; */
+  width: 100vw;
+  height: auto;
+}
+
+.single-image-container {
+  position: relative;
+  width: 33.33%;
+  height: auto;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.home-square-image {
+  height: auto;
+  width: 100%;
+  /* z-index: 1; */
+}
+
+.image-overlay {
+  background-color: var(--blue);
+  height: 100%;
+  width: 100%;
+  position: absolute;
+  /* z-index: 2; */
+  opacity: 0;
+  transition: 0.2s;
+}
+
+.image-overlay-para {
+  color: white;
+  opacity: 0;
+  height: 35%;
+  width: 50%;
+  position: absolute;
+  background: #a70707;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 10%;
+}
+
+.image-overlay-desc {
+  font-family: "Red Rose";
+  font-style: normal;
+  font-weight: 400;
+  font-size: 15px;
+  line-height: 20px;
+  color: white;
+  text-transform: uppercase;
+  align-self: center;
+  padding: 15px;
+  text-align: center;
+  margin-bottom: 0;
+}
+
+.single-image-container:hover .image-overlay {
+  opacity: 0.7;
+}
+
+.single-image-container:hover .image-overlay-para {
+  opacity: 1;
+}
+
+/* @media screen and (min-width: 1020px) {
+  .home-image {
+    flex: 1 0;
+    height: 80%;
+    padding: 0px 200px;
+  }
+} */
+
 @media screen and (min-width: 800px) {
   .home-page {
     width: 100vw;
@@ -66,7 +155,8 @@
     align-items: center;
     justify-content: space-between;
     border-top: 1px solid #d9d9d9;
-    /* padding: 15px; */
+    padding: 15px;
+    /* margin-top: 150px; */
   }
 
   .encountercard-home-flex {
@@ -247,4 +337,20 @@
     font-family: Roboto Slab;
     line-height: 1rem;
   }
+
+  .home-belowfold {
+    width: 97vw;
+    height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    border-top: 1px solid #d9d9d9;
+    padding: 15px;
+    margin-top: 600px;
+    display: block;
+  }
+
+  /* .image-flex-container {
+    display: none;
+  } */
 }

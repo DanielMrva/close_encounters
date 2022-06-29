@@ -6,14 +6,18 @@ import { useNavigate } from "react-router-dom";
 import Auth from "../../utils/auth";
 import Login from "../../pages/Login/Login";
 
-import ls from 'localstorage-slim';
+import ls from "localstorage-slim";
 
 let catArr = [];
 
 export default function Createpost({ newMarkPos, setShowModal }) {
-  const [formData, setFormData] = useState({lat: "" && newMarkPos[0], lng: "" && newMarkPos[1]});
 
-  ls.config.encrypt=true;
+  const [formData, setFormData] = useState({
+    lat: "" ?? newMarkPos[0],
+    lng: "" ?? newMarkPos[1],
+  });
+
+  ls.config.encrypt = true;
 
   let latPlaceholder;
   let lngPlaceholder;
@@ -52,13 +56,12 @@ export default function Createpost({ newMarkPos, setShowModal }) {
       let index = catArr.indexOf(e.target.name);
       catArr.splice(index, 1);
     }
-    
+
     setFormData({ ...formData, category: catArr });
   };
 
   // handles the form submit and runs the create mutation
   const submitHandler = async (e) => {
-
     e.preventDefault();
 
     if (latPlaceholder !== "Latitude") {
@@ -71,9 +74,8 @@ export default function Createpost({ newMarkPos, setShowModal }) {
     }
 
     try {
-
-      const username = ls.get('usernameHash');
-      const userId = ls.get('userIdHash');
+      const username = ls.get("usernameHash");
+      const userId = ls.get("userIdHash");
 
       const { data } = await saveEncounter({
         variables: {
@@ -158,7 +160,6 @@ export default function Createpost({ newMarkPos, setShowModal }) {
 
           <div className="button-box">
             <span id="radio-buttons">
-
               <div className="radio-icon container">
                 <input
                   type="radio"
