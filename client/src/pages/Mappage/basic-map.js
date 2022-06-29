@@ -77,7 +77,7 @@ const MapWrapper = () => {
     hilng: -70,
   };
   const [map, setMap] = useState(null);
-  const [position, setPosition] = useState([lat, lng]);
+  // const [position, setPosition] = useState([lat, lng]);
   const [variables, setVariables] = useState(defaultVariables);
   const [showModal, setShowModal] = useState(false);
   const [newMarkPos, setNewMarkPos] = useState([0, 0]);
