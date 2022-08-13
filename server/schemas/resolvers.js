@@ -2,7 +2,7 @@ const { User, Encounter, Comment } = require("../models");
 const { AuthenticationError } = require("apollo-server-express");
 const { signToken } = require("../utils/auth");
 const { sign } = require("jsonwebtoken");
-const { faCommentSlash } = require("@fortawesome/free-solid-svg-icons");
+
 
 const resolvers = {
   Query: {
