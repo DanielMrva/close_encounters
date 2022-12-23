@@ -79,7 +79,7 @@ export default function Encountercardsingle(props) {
             />
           </div>
         </div>
-        <div className={`card-header-encounter`}>
+        <div className="card-header-encounter">
           <div className="username-card">{props.userId.username}</div>
           <div className="date-card" style={{ color: "black" }}>
             {props.date}

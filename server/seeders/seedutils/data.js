@@ -140,13 +140,14 @@ function getRandomFloat(min, max, decimals) {
   return parseFloat(str);
 }
 
-// const getRandomDate = () => {
-//     let utcDate = Date.now();
-//     let randomDate = utcDate - Math.floor((Math.random) * 1103760000000);
-//     let stableDate = new Date(randomDate);
-//     let formatDate = `${stableDate.getMonth()}/${stableDate.getDate}/${stableDate.getFullYear}}`
-//     return formatDate;
-// }
+const getRandomDate = () => {
+  let utcDate = Date.now();
+  let randomDate = utcDate - (Math.floor(Math.random() * 1576800000000));
+  let stableDate = new Date(randomDate).toISOString();
+  let formatDate = stableDate.split('T');
+
+  return formatDate[0];
+};
 
 const type = ["Extraterrestrial", "Paranormal", "Zoological"];
 
@@ -168,7 +169,7 @@ const getEncounters = (qtt, descLength) => {
       lng: getRandomFloat(-95, -110, 4),
       title: randomTitleText(1),
       description: randomText(rndInt(descLength)),
-      // date: (Date.now())
+      date: getRandomDate()
     });
   }
   return encounters;
@@ -193,4 +194,5 @@ module.exports = {
   getRandomFloat,
   rndInt,
   randomText,
+  getRandomDate
 };

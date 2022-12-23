@@ -23,10 +23,10 @@ const MarkerIcon = ({ encounterType, date }) => {
       iconColor = "#000000";
   }
 
-  if ((Date.now() / 86400000) - 30 >= getISODate(date)) {
-    iconStyle = "solid";
+  if ((Date.now() / 86400000) - 90 >= getISODate(date)) {
+    iconStyle = "0.66";
   } else {
-    iconStyle = "regular";
+    iconStyle = "1";
   }
   return { iconType: iconType, iconColor: iconColor, iconStyle: iconStyle };
 };

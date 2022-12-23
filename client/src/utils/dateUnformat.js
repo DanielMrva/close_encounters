@@ -1,8 +1,8 @@
-const exampleDate = "Oct 21st, 2020";
+// const exampleDate = "Oct 3st, 2022";
 
 const getISODate = (targetDate) =>{
 
-    const deconstructedDate = exampleDate.split(' ');
+    const deconstructedDate = targetDate.split(' ');
 
     const year = deconstructedDate[2]
 
@@ -58,8 +58,8 @@ const getISODate = (targetDate) =>{
     }
 
     const numeralDay = (dayTh) => {
-        let number = ""
-        let numberDay = ""
+        let number = "";
+        let numberDay = "";
         if (dayTh.length < 4) {
             number = dayTh.slice(0)
             numberDay = `0${number}`
@@ -76,5 +76,6 @@ const getISODate = (targetDate) =>{
 // console.log((Date.now())/86400000);
 // console.log('-----------------')
 // console.log(getISODate(exampleDate));
-// console.log(typeof(getISODate(exampleDate)))
+// console.log(typeof(getISODate(exampleDate)));
+
 export default getISODate;
