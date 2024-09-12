@@ -24,7 +24,7 @@ import Postpage from "./pages/Postpage/Postpage";
 
 // Construct our main GraphQL API endpoint
 const httpLink = createHttpLink({
-  uri: "/graphql",
+  uri: `${process.env.REACT_APP_API_URL}/graphql`,
 });
 
 // Construct request middleware that will attach the JWT token to every request as an `authorization` header
