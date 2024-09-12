@@ -5,7 +5,8 @@
   "dependencies": {
     "react": "^17.0.2",
     "react-dom": "^17.0.2",
-    "react-scripts": "^5.0.1",
+    "react-scripts": "5.0.1",
+    "web-vitals": "^2.1.4",
     "@apollo/client": "^3.7.14",
     "react-leaflet-draw": "^0.19.8",
     "react-router-dom": "^5.3.4",
@@ -22,8 +23,7 @@
     "start": "react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test",
-    "eject": "react-scripts eject",
-    "seed": "node server/seed.js"
+    "eject": "react-scripts eject"
   },
   "devDependencies": {
     "@testing-library/jest-dom": "^5.16.5",
