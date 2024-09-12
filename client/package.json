@@ -24,6 +24,7 @@
     "react-leaflet": "^4.2.1",
     "react-leaflet-draw": "^0.20.4",
     "react-leaflet-markercluster": "^2.0.0",
+    "react-router-dom": "^6.26.2",
     "react-scripts": "5.0.1",
     "react-spring": "^9.7.4",
     "universal-cookie": "^7.2.0",
