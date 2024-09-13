@@ -2,6 +2,7 @@ const express = require("express");
 const { ApolloServer } = require("apollo-server-express");
 const path = require("path");
 const { authMiddleware } = require("./utils/auth");
+const cors = require('cors');
 
 const { typeDefs, resolvers } = require("./schemas");
 const db = require("./config/connection");
@@ -20,6 +21,7 @@ app.use(
   })
 );
 app.use(express.json());
+app.use(cors({origin: 'https://creative-sprite-a45873.netlify.app/'}));
 
 if (process.env.NODE_ENV === "production") {
   app.use(express.static(path.join(__dirname, "../client/build")));
@@ -42,6 +44,7 @@ const startApolloServer = async (typeDefs, resolvers) => {
 app.get("/", (req, res) => {
   res.sendFile(path.join(__dirname, "../client/build/index.html"));
 });
+
 
 app.get("/*", (req, res) => {
   let url = path.join(__dirname, "../client/build", "index.html");
