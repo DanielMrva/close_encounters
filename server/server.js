@@ -21,8 +21,14 @@ app.use(
   })
 );
 app.use(express.json());
-app.use(cors({origin: 'https://creative-sprite-a45873.netlify.app/'}));
+const corsOptions = {
+  origin: ['https://creative-sprite-a45873.netlify.app', 'http://localhost:3000'],
+  methods: ['GET', 'HEAD', 'PUT', 'PATCH', 'POST', 'DELETE'],
+  credentials: true,
+  allowedHeaders: ['Authorization', 'Content-Type'],
+};
 
+app.use(cors(corsOptions));
 if (process.env.NODE_ENV === "production") {
   app.use(express.static(path.join(__dirname, "../client/build")));
 }

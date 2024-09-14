@@ -23,6 +23,12 @@ import Bottomnav from "./components/Bottomnav/Bottomnav";
 import Postpage from "./pages/Postpage/Postpage";
 
 // Construct our main GraphQL API endpoint
+// const httpLink = createHttpLink({
+//   uri: `https://closeencounters-production.up.railway.app/graphql`,
+
+  
+// });
+
 const httpLink = createHttpLink({
   uri: `${process.env.REACT_APP_API_URL}/graphql`,
 });
