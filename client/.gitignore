@@ -25,3 +25,5 @@ yarn-error.log*
 
 creatPost.js
 play.js
+
+.env
